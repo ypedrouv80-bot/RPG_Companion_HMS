@@ -1,0 +1,1311 @@
+[
+  {
+    "id": "39a9c238-3334-528b-ac58-a3c67b4a636e",
+    "scriptName": "HMS Panel — Collapsible (optional)",
+    "findRegex": "/^(?![\\s\\S]*^### SAVE NOTES ###)###\\s*(?:[^\\sA-Za-z#]+\\s*)?WORLD STATE\\s*\\[COLLAPSED\\]\\s*###[ \\t]*\\r?\\n([^\\n]*?Armored Dragon Calendar:\\**\\s*([^|\\n·*]*)[^\\n]*)\\r?\\n([\\s\\S]*?)\\r?\\n\\*\\*\\*[ \\t\\r]*$/m",
+    "replaceString": "<details data-hms=\"p\" style=\"display:block;max-width:760px;margin:6px 0 14px;padding:10px 14px 6px;border:1px solid #b8913a;border-radius:10px;background:linear-gradient(135deg,#141b24,#18161e);color:#e8e6e1;font-size:0.92em;line-height:1.4;box-shadow:0 0 0 1px #000 inset\"><summary style=\"cursor:pointer;color:#d9b45a;letter-spacing:0.12em;font-weight:700;font-size:0.82em;padding:2px 0\">🌍 WORLD STATE · $2</summary>\n$1\n$3\n<span data-hms=\"end\"></span></details>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "6c294e8f-fcde-5b82-af99-7b13323b8846",
+    "scriptName": "HMS Panel — Open",
+    "findRegex": "/^(?![\\s\\S]*^### SAVE NOTES ###)###\\s*(?:[^\\sA-Za-z#]+\\s*)?WORLD STATE\\s*\\[PANEL\\]\\s*###[ \\t]*\\r?\\n([\\s\\S]*?)\\r?\\n\\*\\*\\*[ \\t\\r]*$/m",
+    "replaceString": "<div data-hms=\"p\" style=\"display:block;max-width:760px;margin:6px 0 14px;padding:10px 14px 6px;border:1px solid #b8913a;border-radius:10px;background:linear-gradient(135deg,#141b24,#18161e);color:#e8e6e1;font-size:0.92em;line-height:1.4;box-shadow:0 0 0 1px #000 inset\"><div style=\"text-align:center;color:#d9b45a;letter-spacing:0.2em;font-weight:700;font-size:0.82em;padding-bottom:6px;margin-bottom:2px;border-bottom:1px solid #3a3326\">🌍 WORLD STATE</div>\n$1\n<span data-hms=\"end\"></span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "5f5381fc-b165-5ab7-a8d3-2027bd262d70",
+    "scriptName": "HMS Panel — Visual to plain: location",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")📍[ \\t]*(?:\\*\\*)?(.*?)(?:\\*\\*)?[ \\t\\r]*$/gm",
+    "replaceString": "◆ $1",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "a5e7bad8-fff2-500e-b998-4ff918e2a416",
+    "scriptName": "HMS Panel — Visual to plain: dividers",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")━{3,}[ \\t]*\\r?\\n/gm",
+    "replaceString": "",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "a33e9af2-859a-5df9-9781-135e9ef91f9b",
+    "scriptName": "HMS Panel — Visual to plain: bold",
+    "findRegex": "/\\*\\*(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")/g",
+    "replaceString": "",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "7f13715c-f47f-509a-b735-c95c42c96c0e",
+    "scriptName": "HMS Context — Hide absent optional fields",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Touki\\ \\(Battle\\ Aura\\)|Touki|Sword\\ Style|Magic\\ Tiers|Magic\\ Schools|Voiceless\\ Casting|Skills|Abilities|DEMON\\ EYE|Demon\\ Eye|\\[DEMON\\ EYE\\]|Curse|Blessing|\\[CURSE\\ \\/\\ BLESSING\\]|Dream\\ Link|Drain\\ Syndrome|Injuries|Equipment|Inventory|Faction|Adventurer|Party|Clan|Term|Role|Bonds|Training|Memory|Active\\ Paths|Renown|NPCs\\ Present|Present):[ \\t]*(?:(?:None|N\\/A|Not\\ applicable|Not\\ acquired|Not\\ learned|Unlearned|Untrained|Not\\ trained|Not\\ unlocked|Not\\ awakened|Not\\ possessed|Absent|No\\ injuries|No\\ equipment|No\\ items|No\\ faction|No\\ affiliation|No\\ bonds|No\\ companions|No\\ active\\ paths)\\.?)?[ \\t]*\\r?$(?:\\n)?/gim",
+    "replaceString": "",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "af008a2f-b940-5e29-8e81-cd0ff7085b2e",
+    "scriptName": "HMS Magic — Elementary translation alias",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\b(Fire|Water|Wind|Earth|Healing|Detoxification|Divine\\ Strike|Barrier|Summoning|Melded\\ Magic|Melded)\\b[ \\t]*(?:\\([ \\t]*Beginner[ \\t]*\\)|(?::|-)?[ \\t]*Beginner\\b)/gim",
+    "replaceString": "$1 (Elementary)",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "9e214898-947a-5f3c-9549-06e929e8b2a7",
+    "scriptName": "HMS Magic — Fire",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\bFire\\b[ \\t]*(?:\\([ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)[ \\t]*\\)|(?::|-)?[ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)\\b)/gim",
+    "replaceString": "<span>🔥 Fire — $1$2</span>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "b42c5174-1bbb-50fa-845a-63fe2b9286ea",
+    "scriptName": "HMS Magic — Water",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\bWater\\b[ \\t]*(?:\\([ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)[ \\t]*\\)|(?::|-)?[ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)\\b)/gim",
+    "replaceString": "<span>💧 Water — $1$2</span>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "b92f412d-1f51-5e90-b8b2-4b5733c2ab18",
+    "scriptName": "HMS Magic — Wind",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\bWind\\b[ \\t]*(?:\\([ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)[ \\t]*\\)|(?::|-)?[ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)\\b)/gim",
+    "replaceString": "<span>🌪️ Wind — $1$2</span>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "b377ea98-378c-553e-88e7-a0e1abd5c94a",
+    "scriptName": "HMS Magic — Earth",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\bEarth\\b[ \\t]*(?:\\([ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)[ \\t]*\\)|(?::|-)?[ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)\\b)/gim",
+    "replaceString": "<span>🪨 Earth — $1$2</span>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "6dfecb7a-7d01-5224-9382-c98cc9417c09",
+    "scriptName": "HMS Magic — Healing",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\bHealing\\b[ \\t]*(?:\\([ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)[ \\t]*\\)|(?::|-)?[ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)\\b)/gim",
+    "replaceString": "<span>💚 Healing — $1$2</span>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "fb3b5333-12d9-5b7f-bd85-dbd1ca4b4c01",
+    "scriptName": "HMS Magic — Detoxification",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\bDetoxification\\b[ \\t]*(?:\\([ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)[ \\t]*\\)|(?::|-)?[ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)\\b)/gim",
+    "replaceString": "<span>🧪 Detoxification — $1$2</span>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "626270bb-376f-5b1d-815c-20f2bdbee424",
+    "scriptName": "HMS Magic — Divine Strike",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\bDivine\\ Strike\\b[ \\t]*(?:\\([ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)[ \\t]*\\)|(?::|-)?[ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)\\b)/gim",
+    "replaceString": "<span>☀️ Divine Strike — $1$2</span>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "457874f2-8b24-54e8-ba9a-2ecc5c9c6873",
+    "scriptName": "HMS Magic — Barrier",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\bBarrier\\b[ \\t]*(?:\\([ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)[ \\t]*\\)|(?::|-)?[ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)\\b)/gim",
+    "replaceString": "<span>🛡️ Barrier — $1$2</span>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "99bdecec-e9aa-57be-a478-98d496ab71c1",
+    "scriptName": "HMS Magic — Summoning",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\bSummoning\\b[ \\t]*(?:\\([ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)[ \\t]*\\)|(?::|-)?[ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)\\b)/gim",
+    "replaceString": "<span>🌀 Summoning — $1$2</span>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "f6a04676-a1db-5cb2-91d9-ca5d6869ab83",
+    "scriptName": "HMS Magic — Melded Magic",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\bMelded\\ Magic\\b[ \\t]*(?:\\([ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)[ \\t]*\\)|(?::|-)?[ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)\\b)/gim",
+    "replaceString": "<span>🔀 Melded Magic — $1$2</span>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "8d15c0b8-3856-57fb-8a5f-4d177b82c13e",
+    "scriptName": "HMS Magic — Melded",
+    "findRegex": "/(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?<=^(?:[^\\x00-\\x7F\\s]+[ \\t]*)?(?:Magic Tiers|Magic Schools):[^\\r\\n]*)\\bMelded\\b[ \\t]*(?:\\([ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)[ \\t]*\\)|(?::|-)?[ \\t]*(Elementary|Intermediate|Advanced|Saint|King|Emperor|Imperial|God|Divine)\\b)/gim",
+    "replaceString": "<span>🔀 Melded — $1$2</span>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "84351687-65f4-5b40-8f52-24a1334075fd",
+    "scriptName": "HMS Calendar — Deepfrost",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+0?1[ \\t]*,[ \\t]*Day[ \\t]+|January[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Deepfrost $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "234a1392-0965-5dc5-8783-2b09031efffb",
+    "scriptName": "HMS Calendar — Thawrise",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+0?2[ \\t]*,[ \\t]*Day[ \\t]+|February[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Thawrise $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "a3699219-824d-5d39-9d9b-65d8232baeca",
+    "scriptName": "HMS Calendar — Seedtide",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+0?3[ \\t]*,[ \\t]*Day[ \\t]+|March[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Seedtide $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "dbd83361-bf6d-52ed-9ed5-33f3440ca9b2",
+    "scriptName": "HMS Calendar — Rainveil",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+0?4[ \\t]*,[ \\t]*Day[ \\t]+|April[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Rainveil $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "347e0f35-3272-5b41-b885-ba278f5aa70c",
+    "scriptName": "HMS Calendar — Greengrowth",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+0?5[ \\t]*,[ \\t]*Day[ \\t]+|May[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Greengrowth $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "91a02a90-3ce7-5d70-b2e6-7945bb4255d8",
+    "scriptName": "HMS Calendar — Suncrest",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+0?6[ \\t]*,[ \\t]*Day[ \\t]+|June[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Suncrest $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "f38327e6-8b67-57aa-b007-dca5c21aae64",
+    "scriptName": "HMS Calendar — Highsun",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+0?7[ \\t]*,[ \\t]*Day[ \\t]+|July[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Highsun $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "cc176356-d7ba-544a-bfe0-d51f653dc8c1",
+    "scriptName": "HMS Calendar — Emberwane",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+0?8[ \\t]*,[ \\t]*Day[ \\t]+|August[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Emberwane $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "e125fe2f-71f1-5215-a329-a742c06c470d",
+    "scriptName": "HMS Calendar — Harvestmoon",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+0?9[ \\t]*,[ \\t]*Day[ \\t]+|September[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Harvestmoon $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "cef74c2f-5434-5164-8d8b-9a81ba6a15b6",
+    "scriptName": "HMS Calendar — Goldfall",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+10[ \\t]*,[ \\t]*Day[ \\t]+|October[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Goldfall $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "14cdcc58-4b76-58a6-89cb-b93c07ca541b",
+    "scriptName": "HMS Calendar — Longnight",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+11[ \\t]*,[ \\t]*Day[ \\t]+|November[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Longnight $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "4b029a5f-5590-53e9-beb1-82840b778111",
+    "scriptName": "HMS Calendar — Frostfall",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[ \\t]*K\\d+[ \\t]*,[ \\t]*)(?:Month[ \\t]+12[ \\t]*,[ \\t]*Day[ \\t]+|December[ \\t]+)(0?[1-9]|[12]\\d|30)(?=[ \\t]*(?:[,|\\r\\n]|$))/gim",
+    "replaceString": "$1Frostfall $2",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "3b006cb7-75d3-5de3-8c9e-6cc6a96a9973",
+    "scriptName": "HMS Calendar — Flameday",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[^\\r\\n]*?\\b)Monday\\b/gim",
+    "replaceString": "$1Flameday",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "445c7333-eb2b-55e4-bc90-80493b239c36",
+    "scriptName": "HMS Calendar — Tideday",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[^\\r\\n]*?\\b)Tuesday\\b/gim",
+    "replaceString": "$1Tideday",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "3666a928-e437-5c31-8289-752f109faba8",
+    "scriptName": "HMS Calendar — Galeday",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[^\\r\\n]*?\\b)Wednesday\\b/gim",
+    "replaceString": "$1Galeday",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "ef9d2c1d-6f7c-54fd-a05f-e67b3d72bf30",
+    "scriptName": "HMS Calendar — Stoneday",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[^\\r\\n]*?\\b)Thursday\\b/gim",
+    "replaceString": "$1Stoneday",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "6a40d9a6-6f2b-54a2-93f7-3003a8c0b3ca",
+    "scriptName": "HMS Calendar — Starday",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[^\\r\\n]*?\\b)Friday\\b/gim",
+    "replaceString": "$1Starday",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "aa61639e-fe82-550b-9483-648a42bf4922",
+    "scriptName": "HMS Calendar — Lightday",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[^\\r\\n]*?\\b)Saturday\\b/gim",
+    "replaceString": "$1Lightday",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "b573e0fd-46c4-5030-b977-d0e3aa7373cf",
+    "scriptName": "HMS Calendar — Restday",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s]+)?[ \\t]*Armored Dragon Calendar:[^\\r\\n]*?\\b)Sunday\\b/gim",
+    "replaceString": "$1Restday",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": true,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "6af681f2-d484-5856-a046-0702200c81e6",
+    "scriptName": "HMS Season — Winter",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Season|Calendar Season):[ \\t]*(Winter\\b[^\\r\\n]*)$/gim",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">❄️</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "5620fb2f-a7a9-5261-9412-221672d0aa8a",
+    "scriptName": "HMS Season — Spring",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Season|Calendar Season):[ \\t]*(Spring\\b[^\\r\\n]*)$/gim",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🌱</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "7b7723d2-2653-5f1c-a9b7-7ca9d7fcd7f9",
+    "scriptName": "HMS Season — Summer",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Season|Calendar Season):[ \\t]*(Summer\\b[^\\r\\n]*)$/gim",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">☀️</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "31e2c5a1-0357-505c-9cea-7ffb2871ecbc",
+    "scriptName": "HMS Season — Autumn",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Season|Calendar Season):[ \\t]*(Autumn\\b[^\\r\\n]*)$/gim",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🍂</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "c9a4d02d-8588-5b75-bd19-f166ffb0050f",
+    "scriptName": "HMS Season — Local or unknown",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Season|Calendar Season):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🗓️</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "92f50903-cdec-5fd7-ba4a-7f4bedac39bf",
+    "scriptName": "HMS Panel — Date",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*Armored Dragon Calendar:[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">📅</span>Date</span><span style=\"flex:1;color:#ece9e2\">$2</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "b3a91201-5329-5dcf-a49c-b8275749ad00",
+    "scriptName": "HMS Panel — Arc",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(?:Era \\/ Arc|Current Arc):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🧭</span>Current Arc</span><span style=\"flex:1;color:#ece9e2\"><b style=\"color:#e3bd5c\">$2</b></span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "1d1cf951-3989-5fe5-b446-b3436d6f7b37",
+    "scriptName": "HMS Icons — Location",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Location):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">📍</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "d33d13e3-b2d4-5f1b-b88d-f129b7a5f689",
+    "scriptName": "HMS Icons — Current Scene",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Current\\ Scene):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🎬</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "81caa51f-3a3c-50b3-b362-b869d6ba7ed9",
+    "scriptName": "HMS Icons — Race",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Race|Rudeus\\ Mode|Player):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🧬</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "0eff570c-d40a-54bc-9654-afba5f406e87",
+    "scriptName": "HMS Icons — Memory",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Memory):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">📖</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "1049252d-7df4-5433-bfd3-2b650ba9d067",
+    "scriptName": "HMS Icons — Game Mode",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Game\\ Mode|Narrative\\ Mode|HUD Style|Calendar Profile|Guide):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🎮</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "075d73b2-9815-51c1-b98e-53155302614e",
+    "scriptName": "HMS Icons — Mana Capacity",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Mana\\ Capacity):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">✨</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "441f8eeb-0b61-5190-8793-9fba7418603b",
+    "scriptName": "HMS Icons — Touki (Battle Aura)",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Touki\\ \\(Battle\\ Aura\\)|Sword\\ Style|Skills):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">⚔️</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "4fb7b984-b601-5807-ac84-55d2f2be919e",
+    "scriptName": "HMS Icons — Magic Tiers",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Magic\\ Tiers|Voiceless\\ Casting):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🔮</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "f218621b-6800-5582-b6d6-427797c298e9",
+    "scriptName": "HMS Icons — Languages",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Languages):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🗣️</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "34881ba9-c102-5092-a502-d7ed5de2e252",
+    "scriptName": "HMS Icons — Training",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Training|Term|Role):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">📚</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "5153c4f1-85a3-58af-a693-b791316a8489",
+    "scriptName": "HMS Icons — DEMON EYE",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(DEMON\\ EYE|\\[DEMON\\ EYE\\]):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">👁️</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "21365550-0b2d-5b6b-89b1-ce76b312da2a",
+    "scriptName": "HMS Icons — Curse",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Curse|Blessing|\\[CURSE\\ \\/\\ BLESSING\\]):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🧿</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "118bc1ac-9170-516a-bca5-e907a734d8da",
+    "scriptName": "HMS Icons — Dream Link",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Dream\\ Link):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🌙</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "7db62166-e790-5ffe-93a7-54393ba806d4",
+    "scriptName": "HMS Icons — Drain Syndrome",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Drain\\ Syndrome):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🩺</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "260d5392-f6a1-579f-b206-5d997589e80f",
+    "scriptName": "HMS Icons — Injuries",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Injuries):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🩹</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "5714bc94-5cd3-5602-ad36-bb48e3d7f308",
+    "scriptName": "HMS Icons — Condition",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Condition|Status):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">❤️</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "9f4098ec-cba0-5852-9b67-12d2344b19c5",
+    "scriptName": "HMS Icons — Equipment",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Equipment):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🎒</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "857d76bb-3cb1-5d0e-893f-f9c937d64aaa",
+    "scriptName": "HMS Icons — Inventory",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Inventory):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🪙</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "af1f08be-f549-5647-9630-29f6455fab94",
+    "scriptName": "HMS Icons — Standing",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Standing|Faction):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🏛️</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "8c6aecd9-a076-51a2-9726-3cfdcb4c1124",
+    "scriptName": "HMS Icons — Renown",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Renown):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🌟</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "4366672c-59c5-51c2-af24-66adf63e31ec",
+    "scriptName": "HMS Icons — Adventurer",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Adventurer|Party|Clan):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🛡️</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "4d6b0c4c-9522-5ba0-a092-2e01e0e980a6",
+    "scriptName": "HMS Icons — Bonds",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Bonds):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🤝</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "7074303e-acc1-5b39-b60a-23de28691728",
+    "scriptName": "HMS Icons — Active Paths",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Active\\ Paths|Changes|Era\\ \\/\\ Arc):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">🧭</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "4a2fc652-07c3-5f4e-b3b4-5c9970c5f638",
+    "scriptName": "HMS Icons — Canon",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(Canon|Canon\\ reference|Next\\ Canon\\ Event|Canon\\ Begins|World\\ event|Next\\ Turning\\ Point|\\[TURNING\\ POINT\\]):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">⏳</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "0766b06a-3969-58f7-b4ed-b96e042f07e4",
+    "scriptName": "HMS Icons — NPCs Present",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(NPCs\\ Present|Present):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">👥</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "4679b448-7017-5049-a468-0084f9d5cd5d",
+    "scriptName": "HMS Panel — Rows",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")((?:[^\\x00-\\x7F\\s])+)?[ \\t]*(\\[DEMON EYE\\]|\\[CURSE \\/ BLESSING\\]|\\[TURNING POINT\\]|Current Arc|Current Scene|Rudeus Mode|Location|NPCs Present|Injuries|Inventory|Drain Syndrome|DEMON EYE|Curse|Blessing|Adventurer|Party|Clan|Term|Role|Faction|Canon|Armored Dragon Calendar|Skills|Race|Era \\/ Arc|Memory|Game Mode|Mana Capacity|Touki \\(Battle Aura\\)|Sword Style|Magic Tiers|Voiceless Casting|Languages|Training|Dream Link|Condition|Equipment|Player|Standing|Renown|Bonds|Active Paths|Present|Narrative Mode|Status|Changes|Next Canon Event|Canon Begins|Canon reference|World event|Next Turning Point):[ \\t]*(.*)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;text-transform:none;margin-right:5px\">$1</span>$2</span><span style=\"flex:1;color:#ece9e2\">$3</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "2bfa6137-319b-5bb9-878a-ff04fa6765ea",
+    "scriptName": "HMS Panel — Location",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")◆[ \\t]*(.+)$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\"><span style=\"letter-spacing:0;margin-right:5px\">📍</span>Location</span><span style=\"flex:1;color:#ece9e2\">$1</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "5fa79e5e-5217-5def-be27-500a376074ee",
+    "scriptName": "HMS Panel — Flags",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")\\[([^\\]:\\n]+):?[ \\t]*([^\\]\\n]*)\\][ \\t\\r]*$/gm",
+    "replaceString": "<div style=\"display:flex;gap:12px;padding:4px 0;border-bottom:1px dashed #2a2d36\"><span style=\"flex:0 0 30%;max-width:150px;color:#8f949f;text-transform:uppercase;letter-spacing:0.06em;font-size:0.76em;padding-top:2px\">$1</span><span style=\"flex:1;color:#ece9e2\">$2</span></div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "06b483a7-e3ce-509a-b7ef-d4bfbd45d5ad",
+    "scriptName": "HMS Panel — Sub-lines",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")[ \\t]*(?:-[ \\t]+)?((?:Divergence|Change):.*|(?:⚠️|⚠|✅|❌).*)$/gm",
+    "replaceString": "<div style=\"padding:2px 0 2px 32%;color:#b9bdc6;font-size:0.86em\">$1</div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "fa386ab9-7928-5186-bf27-0d967afbbb4a",
+    "scriptName": "HMS Panel — Other lines",
+    "findRegex": "/^(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")(?!<)[ \\t]*(\\S.*)$/gm",
+    "replaceString": "<div style=\"padding:2px 0 2px 32%;color:#b9bdc6;font-size:0.86em\">$1</div>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "0687442d-595b-500f-9d05-fb805bacc65c",
+    "scriptName": "HMS Panel — Tidy",
+    "findRegex": "/\\r?\\n(?=(?:[^d]|d(?!ata-hms=\"(?:p|end)\"))*data-hms=\"end\")/g",
+    "replaceString": "",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "ce5da0cd-7b4e-57c3-9737-12e547d7b29a",
+    "scriptName": "HMS Party — Translation (collapsible)",
+    "findRegex": "/^###\\s*🌐\\s*(?!\\s*WORLD STATE\\b)([^#\\n]+?)\\s*###[ \\t]*\\r?\\n([\\s\\S]*?)\\r?\\n\\*\\*\\*[ \\t\\r]*$/gm",
+    "replaceString": "<details style=\"margin:10px 0;padding:6px 12px;border:1px solid #3a4a66;border-radius:8px;background:#151a24\"><summary style=\"cursor:pointer;color:#8fb3e8;font-weight:700\">🌐 $1</summary>\n\n$2\n\n</details>",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": true,
+    "promptOnly": false,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  },
+  {
+    "id": "ac6488f7-7538-5762-8afd-3bc515799457",
+    "scriptName": "HMS Party — Keep translations out of the prompt",
+    "findRegex": "/\\r?\\n*^###\\s*🌐\\s*(?!\\s*WORLD STATE\\b)[^#\\n]+?\\s*###[ \\t]*\\r?\\n[\\s\\S]*?\\r?\\n\\*\\*\\*[ \\t\\r]*$/gm",
+    "replaceString": "",
+    "trimStrings": [],
+    "placement": [
+      2
+    ],
+    "disabled": false,
+    "markdownOnly": false,
+    "promptOnly": true,
+    "runOnEdit": true,
+    "substituteRegex": 0,
+    "minDepth": null,
+    "maxDepth": null
+  }
+]

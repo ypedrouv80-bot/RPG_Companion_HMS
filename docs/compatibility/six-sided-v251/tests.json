@@ -1,0 +1,682 @@
+{
+  "report": {
+    "checks": 168,
+    "passed": 168,
+    "failures": [],
+    "scope": "Actual shipped reader functions extracted into an isolated VM; real bot regex HTML replay. No storage, network, model generation or live Lumiverse session."
+  },
+  "checks": [
+    {
+      "name": "detect ### WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity ### WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained ### WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside ### WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto ### WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect ### WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity ### WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained ### WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside ### WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto ### WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect ### 🌐 WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity ### 🌐 WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained ### 🌐 WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside ### 🌐 WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto ### 🌐 WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect ### 🌐 WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity ### 🌐 WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained ### 🌐 WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside ### 🌐 WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto ### 🌐 WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect ### 🌍 WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity ### 🌍 WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained ### 🌍 WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside ### 🌍 WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto ### 🌍 WORLD STATE ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect ### 🌍 WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity ### 🌍 WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained ### 🌍 WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside ### 🌍 WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto ### 🌍 WORLD STATE ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect ### WORLD STATE [PANEL] ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity ### WORLD STATE [PANEL] ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained ### WORLD STATE [PANEL] ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside ### WORLD STATE [PANEL] ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto ### WORLD STATE [PANEL] ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect ### WORLD STATE [PANEL] ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity ### WORLD STATE [PANEL] ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained ### WORLD STATE [PANEL] ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside ### WORLD STATE [PANEL] ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto ### WORLD STATE [PANEL] ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect ### WORLD STATE [COLLAPSED] ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity ### WORLD STATE [COLLAPSED] ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained ### WORLD STATE [COLLAPSED] ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside ### WORLD STATE [COLLAPSED] ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto ### WORLD STATE [COLLAPSED] ### \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect ### WORLD STATE [COLLAPSED] ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity ### WORLD STATE [COLLAPSED] ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained ### WORLD STATE [COLLAPSED] ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside ### WORLD STATE [COLLAPSED] ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto ### WORLD STATE [COLLAPSED] ### \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect WORLD STATE \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity WORLD STATE \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained WORLD STATE \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside WORLD STATE \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto WORLD STATE \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect WORLD STATE \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity WORLD STATE \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained WORLD STATE \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside WORLD STATE \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto WORLD STATE \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect **WORLD STATE** \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity **WORLD STATE** \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained **WORLD STATE** \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside **WORLD STATE** \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto **WORLD STATE** \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "detect **WORLD STATE** \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "world identity **WORLD STATE** \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "values retained **WORLD STATE** \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "narrative outside **WORLD STATE** \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "HMS auto **WORLD STATE** \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "bold Visual fields",
+      "passed": true
+    },
+    {
+      "name": "Visual calendar",
+      "passed": true
+    },
+    {
+      "name": "Rudeus mode preserved NPC",
+      "passed": true
+    },
+    {
+      "name": "Rudeus mode preserved Player",
+      "passed": true
+    },
+    {
+      "name": "Rudeus mode preserved Replacement",
+      "passed": true
+    },
+    {
+      "name": "Rudeus mode preserved Off",
+      "passed": true
+    },
+    {
+      "name": "not a live state No HUD here.",
+      "passed": true
+    },
+    {
+      "name": "not a live state The phrase WORLD STATE [PANEL] appears in dia",
+      "passed": true
+    },
+    {
+      "name": "not a live state ### WORLD STATE [UNKNOWN] ###\nfoo: bar\n***",
+      "passed": true
+    },
+    {
+      "name": "not a live state <think>### WORLD STATE [PANEL] ###\nArmored Dr",
+      "passed": true
+    },
+    {
+      "name": "not a live state Example\n```text\n### WORLD STATE [PANEL] ###\nA",
+      "passed": true
+    },
+    {
+      "name": "month Deepfrost",
+      "passed": true
+    },
+    {
+      "name": "month January",
+      "passed": true
+    },
+    {
+      "name": "month Thawrise",
+      "passed": true
+    },
+    {
+      "name": "month February",
+      "passed": true
+    },
+    {
+      "name": "month Seedtide",
+      "passed": true
+    },
+    {
+      "name": "month March",
+      "passed": true
+    },
+    {
+      "name": "month Rainveil",
+      "passed": true
+    },
+    {
+      "name": "month April",
+      "passed": true
+    },
+    {
+      "name": "month Greengrowth",
+      "passed": true
+    },
+    {
+      "name": "month May",
+      "passed": true
+    },
+    {
+      "name": "month Suncrest",
+      "passed": true
+    },
+    {
+      "name": "month June",
+      "passed": true
+    },
+    {
+      "name": "month Highsun",
+      "passed": true
+    },
+    {
+      "name": "month July",
+      "passed": true
+    },
+    {
+      "name": "month Emberwane",
+      "passed": true
+    },
+    {
+      "name": "month August",
+      "passed": true
+    },
+    {
+      "name": "month Harvestmoon",
+      "passed": true
+    },
+    {
+      "name": "month September",
+      "passed": true
+    },
+    {
+      "name": "month Goldfall",
+      "passed": true
+    },
+    {
+      "name": "month October",
+      "passed": true
+    },
+    {
+      "name": "month Longnight",
+      "passed": true
+    },
+    {
+      "name": "month November",
+      "passed": true
+    },
+    {
+      "name": "month Frostfall",
+      "passed": true
+    },
+    {
+      "name": "month December",
+      "passed": true
+    },
+    {
+      "name": "old calendar Armored Dragon Calendar: K414, Month 4, Day 12",
+      "passed": true
+    },
+    {
+      "name": "old calendar Armored Dragon Calendar: K414, Rainveil (Month 4), Day 12",
+      "passed": true
+    },
+    {
+      "name": "legacy Year/Day",
+      "passed": true
+    },
+    {
+      "name": "no date invention K414, Unknown 12",
+      "passed": true
+    },
+    {
+      "name": "no date invention K414, Rainveil 31",
+      "passed": true
+    },
+    {
+      "name": "no date invention K414, Rainveil 0",
+      "passed": true
+    },
+    {
+      "name": "no date invention K414, Rainveil unknown",
+      "passed": true
+    },
+    {
+      "name": "no date invention K414, Month 13, Day 2",
+      "passed": true
+    },
+    {
+      "name": "Compact names without dash suffix",
+      "passed": true
+    },
+    {
+      "name": "Compact martial and voiceless",
+      "passed": true
+    },
+    {
+      "name": "old Compact",
+      "passed": true
+    },
+    {
+      "name": "numeric ranks not fabricated",
+      "passed": true
+    },
+    {
+      "name": "style command CLASSIC",
+      "passed": true
+    },
+    {
+      "name": "style start CLASSIC",
+      "passed": true
+    },
+    {
+      "name": "style state CLASSIC",
+      "passed": true
+    },
+    {
+      "name": "style command VISUAL",
+      "passed": true
+    },
+    {
+      "name": "style start VISUAL",
+      "passed": true
+    },
+    {
+      "name": "style state VISUAL",
+      "passed": true
+    },
+    {
+      "name": "style command COMPACT",
+      "passed": true
+    },
+    {
+      "name": "style start COMPACT",
+      "passed": true
+    },
+    {
+      "name": "style state COMPACT",
+      "passed": true
+    },
+    {
+      "name": "style command PANEL",
+      "passed": true
+    },
+    {
+      "name": "style start PANEL",
+      "passed": true
+    },
+    {
+      "name": "style state PANEL",
+      "passed": true
+    },
+    {
+      "name": "style command CARD",
+      "passed": true
+    },
+    {
+      "name": "style start CARD",
+      "passed": true
+    },
+    {
+      "name": "style state CARD",
+      "passed": true
+    },
+    {
+      "name": "style command COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "style start COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "style state COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "selector without command PANEL",
+      "passed": true
+    },
+    {
+      "name": "no double-render PANEL",
+      "passed": true
+    },
+    {
+      "name": "rewrite preserves header and prose PANEL",
+      "passed": true
+    },
+    {
+      "name": "selector without command COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "no double-render COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "rewrite preserves header and prose COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "latest explicit user style wins",
+      "passed": true
+    },
+    {
+      "name": "rendered HTML detected PANEL",
+      "passed": true
+    },
+    {
+      "name": "rendered HTML location PANEL",
+      "passed": true
+    },
+    {
+      "name": "rendered HTML Rudeus mode PANEL",
+      "passed": true
+    },
+    {
+      "name": "rendered HTML magic PANEL",
+      "passed": true
+    },
+    {
+      "name": "HTML never rewritten PANEL",
+      "passed": true
+    },
+    {
+      "name": "rendered HTML detected COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "rendered HTML location COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "rendered HTML Rudeus mode COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "rendered HTML magic COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "HTML never rewritten COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "actual release example 0",
+      "passed": true
+    },
+    {
+      "name": "actual release example 1",
+      "passed": true
+    },
+    {
+      "name": "actual release example 2",
+      "passed": true
+    },
+    {
+      "name": "actual release example 3",
+      "passed": true
+    },
+    {
+      "name": "fenced save readable",
+      "passed": true
+    },
+    {
+      "name": "legacy rezero",
+      "passed": true
+    },
+    {
+      "name": "legacy overlord",
+      "passed": true
+    },
+    {
+      "name": "legacy cote",
+      "passed": true
+    },
+    {
+      "name": "legacy bg3",
+      "passed": true
+    },
+    {
+      "name": "Mushoku adapter themed date",
+      "passed": true
+    },
+    {
+      "name": "Mushoku adapter approximate time",
+      "passed": true
+    },
+    {
+      "name": "Mushoku adapter current settings",
+      "passed": true
+    },
+    {
+      "name": "Mushoku adapter actual dream standing",
+      "passed": true
+    },
+    {
+      "name": "Mushoku adapter empty reserve preserved",
+      "passed": true
+    },
+    {
+      "name": "backend syntax",
+      "passed": true
+    },
+    {
+      "name": "frontend module syntax",
+      "passed": true
+    }
+  ]
+}

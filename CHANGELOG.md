@@ -1,0 +1,1771 @@
+# Changelog — RPG Companion HMS Edition
+
+## 1.4.2 RC — The BG3 Atlas (built on 1.4.1 RC)
+
+**Baldur's Gate 3 now has a real map.** The BG3 RPG (HMS) card (v2.3) carries the whole game's geography as a location book, and the Atlas reads it like any other HMS bot's book. No code change, no new tracker fields and no extra model calls.
+
+- **103 places** from bg3.wiki's List of locations, from the Nautiloid to the Upper City: the Chionthar Wilderness, the Underdark and Grymforge, the Rosymorn trail and the Crèche, the Shadow-Cursed Lands, Rivington, Wyrm's Crossing, Wyrm's Rock, the Lower City and the Undercity, plus the planes (Astral Plane, Shadowfell, House of Hope). About 40 more shops and spots appear as tiles inside their parent.
+- Each place has its summary, what is inside, **who is there in each act** (`ACT 1/2/3 WHO'S HERE`), waypoints and dangers.
+- The bot writes its ◆ line with the same names (`◆ Faerûn → Sword Coast → Chionthar Wilderness → Emerald Grove → The Hollow`), so the panel always finds where you are. Rooms the book doesn't list show as "past" the deepest known place; `[In Transit: A → B]` places you on the road.
+- **Who Is Where · Act I/II/III** entries load on the HUD's Arc code, so the bot knows each act's canon positions.
+- New file **`lorebooks/BG3_Atlas_Mazaki.json`** (103 entries): the same map as a separate world book, to use the Atlas with other BG3 cards.
+
+**Checked**
+- The backend's own `atlasBuild`, `atlasLocate` and `atlasPayload` were run on the card: 145 places with two roots (Faerûn, The Planes) and no duplicate names. Twelve sample HUD paths were all found, including a room past the book, a trip in transit, the Nautiloid's Helm and the House of Hope.
+- Not yet tested live in Lumiverse.
+
+## 1.4.1 RC — Cyberpunk: Living World (built on 1.4.0 RC)
+
+**A world card, a look and a play style for Cyberpunk: Living World.** The extension now recognises the Cyberpunk HUD on its own (Eddies, Street Cred, Humanity | Psyche, the ◆ NorCal / Elsewhere path) and treats it as its own world, like Re:Zero, Overlord or Baldur's Gate 3. No new tracker fields, no extra model calls, no change to what the story is sent.
+
+**World card (Cyberpunk)**
+- **Who you are:** name, Role, Lifepath and age (and birth year) from the Identity line.
+- **Arc and mode:** the arc code and title (Arc 5-B: Edgerunners 2 — Capri) or Sandbox, with Canon (Keep, Join, Off-Screen, Living) and Guide.
+- **Eddies** with the wealth band (Broke → Loaded) and **Street Cred** with the reputation tier (Unknown → Night City Legend; Public Enemy marked in red).
+- **Humanity** as a bar with the **Psyche** stage: green while Stable, amber from Shifting, red at Cyberpsycho.
+- **Passenger** (Johnny Silverhand, Capri or any engram): the Overwrite percentage as a bar and the Echo › Bleed › Merge › Overwrite ladder, with the passenger's lorebook note.
+- **Heat** 1–5 with who is hunting you and every "Gang/Corp: Hunted" tag.
+- **Cyberware:** every implant on its own row with its lorebook note (the first ten shown, the rest folded).
+- **Net Level** and deck, **Faction** and rank, **Bonds** on the Acquaintance → Partner ladder (Rival, Wary and Hostile in red), wounds from the Condition line (Raw in red), the **Canon Clock** (Next Canon Event, Next Turning Point, Canon Begins) and **Changes**.
+- The card's badge shows the arc (Arc 3-C) or your eddies.
+- Classic, Visual and Compact HUD styles are all read (labels stay word for word).
+
+**Look**
+- **Night City theme** (Settings → theme: Cyberpunk) and **Cyberpunk skin** (Auto picks it by world): dark glass, scanner cyan, street yellow and Arasaka-red alarms, scan lines, uppercase section titles.
+
+**Play style: Cyberpunk — The Living World**
+- HMS always on, the Night City theme, world card and arc chapters on, engine-rule fights with no D&D or dice display.
+- Humanity read as the vitals pool (warning at 30, critical at 15), Condition and Heat clear on their own.
+- Carriers for Arc, Game Mode, Eddies, Humanity, Street Cred, Cyberware, Netrunning, Heat, Passenger, Faction, Bonds, Changes, Canon Ledger, Next Canon Event and Next Turning Point.
+- Quests also read Gigs; the phone is the holo (holocall, personal link, agent); money is Eddies (€$).
+
+**Preset: HMS Reporter 1.1.2-beta**
+- New **Night City** block, on by default and active only when the card's name contains "Cyberpunk": street slang used naturally, real brands, the cost of chrome, the Psyche stage colouring what the player perceives, how a **Passenger** speaks (its own italic line with its name, heard only by the host), how Heat and news arrive.
+- **Fight craft** also loads on quickhack, Sandevistan, mantis blades, gorilla arms and monowire.
+- Description lists Cyberpunk among the HMS Living World bots.
+
+**Docs**
+- GUIDE.md and GUIDE.pt-BR.md: the Cyberpunk world card and play style.
+
+**Checked**
+- The backend's own parser was run on Classic, Visual and Sandbox Cyberpunk HUDs: all detected as Cyberpunk with every field read. A Dark Souls HUD with "Humanity: 3" still reads as Dark Souls.
+- Both bundles pass a syntax check. Not yet tested live in Lumiverse.
+
+## 1.4.0 RC (in development, branch `release/1.4.0`, built on 1.3.0)
+
+**The deck: a new look for the whole panel.** Everything below is display only. The Companion reads what it already has; there are no new tracker fields, no extra model calls and no change to what the story is sent.
+
+**Look and feel**
+- **World skins**, picked by card: Mushoku parchment and ink, Re:Zero violet and witch gold, COTE school tablet, Overlord obsidian and crimson, D&D tavern. You can choose one yourself or turn them off. A wiki theme you chose in Settings still wins.
+- **One type scale**, a display font for titles and a reading font for text, plus a **day and night tint** that follows the HUD clock.
+- **At-a-glance strip:** time, period, date, place, mana, Touki, vitals, conditions and weather as pills, with a small sky that puts the sun or moon where the HUD's clock says. In the Scene the Now card already shows the sky, so the strip keeps only the pills.
+- **World event countdown:** "The Mana Calamity · 9 months", a bar that reddens as it comes.
+- **Since last reply:** one line of what moved (06:25 → 06:40, dining hall → front gate, equipment, who is here, new Agenda items, gear moved). Tap a chip to jump there.
+- Settings → Play style: accent colour, reading font, high contrast, colour-blind status colours, reduced motion, layout presets (Full RPG, Minimal, Reader), and switches for every new part.
+
+**People**
+- **Bond rings** on every face (family, close, friend, rival, enemy, love). Each card shows the person's **last line** and **what they call you**, read from the story's dialogue tags ("calls you 'young master'"), plus a **promise badge** and a **standing line**.
+- A **flip side** with their story with you, a **"Here" strip** of who is in the room (lit when they spoke this reply), a **family tree**, **party tabs**, and secrets as **wax-sealed envelopes** that crack as more people learn them.
+
+**You**
+- A **character sheet:** portrait, standing, mana, Touki and casting tiles, every sword and magic rank on the ladder, training bars and languages.
+- A **paper doll** in Gear (hands, shoulders, arms, belt, body, feet, bags, set down), a **technique tree** (Flash Slash lit, Longsword of Light next), a **rank-up stamp**, **coin stacks**, a **spending chart** by day, a **7-day Agenda strip**, **things to bring back**, and a rough **load** bar (off by default).
+
+**Story and time**
+- **Open threads** (quests, plot, promises and the story's loose ends), **The story so far** (arc, a canon-arc ring, days, replies, people met, money spent, the moments that mattered, promises and deals), and **Milestones** as a trophy shelf.
+- Quest cards get a **journey line** of their stages. The Chronicle gets a **Journal** look and **day cards** (how many entries, the key moment).
+- The Now card gets **scenery and mood** from the place's own words. Letters look like letters and your own notes are handwritten. A **training-by-day** grid, **Places lately** with the story time between places, **Compare with an earlier reply** (HUD lines, only when you ask), and a **spoiler guard** that blurs canon arcs more than one ahead.
+
+**Interaction**
+- **Toasts and confetti** when a quest completes or a promise falls due, a soft glow on what is new, and smooth view changes.
+- A **focus bar** (pin up to three people, quests or Agenda items), a **mini bar** (Alt+M), **Arrange cards** per view, and **Find as a command palette** (go to a view, print, the tour, mark a promise kept…).
+- **Shortcuts:** Alt+1…5 for the views, Alt+F to find, Alt+T for the tour. Swipe an Agenda row right to mark it kept, and long-press a person for their dossier.
+- **Settings tabs** (Look, Tracking, Story, Backup & data), a **first-time tour** offer, a **picture of a card** saved as PNG, and **print the journal or the character sheet** (or save it as PDF from the print dialog).
+- Seasons on the strip, a cheer at round numbers, and **world pills**: the bell for Mushoku, the loop and the Witch's scent for Re:Zero, class points for COTE, slots for D&D, loyalty for Overlord. Themed loading and empty states, and right-to-left layout.
+
+**Left out on purpose:** ambient sound (it needs audio files), pop-out windows (Lumiverse may not allow them; the mini bar covers it), a real pin map (no card gives place coordinates; Places lately and the illustrated tiles instead), a reply-by-reply timeline scrubber (you compare two replies on request), a PDF library (the print dialog saves PDF), and a power comparison with canon characters (the payload has no lorebook ranks to compare with).
+
+**Optimization pass** (same output: compare_backends on six real chats is identical, field for field, to the build before it)
+- **The panel rebuild after a new reply takes about half the time:** roughly 430–540 ms down to 200–250 ms on Marcus's 243-message chat, and about 300 ms down to 170–210 ms when nothing new arrived.
+  - Each reply's fingerprint is kept by id and checked with a plain text compare instead of re-hashing the whole chat on every read.
+  - The hot text helpers (label, spell, quest and agenda keys, HUD line cleanup, fact word sets) remember their answers across reads, within a fixed size.
+  - The gear list of each HUD is read once instead of once per item per reply.
+- **Pushes never overlap:** a burst of requests (a reply, a heal, a click) builds the panel at most twice instead of once per request (regression in test_carry).
+- **The panel skips a repaint** when the backend sends the very same state again.
+- **Cheaper styles:** the substring attribute and `:has()` selectors are now plain classes, and the world-event countdown is built once per strip.
+- **Per view, the panel lays out as fast as 1.3.0** (Scene ~5 ms, You ~17 ms, People ~10 ms; Journey +2 ms for its new cards). A full render of All is about 26 ms against 24 ms for 1.3.0.
+
+**No blink on click:** a click or a toggle redraws the panel, and every card used to replay its fade-in and rise each time. Entrance animations now play only when you change view or a new reply lands; an ordinary redraw runs none.
+
+**A calmer, lighter panel:** the stack above the cards is gone. The save, preset and tour offers are slim one-line notices under the Now card on Scene, and Tools sits at the end of each view. Cards share one spacing scale, thinner lines, a single rule under an open header, quieter header icons and smaller, softer explanations; the story buttons are one compact row. Forms you seldom use fold under one small line: ＋ Add a promise or appointment, ＋ Add an injury, and ✎ Edit on a person (birth year, passed away). Scrolling is lighter: the sticky bar no longer blurs what passes under it, and cards far off-screen are laid out only as they come near (a full render went from about 22 ms to about 13 ms in testing).
+
+**Pinned panels instead of All:** the bar keeps Scene, You, People and Journey; the All tab is gone. Under them, **📌 Pinned** holds the cards you choose (up to 8): tap the 📌 on any card's header, or **＋ Pin a panel** for a list of every card. A pin opens that one card on its own, open and full height. Tap the 📌 again to unpin. Pins are remembered in this browser. A panel that was saved on All opens on Scene once.
+
+**Arrival letters aren't late:** an Agenda item that waits on arriving ("when he reaches Roa") no longer turns overdue because the report pinned the arrival time to it. Once you are there, a letter counts down to the next open post or courier ("in 3d 15h, with the post"); anything else shows as due today. On the way, it has no set time. This also stops the narrator's prompt being told the letter is late. The arrival wording is remembered when a later reply rewords it ("from Roa").
+
+**On the road is not there yet:** a location like "Fittoa road, en route to Roa" no longer counts as being in Roa. The Agenda's "you're here" chip and the check that holds "when he reaches Roa" items until you arrive now read only where you are, not where you are headed (en route to, on the way to, heading for, bound for, the road to…).
+
+**Gear follows your luggage:** the Companion's gear rules now say that your things moved by someone else are still yours and their new place is reported: servants carrying your bags down, luggage lashed onto the courier's wagon, a bag handed to a porter. "The bags" is reported as each bag Gear already lists, never a new "bags" item. Before, those moves were skipped because only your own actions counted, so the bags stayed "beside the bedroom door" after they were loaded. Prompt wording only; no extra calls.
+
+**No Character sheet card:** everything on it (name, house, mana, reserve, touki, sword and magic ranks) is already on the You, World and Magic cards. Printing the character sheet (Tools → Print the sheet, or the search palette) still works.
+
+**Gear is one list, and quieter:** the By where / By kind / On you tabs are merged into one list, grouped by where things are and sorted by kind inside each group. The top is one row: where chips with counts (👕 3 worn, 🎒 3 on you, 📥 6 packed, 📍 3 left behind) that jump to those items, a kind menu (Weapons, Clothing, Letters… with counts) that shows only that kind, and 🧍 for the paper doll. Hands show only when you hold something. The Move menu on every row is gone (tap a card for its quick moves); "on the HUD" is a small dot and "just now" is the row's glow. Luggage and things left behind start folded, with the place and count in the header. Nested bags use lighter lines. Letters are their own kind. A find box appears once you carry 20 or more things.
+
+**Less repetition:** Scene no longer shows the Here row or the Since-last-reply box (both still in All). The Open threads card is gone (Quests, Agenda and Loose ends already hold it). What's next keeps its ideas button and only the lists nothing else shows (things to get back, people not seen in a while, birthdays). Training progress shows only in the Training card, not in World State. The Story so far keeps the arc, the arc ring and the totals; its moments and promises lists are in the Chronicle and the Agenda.
+
+**Tracking fix found on the way**
+- **The Chronicle no longer logs a reporter sentence as a learned spell.** "Learned a spell — Lord Boreas wants Marcus as steady company…" came from the tracker's learned slot. It now logs only what the Spellbook accepts, so "Flash Slash" is logged as a technique.
+
+**Performance:** see the optimization pass above.
+
+## 1.3.0 (in development, branch `release/1.3.0`, built on 1.2.0)
+
+**A game-style Gear card** (display only: tracking, stored data and token use are unchanged)
+- **Loadout bar:** your two hands as slots (what you hold, or an empty hand), then counts of what is worn, carried, packed and left behind.
+- **Item cards** with a picture from the item's name (⚔️ sword, 🪄 wand, 🧤 bracer, 🎗️ baldric, 👛 purse, 📘 book, 🪧 slate…), the maker's note in colour, where it is, and what sits inside it.
+- **Tap a card for quick moves:** Hold, Wear, Sheathe, Carry, Leave here, Drop, Into a bag, Gone, plus its story so far. They send the same move as the Move menu, which stays.
+- **This turn** shows each change as a chip; stowed and dropped things look set aside.
+
+**Gear keeps what matters** (from Marcus's Gone list: a cake, a cider and a sword he only tried)
+- **Gone** now lists only real losses: given, sold, lost, broken. A meal or drink you finished is "used up" (a count, nothing listed), and a thing that was never yours (tried and handed back, never on the HUD) is not listed.
+- **Still yours, elsewhere:** things you own but don't have on you (with someone, at home, in a rack) sit as small chips grouped by place; tap one to take it back.
+- **Luggage:** travel bags, trunks and chests by the door or on the courier's wagon are one dashed group with their place in the header, bags and contents nested, still part of your kit.
+- "Stowed — belt, right hip" is on you; a wrap named "taller travel bag, oilcloth wrap" goes inside that bag; an empty bag or purse is a plain row with no "nothing inside" line.
+
+**Gear by kind, Gone with a trail, sharper places** (from Marcus's request)
+- **By where / By kind switch** (remembered): By kind sorts into Weapons, Magic, Clothing & armour, Bags & luggage, Money & valuables, Books & papers, Food & drink, Tools & supplies and Other, each a dropdown that appears only when you own one; every item keeps a chip for how it is carried. Kinds come from the name (the most telling word wins: a "travel bundle of paper sheets" is papers) and then the maker's note.
+- **Gone grouped by what happened:** Given, Sold or traded, Lent, Stolen, Lost, Broken; each with who has it now ("horseshoe nail → Aurelia", read from the story's words) and where and when you were when it left you (the HUD at that reply).
+- **Places read more exactly:** "sheathed — corner rack", "laid alongside the luggage" are set down, not on you; a travel bag with no place of its own is where "the travel bags" were put; state chips sit at the start of the place line so a long name never runs into them.
+
+**Every card, a second pass** (from Marcus's request: "do it for all of it")
+- **Agenda:** a **Next up** banner with the nearest thing and its countdown (red when late), and a **By time / By person** switch, so every promise to one person sits together (two "first letters" to Aurelia side by side, easy to clear one).
+- **Finances:** a purse tile per coin (silver, copper…) with what came in and went out. Copper paid from an allowance the story never counted reads "spent 16", not "−16". The ledger is grouped by the story's day, each row with where it happened.
+- **Secrets:** each secret says how far it has spread (🛡️ Safe · 👁️ 2 know · 📣 5 know), with a "Known by" label. In People, "Who knows what" rows no longer squeeze the fact into a thin column.
+- **People:** a folded person is two tidy lines (name and standing; who they are and when you last saw them).
+- **Training:** a rank ladder per skill (Beginner → Intermediate → Advanced → **Saint** → King), the rank held lit and the goal outlined.
+- **Survival:** one gauge tile per need, turning amber and red as it worsens.
+- **Family:** "Where they have been" and "Correct this" share one line.
+
+**Tracking, sharper** (found in Marcus's chats)
+- **"First bell" is the morning's first bell** (06:00), not 01:00: the courier departure showed 17 hours away when it was due.
+- **Someone else's child is not your family:** Bram, "Farrier's son", was listed under Family.
+- **An old routine is "Last seen", not "now":** Cassian "eating with the family until supper is over", reported three months of story time ago, showed as what he is doing. Anything older than half a story-day reads 🕰️ Last seen · 3 months ago.
+- Ledger rows and Gone items carry the HUD's date and place at that reply.
+
+**The rest of the cards** (from Marcus's request: "do it for every other panel")
+- **World State:** the HUD in small sections (Time & place, You, Skills & training, Gear/standing/people, Story), each folding on its own with a count of lines that changed. **This reply** shows each changed line with what it said the reply before, struck through, or "new line". Paths under Active Paths read as bullets with a "Change" tag.
+- **Quests:** Main and Side bands. Two open quests that read like one goal get a **Looks like the same quest?** hint: **Show as one** folds one under the other ("Also tracked as", ↔ to split it back), **They're different** stops asking, **Copy OOC fix** asks the story to print one name. Display only: both quests stay tracked as the story reports them.
+- **Abilities:** HUD magic tiers as school tiles on the rank ladder; martial skills grouped (Aura & body, Unarmed & footwork, Weapons & styles), each with a dot for how firm it is (attempted, practising, reliable) and the HUD's own rank beside a style.
+- **Story checks:** each warning is a card with how serious it is (fix soon / worth a look / minor) and a **Copy OOC fix** button; consistency warnings get the same cards and fix lines.
+- **Atlas:** **Places lately**, the last places the HUD stood in, newest first, each a tap to open it.
+- **Chronicle:** a timeline down the left, day pills, and a bond that moved shows only the words that changed.
+- Chapters, Factions, D&D, Phone and Holdings get the new card look. "1 techniques" / "1 spells" read right.
+
+**Tracking fixes found on the way** (Marcus's chats)
+- **Sword styles with a True rank count as your style:** "Sword God (Advanced) — True: Advanced (…)" was read as a style named "Sword God (Advanced) — True", so every Sword God technique showed "Not one of your styles". It is now Sword God at its True rank: Flash Slash known, four within reach, Longsword of Light the next rank.
+- **A quest's place follows the story:** "Two Years in Roa" kept "north row market, Ferren's stall" from two months earlier because a longer old place always won. The older place now stays only when it refines the new one (Veyrath Hall, east yard over Veyrath Hall).
+- **Renown is not a faction:** "Renown: Asura: Unknown" made Asura a neutral faction. An unknown renown is skipped; a real reputation still counts.
+- **Chronicle:** a bond reworded ("the keeper of his slate" → "keeper of the slate") is no longer logged as a bond change (nor sent to the Memory Cortex), and a calendar with months keeps the month in the day ("Month 4 · Day 1", so it is not mixed up with Month 1's Day 1).
+
+**Agenda and Quests, audited reply by reply** (Marcus's chat 2 export with chat 1 carried over)
+- **A Companion edit no longer throws away a reply's tracking.** Some replies were rewritten by the Companion after they had been read, for example to fix a Training count after Refresh or to restore a HUD line. Each reading is checked against the reply's exact text, so a rewritten reply looked edited and everything read from it was dropped. That is how Valeriana's "first letter out of Roa, sealed, marked for her" disappeared from the Agenda. The Companion's own edits now keep the reading valid; a real edit to the story still sets it aside.
+- **A letter has to come from the story.** "Write the first letter from Roa to Seraphina" was never promised: Seraphina only spoke in that reply, and the only letter mentioned was the Boreas letter. A new letter now needs a sentence that names the person, or is spoken by them, and mentions the letter or the writing. It can be in that reply or in your message just before it. "No letters tonight" doesn't count.
+- **The first letter to one person is one item.** "Write the first letter from Roa to Aurelia" and "First letter home goes to Aurelia" were listed as two promises.
+- **Waiting to arrive is not "in progress".** The letter to write "when he reaches Roa" showed as under way while Marcus was still at Veyrath Hall. It stays open until the HUD is in Roa.
+
+**A polished look across every card** (visual only, same tokens, so Looks and world themes keep their colours)
+- Cards with a soft accent glow, a lit top edge and a medallion emblem; headers with a pill for the summary; cards open with a short rise (off with reduced motion).
+- Headings inside cards as small tracked labels with a fading rule; sub-sections as pills; brighter chips, buttons with a lift, focus rings, softer status lines, bars with a glow, nicer scrollbars, a lit view switcher.
+- **Magic in colour:** Water blue, Fire orange, Earth amber, Wind green, Healing gold and so on, on the Spellbook, the tier chips and each school's list; Known, Studying, Within reach and Next rank as distinct badges.
+- **You** as a character-sheet header: the portrait ring glows and the story stats read like a game's.
+
+## 1.2.0 (in development, branch `release/1.2.0`)
+
+Built on 1.1.0 RC2. Report: `docs/release/1.2.0-INTEGRATION-REPORT.md`.
+
+**New: carry-over for a continued save (Mushoku_Save → Mushoku_Continue_Handler)**
+- The Companion keeps each chat's history separately, so a new chat that resumes from a save used to start empty: no People beyond who was Present, an empty Spellbook, no gear history, ledger, agenda, secrets or Chronicle, and fresh duplicate quests (found in Marcus's save, chat 1 → chat 2).
+- A chat that starts with a continue turn now offers **Continue from your saved chat**, with the matching earlier chat found by date and place. Carry over stores a read-only copy of that chat's story (active swipes only, about 1 MB for 200 replies) and reads it in front of the new chat, so every panel and narrator reminder continues from the save. Your hand marks from the old chat (birth years, pins, corrections) come along where the new chat has none.
+- Nothing is written to either chat; the old chat can be deleted afterwards. Chains (chat 3 → chat 2 → chat 1) work; loops are refused. **Settings → Backup** shows the link, offers it for any chat, and has **Undo carry-over**.
+- The earlier chat has to have been opened once with this version, so the Companion knows it exists.
+- The match compares the hour too, so a restart from an older save picks the chat that ended at that moment, not a later attempt that went on the same night. Chats still on the card's opening page are not offered. Deleted chats drop off the list, and the card shows only the one best match (the rest stay under Settings → Backup), so nobody has to choose among look-alike chats.
+
+**New: HUD upkeep (the Companion does the card's math and format)**
+- Six-Sided HUD lines the Companion can compute are corrected in the reply before it is saved: ages and 🎂 from the birth date, training counts (1.5 per session with a teacher; a count never goes down; rank-ups move the line on), countdowns (World event, Next Canon Event, Turning Point, Checkpoint) from the lorebook's Canon Clock, month names, weekdays and seasons; and format: labels, rank words, empty slots, the card's line order, Race and Era restored, and you off your own Present line.
+- **Rule warnings** for what it cannot fix safely (an impossible date, a new continent in under a week, a night's sleep with no new day or a Reserve still low after one, more than 6 Present or 3 Bonds, words outside the card's lists, modes nobody chose, permanent lines that changed, power at an age the card forbids, a canon character not born yet, a dated event already passed). Each comes with an OOC fix.
+- Settings: HUD math, HUD format, lorebook birth years, card rule warnings (all on).
+
+**Fixes**
+- **Gear set down shows where it is (chat 2).** The baldric and slide-bracer laid beside the bags stayed "worn" on your forearm and back: "The baldric goes down", "the bracer settles beside it" and "I set the slide bracer and baldric down" did not count as the story moving them (hyphens, "and baldric", lay/settle/set down are now read). Gear put down somewhere on purpose ("beside the bags by the door") is **Left somewhere**, not **Dropped**, and stays in the list while the HUD still lists it instead of going to Gone.
+- **A HUD note that something is packed wins over a missed report.** "Aurelia's prize slate (packed, top bag)" showed the slate in hand, because the side panel never reported the packing. A put-away note on every HUD since a reply newer than the last report now wins ("Inside top bag"). Only put-away notes: "(Halvin's mark, worn)" is the blade's wear and changes nothing.
+- **"At first bell" said at night is tomorrow (chat 2).** The courier departure, reported at 21:50 for "first bell", showed as late by 20 hours. A time with no day that is long past, with nothing tying it to today, is now the next one. "This noon" an hour ago is still late.
+- **"(top bag)" alone still means packed**, like "(packed, top bag)": the slate no longer jumps back into your hand when the narrator shortens its note.
+- **A thing inside another thing you own shows under it.** "Trued ash wand — seated in the slide-bracer" was listed on its own under On you; it now sits under the slide-bracer, like the sword under its baldric.
+- **Luggage isn't assumed to be on you.** Spell books packed "in travel bag" made the travel bag show as on you while the bags stood by the door. A bag, trunk or chest named only as where something went now shows as "not sure how", where "Move…" sets it.
+- **Place notes aren't part of the name.** "leather baldric (laid beside bags)" showed the HUD's note as its name next to the same place in the place column. Notes that say where a thing is are dropped from the name; "(Wenna's make)" or "(Halvin's mark)" stay.
+- **Deaths need the story to show them.** A death the side panel reports only counts when the reply (or your message before it) names the person and some sentence tells a real death, not a threat, a guess or a dream ("If you fail, Halvin would die" is not a death). Before this, a reported name alone marked someone dead. The People view, the Present reminder and the 🕯️ group all read the checked list.
+- **Groups and creatures aren't people.** "Acid Wolf", "Two bandits" or "Black Wolf pack" in a scene were treated as named people: the narrator was asked to put them on Present, and the check asked for their birth year. Groups, counts and creatures are now left alone, like shopkeepers.
+- **Present: a note after the bracket.** "Kessa (240, looks 30) — Migurd" used to drop the whole Present line. The person is now read with the note kept.
+- **Compact: the Skills row reaches Abilities.** In Compact, the merged `Skills:` row showed raw chips ("💧Water Adv"); Abilities now shows Water: Advanced, Earth: Intermediate and so on, as in Classic.
+- **Clock warning on other calendars** now shows the day ("22 Eleasis, 1492 DR 06:40 … 21 Eleasis 09:20"), so a day going back no longer reads like a later time.
+
+- **Physical skills aren't spells (export 9).** "Bracer wand flick", reported as a reliable skill, landed in the Spellbook, and "Break-falls" or "Sword God recovery after a strike" showed nowhere. Plain body and gear handling (flick, draw, break-fall, footwork, parry, stance, unarmed…) now goes to Abilities → Martial, unless an element names it as magic. "Sword God Style toward Saint" folds under the style's row.
+- **Party Mode (newest card):** `Player:` lines belong to the players; another player's skills and wounds no longer land on your sheet. Your own Player line shows as a line; tracking it needs a live Party export.
+- **"Magic Swordsmanship"** keeps its full name in Combat techniques (it showed as a school called "Magic").
+
+**Card and preset (versioned copies; originals untouched)**
+- **HMS Reporter 1.1.1-beta:** the Light/Normal/Deep plan says every HUD counter is the last HUD's number plus this turn (time skips add everything inside them).
+- **Six-Sided World "(HMS 1.2 test)" `1.1-hms1`**, built by `tools/ecosystem/make_card_test_copy.py`: Training counts carry forward; bruises and strains are minor wounds on Condition; who is Present; creatures and groups in brackets. Lorebook and mechanics byte-identical.
+
+**New checks**
+- `tools/test_card_coverage.cjs`: every slot of the Six-Sided HUD template in Classic/Panel, Compact and Visual; style switches; the Present forms the card allows; people vs groups.
+- `tools/test_lifecycle.cjs`: discarded swipes, regenerations with state kept between pushes, repeats, backup/restore, OOC turns, hypothetical vs shown deaths, year rollover, long skips, request size.
+- `tools/test_hud_upkeep.cjs`: every upkeep fix and rule warning, with negative cases (a nap is not a night; "Younger Child" → "Second Son" is the same birth).
+- `tools/test_carry.cjs`: carry-over through the real chat API and storage code: the offer, the match, panels continuing, read-only history, restart and deleted source, chains, loops, undo.
+- `tools/test_cross_card.cjs`: every built-in demo world (Re:Zero, Overlord, Classroom of the Elite, Mushoku, Undertale, Dark Souls, Skyrim, BG3, Classic) played through the real reply pipeline.
+
+## 1.1.0 RC — Six-Sided World v1.1
+
+Compatibility with the Mushoku Tensei RPG "Six-Sided World" v1.1 card and its four HUD styles (Classic, Visual, Compact, Panel). Release candidate: automated checks pass; live Lumiverse acceptance is still to do. Report: `docs/release/1.1.0-RC-REPORT.md`.
+
+**Added (all read from what the panels already know; nothing about how the story is tracked changes)**
+- **The narrator is told what you do not have.** When the HUD's Equipment line still lists something Gear has away from you (left with someone, on a shelf, given away), one short note says so, so the story stops narrating it as in hand.
+- **Ages enforced on the Present line.** After each reply the Companion puts back a birth year the HUD already gave (the one it gave most often), or one you set on the person's People card (🎂 Set the birth year), with the age worked out from the calendar, so ages stay steady and grow at birthdays. Only the bracket after a name is touched, and only when it holds just an age and a birth year. The narrator copies the repaired line forward.
+- **Ages keep what the HUD already gave.** When the Present line drops a birth year it gave before, or changes one, the narrator is handed back the one it gave most often ("Seraphina Veyrath (42, b. K374)"), and Copy fix fills it in, so an age never has to be made up twice. The OOC-time warning stays quiet when your own message let time pass (getting ready, waiting, "later").
+- **Ages.** A named person on the Present line with no age or birth year ("Marta (—)", "Aurelia (8)") is named to the narrator, to fix as the card's age rule says and keep from then on. Shopkeepers and other unnamed roles are left alone.
+- **Due now.** An Agenda item that is due or late is named to the narrator, to keep or miss as the world would; never forced.
+- **Time-skip recap.** When your message skips time ("two weeks later", "time skip"), the narrator gets what is open: appointments, things left with someone, birthdays inside the year.
+- **Things coming back and letters on the Agenda.** Something left with someone with a time to get it back is logged as an errand; letters written, sent, received or promised are a new ✉️ kind.
+- **What's next** (Scene view): **Give me ideas** asks the Companion's own model, once per press, for 6–8 ideas fitted to the scene (people to see, errands, training, questions, places), using only what your character knows; the story never sees them. Under the ideas, what is open right now, from the panels: appointments due in the next two days, things of yours with someone, the quest step, letters to write, family and close friends not seen for 20 replies, birthdays within two months (you, family, Friendly or closer, from the Present line's birth years) and training sessions. Each line opens its card. No model call.
+- **Worth a look** on the World State card: an age that does not match its birth year, a named person with no birth year, the clock going back, time passing during OOC turns, and an Equipment line that disagrees with Gear.
+- **HUD: Card.** The new card style is understood, also as `[HUD = CARD]`; the Companion's card stays out of the way of any other style the bot names (Classic, Visual, Compact, Panel), and draws when the style is Card or none is named.
+- **Backup** (Settings): save what the Companion keeps for this chat to a file, and restore it.
+
+**Less clutter (display only; nothing about tracking changes)**
+- **World State shows what changed.** Only the HUD lines that moved since the reply before stay in view; the whole HUD is under "Show all N lines".
+- **People, for a long cast:** after Here now, Family, Against you and Friends and close, people seen in one or two replies fold into **Met once**, and the rest are grouped by the place they are usually seen (Veyrath Hall, North row market…); someone whose role names the family's house ("Guard of House Veyrath") goes with the family's home, even if the story mostly showed them on an errand. A place gets its own group only with 3 or more people, and at most the 5 biggest do; the rest stay under Others you know. Anyone not in the scene is a one-line row (name, standing, bond, when and where last seen) that opens into the full card. **Find someone** also searches role, bond, standing and place ("maid", "market", "sister").
+- **🕯️ Passed away** in People: anyone the story shows dying, or your character learns has died (the reporter now lists deaths each reply, never someone only feared dead or missing), and family members the Family card marks dead, fold into a closed group at the bottom by themselves. Someone seen alive in a later reply comes back. **Mark as passed away** / **Not dead after all** on a card is only for when the story gets it wrong, and always wins. They leave What's next and do not count toward place groups. Deaths are read when the story shows or reports them, so the panel never spoils one your character has not learned.
+- **Copy fix** on each "Worth a look" note copies a ready OOC line to paste in the chat (ages already known are filled in). Where the host blocks the clipboard it falls back to the older copy method, and the line also appears in a box under the note, ready to select.
+- **What's next** (was Things to do): 💡 Give me ideas, 📌 Open threads, and a 🤞 Promises group for promises with or without a date.
+- Each view remembers where you were scrolled.
+- **Training** has its own card in the You view, under Combat techniques: every skill on the HUD's Training line (all of them, not only the first), sessions done toward the next rank, and when a rank still needs its proof. It left the World card and Things to do.
+- **Things to do**: each group (Coming up, Things to get back, and the rest) is its own dropdown, closed until you open it, and remembered.
+- **People** in the All filter is grouped once the cast passes six: Here now, Family, Against you, Friends and close, Others you know. Each group folds and is remembered; Others starts closed. Find still searches everyone.
+- **Things to do**: the open list folds under "Open right now", grouped (Coming up, Things to get back, Quest, Letters, Not seen in a while, Birthdays, Training).
+- **Quests**: finished steps fold away once there are a few; the planted-details list shows the ripe ones and the first five, the rest under "More planted details".
+- **Person cards**: a bond that only changed wording ("Younger sister" ↔ "Younger sister, minor") no longer shows as a change, and only the latest bond change is kept.
+
+**Fixes from live play (fourth RC pass)**
+- **Gear: an item the HUD lists again is back.** The wand was handed back to Ferren on Day 1 and marked gone. When the narrator put "trued ash wand" back on Equipment after the time skip, a re-run of the reporter that didn't mention the wand left Gear saying it was still in Ferren's drawer. What's next then said to collect it, and a warning said the HUD was stale. If the HUD stopped listing an item and later lists it again, that's newer than the report that took it away, so it now counts as carried. A HUD that never stopped listing it is still treated as a stale copy.
+- **Gear: "you give the wand back" counts as naming it.** The earlier guard against reporter guesses only accepted "your wand", "my wand" or the full name. A plain "the wand" now counts in a sentence that moves it (give, hand, return, leave, set, drop…). Elsewhere, a bare "the sword" is still any sword.
+- **Spellbook: "Earth Wall (Earth, Intermediate)" is Earth Wall too.** This is the bracketed form of the earlier dash fix.
+- **Spellbook: "Earth Wall — Earth, Intermediate" is Earth Wall.** The reporter wrote the school and rank after the name of a newly learned spell, and the Spellbook got a second entry, "Earth Wall — Earth, Intermediate (not found in loaded spell references)". The name is now read without what follows the dash.
+- **What's next: packed bags aren't something to collect.** The travel bundle, packed "by the door with the bags" for Roa, was listed under 🎒 collect. Items with the bags, luggage, pack or trunk now go along.
+- **Survival: a time skip is days lived.** After the month skip, Survival showed Marcus *Collapsing · 29d 17h awake* and *Dehydrated (critical) · 30d since a drink*, and those go to the narrator. The reporter only saw the final supper scene, so no sleep or drink was logged for the month. Now a skip of 16 hours or more counts as ordinary days: he woke at dawn on its last day, and ate and drank an hour before it ends. After this skip that's 13 hours awake (Rested), Fed and Hydrated. The reporter is also told that sleep, meals and drinks in a skip's ordinary days count.
+- **Agenda: "the seventh" is a date.** Aurelius wants Marcus's answer "on the seventh", but the Agenda showed no countdown. It now reads a day of the month ("the seventh", "by the 21st of Month 3", "the first of the month") as the next such day, 5 days out here. "The seventh bell" and "the third time" aren't dates.
+- **A healed Condition line isn't "dropped".** When the bruise healed during the month, the Condition line went away (the card only prints it while something is wrong), and the status said "1 line dropped since the last reply". It no longer counts as dropped.
+- **Gear: "in hand, held by Aurelia" is Aurelia's.** The reporter called the travel bundle "in hand" with "held by Aurelia Veyrath". If the holder is on Present, it now counts as with them, not on Marcus.
+- **Reporter: a time skip counts as this reply.** In the month skip, the reporter logged only the final supper scene. Flash Slash attempted, Earth Wall practising and the wand flick were all left out, because its rules said "this turn". It's now told that a skip or montage is part of the reply: report what it shows practiced, attempted or learned (an attempt stays an attempt).
+- **Wounds: a treated wound with a note no longer "heals".** After the supper skip, the Condition line read "Left forearm break-fall bruise — Treated (cold-soaked, wrapped)". The comma inside the brackets broke the wound match, so Wounds showed the bruise as healed and listed a brand-new condition named "… — Treated". Now a bracketed note stays part of the same wound, and its age and history carry on.
+- **Agenda: a standing routine is never "late".** The reporter re-sent the two-month "Training schedule" with only the day's hours ("dawn to ninth bell …; ninth bell to midday …"). At supper it showed as ⚠️ Late, What's next listed it as due, and the narrator would have been told it was late. A schedule, routine or "every morning" item now stays 🔁 Ongoing. "Schedule a meeting…" isn't treated as a routine.
+- **Agenda: timing text no longer cut mid-word.** It used to stop at 60 characters ("…ninth bell t"). The limit is now 140.
+- **Time-skip recap: routines stay open.** The recap asks the narrator to settle what falls inside a skip, which could have closed the training schedule after one day. Ongoing items are now marked "it runs on through the skip; keep it open until it ends".
+- **Present reminder: softer wording.** The side panel can list someone only seen from a window (Aurelia during the lesson) or heard through a door (Aurelius before dawn). The reminder now says to list them only if they're in the scene with Marcus.
+- **Keeping the HUD in step with the story.** These now go to the narrator on their own, as a story reminder on the next reply, and show in World State's *Worth a look*:
+  - **a wound the story shows that the Condition line forgot** (Marcus's arm "stinging red to the elbow" after the break-falls)
+  - **a wound the story healed that is still on Condition**
+  - **someone named and in the scene but missing from Present** (Ferren at his own stall, Seraphina at the paper stall). Missing from Present meant no age or birth year was kept.
+  - **someone dead still on Present**
+
+  How wounds are caught: the card keeps wounds on its own Condition line, so the reporter used to be asked nothing about them. Now it also lists what it saw hurt (`hurtSeen`). Bruises, welts, strains, scrapes and burns count; tiredness doesn't. That list is only compared with the Condition line, and the card still owns wounds.
+- **A kept training session nothing counted.** If the Agenda marks a training session kept but nothing on the Training line went up that day, *Worth a look* says so, with a Copy fix. This is a warning only, never sent automatically, because whether a scene was a full session is the card's call.
+- **Abilities: one row per style (display only).** The reporter words the same practice differently each reply, so "Sword God Style footwork" and "Sword God Style under Aurelius's drill" showed as separate abilities next to Sword God Style. Wordings that are only practice (footwork, drills, recovery, forms, "under X's drill"…) now fold under the style's row, marked +N, with a closed *Practice notes* list under the group. A named move ("Sword God Style: Light Reversal") keeps its own row. The "Retained observations: 1" label is gone from this panel; hover a row to see what the story showed. Tracking is unchanged.
+- **Gear: a guess no longer moves your sword.** After Aurelius's training the side panel said the Plain road sword was "left behind before the drills", though the reply never said so and its own HUD still listed the sword. The sword went to Gone, What's next asked you to collect it, and the narrator was about to be told to drop it from Equipment. Now an item the reply's HUD still carries only moves when the reply or your message actually names it (its name, "road sword", "your sword"). A wooden practice sword, "his sword", or a bare "the sword" doesn't count. Real hand-offs still work: your mother taking the travel bundle, the wand going back to Ferren. A rule was also added to the reporter: report a change only when the story shows it.
+- **Training line checks (display only).** World State's *Worth a look* now flags Training-line slips, each with a Copy fix:
+  - a count that goes up more than the days allow (one session per focused day, 1.5 with a good teacher)
+  - a count that goes back
+  - a session total that doesn't match the card (Intermediate 10, Advanced 25, Saint 60, King 150)
+  - a rank past the card's age cap (at 12: sword up to Advanced)
+
+  "True: Advanced (potential: Saint)" isn't flagged. Nothing is changed automatically, and the narrator's counting rules are untouched.
+- **New regression suite** `tools/test_live_play_audit.cjs` (30 checks: gear guesses, Training line, discarded swipes, HUD reminders, wounds, routines, dates, survival over skips, packed and re-listed items), now part of `run_tests.cjs`.
+- **Training card: half sessions.** "Water Magic → Saint (1.5/60 sessions)" (a good teacher counts a day as 1.5) was not read, so the Water line vanished from the card. Decimal counts are read now.
+- **Spellbook: a short spell name.** "raise a Shield" beside Water Ball and Water Arrow became a separate "Shield" spell. A bare name is matched to the spell of the same school cast beside it (Water Shield), or to the one spell it ends, when there is only one.
+- **What's next:** a promise with a time coming up (Aurelius's sword session at the ninth bell) shows under Coming up with its countdown; an ongoing arrangement no longer shows there.
+- **Agenda, sorted properly.**
+  - Something due *today* with no hour ("tomorrow", said yesterday) is under **📌 Today**, no longer under "Soon (next 3 hours)".
+  - Dates weeks, months or years ahead count down: "in two months, with the spring runs" is now "in 59 days" under Coming up (30-day months, 360-day years), as are "in three weeks", "next month", "in a year".
+  - A short title that heads an open item's longer one, with the same people ("Training schedule" / "Training schedule: dawn to ninth bell …"), updates that item instead of making a second one.
+  - A later wording with no day of its own ("spring courier runs" after "in two months") keeps the countdown, unless the story moved the appointment.
+  - Bells tell the time: "the ninth bell" is nine o'clock, so "ninth bell to midday" counts down to 09:00.
+  - An arrangement that runs for a while ("two months", "daily", "every morning", "until the departure") is **🔁 Ongoing**, not a date with no time, also while it is under way and with detail after a comma ("two months, dawn to ninth bell …").
+- **Agenda near-duplicates.** The reporter is told not to add an item that repeats an open one in other words, and What's next shows such a pair once (keeping the one with a time).
+- **Secrets.** Plans, terms or facts said openly, or told to the people they concern, are not reported as secrets.
+- **Finances: a recounted purchase no longer counts twice.** Telling your father "Halvin took 3 silver for the sword" was logged as a second sword and baldric (silver out 6, copper out 24). The reporter is told a payment only recounted is not new, and the same item bought again from the same person the same day for the same sum is one purchase (meals, drinks, rooms and fees can still repeat). Coin names show singular ("copper", not "coppers").
+- **Gear: a shop's wares tried and put back** ("Plain steel sword … dropped at Halvin's rail") no longer sit in your carried list.
+- **Phone card** stays folded while you have no device (a world like Mushoku's has none); it opens as before once the story gives you one.
+- **HUD card and the bot's Panel:** the Companion's HUD card steps aside for the Six-Sided card's own Panel HUD (its regex scripts) also when the start command sets the style among other settings ("Canon: Living | HUD: Panel") or only the HUD's Game Mode line says "HUD: Panel". It used to see "HUD: Panel" only on a line of its own, and drew its card over the bot's panel.
+- **Gear:** a detail the HUD gives in brackets ("Plain road sword (Halvin's mark)") shows beside the item's name; one that says how it is carried still sets that instead.
+- **Gear:** a sword sheathed "at the hip" with no holder named sits under the one baldric, scabbard or sword belt you carry; and where the HUD says it hangs ("Plain road sword (Halvin's mark) on hip") is no longer part of its name.
+- **Gear:** the HUD's short name and the story's long one for the same thing ("travel paper bundle" and "travel bundle of northern paper sheets") are one item: when every word of one name is in the other, in any order, and only one item fits.
+- **Gear, Gone list:** something left somewhere, or left with someone to keep or mend, moves to Gone at once, and something dropped moves there after a day, so things left behind for months are not clutter. Each shows where it was last seen. One that is still yours gets a **Back on you** button; something sold, eaten or given away does not.
+- **Gear:** an item the story says you handed back, sold or gave away goes to Gone at once, even while the narrator keeps copying the old Equipment line forward. The HUD brings an item back only when it newly lists it again.
+- **Two-column panels:** opening a card moves the cards under it down at once. They used to wait for the resize watcher, so for a moment (longer on a slow device) the opened card drew over the ones below.
+- **Gear:** an item the HUD already holds is no longer added a second time when the story reports it under the HUD's own name ("Plain road sword"), and a description after a comma ("ash wand, wool-rolled for trueing") no longer makes a new item. The held item of that kind is updated instead.
+- **Finances:** a hand-corrected payment no longer counts twice when the story reports it again with "coppers" instead of "copper"; singular and plural coin names are one currency in the duplicate check too.
+- **Spellbook:** a name the spell references don't hold must read like a spell name (six words at most). A learned fact the side-panel block filed as a spell ("Lord Boreas wants Marcus as steady company for his hard-tempered nephew…") no longer shows as one. The Spellbook is rebuilt from the reports, so an entry already there goes away by itself; spells marked by hand are untouched.
+- **Hidden messages still count.** Summary tools such as Summaryception hide every reply they summarise; the Companion skipped hidden messages, so as a chat grew it forgot the people, money, gear, spells and start command in them (a real chat lost Cassian and Aurelia from Relationships once its first 36 messages were summarised). Hidden replies are now read like any other; only the extension's own save and help turns are left out.
+- **Quests: one quest stays one quest.** A real chat showed "Two Years in Roa" three times: once marked done when one step finished, then two open copies. A report that names a quest's own Quest ID is now that quest, a report under a Quest ID no row holds any more is the quest of that name (reopened if it was closed), and a report that matches a closed and an open run continues the open one.
+- **Wide panels pack their cards:** in the two-column layout each card takes only the height it needs, so a short or closed card no longer leaves a gap beside a long one (largest gap on a real chat: 203 px → 16 px). Recomputed when a card opens or closes. Heights are measured in layout pixels, so Lumiverse's UI scale (zoom) can't make cards overlap.
+- **Finances: the ledger folds away** under the totals (📒 Ledger (N)), closed until you open it, and remembers how you left it.
+- **Gear: a sheathed item sits under what holds it.** A sword "sheathed, baldric across the back" shows under the leather baldric, like a bag's contents, when exactly one carried item fits its "where". Display only: what is tracked and told to the narrator is unchanged. A nested row that is not simply in a container says how it is carried (🗡️ sheathed, 👕 worn, ✋ in hand…).
+- **Spellbook stops growing by guesswork:** the side-panel block is asked only for spells the reply (or the player's message) names, never from memory; and a listed name the spell references don't hold counts only when the text names it (a chat gained "Water Jet" and "Stone Bullet" this way). Lorebook spells, spells you marked by hand, and chats without spell references are unchanged.
+- **Finances shows what is left:** each currency's chip reads in / out = left (`+6 silver / −3 silver = 3 silver`).
+- **Gear: the HUD's name for an item you carry is that item.** "Plain road sword" on the HUD and "Plain steel sword (short, light, fullered)" in the story are one sword when exactly one carried item ends in the same word; the request also says an item only tried or handled and put back (a shop's wares) is not gear.
+- **Finances: "copper" and "coppers" are one currency.** Totals merge singular and plural (and capitalised) names, shown as the shorter one; a chat showed +17 copper and −8 coppers as two currencies.
+- **Finances reads a purse in coin metals:** a HUD line such as `Purse: 6 Silver, 17 Copper` is the balance even when the balance labels name no metal; gold, silver, copper, bronze and coins count as money in any world (`Purse: 3 rations` still does not).
+- **Typing in the panel:** what you type in a box (Finances, Gear, notes, search) survives the panel redrawing. Moving from Amount to Currency, or a reply landing mid-word, used to empty the boxes; the field you were in keeps its focus too. Cleared on chat switch and after you submit.
+- **Gear:** a dash and what follows describe an item rather than name it, so "coin purse — three silver plus allowance copper" is the same coin purse, not a second one; the request also asks for a name that stays the same every reply.
+- **Finances:** the same payment reported again in the next reply or two (same amount, currency, kind and person) counts once. A real chat showed 6 silver for Aurelius's 3. Applied after hand corrections, so hiding one of a pair by hand still keeps the other.
+
+**Combat techniques and "who you are" (third RC pass, from the 1.1.1 beta)**
+- Brought in from the other fork's **1.1.1 beta** (its changes on top of 1.0.1, merged three-way so none of this RC's fixes are undone):
+  - **Touki (Battle Aura)** is a track of its own, read from the HUD's `Touki (Battle Aura):` line in every style, also when Compact puts it on the mana row: Locked, Awakening, Active, Mastered.
+  - **Superd Spear, Beastfolk CQC and Demon Brawling** are read as styles from the Sword Style line (and from Compact's `Skills:` row); a style keeps the HUD's spelling.
+  - At **God** rank in a style every technique of that style is within reach, including the ones the lorebook gives no rank.
+  - The **You** card's identity block (name, age, race, origin… from the HUD and persona; days, replies, people met) and the beta's Baldur's Gate 3 world card. Display only.
+- The narrator request is unchanged on every world tested; only panel data gains the new fields. The guides (all five languages) describe the new technique tracks.
+- The companion lorebook **Mushoku Tensei - Combat Techniques (Mazaki)** ships in the zip (`lorebooks/Mushoku_Combat_Techniques_Mazaki.json`, 71 entries; import it as a world book next to the card). With it, every technique has a rank: on a real Six-Sided chat the list grows from 3 styles (6 Sword God techniques unranked) to 9 (Sword God, Touki, Water God, North God, Superd Spear, Beastfolk CQC, Demon Brawling, Greyrat, Dragon God), all ranked. Without it, the list shows the card's own ranked techniques.
+
+**Deeper integration (second RC pass, from live play)**
+- **A HUD with a blank line inside it is read to the end.** GLM 5.3 and DeepSeek sometimes leave a blank line mid-HUD; the Companion used to stop there (it read 17 of 23 lines of a real GLM reply, and 2 of 22 of a DeepSeek one). The HUD now goes on when the `***` wall follows and every line before it looks like a HUD line; prose after a blank line is still never read as HUD.
+- **Training**: the world card shows each `Training:` line as a progress bar (Sword God → Saint · 12/60), and the Chronicle records when training begins and when the sessions are done ("the rank now needs its proof"). The rank-up itself was already a milestone.
+- **Bonds**: each person shows the HUD's own bond stage beside the Companion's standing (`HUD: Trusted`), its steps are in the person's history, and the Chronicle records them ("HUD bond — Eris: Friend → Trusted"). The two are kept side by side, not merged: the HUD stage is the card's, the standing is the Companion's closeness ladder.
+- **Standing and family politics**: the world card shows the Standing line as class, rank, house (nation) and birth (House Head, Heir, Younger Child…), the Faction, and the **family plots** from your start command (Arranged Marriage, Feud with House Dravenmoor).
+- **Compact and style switches in the Chronicle**: rank-ups written in Compact's `Skills:` row are milestones too, and a rank-up on the same turn as a style switch is still recorded; a switch alone records nothing.
+- **Panel**: when your start command says `HUD: Panel` (or you switch with `[HUD = PANEL]`), the Companion's HUD card steps aside so the card's own Panel scripts draw the HUD. `[HUD = CLASSIC]` brings the Companion card back. The Settings switch still turns the card off everywhere.
+- **Label drift**: a HUD that writes `Magic:` / `Martial:` instead of `Magic Tiers:` / `Sword Style:` still fills the world card (Re:Zero's `Magic: … | Gate:` is unchanged).
+- A stray closing tag a model leaves alone on a line (such as `</ofilter>`) is hidden in the chat; the saved reply is untouched.
+
+**Every HUD style reads the same**
+- **Compact**: the merged `Skills:` row (💧Water Saint · ⚔️Sword God Int · 🤫 Voiceless) now gives magic schools, sword styles and Voiceless Casting to the world card, the Spellbook and the technique list. `Mana Capacity: Vast | Half | Rested · Touki (Battle Aura): Locked` reads as mana, reserve and Touki. The spot-first place (`◆ Boreas Manor, Roa, Asura Kingdom (Central Continent)`) reads in the same order as Classic, so the current place, the map and "First time at…" agree across styles.
+- **Visual**: the two ━━━ divider rules no longer turn the stat rows between them into an inline block, so those rows are tracked like any other line (dropped-line check, Chronicle ranks, pins). Condition, wounds and sword-style reach read through the icons and bold labels.
+- **All styles**: a `·` followed by a label separates two slots on one row (`Standing: … · Faction: …`, `Renown: … · Guild: F`). A `·` with no label after it stays in its value, so lines like `Skills: One-Handed 52 · Block 41` are unchanged.
+- `Era / Arc:` is read as the arc line (story start and new-arc entries in the Chronicle). Languages keep `(Fluent, reads)` whole. The period comes from `Time: 09:20 (Morning)`. Imperial and Divine magic tiers have a rank step on the world card.
+
+**Wounds stay the card's**
+- v1.1 keeps wounds on the Condition line (`Condition: Cracked rib — Treated, Fatigued`). An entry tagged Raw, Treated or Healing is now a wound (Healing shows as past treatment); states such as Fatigued stay conditions.
+- Because the card keeps wounds itself (its HUD shows one, or its rules carry `Condition: [wound or state] — …`), the extension no longer adds its own `injuries` request to the model for this card (about 170 fewer tokens per turn).
+
+**Factions and the Chronicle**
+- `Faction: Boreas Household (Tutor)` is a membership with its rank. `Guild: F` is your guild rank, not a faction called "F". A rank in brackets on a membership label (Faction, Guild, Order, Clan…) now means member for every card — Skyrim's `Factions: Companions (Whelp)` shows as member instead of neutral.
+- Steps in Sword Style, Magic Tiers, Touki, Guild and Faction are Chronicle milestones (`Magic Tiers: … Healing (Intermediate) → … Healing (Advanced)`).
+
+**Dropped-line check**
+- Switching HUD style (Classic ↔ Visual ↔ Compact) is a template change, not a list of dropped lines. Compact leaving out Memory and Equipment on turns they did not change is not a drop. Training, Present, Active Paths, the canon-clock lines and a Turning Point end by their own rules and show as cleared, not dropped. A line really dropped within one style is still reported.
+- The HUD copy under "Show the HUD as text" in the Companion card can no longer be redrawn by the card's "HMS Panel" display scripts.
+
+Unchanged: extension identifier, saved settings and chat data (no migration; pins keep their keys), no extra model calls, polling or stored data. On Re:Zero, Overlord, COTE, Mushoku Living World, Undertale, Dark Souls and the older Six-Sided format the panel data, narrator request and Chronicle are identical to 1.0.1 apart from the settings default above; Skyrim differs only in the faction standing noted above.
+
+**Checks**: `tools/test_six_sided_v11.cjs` (29 checks, in `run_tests.cjs`) and `tools/sim_six_sided_v11.cjs` (a synthetic 60-reply v1.1 session for `replay_check.cjs` and `compare_backends.cjs`).
+
+## 1.0.1 — The purse on the HUD
+
+- **Finances shows the money the HUD shows on a holdings line.** A HUD line such as `Resources: 12 Gold, 45 Silver` was not read, because only lines labelled Gold, Money, Funds, Balance, Wallet, Bank, Credits, Coins or Private Points counted as the balance. Now a holdings line (Resources, Purse, Wealth, Currency, Cash, Savings, Treasury, Coffers, Pouch) counts too, when every part of it is an amount with a unit and at least one unit is a currency word from the balance labels. `Resources: 3 rations, 2 torches` and `Reward: 50 Gold` still do not.
+- The balance is shown exactly as the HUD writes it (12 Gold, 45 Silver: no conversion between coins) and is read from the newest HUD, so seeing it again never adds money, and nothing is entered in the ledger as income. Payments, purchases and debts are recorded as before.
+- Display only for Finances: the model's request, the Phone and every other card are unchanged.
+
+## 1.0.0 — RPG Companion HMS Edition 1.0 (first official release)
+
+The first official release, built from the 3.4–3.6 development line (those numbers stay in the history below). Versions from here: 1.0.x maintenance fixes, 1.x backward-compatible additions, 2.0 for compatibility-changing work.
+
+Included (details in the entries below):
+- **Interface (3.5–3.6)**: views (Scene, You, People, Journey, All) with a side rail on wide panels; the Now card with the story's sky; Find anything (⌕ / Ctrl+K); Settings search; looks (Modern, Storybook, Minimal, Auto); dossier sheet; relationship web; Previously… recap; quest rings and paths; Loose ends; Agenda place marks; own-window background fix.
+- **Continuity (3.4–3.5)**: one Agenda entry per appointment and day countdowns; the player is never tracked as a second person in Minds ("Marcus" / "Marcus Veyrath"); a moment the model repeats in the next replies is one Chronicle entry.
+- **Fixes for 1.0**: a magic school reported as a spell ("Water") stays out of the Spellbook; Gear shows a container's contents under the container itself; Find keeps every letter you type.
+- **Checks**: `tools/replay_check.cjs`, `tools/compare_backends.cjs`, `tools/test_ui.cjs` alongside `tools/run_tests.cjs`.
+
+Unchanged: the extension identifier (`rpg_companion_hms`), saved settings and chat data (no migration), and the request to the model apart from the changes named above.
+
+## Release fix — Find keeps every letter you type
+
+- Find (⌕ / Ctrl+K) redrew the whole panel on every keystroke and replaced its own search box. In a large chat the redraw takes ~50 ms, and letters typed meanwhile went into the old box and were lost. Typing and the arrow keys now update only the result list. Found by the release stress test (very long names, 60-item inventory); display only.
+
+## Fix (experiment: magic disciplines) — schools are not spells
+
+Branch `experiment/magic-discipline-classification`, from `staging/3.6.0-ui` at `bf80da9`.
+
+- The Spellbook no longer lists a magic school as a known spell. Reports of "Water Magic" were already rejected, but when the model later reported the bare "Water", "Earth" and "Fire", they slipped through and showed as known spells under "Other" (Six-Sided World: 19 known, 16 real).
+- A bare name is treated as the school only when this chat's spell references file spells under that school and none of them carries that exact name. So a game with a spell called "Fire" keeps it, a spell named after its own school keeps it, and a chat without spell references is unchanged. Spells you marked by hand are never filtered.
+- Nothing saved is rewritten: the Spellbook is rebuilt from the story's reports, so the old reports are untouched and the three entries simply stop counting. School ranks (Water Advanced, Earth Intermediate, Fire Beginner) still come from the HUD as before.
+- The narrator request is unchanged (the known-spell list is not part of it).
+## 3.6.0 RC (experiment: gear containers) — contents under their bag
+
+Branch `experiment/3.6.0-gear-containers`, from `staging/3.6.0-ui` at `bf80da9`. Display only: `dist/backend.js` is unchanged.
+
+- A container's contents now sit **under the container's own row**, wherever that row is: worn, on you, dropped, left somewhere, or inside another bag. Before, the bag was listed in one place (e.g. under Dropped, by the door) and its contents in a separate "Inside …" group further up.
+- The bag row has a toggle with its count (▾ 4). Closed, it shows a one-line peek ("travel itinerary, sealed letter +2"). Each bag opens and closes on its own and stays as you left it (same remembered setting as before). Opening or closing is display only: nothing moves, nothing is sent.
+- Bags inside bags nest (a pouch in a pack), up to four levels.
+- Nothing is guessed: an item goes under a bag only when the tracker recorded that bag's exact name as where it is. A bag with no row of its own, or bags recorded inside each other in a loop, keep the older "Inside …" groups; an item in an unknown container stays under "Packed away". Anything not drawn otherwise shows under "Other", so no item can disappear.
+- Move menus and every other control are unchanged.
+
+## 3.6.0 RC (UI staging) — one application
+
+Branched from `staging/3.5.0` at `0318b1a`. **Interface only**: `dist/backend.js` is byte-identical to 3.5.0 apart from the version number, and on the Six-Sided World export the two builds produce identical panel data, narrator requests and Chronicle at every one of 29 replies (`tools/compare_backends.cjs`). No new model calls, no polling, nothing new saved except your display choices.
+
+**A look that fits the story**
+- A small design system: every card, button, chip, field and dialog now draws from shared tokens, so older panels (Gear, Family, Factions, Settings…) look like the new ones.
+- Three looks (Settings → Play style → Look): **Modern** (clean sans, accent tiles; the default, fits any genre), **Storybook** (serif small caps and gilt rules, the 3.5 look) and **Minimal** (flat and quiet). **Auto** picks Storybook for the fantasy worlds the extension knows (Re:Zero, Overlord, Mushoku Tensei, Undertale, Dark Souls, Skyrim) and Modern for everything else. Your theme, density and text size still apply on top.
+
+**App shell**
+- An app bar: the Companion mark, the mode, and Find / Refresh / Guide / Settings as compact icon buttons with labels where there is room.
+- On wide panels (own window, enlarged float, desktop) the views become a **side rail** with counts, and cards sit in two columns; narrow panels keep the tab bar on top.
+
+**Find anything** (⌕ in the app bar, or Ctrl/⌘+K)
+- One search over everything the panel tracks: people, quests, appointments, gear, known spells and techniques, places on the HUD and Chronicle moments. ↑/↓ and Enter open the result where it lives (a person opens their dossier); Esc closes.
+
+**Settings**
+- A search box over the 22 settings sections: type "memory", "portrait", "quest"… and only the matching sections remain, opened. Clearing it restores what you had open.
+
+**Dossier**
+- Opens as a sheet with the person's monogram, standing, family tie and whether they are here; on phones it slides up from the bottom. Focus moves into it; Esc closes.
+- The standing history chart is only drawn when the standing has actually changed (one point drew a large empty chart).
+
+**Checks**
+- `tools/compare_backends.cjs <old> <new> <export>`: compares two backend builds reply by reply (panel data, narrator request, Chronicle).
+- `tools/test_ui.cjs [payload]`: the real panel in Chromium at 340/420/860/1200 px in every look and view — no script errors, no horizontal overflow, every view renders — plus the interactions: tabs by mouse and arrow keys, Now card links, Ctrl+K → Enter → dossier → Esc, the Tools tray, Settings search; and the render time against an older build (`FRONTEND_OLD=`). Needs Playwright; skips without it.
+
+## 3.5.0 RC (staging) — Views, the journal look, a living Now card, and connected systems
+
+No extra model calls. The one tracking change is the Minds fix under **Continuity**; everything else is display.
+
+**Reliability (phase 3)**
+- **Own window**: the window no longer shows a teal area under the panel. It used to copy the colour of Lumiverse's page body, which is not the colour Lumiverse actually paints (that lives on inner containers). It now takes the background of the drawer the panel lives in, and the panel fills the window.
+- **Wide panels** (own window, enlarged float, wide drawer): cards sit in two columns above 720px, the view bar spreads out with labels beside icons, and the sky card grows. Very narrow panels get smaller labels.
+- **Chronicle**: a moment the model reports again in the next reply or two, reworded ("…fundamentally altering…" / "…shifting…"), is now one entry, not two. Built when the Chronicle is read: nothing saved is deleted, and an entry you starred or hid is always kept. The request also tells the model not to report a moment twice.
+- **Agenda ↔ places**: an appointment shows "📍 you're here" when the story has you at its place, "📍 been there" when the Chronicle has you there before, and a 🗺️ button to the Atlas when the location book has it. A place that was never established shows nothing. The Now card's next appointment shows its place.
+- **Loose ends**: "leave it as it is" is remembered per chat, so a dismissed note does not come back after a reload.
+- **Replay check** (`node tools/replay_check.cjs <chat export> [persona] [card]`, local only): replays a real chat one reply at a time and checks after every reply that Agenda, Quests and Gear hold no duplicates, Minds and People never track you as a second person, the narrator request is added once with no repeated lines, and the Chronicle repeats no moment. Run against 3.4.0 it finds the "Marcus Veyrath" split and the duplicate duel; against this build it finds nothing.
+
+**Continuity**
+- Minds no longer splits you in two. When your persona is "Marcus" and the narrator writes "Marcus Veyrath" (or the other way round), feelings toward that name are feelings toward you, not toward a separate person. Before, family members held two sets of feelings, one toward "you" and one toward "Marcus Veyrath", and both were sent to the model each turn. One extra or one missing trailing word only, and never when a party member has that name. Existing chats are corrected on the next read.
+- **Loose ends** (Scene): where two trackers disagree or a commitment looks forgotten, the panel asks instead of guessing. Examples: an appointment still "in progress" though its people aren't in the scene and you're somewhere else; an appointment over a day late; an appointment with someone Family lists as dead; more than two things in your hands at once. Answer with the card's own buttons (It happened / Called off / Missed / Open Gear) or ✕ to leave it as it is. Nothing changes until you answer.
+
+**Previously…**
+- Coming back to a chat after 3+ hours, Scene opens on a short recap: the last key moments from the Chronicle (moments, milestones, fights, starred and weighty entries; plot bookkeeping, relabelled bonds and near-duplicates are left out), where the story stands, and the open threads. "📜 Previously…" in Journey shows it any time.
+
+**Quests**
+- A progress ring fills only from a percentage the story measured. Without one, the ring shows the number of stages the quest has actually moved through. Completed quests show a ✓.
+- "Path so far" lists every objective the quest has had, oldest crossed out, so a long quest shows where it has been. Names the story has used for the same quest are listed under "Also called".
+
+**Relationship web** (People, its own card)
+- You at the centre and everyone tracked around you: people in the scene on the inner ring, glowing; the rest on the outer ring, closest first. Lines to you take your standing (warm, cold or mixed) and are dashed and labelled for family (father, older brother…). Lines between others come from Minds and lean warm or cold.
+- Tap someone to see only their ties, with a list of each tie; tap again, or use Dossier, to open their dossier. Keyboard reachable.
+
+
+**Navigation**
+- **Views**: a sticky bar switches between Scene (Now, World State, the world card, Map), You (your character, Gear, Magic, Body, Mind…), People (people, family, factions, secrets, phone), Journey (Agenda, Quests and plot, Chronicle, Chapters, Atlas) and All (the classic full list). Only the chosen view is built, so the panel is lighter to draw. Arrow keys move between views; the choice is remembered. Badges show active quests and people in the scene, a dot marks a view with something new this turn, and a red dot means something is late.
+- **Tools tray**: Panel placement, Test zone, Read again, Export character sheet, Collapse/Expand all and snapshots now sit in one folded "🧰 Tools" row instead of above the story.
+- The Move the world / fight buttons show on Scene and All.
+
+**Now card, reworked**
+- The top of the card is a sky that follows the story's clock: dawn, morning, day, afternoon, dusk and night colours, with the sun or moon on an arc by the hour and stars at night. The place is set large with its region under it; the time sits in a badge.
+- Every line links to its card: tap the appointment to open Agenda, the quest or plot line to open Quests, the place to open the Map.
+
+**People**
+- A name-tinted monogram stands in for a missing portrait on every person card (dimmed for people not in the scene).
+- The dossier (tap a name) lists every open appointment with that person and the quests they are part of, and has an "Open in People" button.
+
+**The journal look**
+- Each card has a medallion icon and a serif small-caps title, with a gilded rule under an open card's header. Softer, rounder cards with a light top sheen.
+- Agenda is drawn as a timeline: a rail with a node per appointment; the one in progress glows, late ones are red, new ones are highlighted.
+- Works with every existing theme (built on the theme's own colours) and respects reduced-motion.
+
+## 3.4.0 RC — One appointment, one entry; the Now card
+
+**Fixed**
+- Agenda no longer shows the same appointment twice when the story re-reports it with a changed detail. While an appointment is still open or under way, a later report with the same title updates it ("shortly" → "now", "House Guards" → "Four Veyrath guards") instead of starting a second entry. A separate occurrence still needs the first to be finished, an explicit "another/second…" cue, or two rows of that title in one report. Existing chats heal on the next refresh; nothing saved is rewritten.
+- An appointment whose day the story named but not its hour ("in two days", "tomorrow", "Day 14") now counts down in days ("in 2 days", "tomorrow", "today") and sits under Coming up instead of "No set time". The story's reminder line uses the same countdown, so "in two days" no longer stays "in two days" after a day has passed. Vague times ("shortly", "this evening") are still never turned into a date.
+
+**New**
+- **Now card** at the top of the panel: where you are and the time, what is in progress, the next appointment, the active quest step and progress, the plot's current line, ripe planted details, and what changed this turn. Built from what the panel already tracks; no extra model calls and nothing added to the request. Off switch: Settings → Play tools → Now card. Hidden in compact mobile mode, which has its own pinned summary.
+
+## 3.3.4 RC — Room changes inside a building
+
+- When your own message completes a move ("I enter my bedroom", "I walk to my room", "I return to the library"), the map request asks for the room you are now in instead of re-sending the last room saved for that HUD place. Before, moving between rooms of one building (HUD still "Veyrath Hall") kept sending the dining hall to the narrator.
+- Hypothetical, intended, asked-about or begun-only movement ("I think about entering…", "I want to go…", "I begin walking toward…", "Can I go…?"), crossing to furniture in the same room ("I walk to my desk") and spoken words don't count.
+- A newly drawn room no longer overwrites a different room saved under the same place: the earlier one is kept under its own name.
+- No extra model calls; with no move, the request is unchanged.
+
+## 3.3.3 RC — Folding spells and techniques
+
+- Each spell and technique folds to its header line (name, rank, status, buttons). Tap it to see the description, incantation, requirements, practice note, evidence and progress bar. Opened entries are remembered; folded is the default.
+- Studying stays visible: the Studying box is unchanged, and a folded entry you are studying or practising shows 📖 (with its percentage when the story gave one).
+- Search opens what it matches and folds the rest while you search; clearing it restores exactly what you had open. A search never changes remembered open/closed state, for entries or schools (previously it saved school groups as opened).
+- "No retained evidence" is no longer shown on every entry (Magic, Sword techniques, Abilities); the evidence label appears only when there is evidence.
+- Technique evidence labels follow the Sword techniques card instead of the Magic card.
+- Display only: tracking, saved data and the model request are unchanged.
+
+## 3.3.2 RC — Easier navigation
+
+- People: someone who isn't in the current scene folds to their header row (name, standing, bond). Tap to see the full card; what you open or close is remembered per person. People in the scene, and everyone under the Here tab, stay as full cards.
+- People: a "Find someone" box appears once more than eight people are listed. It only hides non-matching cards.
+- Collapse all / Expand all at the top of the panel folds or opens every card at once; each card still remembers its own state afterwards.
+- Display only: tracking, saved data and the model request are unchanged.
+
+## 3.3.1 RC — Collapsible containers in Gear
+
+- Each bag, pouch or other container in the Gear panel is a collapsible group with its item count ("👜 Inside reinforced travel satchel (3)"). Containers start open, as before; one you close stays closed. Display only: tracking, item movement and saved data are unchanged.
+
+## 3.3.0 RC — Clean build
+
+A review of the whole codebase against 3.2.14, the Six-Sided World card and seven Lumiverse exports. Tracking behavior is unchanged except the fix below; everything else is cleanup, and release checks that work again.
+
+**Fixed**
+- Practice on a technique you already know now shows on its card (note, and progress when the story gives a percentage). Techniques used their own copy of the spell-card logic and missed the 3.2.8 spell fix.
+
+**Cleaned up**
+- Spells and techniques share one card helper (`spellRowPractice`) and one percentage helper (`spellPercent`) instead of four copies of the same logic, so a fix to one can no longer miss the other.
+- Removed four unused constants. No other dead code was found: every other declaration is in use.
+- The in-panel Guide (all five languages) now names 3.3 instead of "2.9 beta".
+
+**Release checks restored (lightweight)**
+- `node tools/run_tests.cjs` runs release identity, syntax, the tracking regressions and a new end-to-end smoke test: the backend builds the panel and model request from a synthetic Six-Sided chat, the request is injected exactly once, and the real frontend renders every panel.
+- `.github/workflows/validate.yml` runs those checks and the package build in one quick job. The manual publish script required a validation run with `validate` and `browser` jobs, but that workflow had been removed, so no RC could be published; it now requires the `validate` job only (the browser tests were removed with the cleanup).
+
+**Verified against 3.2.14**: identical panel payload and identical model request on all seven exports; identical requests for normal, swipe, regenerate, continue and OOC turns (the side-panel request is injected once; nothing on continue/OOC); all real payloads render in the real frontend; same speed.
+
+## 3.2.14 RC — Tracking audit fixes
+
+- A quest reported under its own Quest ID now takes the reported objective as its current stage. A rule that kept the longer of two objectives blocked every shorter new stage, and the stale objective was then sent back to the model as quest context, which echoed it. Reworded titles without a Quest ID keep the existing rule.
+- A new objective under the same Quest ID restarts progress; progress on an unchanged objective still never regresses.
+- A relationship bond ending with a copy of the row's own standing ("…, Close") drops the copy. Bonds set by the player are untouched.
+- A martial observation reported once is counted once (the saved learning and the assessment could be the same event).
+- Added `tools/test_tracking_audit.cjs` (synthetic regressions for each fix).
+
+## 3.2.13 RC — Tracking review fixes
+
+- Gear reported "on body" (slung/strapped) with a desk, shelf or other furniture as its place is shown as left there, not carried. "In hand" at a desk is unchanged (held while seated there).
+- A spell you already know is listed under Studying only while the latest study report names it; one past review keeps its note on the spell card instead of staying under Studying.
+- Study notes keep what is left in the story's own words ("4 more study sessions or practical casts left") instead of a fixed "N sessions left" that dropped alternatives.
+- Relationship standing is described to the model as the lasting relationship: it keeps the previous standing unless the reply changes the relationship itself, then moves one step. A strict, demanding or testing manner that fits the character goes in mood, not standing. The read-only consistency warning is unchanged.
+
+## 3.2.12 RC — Panels remember open and closed
+
+- The panel remembers which cards and sections you opened or closed and restores them the next time it opens, instead of opening every card each time. Kept in this browser only; nothing is sent anywhere.
+
+## 3.2.11 RC — Agenda title restatements stay one entry
+
+- A title that only adds the entry's own people and place ("Depart for Greyrat meeting" → "… (with House Guards) at Neutral waypoint") updates the existing entry instead of adding a second one. The day must still agree and only a single entry may match.
+- The panel also groups `K417 Month 4 Day 14 morning`-style dates (no commas, trailing time word) under Coming up instead of No set time.
+
+## 3.2.10 RC — Sessions left in practice notes
+
+- When the story states how much practice is left ("4 more sessions"), the study note ends with it ("4 sessions left"), so the spell card's latest note shows the countdown. No new field and no extra calls.
+
+## 3.2.9 RC — Gear named two ways stays one item
+
+- An item described further ("leather pouch" → "leather pouch of allowance coins", "sealed scroll" → "sealed scroll of arrangements") is the same item, shown under the fuller name. Applies across replies and when one reply names it both ways.
+- Two different items reported in the same reply ("leather pouch" and "leather pouch of herbs") stay separate, and only a single unambiguous match is merged.
+
+## 3.2.8 RC — Practice on spells you already know
+
+- Studying or practising a spell that is already Known now shows the latest practice note (and progress, when the story gives a percentage) on its Magic card.
+- The spell list the model repeats every reply no longer re-dates when each spell was learned, which had hidden every later practice report. Known/mastered status is unchanged.
+
+## 3.2.7 RC — One card per Quest ID
+
+- A quest reported with the same Quest ID stays one card when its place drifts with the player ("study" → "Marcus's room") or the model flips its main/personal label. Giver, separate-quest and objective checks are unchanged.
+
+## 3.2.6 RC — Map follows room changes inside a building
+
+- When the HUD location stays the same (e.g. "Veyrath Hall") but you walk to another room, the map request now asks for the new room instead of keeping the last one drawn there.
+
+## 3.2.5 RC — Agenda duplicate fixes
+
+- Read compact `K417-04-14` / `K417-04-12T09:30` dates and "in N days", so one plan reported with different date wording stays one Agenda entry instead of splitting in two.
+- A kept, missed or cancelled report now closes the same-day entry already in progress, even when the time is worded differently, instead of adding a second Done copy.
+- The panel groups `K417, Month 4, Day 14` (and named-month) dates under Coming up / Today / Overdue instead of No set time.
+
+## 3.2.4 RC — Every lorebook spell in the Magic catalog
+
+- Read spell entries whose `[SPELL — Name]` header comes after a fan-addition note, and treat `School (fan)` as that school.
+- Read entries the lorebook files under `[Spell]` even when written loosely (`Name [School - Rank]: …`, `Name [School Magic]: …` or `Name: …`). Spells without a stated rank appear as rank unknown.
+- Six-Sided World: the Magic catalog now lists all 144 spells (was 111). Existing spells, saved progress and other cards are unchanged.
+
+## 3.2.3 RC — Targeted tracking fixes
+
+- Keep confirmed active quest progress from regressing while preserving legacy resets, explicit stage/condition changes and reopening. Clarify whole-quest progress and per-reply Minds feelings in model instructions.
+- Match ability evidence below the HUD wall, conservatively link uniquely renamed plot threads, and retain Agenda kind/deadline continuity.
+- No-HUD story-state gating and relationship damping are deferred to preserve restore handling and existing cross-card behavior.
+
+## 3.2.2 RC — Survival action evidence
+
+- Count reported ate, drank, slept and rested flags only when the same reply’s prose contains matching evidence. Unsupported flags remain available in `survival.unconfirmed`; old messages are filtered on read without migration. Manual logs still count.
+- Validate only at the survival clock and reply row, using cached source-bound verdicts. Combat guard breaks and balance recovery do not count as rest; preserved unconfirmed claims can be re-confirmed by re-saving with evidence.
+- Tighten the survival model instruction: leave flags false when the reply does not describe the action, and never carry flags over from earlier replies.
+
+## 3.2.1 RC — Quest and Agenda display fixes
+
+- Keep active quest cards visible and place completed and other ended quests in separate, collapsed disclosure sections. Expansion is session-only and changes no tracking data.
+
+- Group Agenda rows using their displayed countdown; date-only deadlines use day-level grouping while retaining the saved wording. Resolver, stored data and model hints remain unchanged.
+
+## 3.2.0 RC — Selected play tools
+
+- Resolve objective quest IDs to titles for display.
+- Conservatively collapse nearby duplicate Chronicle and planted-detail descriptions without changing reports or control IDs.
+- Add optional NPC dossiers with source-qualified locations, knowledge, appointments and recent Chronicle observations.
+- Add Chronicle Highlights and expandable daily bond folds; preserve the default All view.
+- Show appointment countdowns, advisory quest-chain links and retained ability evidence.
+- Add bounded standing-history charts inside NPC dossiers.
+- Add explicitly accepted NPC voice notes and a separate default-off context reminder within the existing budget.
+- Keep the single-action Reliable findings as investigation only; model report cards remain deferred without verified provenance.
+- Use the revised 20-pair CPU/wall gate against frozen main, with historical 3.0.10 comparisons informational.
+- RC only: no live Lumiverse acceptance. See the selected-candidate report.
+
+## 3.1.0 RC — Panel tools and diagnostics
+
+- Derive unreported Minds modes from People standing or kin without altering saved reports or guessed flags.
+- Add optional, read-only relationship-standing consistency warnings for positive-reason drops and unexplained multi-step changes.
+
+- Display Elementary spell ranks as Beginner when that is the HUD’s rank terminology.
+- Recognize explicit “Available; inactive at rest” consistency directives.
+- Preserve HUD ability labels in character-sheet exports.
+- Add optional read-only HUD consistency warnings for missing HUDs, backward clocks and explicit start-setting contradictions.
+- Label off-scene family locations as last seen/known and collapse older activity.
+- Reuse existing character context as a scene-cast reminder without prompt growth.
+- Add a read-only local Markdown character-sheet download.
+- Add up to ten named read-only tracker snapshots; restoring never replays gameplay.
+- Add a lazy, bounded Minds relationship graph with directed links.
+- Add an evidence-only Sandbox canon-event view; dates never imply outcomes.
+- Add optional compact mobile cards and a sticky scene/quest summary.
+
+
+## 3.0.10 RC — Quest assignment continuity
+
+- Add optional stable Quest IDs and bounded existing-quest context to the current
+  tracker request; titles and progress summaries no longer need to act as IDs.
+- Reconcile source-grounded progress summaries with their established assignment,
+  including shortened reward references and explicitly continued introductions.
+  Distinct targets, restrictions, assignments and ambiguous references stay separate.
+- Preserve identity, accepted conditions and sparse progress details during
+  unchanged-source refreshes; keep canonical control keys when attaching HUD aliases.
+- Preserve explicit stages, location changes, resets, completion history and focus.
+  Repeated identical refreshes do not accumulate redundant identity history.
+- Verify the complete extended export and seven-label sequence in Together and
+  Separate modes. Agenda and other tracking engines remain unchanged.
+
+## 3.0.9 RC — Export-reproduced Agenda and Quest identity fix
+
+- Reconcile leading location articles and equivalent bell trigger wording;
+  retain a specific bell label when a later report only says “Morning.”
+  A bell hint remains a hint, never an invented exact deadline.
+- Match renamed victory challenges only when the opponent, giver, location and
+  distinctive reward agree. Preserve restrictions, separate assignments, terminal
+  history, the first key, progress and fuller established quest conditions.
+- Retain prior quest descriptions as identity history and preserve focus saved
+  under a former quest label. Existing raw reports are not rewritten or deleted.
+- Verify the supplied export, repeated Separate updates, Together inline reports,
+  legacy controls and restored browser projections. No extra model calls/polling.
+
+## 3.0.8 RC — Display-cache stability cleanup
+
+- Share concurrent Thoughts/Internal States history loads and fill their caches
+  in one traversal, reusing each ordinary report's existing validation result.
+- Ignore superseded display loads and errors after invalidation or a newer
+  snapshot; an older completion cannot delete a replacement pending load.
+- Disconnect the popout theme observer and cancel new-game catalogue debounces
+  when the frontend is disposed.
+- Preserve source/swipe checks, continuation display rules, historical responses,
+  saved formats, prompts, tracking engines and refresh/model-call frequency.
+- Local regression/browser validation is not live Lumiverse certification.
+
+## 3.0.7 RC — Exact Agenda bell/clock follow-up
+
+- Reconcile “09:00” and “when the bell rings at nine” for one source-confirmed
+  appointment, including full/short location labels such as “Hall courtyard”
+  and “courtyard” when both source HUDs establish that full location.
+- Preserve the original key, status, more specific location and confirmed clock;
+  a vague bell phrase alone still does not invent an exact deadline or date.
+- Keep an established vague appointment on its observed day when its matching
+  explicit clock arrives after the scheduled time; retain future/new occurrences.
+- Prevent mismatched bell hours and conditional/approximate bell windows from
+  being treated as arbitrary exact-time refinements.
+- In Separate mode, partial re-extraction of an unchanged reply retains its
+  accepted clock/details; edited sources, other swipes and newly dated occurrences
+  cannot borrow an unrelated prior completion.
+- Consolidate eligible saved duplicate reports on normal reads, preserving raw
+  reports and legacy manual controls. No additional calls, polling or history pass.
+
+## 3.0.6 RC — Universal Agenda identity
+
+- Reconcile equivalent appointment wording, participant honorifics/order and
+  location punctuation using independent context; preserve substantive differences.
+- Preserve outcome/correction observations within duplicate extraction packets.
+- Recognize equivalent bell-time descriptions without inventing a clock/date;
+  anchor explicitly continued relative countdowns to their established schedule.
+- Consolidate matching saved reports/manual additions in the derived Agenda,
+  retaining stable keys, outcome history and corrections through duplicate aliases.
+- Preserve explicit separate sessions, clock windows, recurring dates, reschedules
+  and completion history; reject premature outcomes contradicted by their source.
+- NPC daily routines alone no longer start the player's appointment.
+- Agenda-only runtime changes; no UI redesign, save migration, model calls,
+  polling, Quest/NPC/Magic/Inventory engine changes or additional history pass.
+- Ambiguous/free-form identities remain conservative; live Lumiverse verification
+  is still required. RC regression checks do not guarantee every narrator wording.
+
+## 3.0.5 RC — Agenda occurrence and quest stage continuity
+
+- Keep repeated bare clock times on their stated day instead of silently moving
+  a past appointment to tomorrow; preserve explicit dates and rescheduling.
+- Preserve one start/key for source-confirmed continuing sessions reported as
+  "now", and link their confirmed completion without leaving an active duplicate.
+- Refine a parent location to its room when both source HUDs establish the same
+  place; retain distinct rooms, wings, annexes and separately listed appointments.
+- Prevent generic current-activity cues from starting later scheduled events.
+- Link explicitly continued, renamed quest stages to their established identity;
+  retain prior stage evidence, rewards and legitimate progress resets.
+- Preserve broader quests, separate objectives, completed history, manual controls,
+  source/swipe validation and saved data. Add no model calls, polling or settings.
+- Ambiguous identities remain conservative; the latest screenshot export and live
+  Lumiverse verification are unavailable, so these fixes do not certify every duplicate.
+
+## 3.0.4 RC — Cached narrator lore references
+
+- Extend bounded narrator reference grounding to matching lore of any category,
+  including techniques, NPCs, places, items, economics and gameplay rules.
+- Prioritize specifically named references, reuse exact host-provided definitions,
+  preserve existing spell grounding and share its maximum 6,000-character cap.
+- Leave probabilistic, timed, grouped, filtered and custom-placement entries to
+  host activation; keep private information and reference definitions distinct
+  from character knowledge, ownership, learned abilities and actual events.
+- Use only existing per-chat lore caches and bounded recent visible prose; add
+  no model/API calls, polling, full-chat scans, saved-data changes or new settings.
+- Whole entries that cannot fit are omitted, not truncated. Unloaded references
+  and live narrator obedience remain limitations; this is not universal enforcement.
+
+## 3.0.3 RC — Ability identity and scene outcomes
+
+- Consolidate equivalent absorption-drill descriptions while retaining aliases,
+  source evidence, training notes, proficiency states and legitimate progress resets.
+- Close confirmed scene-level objectives while preserving broader/future quests;
+  distinguish failed, completed and closed outcomes without awarding rewards.
+- Prevent failed practice and NPC demonstrations from granting player knowledge
+  through conflicting assessments or parallel legacy tracking fields.
+- Remove the narrator reminder that one clean execution automatically means learned;
+  preserve card-specific progression rules and existing lore-reference grounding.
+- Preserve manual choices, source/swipe validation, save data and explicit reopening.
+
+## 3.0.2 RC candidate — Spell grounding and durable tracking
+
+- Retain established People, scheduled Agenda, owner-isolated Secrets, contacts,
+  cumulative earned XP and carried acquisitions beyond the recent-report window.
+- Preserve activity-start cues, rescheduling, completed history and off-scene status;
+  keep scheduled appointments separate from NPC daily routines.
+- Anchor manual carried-item removal to chat order and allow explicit later
+  reacquisition; reconcile automatic carried rows with confirmed Gear losses.
+- Render unknown legacy emotion labels safely instead of blanking Minds.
+- Reuse bounded activity-word sets within a read pass for repeated Agenda cues.
+
+- Preserve family, property, equipment, guild membership, quest details and debts
+  beyond the 300-report window using one shared source-bound history index.
+- Give financial controls stable source IDs; preserve identifiable legacy hide/settle
+  corrections with additive anchors on existing saves and flag ambiguous old keys.
+- Reuse Gear reads and repeated financial fingerprints within each panel read.
+- Prevent contradictory/unsupported quoted mastery assessments from awarding
+  Magic or technique mastery; preserve established knowledge and manual choices.
+- Show assessment evidence counts and preview truncation explicitly in diagnostics.
+- Supply relevant cached canonical spell names, schools and stated ranks to normal
+  narrator requests about magic, with named definitions where available.
+- Reuse exact definitions already present in system context; keep whole references
+  within the configured lore character budget (maximum 6,000 added characters).
+- Separate reference availability from character knowledge. Preserve Known,
+  Mastered, custom spells, manual choices and study progress; label unlisted names
+  without renaming or deleting them.
+- Keep both Mushoku cards' own terminology and caches; do not grant spells from
+  school ranks or add model/API calls, polling or chat-history scans.
+- This improves supplied context, not guaranteed narrator obedience. No live model
+  acceptance or complete-lore compatibility claim; see the grounding report.
+
+## 3.0.1 RC — Magic / martial classification
+
+- Keep physical sword maneuvers, Touki moves and training goals out of Magic counts
+  and Studying; route supported observations to the existing Martial Abilities group.
+- Preserve genuine spells, magic study, catalogue identity, Touki Active, raw saved
+  reports and explicit manual choices, including legacy study entries.
+- Distinguish reported maneuvers, attempts, practice and source-backed learning;
+  failed drills and inconsistent reports do not award a Mastered label.
+- Preserve the Magic UI, search and controls; no new panels, model calls, history
+  scans, dependencies or migrations. Ambiguous names retain conservative handling.
+- Includes the merged 3.0 tracking/dual-card foundation described below. RC status
+  remains: live Lumiverse acceptance and documented history/provider limits remain.
+
+## 3.0.0 RC candidate — Tracking contracts and compatibility
+
+- Preserve all 2.9.15 Magic identity/progression improvements.
+- Reconcile conservatively anchored assignment label refinements; preserve original
+  keys, aliases, separate objectives, rewards and legitimate stage resets.
+- Preserve explicit quest completion/failure/abandonment/reopening, current HUD
+  lifecycle, long objective conditions and stable focus after renames.
+- Honor explicit uncertainty consistently; reject unaccepted/uncertain transactions
+  without renumbering saved ledger corrections.
+- Resolve secret knowers by canonical or unique identity, preventing ambiguous
+  first names from receiving another character's private knowledge.
+- Inventory all systems and Living World entry IDs, with before/after export counts,
+  defect regressions, browser verification, measured costs and open provider limits.
+- Integrate Six-Sided's explicitly owned spell-list format, rank/cost annotations
+  and Known-not-Mastered evidence without granting theoretical/NPC abilities.
+- Reconcile unique full/short family identities and Agenda place abbreviations only
+  when both HUD observations establish the same parent location.
+- Reject pending/uncertain property and inheritance grants; add dual-card lifetime,
+  chronology, continuation and full-source regression coverage.
+- Preserve Task 1 checkpoint `31e44da`; see the dual-card report for inherited
+  history-window and live-provider limits. Neither card is claimed fully certified.
+- No visual redesign, new dependency, model call, polling or saved-data migration.
+  See [3.0 RC report](docs/compatibility/3_0/REPORT.md); live acceptance is outstanding.
+
+## 2.9.15 RC candidate — Magic identity and progression
+
+- Reconcile grouped confirmed spell lists into individual catalogue identities;
+  filter automatic school/style/casting labels without rewriting saved reports.
+- Preserve recognized weakness notes and known-spell practice without downgrading
+  knowledge, inventing mastery or assigning numerical progress.
+- Preserve manual corrections, saved study boundaries, active swipes, source edits,
+  retractions and newer accepted evidence. Keep reference/control lists unowned.
+- Retain explicit Melded components/ranks and avoid claiming unsupported access.
+- Retain up to 32 individual knowledge/learning/mastery names per report; ten-name
+  confirmations no longer hit the former eight/six-name parser limits.
+- Inventory all 345 Living World magic entries and 348 canonical references; add
+  realistic export, multi-turn, cross-card, full-reference and browser coverage.
+- Keep the existing UI layout, storage formats, model-call count and refresh cadence.
+  See the Magic rework report for measured costs and live-acceptance limitations.
+
+## 2.9.14 RC — Living World compatibility
+
+- Read explicit field-based and Markdown spell/technique references without granting
+  player knowledge from catalog capabilities, school ranks or NPC descriptions.
+- Preserve detailed effects, correct schools, fan-extension labels and explicitly
+  rankless techniques; deduplicate repeated card definitions without editing the card.
+- Recognize `MUSHOKU_TENSEI_START_CONTINUER` using existing snapshot/source/swipe
+  safeguards and Internal States display, without replaying copied transactions.
+- Keep an unscheduled `Sandbox — objective` separate from clock-selected canon arcs;
+  read explicit numbered divergences and preserve older Six-Sided reference formats.
+- Show explicit summoning pacts and both reported Drain Syndrome formats in existing
+  World rows. Retain dates for extended legacy campaign-day counters.
+- Add full-card traceability, targeted multi-turn/browser regressions and measured
+  performance evidence. No extra model calls, polling, scans, dependencies or migration.
+- Release candidate: individual mechanics and live Lumiverse/provider acceptance
+  remain partial; see the Living World report. No stable-release certification.
+
+## 2.9.13 RC candidate — Universal tracking evidence
+
+- Expose explicit rescheduling in the Agenda report schema, normalize rescheduled/
+  postponed states, and reconcile legacy open reports only with a narration-backed,
+  uniquely matched active commitment. Preserve separate sessions and schedule history.
+- Accept historical player ability assessments through the existing extraction call,
+  preserving source quotes and separating attempted, practiced, known, reliable and
+  explicitly mastered states. Historical records are not new-learning transactions.
+- Add optional backward-compatible `survival.abilities` metadata with source/swipe,
+  ownership, uncertainty, chronology, alias and manual-correction guards. No migration.
+- Preserve omitted assessment fields on same-source refreshes. Show assessment
+  provenance in existing spell/technique rows without redesigning panels.
+- Keep full ability identities up to 160 characters through manual learn/forget/study
+  controls; the former 60-character identity clipping could target the wrong key.
+- Add focused lifecycle, cross-genre, cross-system, browser and actual-export checks,
+  plus a lossless card inventory and a conservative per-entry coverage register.
+- No extra model calls, polling or full-chat traversals. Prompt/metadata costs are
+  bounded and measured. Actual provider re-extraction and live Lumiverse acceptance
+  remain unverified; see `docs/compatibility/2_9_13/REPORT.md` for precise limitations.
+
+## 2.9.12 RC — Universal HUD and lore compatibility
+
+- Read Visual Era / Arc, Demon Eye and combined Curse / Blessing labels in the
+  World panel; keep combined modifiers neutral and recognize documented guild ranks.
+- Preserve long-lived ages and non-caster geographic paths without guessing birth
+  dates, abilities or mana costs. Existing Visual field edits retain their icon/label.
+- Exclude an established player and uniquely matched roster aliases from NPC Minds
+  and daily routines while retaining the character's normal panel record.
+- Respect imported disabled lore, ID zero, secondary keys and exported activation
+  settings; explicitly disabled-only books no longer keep stale enabled lore.
+- Ignore explicitly labelled fenced/HTML code HUD examples as current state;
+  preserve legacy unlabelled fenced HUDs and explicit continuation restoration.
+- Add a complete 1,296-entry coverage register, focused regressions, 32 representative
+  legal HUD configurations and a browser regression. Compatibility remains partial
+  and narrator-dependent; see the audit for live Lumiverse acceptance requirements.
+- Preserve 2.9.11 tracking fixes, metadata contracts, presets, model-call count and
+  refresh frequency. No dependency, storage migration or independent rule engine.
+
+## 2.9.11 RC — Agenda and stored tracking accuracy
+
+- Reconcile same-day broad/narrow time wording and omitted appended conditions
+  across reports without splitting one appointment into duplicate cards.
+- Treat a named room's doorway/threshold as a location refinement across reports;
+  preserve different rooms, participants, dates, exact times and separately listed
+  appointments. Ambiguous updates do not select or invent an occurrence.
+- Retain terminal and in-progress statuses when a generic pending report repeats
+  the same occurrence. Explicit moves, manual corrections and later-day occurrences
+  retain their existing behavior and source history.
+- Preserve automatic relationship bonds and position notes up to 240 characters,
+  with a visible word-boundary limit. Keep short prompt reminders bounded; existing
+  already-cut text is not reconstructed or rewritten.
+- Keep indirect evidence/deduction at most partly certain; apply the same guard to
+  legacy knowledge folds and attached panels while preserving their text/provenance.
+- Verify sparse HUD-only transactions retain previous records; no speculative retry
+  or change to that working path. The export cannot establish provider call outcome.
+- Add synthetic, historical-reference and private-export regressions. No new polling,
+  model/API call, scan, dependency, storage schema, UI design or preset change.
+
+## 2.9.10 RC — Recovery and targeted performance stabilization
+
+- Retry failed leftover-report recovery; record completion after metadata commits.
+  Serialize recovery per reply, distinguish swipe/source fingerprints and bound
+  completed keys. Preserve transactional folds, Save/Continue isolation and schema.
+- Defer automatic state requests and panel DOM updates while hidden; catch up once
+  on opening. Observe the actual drawer/float/popout content independently and
+  preserve generation relay, missed-push recovery and background tracking.
+- Reduce live-metadata read allocations and skip unnecessary unsigned/absent-report
+  fingerprinting, preserving export fallback and signed per-swipe validation.
+- Require an explicit external destination for historical rebuild output; refuse
+  modern-checkout overwrite and symlink redirection. Keep historical tooling intact.
+- Add recovery, metadata-read, rebuild-safety and real Chromium visibility tests.
+  No new dependencies, model calls, polling, prompt text or storage migration.
+- Local measured 600-message warm panel cost improves about 6%; 2,000-message cost
+  is effectively unchanged. See the Phase 3 report for measurements and limits.
+
+## 2.9.9 RC — Tracking accuracy and continuation
+
+- Keep stable Agenda keys while displaying updated conditions; recognize guarded
+  em-dash condition suffixes. Explicit rescheduling can update participants, time
+  and place on one unambiguous active appointment; completed occurrences remain.
+- Preserve a quest's original key through confirmed renames, retaining focus,
+  rewards and source history. Latest progress can legitimately reset to zero.
+  Distinct Roa requirements remain separate; shared destinations do not merge them.
+- Use actual scene membership for relationship presence and family location
+  inference. Off-scene relationship reports no longer move relatives back into
+  the active room; established family records survive absence and reentry.
+- Display source-verified continuation snapshots and current inline continuation
+  reports beneath their replies. Preserve passive quest/family/relationship/Agenda
+  facts without replaying receipts, XP, money or relative Minds deltas. Missing,
+  stale, wrong-swipe and quoted historical data remain excluded.
+- Distinguish available continuation display data from transaction selection in diagnostics.
+- No new model calls, polling, history traversal or saved-data migration. Add
+  export-based, synthetic and Chromium regressions; retain release-candidate status.
+
+## 2.9.8 RC — UI containment and chat isolation
+
+- Wrap long compound spell/technique names and study text within existing rows.
+- Keep floating-panel controls inside the viewport when restoring saved desktop
+  geometry, enlarging, dragging, or resizing the window. No polling or automatic
+  save/refresh cycle is added.
+- Clear old non-HMS tracking extras immediately when switching conversations,
+  while rejecting late previous-chat state. Saved records are not rewritten.
+- Synchronize manifest, diagnostics, drawer and popout versions; preserve the
+  extension identifier, settings, permissions, prompts and storage contracts.
+- Add real Chromium tests with a mock host, chat-isolation/continuity regressions
+  and deterministic 50–2,000-message stress coverage. This is a release candidate:
+  live Lumiverse/WebView installation, update/reload and complete cards are untested.
+
+## 2.9.3 — Stored tracking accuracy
+
+- Preserve longer study notes, agenda titles and physical-item labels with bounded limits and visible word-boundary ellipses instead of silent mid-word cuts.
+- Keep borrowing permission out of automatic inventory while retaining physical permits, actual books, accepted transfers and manual data.
+- Guard scheduled meetings/events against premature in-progress reports before their exact start. Preserve supported early starts and work before deadlines.
+- Resolve trailing casting-method annotations to the same known spell without merging actual catalog variants. Prevent already-known practice from auto-starting study; preserve explicit learning/mastery completion and manual controls.
+- Reuse already resolved spell state and known maps. Frontend/UI behavior, tracker instructions, model-call count, refresh frequency and storage/history operations are unchanged. Historical cut-off text requires a normal manual Refresh; Read cannot reconstruct missing words.
+- Pass 14 scoped suites, both syntax checks, seven new tracking groups, the supplied export replay and the predefined repeated performance threshold. See tools/TRACKING_AUDIT_2_9_3.md.
+
+## 2.9.2 — Quest objective identity
+
+- Recognize equivalent objective wording and renamed quests even when one reading omits its giver. Require shared context and reject conflicting actors or places.
+- Keep separate actions, destinations, quantities, negation and additional steps distinct. Preserve specific locations so a broad location cannot transitively merge two quests.
+- Retain bounded derived title aliases and deduplicate current HUD/story aliases without rewriting saved records. Keep conflicting completion classes separate.
+- Add seven quest-identity regression groups, including integrated HUD coverage. No added AI calls, prompt fields, storage writes or full-chat scans. See tools/QUEST_IDENTITY_2_9_2.md for scope and limits.
+
+## 2.9.1 — Tracking integrity
+
+- Match renamed quests using an unambiguous objective, giver and location; remove prefix-only joins. Preserve other established quests and omitted fields across partial updates.
+- Deduplicate rephrased agenda descriptions and meal/bell variants while keeping different participants, places, dates and activities distinct. Preserve rescheduling and lifecycle updates.
+- Keep afternoon, sundown and other approximate schedules textual. Reject unsupported exact `due` clocks; retain later confirmed exact times and legitimate relative durations.
+- Preserve relationship bonds, standing and bars during mood-only updates. Unknown numbers stay unknown; explicit zero and false remain valid changes.
+- Isolate secrets by owner and withhold explicitly speculative relationship/knowledge updates. Restore pending-equipment guards while retaining accepted gifts, borrowed gear and storage.
+- Retain 2.9.0 sword-technique features, UI, preset, guides, translations and extension identity. Reuse existing bounded caches; no extra model calls, refresh triggers, full-chat verification scans or storage writes.
+- Pass 12 scoped regression suites, both syntax checks, the private-export replay and the predefined repeated performance threshold. Separate inherited Visual/Save compatibility gaps are documented in tools/TRACKING_AUDIT_2_9_1.md; they are not counted as passing.
+
+## 2.9.0 beta
+- **Sword techniques**, a new card beside Magic: every sword technique the lorebook describes, by style and rank,
+  against the HUD's `Sword Style:` / `Martial Style:` ranks: Known, Studying, Within reach, Next rank, Locked,
+  Rank unknown. Reads `[TECHNIQUE — Name]` entries (`Style: … · Rank: …`, `Effect:`, `Requires:`) and the prose
+  forms already in Mushoku lorebooks ("Sword God Technique: Silent Strike.", "… technique of the Water God Style,
+  achieved at the Saint tier"). Study, ✓ and ✕ share the spells' learning: the model is reminded, the story reports
+  progress and the first clean execution, learned techniques go to the Chronicle. The Mushoku world card's sword
+  style ranks also list techniques from it.
+- **A companion lorebook**, *Mushoku Tensei - Sword Techniques (Mazaki)*: the Sword God, Water God and North God
+  techniques with a rank each, the rules for learning by rank, and the **Greyrat Style** founded by Ars Greyrat
+  (a fan addition: seven techniques, Beginner to God, available only after he founds it).
+- **Merged marcusjeanr-ctrl's 2.8.12–2.8.17** (stability and tracking integrity): tracker data bound to the reply it
+  was read from (an edited reply drops its stale reading), serialized saves with a recovery copy, chapter summaries
+  that go stale when their messages change, exact names first in People and Minds, guesses and gossip kept as
+  unsure, abandoned objectives, Agenda items **In progress**, spell aliases, a reader for "Known spells" lists in
+  replies, and the Mushoku Atlas (prose geography, ports, ruins only after the Calamity happens).
+- Fixes on top: the Internal-states panel lost its map link (an undefined variable), and the Agenda's "in progress"
+  count read the wrong field. The new text is translated in all five languages.
+
+## 2.8.2 beta — fixes contributed by marcusjeanr-ctrl (from their 2.8.11 compatibility candidate)
+- **Large lorebooks are read whole.** The book reader paged only the first 200 entries per book and stopped at 800;
+  it now pages through every entry, so a 1,400-entry Mushoku book no longer loses half its spells. The spell catalog
+  keeps the complete book even when only part of it is active.
+- **Spells, stricter.** Spell names match exactly (Water Ball is not Water Ball Storm). A fight menu or an attempt
+  never grants a spell; a successful cast or a learning report does, from the active swipe. New **Mastered** status.
+  Spells with no rank in the lorebook show as **Rank unknown** (under All) instead of Within reach. Practice the story
+  shows starts Studying by itself; a manual stop holds until new practice.
+- **Mushoku, second HUD format** (the Six-Sided World card): `Armored Dragon Calendar: K.414, Month 3, Day 12`
+  (12 months of 30 days), `Magic Tiers:`, `Sword Style:`, `Voiceless Casting:`, `Shown: … | True: …` mana and Touki,
+  comma-separated locations. Year-less Agenda deadlines use the Mushoku calendar; no more "K. null" birth year;
+  the mana tier note comes from the tier's own entry. The Living World HUD keeps working.
+- **Saga timeline:** the full 22-arc list always shows, with the lorebook's dated canon calendar when it has one;
+  a personal or Sandbox arc line is kept apart from the canon reference; canon events the story confirms are listed.
+- **Atlas** adds the places the HUD visits in Mushoku chats. **Separate mode** now also keeps room drawings and
+  positions, and drops a reading if the reply was swiped or edited while it ran.
+- The side-panel block is asked for whenever a module that needs it is on (You, Magic, quests, Chronicle moments,
+  and the other HMS modules), not only when People or Party are.
+- New text translated in all five languages.
+
+## 2.8.1 beta
+- **Mushoku Tensei: the saga's timeline** on the world card, like Re:Zero's Arc 0 bar: the HUD's year (K.) on a bar
+  of all 22 arcs, the current arc (with its part, "Arc 2-B: Hearth & Home"), how many years to the next arc, the
+  arcs around you, and all of them folded underneath. Arcs and their start years are read from the lorebook's
+  `[WORLD STATE — ARC N: …]` entries; without them the built-in canon list is used.
+
+## 2.8.0 beta
+- **Spell list from the bot's lorebook.** The Magic card now lists every spell the lorebook describes, by school,
+  with its rank, effect and chant. It reads one-entry-per-spell books (`[SPELL — Name]` with `School:`/`Rank:`,
+  and the older `Name [School Magic - Rank]:` lines), spell indexes (`### School` › `**Series**` › bullets) and
+  one-entry-per-element books (Re:Zero's `– Core Definition` entries), plus the older Master Spell Index.
+- **What you can use.** The HUD's `Magic School: Water: Saint, …` (rank per school) or `Magic: Fire | Gate:
+  C-Rank` (elements, Gate as the tier cap) marks each spell Known, Within reach, Next rank, Locked or Special
+  (unique, forbidden, lost). Melded spells need their parts. `Casting Method: Voiceless` marks chants optional.
+  A filter (Usable and next / All) and a search box.
+- **Learning magic.** 📖 Study a spell: the model gets a short reminder with the lorebook's effect and chant and
+  the rule that learning takes practice and rank; the side-panel block reports progress and the first clean cast.
+  Learned spells go to Known and the Chronicle ("Learned a spell — …"), and are given to the fight setup. ✓/✕ to
+  mark by hand. A rank-up on the HUD shows which spells it opened. Works the same in Together and Separate modes.
+- The Mushoku world card's spell lists now also fill from one-entry-per-spell lorebooks.
+
+## 2.7.0 beta
+- **Русский and Türkçe.** Settings → General → Language now also offers Russian and Turkish, and Auto picks
+  them from the browser. Every card, setting, status line, the chat's Internal states and Minds tab, the whole
+  Minds vocabulary, and the guide (GUIDE.ru.md, GUIDE.tr.md) are translated. **Ask for panel text in this
+  language** asks the model for Russian or Turkish too.
+
+## 2.6.3 beta
+- **Family is family only.** A model sometimes reported an enemy, a mentor or a spirit under "family" (a fire
+  spirit "who sentenced you" showed up there as dead and Nemesis). A family entry now needs a real family tie in
+  its relation (mother, irmã, hermano, step-, adopted, in-law…, in English, Portuguese and Spanish); anything else
+  is ignored, and entries already read that way drop out of the card. People you add by hand stay. The request
+  also tells the model plainly that enemies, mentors and allies never go there.
+
+## 2.6.2 beta
+- **The bot's own `side_panel` block is read.** Newer HMS bots (Re:Zero) ask the model for a FrankenSIM-style
+  block of their own, in a visible ```json fence: `{"side_panel": {"agendas", "learned", "chekhov": {"loaded",
+  "fired", "drop"}}}`. It used to sit in the chat as raw JSON and feed nothing. Now its routines, what people
+  learned and planted details go into the same cards (the bot's ids like `c7-toupeira` work for "fired"), the
+  block is taken out of the saved reply, and the extension stops asking for the parts the bot already writes.
+  A bare lock kind ("C") with nothing to wait for is not shown as a lock; weights above 3 count as 3.
+
+## 2.6.1 beta
+- **The "Close" standing showed as "Fechar" / "Cerrar"** (the button's word) in Portuguese and Spanish. Standings
+  now have their own words: Nêmesis, Inimigo, Hostil, Desconfiado, Estranho, Conhecido, Amigável, Amigo,
+  Próximo, Devotado (and the Spanish set), in the People card and in the chat's Bonds tab. A ladder of your
+  own keeps its words.
+
+## 2.6.0 beta — the official 2.1 (Minds) merged in
+Everything from **TenderTriper's 2.1 beta** — **Minds**, ported from **FrankenSIM 4 Mini by Wireless (Ryah)**,
+with permission; **TFDY** by **Pyropia** — joined to this edition's 2.5 work. See the 2.1 entry below for
+what Minds does. On top of the merge:
+- **Routines.** 2.1's "agendas" (what each person is doing, where, until when) are called Routines here, so
+  they are not confused with your own **Agenda** card (your appointments and promises).
+- **Secrets and "who knows what" are one picture.** Whoever knows one of your secrets shows it under what
+  they know, with 🔒; ✕ there takes them off the secret too.
+- **Translated:** every new card, setting, the chat's Minds tab and the whole vocabulary (the twelve
+  feelings, TFDY, gate, filters, modes, Parrott's feelings, how someone found out) in Português and Español;
+  the new guide part 7 in both guides. Fixed-list words are translated by kind, so "open" on a gate never
+  changes an "open" elsewhere.
+- The answer-cut-off recovery from 2.5.4 covers the bigger block Minds adds.
+- Version: manifest 2.6.0; the panel and bug reports say 2.6.0-beta.
+
+## 2.1 beta — Minds, from FrankenSIM
+Ported from **FrankenSIM 4 Mini by Wireless (Ryah)**, with permission. **TFDY** is by **Pyropia**. Thank you both.
+FrankenSIM has the model rewrite its whole state every reply; here the model says only what moved, and the
+extension does the math and the remembering.
+- **Minds**: each person's feeling (Parrott's tree) and at whom; TFDY (tenderness, fury, dread, yearning) resting
+  where their temperament puts it; how warm they show themselves (IW); their mask; the side of them that leads.
+  Toward you and toward each other: **twelve feelings** with walls between mirrors, a gate, what shows and what
+  is said, filters that crack open, debts until paid, intent and mode. They replace the classic bars by default
+  (Settings → Minds puts the bars back).
+- **The math**: at most 2 a reply (TFDY 1); a quiet feeling eases back one step every 3 replies, faster when far
+  off or near the top; three pushes the same way settle it a step deeper; never 0, first values 3 or more; minors
+  and family never get desire or a romantic mode. A **Return by Death** makes the world forget the undone loop.
+- **Agendas**: what everyone is doing, where and until when, here or elsewhere, with *over by* when the time passes.
+- **Who knows what**: each fact with how it reached them and how sure, false beliefs marked. Forget one with ✕.
+- **Chekhov's gun**: planted details in the Quests card, with weights, locks, ripe ones, payoffs. Drop one with ✕.
+- **Building maps**: the rooms the story drew, joined into whole buildings floor by floor by their doors, at no
+  token cost, with people placed by their agendas. A new room is told which rooms of its building exist.
+  FrankenSIM's furniture footprints keep a bed a bed.
+- **Tone of voice** in the dialogue display: whisper, steady, tremble, bite, drawn as type.
+- **Handed back** before each reply as memory, never as a rule: in HMS Reporter's new *Minds state* slot
+  (`{{rpgc_minds}}`), or in the extension's own context message.
+- **Panel**: a 🧠 line on People cards and *Inside, feelings and what they know*; *Planted details* in Quests; a
+  *Minds* tab under each reply; **Whole building** in the Map card; a **Minds (from FrankenSIM)** settings section
+  and five Modules switches; credits in Help. The Test zone's Re:Zero demo shows all of it.
+- **HMS Reporter beta 1.1.0**: a **Minds** block (play each character from the inside: facets that rotate,
+  feelings that carry over and catch bystanders, masks, honesty that is earned, knowledge that needs a way in,
+  people who act on their own), a minds step in the Normal and Deep plans (Deep also turns the world off screen
+  and checks planted details), receipt beats cut, and the Minds state slot. Fix: the Frame category and the
+  Frame block shared one id.
+- Version: the manifest says 2.1.0; the panel and bug reports say 2.1.0-beta.
+
+## 2.5.4 beta
+- **"Update automatically after each reply" no longer misses replies.** In Separate mode the tracker call
+  hangs on Lumiverse's "generation ended" event. When that event did not reach the extension, or arrived
+  before the reply was saved, nothing ran and the panel stayed on the old turn until you pressed Refresh.
+  Now the reply is looked up again for a few seconds if it is not there yet, and the panel, which hears the
+  same event, tells the backend too. Whichever comes first does the work; a reply is never read twice.
+- **Internal states and the other cards no longer vanish when the tracker answer is cut off.** With all the
+  new modules the answer is longer, and a connection with a low response limit cuts it before the end. The
+  whole answer used to be thrown away (or, in classic chats, the characters were lost). Now everything that
+  arrived complete is kept, and the status line says the answer was cut off and how to fix it.
+- A failure while reading the reply no longer stops the tracker call, and it shows in the panel's status
+  line instead of only in the server log.
+
+## 2.5.3 beta
+- **Gear reads far more HUDs.** An inventory written as a label on its own line with the items as bullets
+  under it was read as empty; items split by `|`, `·` or `•` were glued into one; "Carried:" was not a gear
+  label; counts ("2x Med kit", "Radio x2") made a second item. All read now.
+- **One item, not three.** "pack", "my backpack" and "Backpack" are the same bag, and a model writing in
+  Portuguese or Spanish ("Mochila", "Espada") lands on the HUD's item instead of adding a new one. The HUD's
+  spelling is the one shown, and the model is told to use it. Something put "into the pack" shows inside the
+  Backpack, not in a second bag.
+- **States the model words its own way** ("embainhada", "nas costas", "en la mano", "carried", "holstered")
+  are understood instead of the change being dropped. `"gear": {"Sword": "sheathed"}` is read too.
+- **What you added in the old Carried row** (before Gear existed) shows in the Gear card again, and what you
+  removed there stays gone. With Gear on, that row is hidden, so those items had disappeared.
+- "ring" and "earring", "belt" and "sword belt" are no longer merged into one item.
+- **Chronicle:** a reply that repeats a holding already gained, a promise already kept or a secret someone
+  already knew no longer adds the same entry again.
+
+## 2.5.2 beta
+- **A quest leaving the HUD is no longer a "Critical" alarm.** It used to sit in the red banner next to low HP,
+  forever, with no way to clear it. Now it shows only in the Quests card, with two buttons: **Put back**
+  (it is not over: write it back onto the Quests line) and **It's over** (the bot just stopped listing it: move
+  it to the journal as "ended by you"). If the quest comes back to the HUD later, it is tracked again.
+- The red banner translates each alarm on its own, so a mixed line no longer stays half in English.
+
+## 2.5.1 beta
+- **Agenda layout fix**: the time ("in 1h 25m (after the manor visit, this afternoon)") now sits under the title and
+  wraps, instead of squeezing the title into a narrow column. Late and soon times are readable on light themes.
+
+## 2.5.0 beta
+- **Interface in English, Português (Brasil) and Español.** Settings → General → Language: Auto (the
+  browser's language) or a fixed one. Every card, setting, status line, confirmation, the fight window, the
+  Test zone and the in-chat panels (Internal states, the HUD card's own words) follow it. Only what is shown
+  is translated: settings values, keys, HUD lines and everything sent to the model stay as they are, so
+  lorebooks keep loading. The HUD card never translates a HUD line.
+- **Ask for panel text in this language** (shown when the language is not English): the model writes the
+  side-panel block's free text (thoughts, looks, reasons, moments, agenda, notes), chapter summaries and the
+  OOC guide's answers in that language, keeping names, HUD lines, keys and list values untranslated.
+- **The guide in all three languages** (GUIDE.md, GUIDE.pt-BR.md, GUIDE.es.md), the in-panel Guide follows the
+  interface language.
+- Translations live in `i18n/pt-BR.json` and `i18n/es.json` (English text → translation; `{0}` slots for text
+  built at run time, `{0d}` for a number or a time span). `python3 tools/embed_i18n.py` copies them and the
+  guides into `dist/`.
+
+## 2.4.0 beta
+- **Finances**: a ledger of every sum that changes hands (income, expense, debt, loan, repaid), from your own
+  message and the reply, with totals per currency and open debts that count down as they are repaid. The HUD
+  balance stays the authority. Open debts go into the request.
+- **Factions**: guilds, kingdoms, churches, houses, gangs, school classes — your standing on an eight-step
+  ladder (hunted to member), rank, bounty, why it moved, and their people from People. Read from the story and
+  the HUD's Faction/Guild/Affiliation/Bounty lines; set the standing by hand. Swings, promotions and bounties go
+  into the Chronicle.
+- **Secrets**: your secrets and who found them out, and how; others' secrets you learned. Add, add a knower, or
+  remove one by hand. The request names who knows each secret, so nobody acts on what they could not know.
+  Discoveries go into the Chronicle.
+- All three: Settings → HMS systems, Modules, classic chats too; the Mushoku Tensei demo shows each.
+
+## 2.3.0 beta
+- **Agenda**, a new card and module: appointments, promises, deadlines and errands.
+  - Read from your own message and the reply ("I'll meet you at the river tomorrow") through an optional
+    `"agenda"` key; made, kept, missed, moved or called off. Add your own.
+  - Times land on the HUD clock: the HUD's format ("Day 5, 14:00"), or plain words ("tomorrow at dawn", "in
+    three days", "tonight", "before dark", "at 4pm"). The card sorts them into Late, Soon, Coming up and No set
+    time, and counts down.
+  - The request tells the model what is coming up, due now or late. Kept and missed ones go into the
+    Chronicle.
+- **Holdings**, a new card and module: vehicles, mounts, homes and rented rooms, land, buildings, businesses,
+  titles and offices — what you hold but do not carry.
+  - From an optional `"holdings"` key (gained, lost, changed), the HUD's Title/Property/Mount/Vehicle/Estate
+    lines (`Knight of Asura (granted by the king)`), and by hand. A holding the HUD lists is never lost.
+  - Grouped by kind, with where it is, a note, how long it has been held, and what Gear says is kept there.
+  - The request lists them; gains and losses go into the Chronicle.
+- Settings → HMS systems → Agenda / Holdings; Modules → Agenda / Holdings. Classic chats too.
+- Test zone: the Mushoku Tensei demo makes a promise, keeps an appointment and gains a room and a pony.
+
+## 2.2.0 beta
+- **Gear**, a new card and module: how you carry each thing — in hand, worn, sheathed, on you (back, belt,
+  shoulder), inside a bag, left somewhere, dropped or gone.
+  - **Your own message counts.** The side-panel block now reports every change in how you carry things
+    from what you wrote ("I sheathe my sword, I sling the pack on my back") as well as from the reply,
+    unless the reply shows it failed. Before, nothing tracked this, and things handed over only counted
+    when they changed hands in the reply.
+  - The HUD's Equipment/Items lines show on the card: `Backpack [rope, rations]` fills the backpack,
+    `Longsword (sheathed)` sets the state, `Roxy's wand — keepsake` is read as "Roxy's wand". The HUD stays
+    the record of what you own: an item it still lists is never marked gone.
+  - One list per bag; **This turn** shows what changed; **Move…** changes the state or puts an item into a
+    bag, holding until the story says something newer; added by hand with its state.
+  - The request carries how everything is carried now, so a sheathed sword is not swung.
+  - Gear replaces the Carried row of the You card while it is on (standard issue stays).
+  - Classic chats get the same card from the tracker JSON.
+- **"got" and "lost"** (things handed over) now include what you did in your own message.
+
+## 2.1.0 beta
+- **Family**, a new card and module. Your own family: what each one is to you, alive, missing or dead, and
+  where they are, as the story last showed (*seen*, at your HUD location), told (*told*) or assumed
+  (*guess*), with the trail of where they have been and how long ago on the HUD clock.
+  - Read from an optional `"family"` key in the side-panel block (only the family members a reply shows or
+    speaks of), from People readings whose bond is a family bond (family friends excluded), and from what
+    you add by hand.
+  - **Correct this**: set a place, the relation or the status by hand; it holds until the story says
+    something newer about that person, then the story wins again.
+  - The request carries each one's last known place and status, so the model does not move anyone the
+    story never moved. Settings → HMS systems → Family: the card, asking the story, the reminder.
+  - The Chronicle records a death, someone going missing, being found alive, and news of where someone is.
+  - The People settings view (People, family, party & phone) and Modules list it.
+  - Test zone: the Mushoku Tensei demo shows Paul in the scene and news of Zenith.
+- **Fix: labelled location paths.** A HUD that writes `Location: ◆ World → Region → Place` (the Mushoku Tensei
+  format, and `**Location:** A → B`) was read as a plain field, so the Atlas, the map bank, first visits in
+  the Chronicle and Internal states found no place. The label is now skipped and the path read as one.
+  `Location: Roswaal Mansion` with no path stays a plain field.
+
+## 2.0.1 beta
+- **Side calls read reasoning models' answers.** DeepSeek and GLM through some proxies send their chain of
+  thought with no opening `<think>`, only a lone `</think>` before the answer. Fights, the tracker, chapter
+  summaries, portraits and the OOC guide used to read that as "unreadable" (or pick up braces from the
+  reasoning). One `stripThink` now handles `<think>`, `<thinking>`, `<reasoning>`, the orphan closing tag and a
+  block cut off mid-way, everywhere a side call is read.
+- **JSON repair finds the real object.** A `{` or `}` in prose before or after the JSON no longer spoils it: balanced
+  objects are tried first.
+- **Chapter summaries use the chat's own connection.** They were sent without the chat, so a side connection
+  set for that chat was ignored, the busy-provider retry could not tell the chat was generating, and the panel
+  showed no "provider busy" status.
+- Unused code removed (`catalogCompose`, `commsInbox`, `CHAPTER_KINDS`, an unused list in the fight window).
+
+## 2.0 beta — the official beta
+- **The guide is built in.** A **Guide** button in the top bar opens the whole guide in the panel, with a find
+  box; the same text is `GUIDE.md`. It explains the three parts (bot, preset, extension), who is in charge,
+  setup, a new game, each turn, every card, OOC questions, memory, every setting, and fixes for common problems.
+- **The Cosmic Hierarchy is removed**: its module, card, settings, world preset and the Nexus theme. Saved
+  settings drop it by themselves (a chosen Nexus theme falls back to Lumiverse's own).
+- **Each part stays in its lane.**
+  - Injuries: a bot that keeps its own wounds (Re:Zero, Mushoku Tensei) owns them for the whole chat, also on
+    turns where its HUD shows none. The extension used to step in on those turns and could remind the model of
+    a wound the HUD had already healed.
+  - Experience is asked only where the HUD shows a level. Re:Zero, Mushoku Tensei and Classroom of the Elite
+    no longer get an XP question every reply.
+  - **Move the world** is no longer marked OOC (an OOC message is now answered outside the story, with no HUD).
+    The Test zone's plot buttons likewise.
+  - The **Chronicle** switch in Modules really stops it (it used to hide only the card while still asking and
+    writing).
+  - The Man-God's advice is asked only while the world card is on.
+- **New game**: start lines in capitals are found (`MUSHOKU_TENSEI_START_HANDLER`), and from the lorebook when
+  the catalog pages do not name them. **Resume an old campaign** builds the bot's Start Continuer message from
+  the old chat's last HUD, your last messages and a summary.
+- **A world preset in one click**: after the first reply, the panel offers the preset for the bot it found
+  (once per world).
+- **Settings open as a short list**: every section starts closed.
+- **Fixes**: a time like `12:40` showed as a label "12" in the World State card; the world card shared its
+  open/closed state with the World State card; a quest deadline given as a bare time ("08:40") counted to the
+  next day instead of showing overdue; a turn-based fight's aftermath now keeps the plot, objectives, key
+  moments, inbox and injuries like any reply; search boxes take the panel's colours.
+- **HMS Reporter beta** (the preset, was 0.5): renamed, with a plain description of who owns what.
+- Version: the manifest says 2.0.0; the panel and bug reports say 2.0.0-beta.
+
+- 1.9.26: New game, the OOC guide, the Arc line guard; emoji have one owner.
+  - **New game builder** from the bot's own catalog pages and start handler line (see above).
+  - **OOC guide** in the panel, or in the chat with the bot's trigger; OOC turns are left alone.
+  - **Arc line guard** with a one-click fix to the lorebook's spelling.
+  - **Emoji: one owner.** The extension draws them from the dialogue markers; HMS Reporter 0.5 no
+    longer has an emoji block or asks the model for any.
+  - Catalog descriptions no longer repeat their label.
+- 1.9.25: The map bank, and fixes from the first Chronicle test.
+  - **Map bank.** A room drawn once is kept for its world and used on every later visit and in every
+    chat with that bot, so it is never drawn (or paid for) twice. View, forget, save the current
+    version, or clear the bank from the Map card; the Atlas shows 🗺️ on places with a saved map and
+    opens it in the details. Setting: Chat and panel extras → Map bank.
+  - **Windows belong to walls.** A window the model gives as a block is drawn as a blue line in the wall
+    it names, touches or is nearest to; the request says so too.
+  - **One look for both maps.** The side-panel map uses the same world colours as the map under the
+    reply.
+  - **Atlas tiles readable in every panel theme** (they were dark boxes in the light themes).
+  - **A room with nothing inside** opens among its neighbours in the Atlas, selected.
+  - **The phone reads the story.** Texts, group chats and school or app notices that reach your phone
+    are an optional `"inbox"` in the side-panel block (asked only when you have a device that takes
+    messages). Notices show on the Phone card, people who messaged you become contacts you can answer,
+    and Internal states shows them under Phone. Messages are no longer filed as things you carry.
+  - **Your own device, per chat.** Name a phone (or mirror) on the Phone card when the story gave you one
+    the HUD never prints.
+- 1.9.24: The Chronicle.
+  - **A timeline of the story**, read from the chat as it stands, so a swipe or an edit changes it too:
+    milestones from the HUD (arc, rank, class, level, standing, powers gained, deaths and loops, quests,
+    first visits), relationship history from the People readings (first meetings, standing and bond
+    changes with their reason), plot threads opened and resolved, and key moments.
+  - **Key moments** are one optional key in the side-panel block (`"moments"`, about 60 tokens of
+    request, usually answered with `[]`). They show on the Plot tab of Internal states too.
+  - **Chronicle card**: newest first, grouped by loop and day; filters for moments, bonds, plot,
+    milestones and places; a name opens that person's timeline with you; star, hide, add your own;
+    ✓ written, ⏳ waits for your answer.
+  - **Written back into the Memory Cortex** once a reply is settled: facts with importance tags on the
+    people, places and you; one `relationship` link per person toward you with its label and feeling;
+    loops undone by Return by Death written as undone. Write now and Write everything again (after a
+    Cortex rebuild; nothing doubles). Setting: Off, only the biggest, most (default), everything.
+  - `{{rpgc_chronicle}}`: the key moments so far, for presets.
+  - **Fix:** fights read the Memory Cortex's facts about the people in them again (the snapshot calls
+    them `topFacts`).
+- 1.9.23: The Atlas reads every bot's book.
+  - **Re:Zero-style books.** Sections written as `**Label:**` lines (Appearance & Atmosphere, Function
+    & Properties, Availability), lists written as `- **Name** *(note)*`, `◈ TIER n NAVIGATION ADDENDUM`
+    and `◈ ADDITIONAL TIER n` lists, and `◆ POPULATION & FAUNA OVERLAY` entries (added to their place).
+  - **One place, many spellings.** Paths that name a place differently in different entries become one
+    place: short and long names, a name with its other name in brackets, `[Pocket Dimension]` flags,
+    groups across cities (`[Royal Capital / Flanders / Costuul]`), a META copy of the root.
+  - **No wrong links.** A listed room is looked for inside its own place and next to it, never across
+    the world (Lugunica's throne room is not Vollachia's). A room listed under one name and written
+    under another ("Maids' Rooms" / "Maids' Quarters") is one tile, not two.
+  - **Cleaner text.** The details pane shows the book without markdown marks, list items as bullets.
+  - **On the road.** `[In Transit: Lugunica → Vollachia]` stays one HUD segment; the Atlas shows you
+    at the start of the trip, "on the road to Vollachia", and no room is drawn.
+- 1.9.22: The Atlas.
+  - **The location book as a map.** Every `◆ TIER` / `◈ PATH` entry becomes a place in one graph:
+    parents from the paths, children in the book's navigation order, floors from `(Second Floor)`-style
+    segments, surveillance graded (covered, watched, blind spots, no cameras), access and hours, who is
+    usually there, scene anchors and links. The HUD's ◆ line is found in it, with the deepest known place
+    and anything past the book shown as such. Built for all four HMS bots' shared format; tested on the
+    Classroom of the Elite book (112 places).
+  - **Atlas card** in the side panel: trail, floors, places as tiles coloured by how watched they are,
+    and a details pane. Modules → Atlas switches it off.
+  - **The map draws rooms from the book**: a new room's request carries its walls (or its shell's), its
+    anchors and where it opens, once per room.
+  - Internal states' Scene tab adds a Cameras line for the current place.
+- 1.9.21: The map.
+  - **Positions and the room map**, off by default: *Only in fights* or *Every reply*. Rooms are drawn
+    once per place (from the location's lorebook entry when it is loaded) and kept; each reply then
+    only moves people, with the last positions sent back for continuity. A Map tab in Internal states
+    and a Map card in the side panel: walls, furniture, labelled ways out, and you, allies, foes and
+    others in their own colours.
+  - The D&D, Power scaling and Gritty play styles turn it on for fights; the others leave it off.
+- 1.9.20: Internal states, and what you carry.
+  - **Internal states panel** under each reply: Scene, People (with thoughts), Bonds (what moved, and
+    why) and Plot, as tabs. Replaces the thoughts block by default; *Thoughts only* brings it back.
+  - **Standard issue.** In Classroom of the Elite the phone, ID, uniform, dorm key and textbooks are
+    assumed by the bot and never on its HUD; the Phone card now finds the phone, and the You card lists
+    them.
+  - **Carried.** The side-panel block now reports things handed over or lost on screen (`got` / `lost`);
+    they collect in the You card, follow swipes, and can be removed or added by hand.
+- 1.9.19: The HUD card and dialogue display.
+  - **HUD card** in the chat (on by default), in the bot's world colours or Lumiverse's, with the plain
+    text one click away. Display only: the saved HUD never changes.
+  - **Dialogue colours, emoji reading cues and speaker names** (off by default) from `[D:Name:mood]`
+    markers, drawn when shown. 42 emoji families, editable; per-chat speaker colours.
+  - New macros `{{rpgc_marks}}` and `{{rpgc_emoji}}` so a preset's own emoji instruction can stand down.
+  - The Test zone log hides the markers.
+- 1.9.18: The preset handshake.
+  - **`{{rpgc_request}}`, `{{rpgc_on}}`, `{{rpgc_fight}}`.** A preset with the slot (HMS Reporter v0.2)
+    carries the side-panel request where its own reply shape expects it; the extension sees it there and
+    does not add a second copy. Without the slot, nothing changes. If the slot fails or is slow, the
+    extension adds its own message as before.
+  - **A smaller request.** Last reply's characters go back as names and looks only — their old
+    thoughts and moods were the part that grew with every character in the scene, and invited repeats.
+    Spells are asked for only where the HUD shows magic (not in Classroom of the Elite). In the slot the
+    request also drops the lines the preset already covers. A Classroom of the Elite scene with five
+    people: about 1,690 → 1,375 tokens.
+  - Settings → Modules explains that Request placement does not apply when the preset carries it.
+- 1.9.17: Fixes from the first HMS Reporter test.
+  - **The WORLD STATE header written twice** (the preset's opening plus the model's own, seen with GLM)
+    is now one header. The reply is cleaned when it lands and on screen, and the second header is never
+    read as a HUD line — that was the false "a HUD line was dropped" alarm on the next reply.
+  - **The same quest twice.** The HUD writes `Name #1572188`, the story block just `Name`; quests are now
+    matched without the barcode, quotes or capitals, so the story's details join the HUD's quest instead
+    of adding an "in the story" copy.
+  - **Bond history** no longer logs a "change" that is only capital letters, punctuation or spacing.
+  - The Injuries note no longer names the Re:Zero HUD in other worlds.
+- 1.9.16: Choose the connection.
+  - **Connection for side calls** (Settings → General). Fights, the tracker, chapter summaries, portrait
+    prompts and the Test zone used to run on Lumiverse's *default* connection only — not the one you had
+    selected — and failed with "No connection profile found" when no default was set, which is why a
+    turn-based fight could not start. Every call now names its connection. **Same as my chat** (the
+    default) follows the connection your own replies in that chat use; you can also pick Lumiverse's
+    default, or any one connection, for example a cheaper model for side calls.
+  - With nothing to follow yet it falls back to the connection selected in Lumiverse, then the default,
+    then your first connection. A chosen connection that was deleted falls back the same way and says so.
+  - The fight window now explains a missing connection in plain words instead of showing Lumiverse's raw
+    error.
+- 1.9.15: Fixes from the first round of real play.
+  - **Operator-scoped installs**: reading world info, long-term memory and portraits failed with "userId is
+    required for operator-scoped extensions". Every user-scoped call now carries the user.
+  - **One-request-at-a-time providers** (free plans): the extension's own calls collided with your reply and
+    came back 429. They now wait four seconds after a reply, stand aside if you have already sent the next
+    message, and try a busy provider again twice; if it is still busy, the panel says so in plain words.
+  - **Read again**: a new button that reads the latest reply again — HUD and side-panel block — without a model
+    call. The manual way when the automatic read missed something.
+  - **The World State says why it is empty**, and shows how the reply starts. A reply still being written no
+    longer blanks it, and a HUD written in HTML is read through the markup.
+  - **Fixed**: starting the Test zone over while a live turn was being written crashed it ("sandbox.busy").
+- 1.9.14: Injuries on the Re:Zero HUD's injury law.
+  - The Injuries card (for HUDs without wounds) now runs on the Re:Zero lorebook's own rules: raw → treated
+    → healed; each kind and severity heals in its window (wounds, fractures, sprains, burns); a break left
+    unset 3–4 days heals crooked and turns Permanent; a wound or burn left raw risks infection; internal
+    bleeding needs a healer; Permanent never heals with time; a healed moderate-or-worse wound may scar.
+  - The story is told each injury's state and the day it is on ("broken shin, severe fracture, treated, day 6
+    of 70–112"), and the side-panel block asks for kind, severity and status in the same words.
+  - Your controls: Treated, Back to raw, Healed, Healed with a scar, Permanent; add your own with a kind and
+    severity. Injuries saved by 1.9.13 are read the new way.
+  - The Body card (a HUD that keeps its own wounds) warns in the law's words: an unset break heals crooked.
+- 1.9.13: From the players: what the cards send, forgetful models, injuries — and the whole Cosmic Hierarchy.
+  - **What the story is told, said plainly.** The Survival and Mind cards now say it: once you are tired, hungry
+    or thirsty, or your state of mind is not calm, the story is told with every message so it can play it.
+    The buttons log what you did; the story reports it too. With "Tell the story" off, they say only you see them.
+  - **Models that forget the side-panel block.** When a reply leaves it out, it is fetched with one quick second
+    call, only then, so the panel does not go stale. Three misses running and the panel suggests Separate mode.
+  - **Injuries**, for HUDs that do not keep wounds: the story reports every injury you carry; the Injuries card
+    shows how bad each is, whether it was treated and for how long; you can add one, mark it treated or healed;
+    and the story is told them with every message. A HUD that prints its own wounds owns them.
+  - **Fixed**: Separate mode (and Refresh in an HMS chat) dropped the plot, objectives, the Cosmos reading and
+    the Man-God's advice it had read. It keeps everything now.
+  - **The Cosmic Hierarchy, from its full lorebook**: Kael, Malachi and Janus (Gaius and Malus) join the family,
+    with the nine servitor orders; the Creator is your persona; six pulls instead of four (Memory–Oblivion and
+    Good–Evil); the gated arcs tracked phase by phase, with a warning when one skips; the Dice of Fate move the
+    world, never the Creator himself; and the veil line steps aside when the lorebook already carries it.
+- 1.9.12: The Cosmic Hierarchy, and sections that no longer close by themselves.
+  - **Fixed**: a section could snap shut (or back open) on its own. It saved its new state on the browser's
+    toggle event, which arrives a moment after the click; if a reply landed or the panel refreshed in that
+    moment, the panel was rebuilt in the old state. The state is now saved on the click itself.
+  - **The Cosmic Hierarchy module**: the Dice of Fate (Aurora and Moira roll with every exchange and lean the
+    next beat), who of the hierarchy is present and the omens mortals notice, the balance between the
+    Firstborn's domains, the realm and its Overseer, the knowledge veil, and an editable roster from the lore
+    bible. Off by default; its own preset turns it on, with the new Nexus theme.
+- 1.9.11: The plot and objectives, and the three new worlds checked.
+  - **The Quests card opens with the plot** — where the main story stands and its open threads, marked moved or
+    resolved as the story goes, the resolved ones kept below — **and objectives**: what you are trying to do right
+    now as the story sets it, plus your own, which stay with you and are never sent. HMS and classic chats. They
+    add about 190 tokens to the side-panel request; switch either off under Settings → Quests.
+  - **Undertale's MERCY** in immersive fights: a monster that can be spared is marked, and sparing everyone ends
+    the fight as spared, not as an escape.
+  - **Each thing in one place**: what a world card shows — Authorities, classes, shouts, skills, the covenant — the
+    Abilities card no longer lists a second time. Switch the world card off and it lists them again.
+  - **The three new presets, checked**: Dark Souls no longer shows Estus twice (as a bar and as flasks); Undertale's
+    LV, EXP, AT and DF live on the world card only; Skyrim's perk count is not read as an ability.
+- 1.9.10: The presets, checked, and three more worlds.
+  - **Every preset turns HMS on** (Always mode, the side-panel block, the guard, pin reminders) — the play styles
+    did not touch it before.
+  - **Fixed**: a world preset *replaced* whole sections of your settings instead of changing only what it names.
+    Applying Overlord, say, reset your chapter budget, your D&D rules, the legacy window switch and your XP
+    curve to their defaults. A preset now merges into your settings.
+  - **Fixed**: the four wiki themes (1.9.0) were partly overwritten by the older world themes further down the
+    stylesheet, so Re:Zero, Overlord, Classroom of the Elite and Mushoku showed a mix of the two looks —
+    Mushoku's cream wiki cards with the old dark theme's pale text. The old rules are gone; each shows as
+    designed.
+  - **The world presets, reviewed**: Overlord gets its world card, Arcs chapters and engine-rule fights (it had
+    power scaling, and no world card); Overlord, Classroom of the Elite and Mushoku switch D&D off (their own
+    systems replace it) and Classroom of the Elite drops your roller (the School Database rolls); Re:Zero keeps
+    D&D for its D&D mode and adds Arcs to Loops; every world keeps its arcs as chapters.
+  - **The play styles, reviewed**: Pure narrative now really has no dice (no roller, no D&D) and asks fights for
+    the least; Gritty survival plays on Hard; Social & romance turns the phone on.
+  - **Undertale, Dark Souls and Skyrim**: a world preset, a theme, a world card and a Test zone world each.
+    Undertale's SAVE, LOAD and RESET count as rewinds, so each timeline can be a chapter.
+  - **Fights**: a HUD that prints your Stamina (Dark Souls, Skyrim) owns it, like HP and MP; FP and Magicka are
+    read as MP.
+- 1.9.9: A full diagnosis of 1.9.8, top to bottom.
+  - **Every switch explains itself.** 37 settings switches had no line saying what they do; each has one now.
+  - **Settings with no control**: the You module's level-up note and the XP needed for each level could only be
+    changed by editing files. They are under HMS systems → You.
+  - **Faster in long chats**: the panel re-read every system of every HUD in the chat to build the quest journal,
+    about 440 ms per refresh on a 1,200-message chat. It reads only the quest lines now and remembers HUDs it
+    has read: about 80 ms.
+  - **Bounded memory**: the per-chat caches grew with every chat you opened; they keep the recent ones now.
+  - **Plain-language errors**: a missing permission read "PERMISSION_DENIED: generation"; it now names the
+    permission and where to grant it. A timeout says how long it waited and where to raise it.
+  - **Dead code removed**: the old Chapter card was still in the file, hidden behind the new one.
+  - **Modules** now cover Chapters, Lorebook context and Long-term memory too; switched off, a card leaves the
+    panel and its text leaves the prompt, as everywhere else.
+  - **Help & bug report** opens with a short guide to how the panel fits together, and its version always
+    matches the build (it used to be typed in by hand).
+  - **Fixed**: ending a turn-based fight before a single round closed the window without a word; the panel now
+    says nothing was posted and why.
+  - **Fixed**: a Godmother Decree due at midnight on January 1, set on December 31, showed as eleven months past.
+  - **Fixed**: with the world card switched off, the D&D card stopped reading the D&D sheet the HUD prints.
+  - **Fixed**: a level the HUD prints could be "raised" by hand in the D&D card, with no effect. Those buttons
+    are locked now, like the rest of a HUD-owned sheet.
+  - With only one kind of fight available, the fight button opens it straight away instead of a one-item chooser.
+  - The README's settings map covers every section of Settings, and the panels are listed once each, in the
+    order the panel shows them.
+  - **Tested further**: every Test zone world in Live mode; a classic chat in Separate mode; both fight
+    windows played by clicking; the floating panel; the model answering with garbage, nothing, the wrong
+    shape, an error or never; each permission missing; every view scanned for leftover program text.
+- 1.9.8: The world cards read the rulebooks and lorebooks behind each world.
+  - **Re:Zero**: magic (element, what the Gate and Pool ranks mean, the element's spell series), Spirit
+    Affinity, what each spirit rank is, Od Integrity and Corruption on their named stages with the next one,
+    and curses. Entries marked SECRET — the sealed Sovereign forms — never reach the panel.
+  - **Overlord**: each tradition's spells up to its LV from your magic core, and a framework check against the
+    Being Framework, Traditions and Super-Tier rules. The Test zone's Overlord build now follows those rules.
+  - **Mushoku Tensei**: sword techniques per style and rank from your technique index, the matchup triangle,
+    and what your Mana Capacity and Touki stage mean.
+  - **Fixed**: an ability description could come from a module's rulebook (how the engine heals a curse)
+    instead of the entry about the thing itself.
+- 1.9.7: A full pass over everything since 1.9.1.
+  - **Fixed**: a clock going back was read as Return by Death in every story, so a new school year in
+    Classroom of the Elite could close a "loop", and a new K. year in Mushoku Tensei could drop a fight as a
+    rewind. Only a story with Return by Death rewinds now.
+  - **Fixed**: your own presets forgot everything added since 1.8 — immersive fights, D&D, Chapters, the world
+    card, Lorebook context, the engine core and memory. They remember all of it now.
+  - **Fixed**: with "Watch the chat's world info" off, a world card showed no ability descriptions, class caps
+    or spell lists until the first fight or tracker call. It reads the lorebook as soon as the card appears.
+  - **Fixed**: amber text (enemy telegraphs, legendary classes) was hard to read on the light themes.
+  - The bug report now says which systems are in play: the world card, chapters, a fight, D&D, the lore pool.
+  - Modules name where merged parts live ("Party (in People)"), and the README is brought up to date:
+    install permissions, presets, the Test zone, engines tested.
+- 1.9.6: The world cards, built out from the bots' own start handlers, central controls and registries.
+  Re:Zero shows the Arc 0 prequel year on the handler's −20 → 0 axis with its Part and milestones. Overlord
+  reads each job class's tier and cap from your class registry, marks legendary classes, and shows traditions
+  with their LV. Classroom of the Elite shows the school calendar and the days to the next Class Point
+  announcement, and Chapters can follow the school months. Mushoku Tensei lists what you can cast in each
+  school from your Master Spell Index, and what the next rank opens. The Test zone plays Mushoku Tensei, and
+  its Re:Zero, Overlord and CotE scripts print the bots' current HUDs, so their world cards show there too.
+- 1.9.5: A card of its own for each of the four worlds — Re:Zero, Overlord, Classroom of the Elite and Mushoku
+  Tensei — found from the HUD. Overlord fights know every combatant's level and the gap to yours. The D&D card
+  reads a D&D character sheet the HUD prints. The Mushoku Tensei preset is an HMS preset now (carriers,
+  abilities, no survival clock, no phone); the Re:Zero preset switches Loops chapters on.
+- 1.9.4: The pop-out window scrolls again. Lumiverse's own page rules (which the window copies so it matches
+  the app) make the page itself unscrollable; the panel now scrolls in a container of its own, with the mouse
+  wheel, touch and the keyboard.
+- 1.9.3: Chapters, one card per person, and nothing asked twice.
+  - **Chapters** are memory at the story's own scale: by hand (the default), or — switched on — per loop
+    under Return by Death, per arc, per day. Summaries ride on top of the history; nothing is removed. A
+    finished loop is sent as undone and remembered only by you, and what you uncovered collects into one list.
+    The old "hide everything before this message" chapter is gone; a chat still using one can show its
+    messages again from the Chapters card.
+  - **One card per person.** Present characters, Party and People showed the same person three times; they
+    are one card under People now.
+  - **Nothing asked twice.** A party member was asked their mood twice, what is on their mind twice (as
+    "thoughts" and as "concern") and their jealousy twice on two scales. Each is asked once now and the
+    party reading is filled from the others. With the survival clock on, your stress is read from your state
+    of mind instead of being asked separately.
+  - **Fixed**: in an immersive fight with fate dice, a roll you made yourself and your fate die both went to
+    the model for the same action. Your own roll now replaces your fate die.
+- 1.9.2: From the first look at 1.9.1.
+  - **D&D is one section with one switch**: a per-chat sheet (ability scores, saves, the 18 skills,
+    proficiency from your level), a roller that adds your modifiers, advantage and a DC and sends the whole
+    sum into your next reply, and turn-based fights. Switched off, the Turn-based fight button goes too.
+  - **You and Vitals are one card.** The same HP bar was shown twice.
+  - **Quests have their own Settings section.**
+  - **The panel's place is chosen in the top bar**, next to Test zone and Settings.
+  - **Fixed**: the pop-out window used unstyled text boxes and default fonts; it now copies Lumiverse's own
+    look and follows its theme. Dropdown lists were white with pale text in dark themes (and pale on white
+    in light ones); they are readable in every theme now. The Test zone called you "User" instead of your
+    persona. A roll made in one chat went into the next reply of whichever chat you used next.
+- 1.9.1: One extension again, and fights split into two different things.
+  - **Merged**: the lore, engine and memory work that had been numbered 1.9–1.11 on its own line is
+    folded into this build. Fights, the tracker and the companion block now carry your world books
+    (Lorebook context), your engine core as binding law (Engine core & memory), and the Memory Cortex.
+  - **Fights are two things now.** *Immersive*: you fight in the chat and the panel tracks everyone —
+    HP, MP, Stamina, effects and how long they have lasted, each fighter's last move, enemy telegraphs,
+    hidden enemy plans, Study, acting on a weakness, fate dice, a fight log. *Turn-based*: the D&D
+    window. The narrative window is a legacy option under Settings → Fights. Your style, fate dice and
+    difficulty carry over to immersive fights. Auto-start stays off by default.
+  - **Fixed** in immersive fights: the fight froze in HMS chats whenever Present characters, Party,
+    People and Phone were all switched off (the numbers only came back through their block). A reply
+    that only carried the fight numbers was ignored and left raw JSON in the chat. The note to the model
+    told it not to render "a status block", which made classic chats drop their trackers — the likely
+    cause of "No trackers yet" during a fight. Swipes inflated the reply count. Every enemy fleeing never
+    ended the fight, and you getting away was not an outcome. An enemy knocked out with HP left was never
+    down. The auto-start notice used a host call that does not exist, so it never showed. Correcting a
+    number used a browser prompt the desktop app may not show. Switching Fights off mid-fight hid End
+    fight while the fight kept running, and auto-start ignored the switch. The Test zone's Demo spent
+    tokens on an immersive fight.
+  - **Fixed**: in Separate mode, the companion call was told to "add the block after the prose" instead of
+    describing the latest reply (a wording change in 1.9.0 broke it). Granting the memories permission
+    mid-session did nothing until a restart. With no watched pool, the lore fallback read every book you
+    own, so a fight in one world could pull another world's lore; it now reads only the books the chat uses.
+  - **New switch**: Watch the chat's world info — see Lorebooks for what it costs.
+  - Settings move to v8: "Turn-based" now always means the D&D window.
+- 1.9.0: The pre-2.0 build, from playtest feedback.
+  - **Fixed**: the side-panel request was appended to your own message (~1,170 tokens on a one-line turn),
+    which shortened replies and pushed some models to write the HUD into their thinking. It now has its own
+    system message before your turn, framed as an extra, and is trimmed.
+  - **Fixed**: a HUD or block written into the model's thinking is moved back into the reply; a reply that
+    still carries a raw block is processed later — never while it is still being written.
+  - **Fixed**: Fights, Tracker field presets, Custom prompts and Reset closed themselves a few seconds after
+    opening. A HUD drafted inside <think> was read as the state. A block with only our newer keys, or an empty
+    fence, could show in chat. Move the world posted a visible OOC message (now a short marker). Plot buttons
+    failed in the test zone. An edited HUD value of the same length could be served stale.
+  - **Fixed**: in HMS chats, present characters no longer ask for per-character stats (Health, Arousal) — and
+    the minor guard now covers character stats too. People tracks feelings; it no longer pulls NPCs toward
+    neutral, and never steers how they are written.
+  - **New**: You (with XP and level-ups), Magic, richer Quests, Check what?, Difficulty, Modules, wiki-style
+    world themes plus D&D / Heaven / Horror, the floating mini panel and pop-out window, and the bug report.
+- 1.8.0: World presets that set everything, and the test zone.
+  - **Living World presets**: Re:Zero — The Living World, Overlord — The Living World and Classroom of the
+    Elite — HMS Render Engine now configure HMS (always on), carriers, vocabularies, meters, quest tags, party
+    depth, phone kind, fights and theme for their bot. Presets merge deeply: they change only what they name.
+    Your own presets now remember every system, not just a few switches; presets saved by 1.6 still apply.
+  - **Test zone**: a practice chat inside the extension, in Demo (scripted, free) or Live (your model) mode.
+  - Density and text size.
+  - Every chat call now goes through one layer, which is what lets the test zone run the real code paths.
+- 1.7.0: Relationships done right, every chat, and worlds.
+  - **Fixed: closeness was read as romance.** The ladder ended in Lover, so deep affection became a
+    romantic label — it called Beatrice, a child-appearing spirit whose card makes her bond daughter-
+    and-parent, a lover. Standing now measures closeness only (it tops out at Devoted); the kind of bond is
+    tracked apart, from the character's own entry and contract; minors and family bonds are guarded from
+    romance and desire by the extension itself; and the bond can be set by hand. Untouched v1.6 lists
+    upgrade automatically.
+  - Relationship cards: mood, bond, Desire / Tension / Jealousy bars, the reason under the bar that moved,
+    and the present-character dossier.
+  - **People, Party and Phone in classic chats**, with their own settings section. Before, they only
+    existed in HMS chats, so any bot the HUD detector did not recognise never showed them.
+  - Phone kinds: phone, conversation mirror, Message spell, comms radio. The device can come from the
+    inventory in classic chats.
+  - World presets (Re:Zero, Overlord, Classroom of the Elite, Mushoku Tensei) and six new themes.
+- 1.6.0: People, the phone, two combat systems, and play-style presets.
+  - **People**: a relationship tracker for everyone you deal with — standing on a ladder, six bars,
+    what changed, alerts, and four layouts. Party members take affection and trust from here.
+  - **Phone**: device and balance from the HUD, contacts earned in the story, threads from the chat;
+    texts, calls and transfers go into the story, where the engine decides whether they connect.
+  - **Fights split in two**: Narrative (engine rules, power level with feats, hax and counters, or
+    fiction; fate dice; outcome badges) and D&D (a rules engine in the extension: initiative, attack
+    rolls against AC, damage dice, crits, saving throws, spell slots, Dodge, death saves, massive
+    damage, stabilising, and companions rolling to obey). Your v1.5 choice carries over.
+  - **Play-style presets** and **themes**. Tracker presets were renamed Tracker field presets.
+- 1.5.0: Fights rebuilt, and a full audit against every source.
+  - **Fights**: Physical / Magical / Abilities & skills menus, orders for allies (a request their
+    card and mood answer), Check with lasting intel and exploit-with-advantage, Guard, a risky
+    Flee, hidden enemy plans with visible telegraphs, apparent threat vs true power, four
+    resolution modes, and true-random dice for every combatant.
+  - Fixed: the aftermath of an HMS fight crashed when the side-panel block was on (a v1.4
+    regression). A combatant a reply forgot to restate vanished from the fight. Try again
+    re-rolled the dice. The fight settings' defaults were stored where nothing read them.
+  - **Audit** against the three engines, their HUD modules, the original extension and the card
+    toolkit: Gamemode, Now Playing and the Mental Council are carriers; Blood Pool, Thirst State,
+    talents' Status, multi-Authority brackets, `[… - state]`, world items, Runecraft, Passives,
+    `[MAIN QUEST: …]`, `[EVENT: …]`, Exam lines, attributes, the engine's own dice rolls and ✦
+    notices are all read; self-clearing lines show as cleared; the corrected HUD after an
+    (OOC: Correction) is the one read.
+  - **Stands down in HMS chats**: Choose your own adventure (the engines forbid ending on
+    options), and the plot buttons (Move the world replaces them). Styling prompts keep the HUD
+    plain text. Move the world can no longer trip The World Moves.
+  - README rewritten; LICENSE added with the modification notice AGPL asks for.
+- 1.4.0: The party.
+  - **Keep tabs on the people travelling with you.** Add them by name, from the suggestions
+    (a contract on the HUD, or someone present in most recent replies), or with **+ Party** on
+    a present character. Each reply, members in the scene are read through the side-panel
+    block; the absent keep their last reading and read in the past tense ("was very hungry
+    when last seen, 40m ago").
+  - **Built on the V7.0 card toolkit.** Every state a card names for itself is reported in the
+    card's own words: State Register (Territorial), Affect Band or behavioural mode (Band 1),
+    contract stage, gated progression phase, vessel front, signature tell. The extension
+    defines none of them and never restates card content into the prompt — it carries short
+    labels forward so readings stay continuous.
+  - **Universal levels** for what cards do not name: affection, trust, jealousy (and of whom),
+    irritation, how hard they are holding an act, hunger, fatigue, pain, stress — none,
+    slight, moderate, high, extreme.
+  - **Alerts.** A strain at the alert level ("Honami is very jealous of Kikyo — for 40m"), a
+    strain climbing several replies in a row, affection or trust dropping sharply, and a
+    **skipped phase or stage** — which a V7.0 card forbids. The request itself tells the
+    model a stage or phase moves only after an event with a cost. Durations run on the HUD
+    clock. A member in agony, starving or about to drop joins the Critical banner; social
+    strain stays in the Party panel.
+  - **Other names.** Aliases per member ("Momonga", "Ainz Ooal Gown"); a shared vessel's souls go
+    here too.
+  - Each group (mask, bond, needs, phase) can be switched off, which removes it from the request.
+  - **The side-panel block no longer depends on Present Characters.** The party and the survival
+    clock can ride it on their own.
+- 1.3.0: Vitals, body, mind, abilities, quests — and an optional survival clock.
+  - **Read, never computed.** Every new panel reads what the engine already prints. HP, wounds
+    and conditions stay the engine's; the extension shows them, tracks them over time, and
+    never edits them.
+  - **Vitals.** Resource pools (HP, MP, Focus, Super-Tier Slots…) as bars, with damage and
+    healing since the last reply. Percent meters (Corruption, Od Integrity) with their stage,
+    rising-is-bad ones inverted. Health pools can go critical.
+  - **Body.** Wounds by tag — Raw, Treated, Magic-Healed, Permanent — with how long each has
+    sat in its tag. A wound left Raw past a threshold (72h default, the malunion window) is
+    flagged. Conditions on their own ladders (Blood Loss, Shock, Exhaustion, Starvation, Dread…)
+    with stage, trend and time at stage. Unlisted conditions still read Mild…Critical and
+    Stage N. Healed wounds and cleared conditions are noted.
+  - **Mind.** Psychological conditions and status flags (Dread, Blood Frenzy, Emotion
+    Suppression) in their own panel.
+  - **Abilities.** Authorities, Divine Protections, Contracts, Blessings, Skills, Martial Arts,
+    magic systems, classes, traits — grouped by category. What counts as an ability is a
+    vocabulary you edit per world.
+  - **Quests.** State badges, objective checklists (a Godmother Decree, a D&D Milestone), and a
+    journal of quests that left the HUD. **A quest that leaves the line while still live is
+    flagged**, with a one-click put-back: its printed name is what loads its entry, so a silent
+    drop darkens it. Quest names are never injected into the prompt.
+  - **Carrier lines.** When the guard catches a dropped Arc, Quests, Memory, Blessings, Game
+    Mode, Authority, Divine Protection or Contract line, it is listed first and marked.
+  - **Inline blocks respected.** Rows inside a ─── fenced block (Godmother, School
+    Database, D&D sheet) are no longer diffed or pinned. Before, every XP tick flagged two false
+    drops, and Restore would have written the stale header back in. Blocks now show as their own
+    card, and restored lines never land inside one.
+  - **Folded path layers** like `(Eastern Provinces)` show dimmed.
+  - **Survival clock (off by default).** For bots whose HUD does not track sleep, food, water or
+    state of mind. It measures elapsed time from the HUD clock — the arithmetic models are bad
+    at — and tells the engine the facts; the engine decides the consequences. It stands down
+    for anything the HUD already tracks, for immune races (Undead), and resets on a Return by
+    Death rewind. Events come from the side-panel block or the Slept / Rested / Ate / Drank
+    buttons.
+  - Everything is configurable under Settings → HMS systems.
+  - Fixed: quests after a ` | ` separator were cut from the Quests line.
+- 1.2.0: Audit pass — correctness, reachability and honouring your own switches.
+  - **HUD line identity is now content-based, not positional.** A HUD may legitimately
+    carry several lines under one tag (Re:Zero's seven `[SPIRIT CONTRACT: …]` lines, two
+    `[STATUS: …]` lines in Overlord). Those were keyed by tag alone and disambiguated by
+    order, so when one dropped the survivors renumbered: the guard named a line that was
+    still present, missed the one that actually vanished, and Restore wrote a duplicate
+    into the saved reply. Pins had the same fault. Both fixed and covered by tests.
+  - **A HUD template swap is no longer read as dropped lines.** Entering or leaving
+    Re:Zero's WHDAAA theater replaces the whole HUD by design; the guard used to flag
+    every standard line at once, and Restore would have spliced twelve stale lines into
+    a theater HUD the module forbids touching. The swap is now detected and reported as
+    a template change with nothing to restore. Ordinary drops are unaffected.
+  - **Switching the extension off now actually stops it.** Refresh, Move the world,
+    fights, plot nudges and portraits used to run regardless: Refresh spent tokens,
+    Move the world posted to the chat, a fight could write its aftermath. Those actions
+    are refused while it is off, and the three input-bar buttons grey out. Reading the
+    panel, editing saved data and changing settings still work.
+  - **Refresh honours “Ask for present characters and thoughts.”** With it off, a manual
+    Refresh in an HMS chat used to fire the companion call anyway, against the promise
+    that off means nothing is added. It now says there is nothing to fetch.
+  - **Three settings became reachable in HMS mode.** Present characters, Quests, Dice and
+    the bar colours are all live in HMS, but their controls sat in a panel HMS mode hid.
+    Turning one off elsewhere left no way to turn it back on — worst for Present
+    characters, which also gates the companion request. The section now appears in HMS
+    with the toggles that apply there. Quests also honours its own toggle now.
+  - **Portraits can be removed.** The backend could always clear one; nothing ever asked
+    it to. There is now an ✕ next to Redraw.
+  - **Leaked preset reasoning is stripped wherever it lands**, not only in the run
+    directly after `***`. Prose that merely mentions the words is still untouched.
+  - Settings carry a version and migrate on load. Stale HMS detection is cleared when
+    messages are deleted. Unlabelled numeric inputs got labels. Dead CSS removed.
+- 1.1.2: Panel auto-updates after every reply without a manual Refresh. It now listens for the
+  reply-ended event, self-heals if a push is missed, and a repaint deferred while you're editing
+  a field flushes correctly on blur (the applied data is never lost).
+- 1.1.1: Safety net for a preset that spills its reasoning into the reply — a leaked
+  fn:/page:/REPORT CARD/VIOLATION LOOP block sitting between the HUD's *** and the prose is
+  stripped from the saved message and hidden live. Only fires when those markers appear right
+  after the separator; ordinary prose that mentions the words is untouched. This is a
+  backstop; the real fix is preset-side (keep that reasoning in the Thinking panel).
+- 1.1.0: Relationship field widened and free-form by default (no more wrong "Lover" for a
+  contracted or family bond); Quests panel (reads a HUD `Quests:` line and keeps your own
+  notes); combat gains a per-fight thinking toggle, optional dice/skill checks, abilities read
+  from the HUD each turn, and a Past fights log.
+- 1.0.0: HMS Edition. Reads the WORLD STATE HUD instead of competing with it; HUD Guard
+  with restore; pins; Move the world; fights and aftermaths on HMS rules; companion block
+  for characters; automatic HMS detection with classic fallback.

@@ -1,0 +1,17 @@
+{
+  "source_zip_sha256": "b448f1290eda12f83840235c7fa8289886d42109bc09737e0fb61e4a241f7d68",
+  "original_files_sha256": {
+    "dist/backend.js": "512f284192d6fbe25902d58f98b2f44b67162cbd2c8e9e381f165d0354151d61",
+    "dist/frontend.js": "691969ece8468478273ecc993a3a376e686fb18954d7a5f8cacf62bab6640f5b",
+    "spindle.json": "f11729ddb4d83718312bac10a3cb89113d7b6d7e81907ae1ffdd0ae0ed2133ab",
+    "README.md": "30e0bfe2014653c016454ce86fffb70d4cd60a6db6e56b491f6777c4d53993c9",
+    "GUIDE.pt-BR.md": "95f30c711d01e6a7658e37b1364aa45ba9b03fd0bd80c5d25818b123afb32e83"
+  },
+  "changed_original_files": [
+    "dist/backend.js",
+    "dist/frontend.js",
+    "spindle.json",
+    "README.md",
+    "GUIDE.pt-BR.md"
+  ]
+}
