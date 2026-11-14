@@ -2726,5 +2726,8 @@
  "Accepted voice notes in context (opt-in)": "Notas de voz aceitas no contexto (opcional)",
  "Note limit reached": "Limite de notas atingido",
  "Completed ({0})": "Concluídas ({0})",
- "Ended ({0})": "Encerradas ({0})"
+ "Ended ({0})": "Encerradas ({0})",
+ "{0} rows hidden by the bot’s HUD settings ({1}). Not dropped: the panel keeps their last known values.": "{0} linhas ocultas pelas configurações de HUD do bot ({1}). Não foram perdidas: o painel mantém os últimos valores conhecidos.",
+ "Hidden by the HUD settings — last known ({0})": "Ocultas pelas configurações de HUD — último valor conhecido ({0})",
+ "The bot leaves these rows out by your HUD settings. Shown here as last read; they are not put back into the story.": "O bot omite estas linhas pelas suas configurações de HUD. Aparecem aqui como foram lidas por último; não são devolvidas à história."
 }

@@ -1,4 +1,4 @@
-> **Para o bot Six-Sided World 2.5.1:** leia primeiro [a atualização 1.4.3](UPDATE-SIX-SIDED-2.5.1.md). Ela não exige importar o preset HMS Reporter para detectar o HUD.
+> **Para o bot Six-Sided World 2.5.3 (HUD configurável):** leia primeiro [a atualização 1.4.4](UPDATE-SIX-SIDED-2.5.3.md). Para a 2.5.1, veja [a 1.4.3](UPDATE-SIX-SIDED-2.5.1.md). Nenhuma das duas exige importar o preset HMS Reporter para detectar o HUD.
 
 # Guia HMS
 

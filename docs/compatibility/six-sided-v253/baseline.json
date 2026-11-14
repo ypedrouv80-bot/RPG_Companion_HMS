@@ -1,0 +1,34 @@
+{
+  "source_zip": "RPG_Companion_HMS_1.4.3_SixSided_2.5.1_Update.zip",
+  "source_zip_sha256": "64a52f9144098eac630f89fca82237c760d49dc722ed496c58de41fface19ee9",
+  "original_files_sha256": {
+    "dist/backend.js": "930b79922d7ee3dcc0910769548254d95f635876131cea2019484f745e2457b9",
+    "dist/frontend.js": "9d9a489baedf500be02d3aad0b12342595344f3b84d49ac8f25a10d99c3fcabf",
+    "spindle.json": "442821d81a0a8978c621b47516c2fb23873ca994e95485c60b1949a0d8a7dd7c",
+    "i18n/pt-BR.json": "9491b16c076c01c95c6d78be395f1bf2709b5055581ab26f71ecb3e6286e3b4f",
+    "i18n/es.json": "51f0879adc1deedf54b5f2535239bc00babd390c84a7e574d187ab2c72ced8bf",
+    "i18n/ru.json": "951d23c369d7feb80328d5716c480ead2a047e6eb2e08424a32bbab2e816d4a3",
+    "i18n/tr.json": "a95c78b1132ac02f24c82d720a73b72624b3dee6fa2c7587e07bc77eae55f5c4"
+  },
+  "bot_zip": "Mushoku_Tensei_v2.5.3_HUD_Greeting.zip",
+  "bot_zip_sha256": "a8249d79eec47ad2d1d9803df6371fcc058928059fa2db6275db4dd0786662eb",
+  "bot_files_sha256_unmodified": {
+    "HMS_Complete_Regex_Pack.json": "c01d52e5fe368c19e1d2020103f93dc8d61e1d923a3e3d69fe86385262db2efa",
+    "HUD_GREETING_EN.md": "97935a9ad3d33524aa9bba35663a145052c623e672b7fe4950e0430c595d34ef",
+    "HUD_GUIDE_EN.md": "c2f1a42b199243d2f390eeab24045e8f70040687c168ad8b923f09fbb486c783",
+    "HUD_STYLE_EXAMPLES.md": "2eed6dbfb114754ab725434e18f8afca796d6e1e9f7388f2aa0979baeb5991e6",
+    "LEIA-ME-v2.5.3.md": "61c27b3d529bf2b5b6d0edca121fafe9cd98bd67e20a21ea035d444ce77ac6a1",
+    "Mushoku Tensei RPG - Six-Sided World v2.5.3 Customizable HUD.json": "57fd22f71d0e89324c562982d8ddad6a81a00572ed51d7cba66e44a7b0264250",
+    "Mushoku Tensei RPG - Six-Sided World v2.5.3 Customizable HUD.png": "d34c0122accb21b7f5cf8b16cd781be4c9cc00013e5ef8ac27ae5a5d9a262b45",
+    "Mushoku_Tensei_Standalone_Integrated_WorldInfo_v2.5.3.json": "aef446f153e2f41c23d471a5ab7d5a069289250170ea0e502b271a1dc40f8489",
+    "SHA256SUMS.txt": "4356650e21f835b2a3609a4cf3cb8ef23855f9ac3b25b27c94d3419936c6f8dd",
+    "TEST_REPORT.md": "df40c486a1f24acd0892407a6ef7637156be07a69e639aa9dc73757dfe1da699",
+    "build_checks.json": "bd94599faba48841c309ec71417dbcf7823476205e86fbbdf2b5e83c4e091dbf",
+    "calendar_profile.json": "824acf945fe129e92fbc9b0f4869b962691c43807b0391479f83a504052248da",
+    "hud_tests.json": "90eff713972ab82f3853d17b0e6de11dfd7915844b25ded094b499b7124e1d0e",
+    "premade_bindings.json": "0089977da514551fd524da4a1bb7804d4087dfb69f86e01a65d925f2fe89fd60",
+    "reference_regression.json": "fdb6c787a88d09c474f1520189e8df64333d72c021bc7aece14049df809e6f45",
+    "route_registry.json": "c0a6f37abe5ab701b301d2e8df564b5dc44b0a870a15b7bf5049aff028d8170c"
+  },
+  "note": "The bot package was read only. Its regex pack is byte-identical in content to tests/fixtures/HMS_v2.5_Complete_Regex_Pack.json (77 scripts)."
+}

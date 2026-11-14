@@ -1,5 +1,27 @@
 # Changelog — RPG Companion HMS Edition
 
+## 1.4.4 — Six-Sided World 2.5.3: the customizable HUD (built on 1.4.3)
+
+**The Mushoku Tensei card now writes only the HUD rows the player switched on.** BASIC, the default, keeps the date and time, season, place, Condition, the bare arc code (`Current Arc: [MT-ARC:8]`) and Rudeus Mode; Bonds and the other optional groups are OFF until `[HUD BONDS = ON]`, `[HUD = FULL]` and the like. The card says a row left out is hidden, not ended. The Companion now reads it that way. The card itself is not changed.
+
+- **Arc by its code:** `[MT-ARC:8]`, `[MT-ARC:3-B]` and `[MT-ARC:Sandbox]` read as the arc (with the card's route title). 1.4.3 took the bare code for a personal arc and fell back to the calendar's arc. Moving from the 2.5.1 line ("Arc 8: University [MT-ARC:8]") to the code no longer opens a new arc chapter, and the arc check accepts the card's `[MT-ARC:ID]` keys (read literally).
+- **Hidden rows are not dropped lines:** the HUD guard no longer lists rows the field settings hide and never offers to restore them (that would put Bonds and names back on the HUD). A group switched ON and left out is still flagged. The World State card shows a calm note with the count instead.
+- **Last known values:** rows that last (identity, policies, mana, skills, gifts, Dream Link, equipment, inventory, standing, Bonds, Active Paths) keep their last read value in the panel's timeline, so the world card, You, Magic, Gear and Quests keep working on BASIC. World State lists them under "Hidden by the HUD settings — last known". Display only: nothing goes back into the reply, the lore scan or the prompt. Scene, NPCs present, detailed injuries and canon countdowns are not kept.
+- **HUD-command answers:** a reply to `[HUD SETTINGS]`, `[HUD HELP]`, `[HUD GROUP = ON/OFF]`, `[HUD SHOW GROUP]`, a style switch, `[HELP]` or `Mushoku_Save` may have no HUD by the card's rules; it is no longer a "reply with no WORLD STATE", and the panel stays on the last real HUD. `[HUD = SHOW]` still expects one.
+- **Settings read from the chat:** the player's commands left to right (case-insensitive; quoted or code-fenced ones and the bot's own text are ignored), a pasted save's SAVE NOTES (profile and group flags; a 2.5.3 save with none resumes BASIC) and the card's `[HUD SETTINGS]` answer. The 2.5.3 reading turns on only with a 2.5.3 sign (the HUD guide greeting, a visibility command, a 2.5.3 save or the bare arc code); 2.5.1 chats and other bots read as before.
+- **New game builder:** the card's 13th alternate greeting ("HUD — Choose what you see") is an OOC reference page; it no longer appears as a page of start add-ons ("IDENTITY", "BONDS"…). The OOC guide still uses it.
+- **Style:** `HUD Style:` in a pasted save sets the style; `[HUD = BASIC]`, `[HUD = FULL]` and `[HUD = SHOW]` are not styles.
+- **Short place:** a Mushoku `Location:` with no arrow path ("A roadside shelter") is read as a one-segment place.
+- **Upkeep:** with IDENTITY off the Race line is not restored, and the Training warning ignores a hidden Training row.
+
+**Checked**
+- `tests/six-sided-v253.cjs`: 253 checks against the card's own fixtures (six BASIC examples in LF and CRLF, the real display regex HTML, all 14 greetings, the lorebook's arc keys), including the real `hmsProcessContent` guard and the timeline reader. `tests/six-sided-v251.cjs`: 168/168.
+- The whole backend loaded in a mocked host; the panel state and world card built for a 2.5.3 chat. Not yet tested live in Lumiverse or with a model.
+
+## 1.4.3 — Six-Sided World 2.5.1 compatibility
+
+See [UPDATE-SIX-SIDED-2.5.1.md](UPDATE-SIX-SIDED-2.5.1.md).
+
 ## 1.4.2 RC — The BG3 Atlas (built on 1.4.1 RC)
 
 **Baldur's Gate 3 now has a real map.** The BG3 RPG (HMS) card (v2.3) carries the whole game's geography as a location book, and the Atlas reads it like any other HMS bot's book. No code change, no new tracker fields and no extra model calls.

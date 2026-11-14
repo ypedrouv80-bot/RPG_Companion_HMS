@@ -1,0 +1,2807 @@
+{
+ "source": "Arc-routing entries of the 2.5.3 card lorebook (keys only, no content)",
+ "entries": [
+  {
+   "comment": "[arcs] Arc 1 Synopsis: Childhood",
+   "key": [
+    "[MT-ARC:1]",
+    "Arc 1:",
+    "Arc: 1;",
+    "Arc: 1 |",
+    "Start Arc 1 (Premade)",
+    "Begin Arc 1 (Premade)",
+    "Start Arc 1 (Custom)",
+    "Begin Arc 1 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+1(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 1 Suggested Path: Childhood",
+   "key": [
+    "[MT-ARC:1]",
+    "Arc 1:",
+    "Arc: 1;",
+    "Arc: 1 |",
+    "Start Arc 1 (Premade)",
+    "Begin Arc 1 (Premade)",
+    "Start Arc 1 (Custom)",
+    "Begin Arc 1 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+1(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 2 Synopsis: Home Tutor",
+   "key": [
+    "[MT-ARC:2]",
+    "Arc 2:",
+    "Arc: 2;",
+    "Arc: 2 |",
+    "Start Arc 2 (Premade)",
+    "Begin Arc 2 (Premade)",
+    "Start Arc 2 (Custom)",
+    "Begin Arc 2 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+2(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 2 Suggested Path: Home Tutor",
+   "key": [
+    "[MT-ARC:2]",
+    "Arc 2:",
+    "Arc: 2;",
+    "Arc: 2 |",
+    "Start Arc 2 (Premade)",
+    "Begin Arc 2 (Premade)",
+    "Start Arc 2 (Custom)",
+    "Begin Arc 2 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+2(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3 Synopsis: Entry-Level Adventurer",
+   "key": [
+    "[MT-ARC:3]",
+    "Arc 3:",
+    "Arc: 3;",
+    "Arc: 3 |",
+    "Start Arc 3 (Premade)",
+    "Begin Arc 3 (Premade)",
+    "Start Arc 3 (Custom)",
+    "Begin Arc 3 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3 Suggested Path: Entry-Level Adventurer",
+   "key": [
+    "[MT-ARC:3]",
+    "Arc 3:",
+    "Arc: 3;",
+    "Arc: 3 |",
+    "Start Arc 3 (Premade)",
+    "Begin Arc 3 (Premade)",
+    "Start Arc 3 (Custom)",
+    "Begin Arc 3 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Zero Hour: The Grab",
+   "key": [
+    "[MT-ARC:2]",
+    "Arc 2:",
+    "Arc: 2;",
+    "Arc: 2 |",
+    "Start Arc 2 (Premade)",
+    "Begin Arc 2 (Premade)",
+    "Start Arc 2 (Custom)",
+    "Begin Arc 2 (Custom)",
+    "[MT-ARC:2-B]",
+    "Arc 2-B:",
+    "Arc: 2-B;",
+    "Arc: 2-B |",
+    "Start Arc 2-B (Premade)",
+    "Begin Arc 2-B (Premade)",
+    "Start Arc 2-B (Custom)",
+    "Begin Arc 2-B (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+2(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+2\\-B(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:17]",
+    "Zero Hour",
+    "impending Teleport Incident",
+    "the Grab scene"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 2-B Synopsis: Hearth & Home",
+   "key": [
+    "[MT-ARC:2-B]",
+    "Arc 2-B:",
+    "Arc: 2-B;",
+    "Arc: 2-B |",
+    "Start Arc 2-B (Premade)",
+    "Begin Arc 2-B (Premade)",
+    "Start Arc 2-B (Custom)",
+    "Begin Arc 2-B (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+2\\-B(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 2-B Path: Hearth & Home",
+   "key": [
+    "[MT-ARC:2-B]",
+    "Arc 2-B:",
+    "Arc: 2-B;",
+    "Arc: 2-B |",
+    "Start Arc 2-B (Premade)",
+    "Begin Arc 2-B (Premade)",
+    "Start Arc 2-B (Custom)",
+    "Begin Arc 2-B (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+2\\-B(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-B Synopsis: The Silent Road",
+   "key": [
+    "[MT-ARC:3-B]",
+    "Arc 3-B:",
+    "Arc: 3-B;",
+    "Arc: 3-B |",
+    "Start Arc 3-B (Premade)",
+    "Begin Arc 3-B (Premade)",
+    "Start Arc 3-B (Custom)",
+    "Begin Arc 3-B (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-B(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-B Path: The Silent Road",
+   "key": [
+    "[MT-ARC:3-B]",
+    "Arc 3-B:",
+    "Arc: 3-B;",
+    "Arc: 3-B |",
+    "Start Arc 3-B (Premade)",
+    "Begin Arc 3-B (Premade)",
+    "Start Arc 3-B (Custom)",
+    "Begin Arc 3-B (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-B(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-C Synopsis: The Silent Palace",
+   "key": [
+    "[MT-ARC:3-C]",
+    "Arc 3-C:",
+    "Arc: 3-C;",
+    "Arc: 3-C |",
+    "Start Arc 3-C (Premade)",
+    "Begin Arc 3-C (Premade)",
+    "Start Arc 3-C (Custom)",
+    "Begin Arc 3-C (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-C(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-C Path: The Silent Palace",
+   "key": [
+    "[MT-ARC:3-C]",
+    "Arc 3-C:",
+    "Arc: 3-C;",
+    "Arc: 3-C |",
+    "Start Arc 3-C (Premade)",
+    "Begin Arc 3-C (Premade)",
+    "Start Arc 3-C (Custom)",
+    "Begin Arc 3-C (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-C(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-D Synopsis: The Father's Road",
+   "key": [
+    "[MT-ARC:3-D]",
+    "Arc 3-D:",
+    "Arc: 3-D;",
+    "Arc: 3-D |",
+    "Start Arc 3-D (Premade)",
+    "Begin Arc 3-D (Premade)",
+    "Start Arc 3-D (Custom)",
+    "Begin Arc 3-D (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-D(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-D Path: The Father's Road",
+   "key": [
+    "[MT-ARC:3-D]",
+    "Arc 3-D:",
+    "Arc: 3-D;",
+    "Arc: 3-D |",
+    "Start Arc 3-D (Premade)",
+    "Begin Arc 3-D (Premade)",
+    "Start Arc 3-D (Custom)",
+    "Begin Arc 3-D (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-D(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-E Synopsis: The Gilded Cage",
+   "key": [
+    "[MT-ARC:3-E]",
+    "Arc 3-E:",
+    "Arc: 3-E;",
+    "Arc: 3-E |",
+    "Start Arc 3-E (Premade)",
+    "Begin Arc 3-E (Premade)",
+    "Start Arc 3-E (Custom)",
+    "Begin Arc 3-E (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-E(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-E Path: The Gilded Cage",
+   "key": [
+    "[MT-ARC:3-E]",
+    "Arc 3-E:",
+    "Arc: 3-E;",
+    "Arc: 3-E |",
+    "Start Arc 3-E (Premade)",
+    "Begin Arc 3-E (Premade)",
+    "Start Arc 3-E (Custom)",
+    "Begin Arc 3-E (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-E(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-F Synopsis: Two Graves Unwritten",
+   "key": [
+    "[MT-ARC:3-F]",
+    "Arc 3-F:",
+    "Arc: 3-F;",
+    "Arc: 3-F |",
+    "Start Arc 3-F (Premade)",
+    "Begin Arc 3-F (Premade)",
+    "Start Arc 3-F (Custom)",
+    "Begin Arc 3-F (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-F(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-F Path: Two Graves Unwritten",
+   "key": [
+    "[MT-ARC:3-F]",
+    "Arc 3-F:",
+    "Arc: 3-F;",
+    "Arc: 3-F |",
+    "Start Arc 3-F (Premade)",
+    "Begin Arc 3-F (Premade)",
+    "Start Arc 3-F (Custom)",
+    "Begin Arc 3-F (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-F(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-G Synopsis: The Prodigal Daughter",
+   "key": [
+    "[MT-ARC:3-G]",
+    "Arc 3-G:",
+    "Arc: 3-G;",
+    "Arc: 3-G |",
+    "Start Arc 3-G (Premade)",
+    "Begin Arc 3-G (Premade)",
+    "Start Arc 3-G (Custom)",
+    "Begin Arc 3-G (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-G(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-G Path: The Prodigal Daughter",
+   "key": [
+    "[MT-ARC:3-G]",
+    "Arc 3-G:",
+    "Arc: 3-G;",
+    "Arc: 3-G |",
+    "Start Arc 3-G (Premade)",
+    "Begin Arc 3-G (Premade)",
+    "Start Arc 3-G (Custom)",
+    "Begin Arc 3-G (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-G(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-H Synopsis: The Master's Road",
+   "key": [
+    "[MT-ARC:3-H]",
+    "Arc 3-H:",
+    "Arc: 3-H;",
+    "Arc: 3-H |",
+    "Start Arc 3-H (Premade)",
+    "Begin Arc 3-H (Premade)",
+    "Start Arc 3-H (Custom)",
+    "Begin Arc 3-H (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-H(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 3-H Path: The Master's Road",
+   "key": [
+    "[MT-ARC:3-H]",
+    "Arc 3-H:",
+    "Arc: 3-H;",
+    "Arc: 3-H |",
+    "Start Arc 3-H (Premade)",
+    "Begin Arc 3-H (Premade)",
+    "Start Arc 3-H (Custom)",
+    "Begin Arc 3-H (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+3\\-H(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Sandbox Arc (instructions, not events)",
+   "key": [
+    "[MT-ARC:Sandbox]",
+    "Sandbox Arc",
+    "Arc: Sandbox",
+    "Game Mode: Sandbox",
+    "Start Sandbox",
+    "Begin Sandbox"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 4: Voyage",
+   "key": [
+    "[MT-ARC:4]",
+    "Arc 4:",
+    "Arc: 4;",
+    "Arc: 4 |",
+    "Start Arc 4 (Premade)",
+    "Begin Arc 4 (Premade)",
+    "Start Arc 4 (Custom)",
+    "Begin Arc 4 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 4-B: Southbound Search",
+   "key": [
+    "[MT-ARC:4-B]",
+    "Arc 4-B:",
+    "Arc: 4-B;",
+    "Arc: 4-B |",
+    "Start Arc 4-B (Premade)",
+    "Begin Arc 4-B (Premade)",
+    "Start Arc 4-B (Custom)",
+    "Begin Arc 4-B (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4\\-B(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 4-C: Refuge in Ranoa",
+   "key": [
+    "[MT-ARC:4-C]",
+    "Arc 4-C:",
+    "Arc: 4-C;",
+    "Arc: 4-C |",
+    "Start Arc 4-C (Premade)",
+    "Begin Arc 4-C (Premade)",
+    "Start Arc 4-C (Custom)",
+    "Begin Arc 4-C (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4\\-C(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 4-D: The Shirone Rescue",
+   "key": [
+    "[MT-ARC:4-D]",
+    "Arc 4-D:",
+    "Arc: 4-D;",
+    "Arc: 4-D |",
+    "Start Arc 4-D (Premade)",
+    "Begin Arc 4-D (Premade)",
+    "Start Arc 4-D (Custom)",
+    "Begin Arc 4-D (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4\\-D(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 4-E: The Road to Millis",
+   "key": [
+    "[MT-ARC:4-E]",
+    "Arc 4-E:",
+    "Arc: 4-E;",
+    "Arc: 4-E |",
+    "Start Arc 4-E (Premade)",
+    "Begin Arc 4-E (Premade)",
+    "Start Arc 4-E (Custom)",
+    "Begin Arc 4-E (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4\\-E(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 4-F: The Boreas Survivors",
+   "key": [
+    "[MT-ARC:4-F]",
+    "Arc 4-F:",
+    "Arc: 4-F;",
+    "Arc: 4-F |",
+    "Start Arc 4-F (Premade)",
+    "Begin Arc 4-F (Premade)",
+    "Start Arc 4-F (Custom)",
+    "Begin Arc 4-F (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4\\-F(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 4-G: Reunion Road",
+   "key": [
+    "[MT-ARC:4-G]",
+    "Arc 4-G:",
+    "Arc: 4-G;",
+    "Arc: 4-G |",
+    "Start Arc 4-G (Premade)",
+    "Begin Arc 4-G (Premade)",
+    "Start Arc 4-G (Custom)",
+    "Begin Arc 4-G (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4\\-G(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 4-H: The Master's Crossing",
+   "key": [
+    "[MT-ARC:4-H]",
+    "Arc 4-H:",
+    "Arc: 4-H;",
+    "Arc: 4-H |",
+    "Start Arc 4-H (Premade)",
+    "Begin Arc 4-H (Premade)",
+    "Start Arc 4-H (Custom)",
+    "Begin Arc 4-H (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4\\-H(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 5: Reunion",
+   "key": [
+    "[MT-ARC:5]",
+    "Arc 5:",
+    "Arc: 5;",
+    "Arc: 5 |",
+    "Start Arc 5 (Premade)",
+    "Begin Arc 5 (Premade)",
+    "Start Arc 5 (Custom)",
+    "Begin Arc 5 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+5(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 6: Homecoming",
+   "key": [
+    "[MT-ARC:6]",
+    "Arc 6:",
+    "Arc: 6;",
+    "Arc: 6 |",
+    "Start Arc 6 (Premade)",
+    "Begin Arc 6 (Premade)",
+    "Start Arc 6 (Custom)",
+    "Begin Arc 6 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+6(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 7: Northern Adventurer",
+   "key": [
+    "[MT-ARC:7]",
+    "Arc 7:",
+    "Arc: 7;",
+    "Arc: 7 |",
+    "Start Arc 7 (Premade)",
+    "Begin Arc 7 (Premade)",
+    "Start Arc 7 (Custom)",
+    "Begin Arc 7 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+7(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 8: University",
+   "key": [
+    "[MT-ARC:8]",
+    "Arc 8:",
+    "Arc: 8;",
+    "Arc: 8 |",
+    "Start Arc 8 (Premade)",
+    "Begin Arc 8 (Premade)",
+    "Start Arc 8 (Custom)",
+    "Begin Arc 8 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+8(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 9: University Bonds",
+   "key": [
+    "[MT-ARC:9]",
+    "Arc 9:",
+    "Arc: 9;",
+    "Arc: 9 |",
+    "Start Arc 9 (Premade)",
+    "Begin Arc 9 (Premade)",
+    "Start Arc 9 (Custom)",
+    "Begin Arc 9 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+9(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 10: Newlywed Life",
+   "key": [
+    "[MT-ARC:10]",
+    "Arc 10:",
+    "Arc: 10;",
+    "Arc: 10 |",
+    "Start Arc 10 (Premade)",
+    "Begin Arc 10 (Premade)",
+    "Start Arc 10 (Custom)",
+    "Begin Arc 10 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+10(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 11: Sisters and the Journey to Begaritt",
+   "key": [
+    "[MT-ARC:11]",
+    "Arc 11:",
+    "Arc: 11;",
+    "Arc: 11 |",
+    "Start Arc 11 (Premade)",
+    "Begin Arc 11 (Premade)",
+    "Start Arc 11 (Custom)",
+    "Begin Arc 11 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+11(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 12: The Teleportation Labyrinth",
+   "key": [
+    "[MT-ARC:12]",
+    "Arc 12:",
+    "Arc: 12;",
+    "Arc: 12 |",
+    "Start Arc 12 (Premade)",
+    "Begin Arc 12 (Premade)",
+    "Start Arc 12 (Custom)",
+    "Begin Arc 12 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+12(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 13: Everyday Life and New Responsibilities",
+   "key": [
+    "[MT-ARC:13]",
+    "Arc 13:",
+    "Arc: 13;",
+    "Arc: 13 |",
+    "Start Arc 13 (Premade)",
+    "Begin Arc 13 (Premade)",
+    "Start Arc 13 (Custom)",
+    "Begin Arc 13 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+13(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 14: The Floating Fortress and the Fourth Turning Point",
+   "key": [
+    "[MT-ARC:14]",
+    "Arc 14:",
+    "Arc: 14;",
+    "Arc: 14 |",
+    "Start Arc 14 (Premade)",
+    "Begin Arc 14 (Premade)",
+    "Start Arc 14 (Custom)",
+    "Begin Arc 14 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+14(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 15: Future Warnings and Changed Allegiances",
+   "key": [
+    "[MT-ARC:15]",
+    "Arc 15:",
+    "Arc: 15;",
+    "Arc: 15 |",
+    "Start Arc 15 (Premade)",
+    "Begin Arc 15 (Premade)",
+    "Start Arc 15 (Custom)",
+    "Begin Arc 15 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+15(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 16: The First Mission and the Library Labyrinth",
+   "key": [
+    "[MT-ARC:16]",
+    "Arc 16:",
+    "Arc: 16;",
+    "Arc: 16 |",
+    "Start Arc 16 (Premade)",
+    "Begin Arc 16 (Premade)",
+    "Start Arc 16 (Custom)",
+    "Begin Arc 16 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+16(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 17: The Struggle for the Throne",
+   "key": [
+    "[MT-ARC:17]",
+    "Arc 17:",
+    "Arc: 17;",
+    "Arc: 17 |",
+    "Start Arc 17 (Premade)",
+    "Begin Arc 17 (Premade)",
+    "Start Arc 17 (Custom)",
+    "Begin Arc 17 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+17(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 18: Old Friends and New Responsibilities",
+   "key": [
+    "[MT-ARC:18]",
+    "Arc 18:",
+    "Arc: 18;",
+    "Arc: 18 |",
+    "Start Arc 18 (Premade)",
+    "Begin Arc 18 (Premade)",
+    "Start Arc 18 (Custom)",
+    "Begin Arc 18 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+18(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 19: The Prince's Homecoming",
+   "key": [
+    "[MT-ARC:19]",
+    "Arc 19:",
+    "Arc: 19;",
+    "Arc: 19 |",
+    "Start Arc 19 (Premade)",
+    "Begin Arc 19 (Premade)",
+    "Start Arc 19 (Custom)",
+    "Begin Arc 19 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+19(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 20: Graduations and the Road to Millis",
+   "key": [
+    "[MT-ARC:20]",
+    "Arc 20:",
+    "Arc: 20;",
+    "Arc: 20 |",
+    "Start Arc 20 (Premade)",
+    "Begin Arc 20 (Premade)",
+    "Start Arc 20 (Custom)",
+    "Begin Arc 20 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+20(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 21: The Family Crisis",
+   "key": [
+    "[MT-ARC:21]",
+    "Arc 21:",
+    "Arc: 21;",
+    "Arc: 21 |",
+    "Start Arc 21 (Premade)",
+    "Begin Arc 21 (Premade)",
+    "Start Arc 21 (Custom)",
+    "Begin Arc 21 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+21(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 22: Organization and Powerful Allies",
+   "key": [
+    "[MT-ARC:22]",
+    "Arc 22:",
+    "Arc: 22;",
+    "Arc: 22 |",
+    "Start Arc 22 (Premade)",
+    "Begin Arc 22 (Premade)",
+    "Start Arc 22 (Custom)",
+    "Begin Arc 22 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+22(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arcs] Arc 23: The Fourth Child, Research and Further Preparations",
+   "key": [
+    "[MT-ARC:23]",
+    "Arc 23:",
+    "Arc: 23;",
+    "Arc: 23 |",
+    "Start Arc 23 (Premade)",
+    "Begin Arc 23 (Premade)",
+    "Start Arc 23 (Custom)",
+    "Begin Arc 23 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+23(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Voyage — Wind Port and passage",
+   "key": [
+    "[MT-ARC:4]",
+    "Arc 4:",
+    "Arc: 4;",
+    "Arc: 4 |",
+    "Start Arc 4 (Premade)",
+    "Begin Arc 4 (Premade)",
+    "Start Arc 4 (Custom)",
+    "Begin Arc 4 (Custom)",
+    "[MT-ARC:4-H]",
+    "Arc 4-H:",
+    "Arc: 4-H;",
+    "Arc: 4-H |",
+    "Start Arc 4-H (Premade)",
+    "Begin Arc 4-H (Premade)",
+    "Start Arc 4-H (Custom)",
+    "Begin Arc 4-H (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4\\-H(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1023]",
+    "Wenport",
+    "Gallus",
+    "Kishirika",
+    "Wind Port",
+    "WindPort"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Voyage — Great Forest and Doldia",
+   "key": [
+    "[MT-ARC:4]",
+    "Arc 4:",
+    "Arc: 4;",
+    "Arc: 4 |",
+    "Start Arc 4 (Premade)",
+    "Begin Arc 4 (Premade)",
+    "Start Arc 4 (Custom)",
+    "Begin Arc 4 (Custom)",
+    "[MT-ARC:4-H]",
+    "Arc 4-H:",
+    "Arc: 4-H;",
+    "Arc: 4-H |",
+    "Start Arc 4-H (Premade)",
+    "Begin Arc 4-H (Premade)",
+    "Start Arc 4-H (Custom)",
+    "Begin Arc 4-H (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+4\\-H(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1024]",
+    "Great Forest",
+    "Doldia",
+    "Dedoldia",
+    "Adoldia",
+    "Gallus",
+    "Geese",
+    "Gyes",
+    "Minitona",
+    "Sacred Beast",
+    "Zant Port",
+    "ZantPort",
+    "Zanto Port",
+    "ZantoPort"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Reunion — Paul, Norn and the search",
+   "key": [
+    "[MT-ARC:5]",
+    "Arc 5:",
+    "Arc: 5;",
+    "Arc: 5 |",
+    "Start Arc 5 (Premade)",
+    "Begin Arc 5 (Premade)",
+    "Start Arc 5 (Custom)",
+    "Begin Arc 5 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+5(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1026]",
+    "Paul",
+    "Norn",
+    "Geese",
+    "Millishion",
+    "Millicion",
+    "search group",
+    "search organization",
+    "search organisation",
+    "reunion meeting"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Reunion — Millishion, Cliff and West Port",
+   "key": [
+    "[MT-ARC:5]",
+    "Arc 5:",
+    "Arc: 5;",
+    "Arc: 5 |",
+    "Start Arc 5 (Premade)",
+    "Begin Arc 5 (Premade)",
+    "Start Arc 5 (Custom)",
+    "Begin Arc 5 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+5(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1027]",
+    "Cliff",
+    "Therese",
+    "Galgard",
+    "Millishion",
+    "Millicion",
+    "West Port",
+    "goblin hunt",
+    "goblin job",
+    "Temple Knights"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Homecoming — Shirone rescue",
+   "key": [
+    "[MT-ARC:6]",
+    "Arc 6:",
+    "Arc: 6;",
+    "Arc: 6 |",
+    "Start Arc 6 (Premade)",
+    "Begin Arc 6 (Premade)",
+    "Start Arc 6 (Custom)",
+    "Begin Arc 6 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+6(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1029]",
+    "Pax",
+    "Zanoba",
+    "Ginger",
+    "Lilia",
+    "Aisha",
+    "Shirone",
+    "Latakia",
+    "palace rescue"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Homecoming — Lower Jaw encounter",
+   "key": [
+    "[MT-ARC:6]",
+    "Arc 6:",
+    "Arc: 6;",
+    "Arc: 6 |",
+    "Start Arc 6 (Premade)",
+    "Begin Arc 6 (Premade)",
+    "Start Arc 6 (Custom)",
+    "Begin Arc 6 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+6(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1030]",
+    "Orsted",
+    "Nanahoshi",
+    "Lower Jaw",
+    "Turning Point 2"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Homecoming — Fittoa and parting choices",
+   "key": [
+    "[MT-ARC:6]",
+    "Arc 6:",
+    "Arc: 6;",
+    "Arc: 6 |",
+    "Start Arc 6 (Premade)",
+    "Begin Arc 6 (Premade)",
+    "Start Arc 6 (Custom)",
+    "Begin Arc 6 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+6(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1031]",
+    "Fittoa",
+    "Buena",
+    "Roa",
+    "Alphonse",
+    "Boreas family news",
+    "return home",
+    "homecoming camp"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Northern Adventurer — Counter Arrow and dangerous work",
+   "key": [
+    "[MT-ARC:7]",
+    "Arc 7:",
+    "Arc: 7;",
+    "Arc: 7 |",
+    "Start Arc 7 (Premade)",
+    "Begin Arc 7 (Premade)",
+    "Start Arc 7 (Custom)",
+    "Begin Arc 7 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+7(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1038]",
+    "Basherant",
+    "Counter Arrow",
+    "Sara",
+    "Suzanne",
+    "Timothy",
+    "Mimir",
+    "Patris",
+    "snow buffalo",
+    "northern expedition"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Northern Adventurer — Sara, Soldat and changing trust",
+   "key": [
+    "[MT-ARC:7]",
+    "Arc 7:",
+    "Arc: 7;",
+    "Arc: 7 |",
+    "Start Arc 7 (Premade)",
+    "Begin Arc 7 (Premade)",
+    "Start Arc 7 (Custom)",
+    "Begin Arc 7 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+7(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1039]",
+    "Sara",
+    "Suzanne",
+    "Soldat",
+    "Heckler",
+    "Stepped Leader",
+    "Counter Arrow",
+    "northern tavern"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] University — admission, Fitz and campus life",
+   "key": [
+    "[MT-ARC:8]",
+    "Arc 8:",
+    "Arc: 8;",
+    "Arc: 8 |",
+    "Start Arc 8 (Premade)",
+    "Begin Arc 8 (Premade)",
+    "Start Arc 8 (Custom)",
+    "Begin Arc 8 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+8(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1040]",
+    "Ranoa",
+    "Sharia",
+    "university",
+    "academy",
+    "Jenius",
+    "Fitz",
+    "Fitts",
+    "admission",
+    "entrance exam"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] University — Zanoba, Julie and learning to make",
+   "key": [
+    "[MT-ARC:8]",
+    "Arc 8:",
+    "Arc: 8;",
+    "Arc: 8 |",
+    "Start Arc 8 (Premade)",
+    "Begin Arc 8 (Premade)",
+    "Start Arc 8 (Custom)",
+    "Begin Arc 8 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+8(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1041]",
+    "Zanoba",
+    "Julie",
+    "Juliette",
+    "figurine",
+    "sculpting",
+    "slave market",
+    "crafting lesson"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] University — Linia, Pursena and the figurine dispute",
+   "key": [
+    "[MT-ARC:8]",
+    "Arc 8:",
+    "Arc: 8;",
+    "Arc: 8 |",
+    "Start Arc 8 (Premade)",
+    "Begin Arc 8 (Premade)",
+    "Start Arc 8 (Custom)",
+    "Begin Arc 8 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+8(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1042]",
+    "Linia",
+    "Rinia",
+    "Lineana",
+    "Pursena",
+    "Dedoldia",
+    "Adoldia",
+    "broken figurine",
+    "damaged figurine"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Fitz and Reunion — Cliff, Elinalise and Badigadi",
+   "key": [
+    "[MT-ARC:9]",
+    "Arc 9:",
+    "Arc: 9;",
+    "Arc: 9 |",
+    "Start Arc 9 (Premade)",
+    "Begin Arc 9 (Premade)",
+    "Start Arc 9 (Custom)",
+    "Begin Arc 9 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+9(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1043]",
+    "Cliff",
+    "Elinalise",
+    "Badigadi",
+    "curse research",
+    "university challenge"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Fitz and Reunion — Silent Seven Stars and a research agreement",
+   "key": [
+    "[MT-ARC:9]",
+    "Arc 9:",
+    "Arc: 9;",
+    "Arc: 9 |",
+    "Start Arc 9 (Premade)",
+    "Begin Arc 9 (Premade)",
+    "Start Arc 9 (Custom)",
+    "Begin Arc 9 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+9(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1044]",
+    "Nanahoshi",
+    "Silent Seven Stars",
+    "Shizuka",
+    "white mask",
+    "summoning research"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Fitz and Reunion — identity, trust and the private conversation",
+   "key": [
+    "[MT-ARC:9]",
+    "Arc 9:",
+    "Arc: 9;",
+    "Arc: 9 |",
+    "Start Arc 9 (Premade)",
+    "Begin Arc 9 (Premade)",
+    "Start Arc 9 (Custom)",
+    "Begin Arc 9 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+9(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1045]",
+    "Fitz",
+    "Fitts",
+    "Sylphie",
+    "Sylphiette",
+    "Ariel",
+    "Luke",
+    "rain shelter",
+    "forest outing"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Newlywed Life — the house, automaton and gathering",
+   "key": [
+    "[MT-ARC:10]",
+    "Arc 10:",
+    "Arc: 10;",
+    "Arc: 10 |",
+    "Start Arc 10 (Premade)",
+    "Begin Arc 10 (Premade)",
+    "Start Arc 10 (Custom)",
+    "Begin Arc 10 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+10(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1046]",
+    "house purchase",
+    "haunted house",
+    "new home",
+    "housewarming",
+    "wedding",
+    "reception",
+    "automaton",
+    "Zanoba",
+    "Cliff",
+    "Elinalise"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Newlywed Life — Nanahoshi, a setback and collaborative research",
+   "key": [
+    "[MT-ARC:10]",
+    "Arc 10:",
+    "Arc: 10;",
+    "Arc: 10 |",
+    "Start Arc 10 (Premade)",
+    "Begin Arc 10 (Premade)",
+    "Start Arc 10 (Custom)",
+    "Begin Arc 10 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+10(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1047]",
+    "Nanahoshi",
+    "Silent Seven Stars",
+    "Shizuka",
+    "summoning experiment",
+    "magic circle research",
+    "research setback"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Newlywed Life — Paul's letter, Ruijerd and the sisters' arrival",
+   "key": [
+    "[MT-ARC:10]",
+    "Arc 10:",
+    "Arc: 10;",
+    "Arc: 10 |",
+    "Start Arc 10 (Premade)",
+    "Begin Arc 10 (Premade)",
+    "Start Arc 10 (Custom)",
+    "Begin Arc 10 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+10(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1048]",
+    "Paul",
+    "Norn",
+    "Aisha",
+    "Ruijerd",
+    "family letter",
+    "sisters arrive",
+    "sisters arrival"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 11 — Norn's school adjustment and the sisters' choices",
+   "key": [
+    "[MT-ARC:11]",
+    "Arc 11:",
+    "Arc: 11;",
+    "Arc: 11 |",
+    "Start Arc 11 (Premade)",
+    "Begin Arc 11 (Premade)",
+    "Start Arc 11 (Custom)",
+    "Begin Arc 11 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+11(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1063]",
+    "Norn's room",
+    "Norn’s room",
+    "school withdrawal",
+    "Norn's schooling",
+    "Norn’s schooling",
+    "boarding school",
+    "Norn Greyrat",
+    "Aisha Greyrat"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 11 — Rescue letter and departure decision",
+   "key": [
+    "[MT-ARC:11]",
+    "Arc 11:",
+    "Arc: 11;",
+    "Arc: 11 |",
+    "Start Arc 11 (Premade)",
+    "Begin Arc 11 (Premade)",
+    "Start Arc 11 (Custom)",
+    "Begin Arc 11 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+11(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1064]",
+    "Geese's letter",
+    "Geese’s letter",
+    "Gisu's letter",
+    "Gisu’s letter",
+    "rescue summons",
+    "Begaritt preparations",
+    "Turning Point 3",
+    "Third Turning Point"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 11 — Teleportation access, desert travel and the Rapan approach",
+   "key": [
+    "[MT-ARC:11]",
+    "Arc 11:",
+    "Arc: 11;",
+    "Arc: 11 |",
+    "Start Arc 11 (Premade)",
+    "Begin Arc 11 (Premade)",
+    "Start Arc 11 (Custom)",
+    "Begin Arc 11 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+11(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1065]",
+    "Begaritt desert",
+    "Begaritt route",
+    "Begaritt Continent",
+    "Rapan",
+    "desert caravan",
+    "teleportation ruin"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 12 — Rapan reunion, missing Roxy and labyrinth descent",
+   "key": [
+    "[MT-ARC:12]",
+    "Arc 12:",
+    "Arc: 12;",
+    "Arc: 12 |",
+    "Start Arc 12 (Premade)",
+    "Begin Arc 12 (Premade)",
+    "Start Arc 12 (Custom)",
+    "Begin Arc 12 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+12(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1068]",
+    "Rapan inn",
+    "Paul's rescue party",
+    "Paul’s rescue party",
+    "Roxy missing",
+    "missing Roxy",
+    "labyrinth expedition",
+    "Teleportation Labyrinth",
+    "teleportation trap"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 12 — Guardian chamber and Zenith's rescue",
+   "key": [
+    "[MT-ARC:12]",
+    "Arc 12:",
+    "Arc: 12;",
+    "Arc: 12 |",
+    "Start Arc 12 (Premade)",
+    "Begin Arc 12 (Premade)",
+    "Start Arc 12 (Custom)",
+    "Begin Arc 12 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+12(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1069]",
+    "Manatite Hydra",
+    "labyrinth guardian",
+    "guardian chamber",
+    "Zenith's crystal",
+    "Zenith’s crystal",
+    "Hydra chamber"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 12 — Recovery, homecoming and the family report",
+   "key": [
+    "[MT-ARC:12]",
+    "Arc 12:",
+    "Arc: 12;",
+    "Arc: 12 |",
+    "Start Arc 12 (Premade)",
+    "Begin Arc 12 (Premade)",
+    "Start Arc 12 (Custom)",
+    "Begin Arc 12 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+12(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1070]",
+    "labyrinth aftermath",
+    "rescue aftermath",
+    "Begaritt homecoming",
+    "Zenith's recovery",
+    "Zenith’s recovery",
+    "Paul's grave",
+    "Paul’s grave",
+    "labyrinth report",
+    "Roxy's proposal",
+    "Roxy’s proposal"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 13 — Household care, celebrations and Cliff's wedding",
+   "key": [
+    "[MT-ARC:13]",
+    "Arc 13:",
+    "Arc: 13;",
+    "Arc: 13 |",
+    "Start Arc 13 (Premade)",
+    "Begin Arc 13 (Premade)",
+    "Start Arc 13 (Custom)",
+    "Begin Arc 13 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+13(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1073]",
+    "Cliff's wedding",
+    "Cliff’s wedding",
+    "Elinalise's wedding",
+    "Elinalise’s wedding",
+    "sisters' birthday",
+    "sisters’ birthday",
+    "Lucy Greyrat",
+    "Zenith's care",
+    "Zenith’s care",
+    "household celebration"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 13 — Roxy's teaching, Water King lessons and practical research",
+   "key": [
+    "[MT-ARC:13]",
+    "Arc 13:",
+    "Arc: 13;",
+    "Arc: 13 |",
+    "Start Arc 13 (Premade)",
+    "Begin Arc 13 (Premade)",
+    "Start Arc 13 (Custom)",
+    "Begin Arc 13 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+13(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1074]",
+    "Ranoa University",
+    "University of Magic",
+    "Magic University",
+    "university classroom",
+    "Roxy teaching",
+    "Roxy class",
+    "Roxy lesson",
+    "Roxy new job",
+    "Roxy's teaching",
+    "Roxy's class",
+    "Roxy's lesson",
+    "Roxy's new job",
+    "Roxy’s teaching",
+    "Roxy’s class",
+    "Roxy’s lesson",
+    "Roxy’s new job",
+    "Professor Roxy",
+    "Roxy teaches",
+    "Roxy is teaching",
+    "Water King lesson",
+    "Water King training",
+    "prosthetic prototype",
+    "Zariff's Prosthetic",
+    "Zariff’s Prosthetic",
+    "automaton research"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 13 — Sara's reunion, graduations and Nanahoshi's next phase",
+   "key": [
+    "[MT-ARC:13]",
+    "Arc 13:",
+    "Arc: 13;",
+    "Arc: 13 |",
+    "Start Arc 13 (Premade)",
+    "Begin Arc 13 (Premade)",
+    "Start Arc 13 (Custom)",
+    "Begin Arc 13 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+13(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1075]",
+    "Sara reunion",
+    "Sara's return",
+    "Sara’s return",
+    "Sara and Suzanne",
+    "graduation ceremony",
+    "graduation plans",
+    "Nanahoshi's fourth phase",
+    "Nanahoshi’s fourth phase",
+    "Phase Four",
+    "Perugius invitation"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 14 — Chaos Breaker audience and research access",
+   "key": [
+    "[MT-ARC:14]",
+    "Arc 14:",
+    "Arc: 14;",
+    "Arc: 14 |",
+    "Start Arc 14 (Premade)",
+    "Begin Arc 14 (Premade)",
+    "Start Arc 14 (Custom)",
+    "Begin Arc 14 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+14(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1078]",
+    "Chaos Breaker",
+    "Floating Fortress",
+    "Perugius audience",
+    "audience with Perugius",
+    "Perugius's castle",
+    "Perugius’s castle",
+    "Sylvaril"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 14 — Nanahoshi's illness and the Demon Continent treatment journey",
+   "key": [
+    "[MT-ARC:14]",
+    "Arc 14:",
+    "Arc: 14;",
+    "Arc: 14 |",
+    "Start Arc 14 (Premade)",
+    "Begin Arc 14 (Premade)",
+    "Start Arc 14 (Custom)",
+    "Begin Arc 14 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+14(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1079]",
+    "Dryne Syndrome",
+    "Drain Syndrome",
+    "Nanahoshi's illness",
+    "Nanahoshi’s illness",
+    "Sokas Grass",
+    "Sokasu Grass",
+    "Kishirika treatment",
+    "Fort Necross",
+    "Atofe",
+    "Atoferatofe"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 14 — Fourth Turning Point and the future visitor's warning",
+   "key": [
+    "[MT-ARC:14]",
+    "Arc 14:",
+    "Arc: 14;",
+    "Arc: 14 |",
+    "Start Arc 14 (Premade)",
+    "Begin Arc 14 (Premade)",
+    "Start Arc 14 (Custom)",
+    "Begin Arc 14 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+14(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1080]",
+    "Turning Point 4",
+    "Fourth Turning Point",
+    "Oldeus",
+    "future Rudeus",
+    "future visitor",
+    "elderly visitor",
+    "future diary",
+    "basement warning",
+    "contaminated rat"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 15 — Future diary: evidence and private knowledge",
+   "key": [
+    "[MT-ARC:15]",
+    "Arc 15:",
+    "Arc: 15;",
+    "Arc: 15 |",
+    "Start Arc 15 (Premade)",
+    "Begin Arc 15 (Premade)",
+    "Start Arc 15 (Custom)",
+    "Begin Arc 15 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+15(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1083]",
+    "Oldeus",
+    "future diary",
+    "future self's diary",
+    "future self’s diary",
+    "Nanahoshi"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 15 — Orsted rematch and a chosen alliance",
+   "key": [
+    "[MT-ARC:15]",
+    "Arc 15:",
+    "Arc: 15;",
+    "Arc: 15 |",
+    "Start Arc 15 (Premade)",
+    "Begin Arc 15 (Premade)",
+    "Start Arc 15 (Custom)",
+    "Begin Arc 15 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+15(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1084]",
+    "Orsted",
+    "Dragon God",
+    "Magic Armor",
+    "Hitogami"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 15 — Eris returns: clarification before commitment",
+   "key": [
+    "[MT-ARC:15]",
+    "Arc 15:",
+    "Arc: 15;",
+    "Arc: 15 |",
+    "Start Arc 15 (Premade)",
+    "Begin Arc 15 (Premade)",
+    "Start Arc 15 (Custom)",
+    "Begin Arc 15 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+15(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1085]",
+    "Eris",
+    "Sword Sanctuary",
+    "letter to Eris"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 16 — A summoned guardian and household safety",
+   "key": [
+    "[MT-ARC:16]",
+    "Arc 16:",
+    "Arc: 16;",
+    "Arc: 16 |",
+    "Start Arc 16 (Premade)",
+    "Begin Arc 16 (Premade)",
+    "Start Arc 16 (Custom)",
+    "Begin Arc 16 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+16(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1088]",
+    "Sacred Beast",
+    "Leo",
+    "guardian summoning",
+    "Orsted"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 16 — Library Labyrinth: Derrick's journal and Ariel's purpose",
+   "key": [
+    "[MT-ARC:16]",
+    "Arc 16:",
+    "Arc: 16;",
+    "Arc: 16 |",
+    "Start Arc 16 (Premade)",
+    "Begin Arc 16 (Premade)",
+    "Start Arc 16 (Custom)",
+    "Begin Arc 16 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+16(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1089]",
+    "Library Labyrinth",
+    "Beethove Tovetha",
+    "Derrick Redbat",
+    "Derrick's journal",
+    "Derrick’s journal"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 16 — Perugius's audience and Asura preparations",
+   "key": [
+    "[MT-ARC:16]",
+    "Arc 16:",
+    "Arc: 16;",
+    "Arc: 16 |",
+    "Start Arc 16 (Premade)",
+    "Begin Arc 16 (Premade)",
+    "Start Arc 16 (Custom)",
+    "Begin Arc 16 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+16(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1090]",
+    "Perugius",
+    "Chaos Breaker",
+    "Ariel",
+    "Luke"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 17 — Upper Jaw route and Tristina's testimony",
+   "key": [
+    "[MT-ARC:17]",
+    "Arc 17:",
+    "Arc: 17;",
+    "Arc: 17 |",
+    "Start Arc 17 (Premade)",
+    "Begin Arc 17 (Premade)",
+    "Start Arc 17 (Custom)",
+    "Begin Arc 17 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+17(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1093]",
+    "Red Wyrm's Upper Jaw",
+    "Red Wyrm’s Upper Jaw",
+    "Red Dragon's Upper Jaw",
+    "Red Dragon’s Upper Jaw",
+    "Tristina",
+    "Tris",
+    "Purplehorse"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 17 — Ars: political exposure and lethal opposition",
+   "key": [
+    "[MT-ARC:17]",
+    "Arc 17:",
+    "Arc: 17;",
+    "Arc: 17 |",
+    "Start Arc 17 (Premade)",
+    "Begin Arc 17 (Premade)",
+    "Start Arc 17 (Custom)",
+    "Begin Arc 17 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+17(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1094]",
+    "Ars",
+    "Reida Reia",
+    "Auber Corvette",
+    "Darius",
+    "Grabell",
+    "Tristina"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 17 — Luke's crisis and the succession settlement",
+   "key": [
+    "[MT-ARC:17]",
+    "Arc 17:",
+    "Arc: 17;",
+    "Arc: 17 |",
+    "Start Arc 17 (Premade)",
+    "Begin Arc 17 (Premade)",
+    "Start Arc 17 (Custom)",
+    "Begin Arc 17 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+17(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1095]",
+    "Luke",
+    "Ariel",
+    "Orsted",
+    "Asura succession",
+    "Ariel's coronation",
+    "Ariel’s coronation"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 18 — Linia returns: safety, debt and work",
+   "key": [
+    "[MT-ARC:18]",
+    "Arc 18:",
+    "Arc: 18;",
+    "Arc: 18 |",
+    "Start Arc 18 (Premade)",
+    "Begin Arc 18 (Premade)",
+    "Start Arc 18 (Custom)",
+    "Begin Arc 18 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+18(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1098]",
+    "Linia",
+    "Rinia",
+    "Linia Dedoldia",
+    "Rinia Dedoldia",
+    "Boreas slave traders"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 18 — A mercenary organization with real limits",
+   "key": [
+    "[MT-ARC:18]",
+    "Arc 18:",
+    "Arc: 18;",
+    "Arc: 18 |",
+    "Start Arc 18 (Premade)",
+    "Begin Arc 18 (Premade)",
+    "Start Arc 18 (Custom)",
+    "Begin Arc 18 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+18(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1099]",
+    "Linia",
+    "Rinia",
+    "Aisha",
+    "Pursena",
+    "Rudo Mercenary Company",
+    "Rudo Mercenary Corps",
+    "mercenary office"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 18 — Doldia: the Sacred Beast, Pursena and a negotiated return",
+   "key": [
+    "[MT-ARC:18]",
+    "Arc 18:",
+    "Arc: 18;",
+    "Arc: 18 |",
+    "Start Arc 18 (Premade)",
+    "Begin Arc 18 (Premade)",
+    "Start Arc 18 (Custom)",
+    "Begin Arc 18 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+18(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1100]",
+    "Doldia Village",
+    "Doldia",
+    "Dedoldia",
+    "Adoldia",
+    "Sacred Beast",
+    "Leo",
+    "Pursena",
+    "Gyes"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 19 — Shirone summons and royal audience",
+   "key": [
+    "[MT-ARC:19]",
+    "Arc 19:",
+    "Arc: 19;",
+    "Arc: 19 |",
+    "Start Arc 19 (Premade)",
+    "Begin Arc 19 (Premade)",
+    "Start Arc 19 (Custom)",
+    "Begin Arc 19 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+19(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1103]",
+    "Shirone royal palace",
+    "Pax's summons",
+    "Zanoba's summons",
+    "Ginger York",
+    "Pax Shirone"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 19 — Fort Karon defense",
+   "key": [
+    "[MT-ARC:19]",
+    "Arc 19:",
+    "Arc: 19;",
+    "Arc: 19 |",
+    "Start Arc 19 (Premade)",
+    "Begin Arc 19 (Premade)",
+    "Start Arc 19 (Custom)",
+    "Begin Arc 19 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+19(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1104]",
+    "Fort Karon",
+    "Karon fortress",
+    "Garrick Babiliti"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 19 — Palace crisis and Randolph's loyalties",
+   "key": [
+    "[MT-ARC:19]",
+    "Arc 19:",
+    "Arc: 19;",
+    "Arc: 19 |",
+    "Start Arc 19 (Premade)",
+    "Begin Arc 19 (Premade)",
+    "Start Arc 19 (Custom)",
+    "Begin Arc 19 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+19(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1105]",
+    "Randolph Marianne",
+    "Pax's balcony",
+    "Benedict Kingdragon",
+    "Benedict Shirone",
+    "Shirone palace revolt"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 20 — Sharia graduation and Zanoba's shop",
+   "key": [
+    "[MT-ARC:20]",
+    "Arc 20:",
+    "Arc: 20;",
+    "Arc: 20 |",
+    "Start Arc 20 (Premade)",
+    "Begin Arc 20 (Premade)",
+    "Start Arc 20 (Custom)",
+    "Begin Arc 20 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+20(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1108]",
+    "Cliff's graduation",
+    "Zanoba's graduation",
+    "Zanoba's shop",
+    "Zanoba Store",
+    "university graduation ceremony"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 20 — Cliff's homecoming and Church audience",
+   "key": [
+    "[MT-ARC:20]",
+    "Arc 20:",
+    "Arc: 20;",
+    "Arc: 20 |",
+    "Start Arc 20 (Premade)",
+    "Begin Arc 20 (Premade)",
+    "Start Arc 20 (Custom)",
+    "Begin Arc 20 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+20(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1109]",
+    "Cliff's homecoming",
+    "Harry Grimoire",
+    "Millis Church Headquarters",
+    "Millis Church headquarters",
+    "Cliff's grandfather"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 20 — First Latreia family visit",
+   "key": [
+    "[MT-ARC:20]",
+    "Arc 20:",
+    "Arc: 20;",
+    "Arc: 20 |",
+    "Start Arc 20 (Premade)",
+    "Begin Arc 20 (Premade)",
+    "Start Arc 20 (Custom)",
+    "Begin Arc 20 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+20(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1110]",
+    "Latreia estate",
+    "Latreia mansion",
+    "House of Latria",
+    "Claire Latreia",
+    "Claire Latria",
+    "Therese Latreia"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 21 — Zenith's disappearance and care dispute",
+   "key": [
+    "[MT-ARC:21]",
+    "Arc 21:",
+    "Arc: 21;",
+    "Arc: 21 |",
+    "Start Arc 21 (Premade)",
+    "Begin Arc 21 (Premade)",
+    "Start Arc 21 (Custom)",
+    "Begin Arc 21 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+21(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1113]",
+    "Zenith's disappearance",
+    "Zenith's abduction",
+    "Latreia custody dispute",
+    "Zenith rescue in Millishion",
+    "Latreia estate",
+    "Latreia mansion"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 21 — Temple Knights and the Blessed Child",
+   "key": [
+    "[MT-ARC:21]",
+    "Arc 21:",
+    "Arc: 21;",
+    "Arc: 21 |",
+    "Start Arc 21 (Premade)",
+    "Begin Arc 21 (Premade)",
+    "Start Arc 21 (Custom)",
+    "Begin Arc 21 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+21(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1114]",
+    "Temple Knights",
+    "Blessed Child of Memory",
+    "Miko of Memory",
+    "Millis Church Headquarters",
+    "Harry Grimoire"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 21 — Zenith's inner life and Geese's disclosure",
+   "key": [
+    "[MT-ARC:21]",
+    "Arc 21:",
+    "Arc: 21;",
+    "Arc: 21 |",
+    "Start Arc 21 (Premade)",
+    "Begin Arc 21 (Premade)",
+    "Start Arc 21 (Custom)",
+    "Begin Arc 21 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+21(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1115]",
+    "Zenith memory examination",
+    "Zenith's memories",
+    "Geese's letter",
+    "Gisu's letter",
+    "Geese confession",
+    "Geese's disclosure"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 22 — Randolph and the King Dragon Realm",
+   "key": [
+    "[MT-ARC:22]",
+    "Arc 22:",
+    "Arc: 22;",
+    "Arc: 22 |",
+    "Start Arc 22 (Premade)",
+    "Begin Arc 22 (Premade)",
+    "Start Arc 22 (Custom)",
+    "Begin Arc 22 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+22(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1118]",
+    "King Dragon Realm royal palace",
+    "Randolph Marianne",
+    "Benedict Kingdragon",
+    "Benedict Shirone",
+    "King Dragon Realm audience"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 22 — Fort Necross and Atofe's challenge",
+   "key": [
+    "[MT-ARC:22]",
+    "Arc 22:",
+    "Arc: 22;",
+    "Arc: 22 |",
+    "Start Arc 22 (Premade)",
+    "Begin Arc 22 (Premade)",
+    "Start Arc 22 (Custom)",
+    "Begin Arc 22 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+22(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1119]",
+    "Fort Necross",
+    "Fort Necros",
+    "Atofe",
+    "Atoferatofe",
+    "Moore of Fort Necross"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 22 — Reports, communications and alliance limits",
+   "key": [
+    "[MT-ARC:22]",
+    "Arc 22:",
+    "Arc: 22;",
+    "Arc: 22 |",
+    "Start Arc 22 (Premade)",
+    "Begin Arc 22 (Premade)",
+    "Start Arc 22 (Custom)",
+    "Begin Arc 22 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+22(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1120]",
+    "Orsted's office",
+    "Orsted office",
+    "alliance report to Orsted",
+    "Geese recruitment investigation",
+    "Dragon God faction planning"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 23 — Perugius's trial and Divine Continent christening",
+   "key": [
+    "[MT-ARC:23]",
+    "Arc 23:",
+    "Arc: 23;",
+    "Arc: 23 |",
+    "Start Arc 23 (Premade)",
+    "Begin Arc 23 (Premade)",
+    "Start Arc 23 (Custom)",
+    "Begin Arc 23 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+23(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1123]",
+    "Perugius's trial",
+    "Aluce",
+    "Divine Continent christening",
+    "Sieghart christening",
+    "Sieghart Saladin"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 23 — Nanahoshi's interworld device and waiting decision",
+   "key": [
+    "[MT-ARC:23]",
+    "Arc 23:",
+    "Arc: 23;",
+    "Arc: 23 |",
+    "Start Arc 23 (Premade)",
+    "Begin Arc 23 (Premade)",
+    "Start Arc 23 (Custom)",
+    "Begin Arc 23 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+23(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1124]",
+    "Nanahoshi's return experiment",
+    "interworld teleportation device",
+    "Nanahoshi suspended animation",
+    "Nanahoshi's fate",
+    "Nanahoshi laboratory"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[arc scenes] Arc 23 — Sword Sanctum, Conflict Zone and further leads",
+   "key": [
+    "[MT-ARC:23]",
+    "Arc 23:",
+    "Arc: 23;",
+    "Arc: 23 |",
+    "Start Arc 23 (Premade)",
+    "Begin Arc 23 (Premade)",
+    "Start Arc 23 (Custom)",
+    "Begin Arc 23 (Custom)",
+    "/(?:^|[\\r\\n]|\\x01(?:[^:\\r\\n]*:)?[ \\t]*)[ \\t]*(?:Start(?:[ \\t]+at)?|Begin)[ \\t]+Arc[ \\t]+23(?:[ \\t]+\\((?:Premade|Custom)\\))?[ \\t]*(?=$|[\\r\\n])/im"
+   ],
+   "keysecondary": [
+    "[MT-SCENE:1125]",
+    "Sword Sanctum",
+    "Holy Land of Swords",
+    "Hammerpolka",
+    "Sara",
+    "Soldat Heckler",
+    "Kalman III",
+    "Kishirika",
+    "Kalman II"
+   ],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": true,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[Mushoku tensei start handler] Start at Arc 2-B: Hearth & Home",
+   "key": [
+    "/^(?:(?!(?:<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:))[\\s\\S]|(?=(?<MTEntryOuterXMLSkip><(?<MTEntryOuterTag>Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^\\x01]*(?=\\x01|$))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$))))\\k<MTEntryOuterXMLSkip>|<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*(?=\\x01|$)|(?=(?<MTEntryOuterSectionSkip>(?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:)(?:(?!(?:<\\/(?:World_State|Player_State|Blocks)\\b|\\x01|$|[\\r\\n](?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Current[ \\t]+(?:Arc|Location|Scene)|Arc|Game[ \\t]+Mode|Memory|Location|Loc|Time|Wx|Weather|World[ \\t]+Status|(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)|Equipment|Inventory|Gear|Skills|Abilities|Touki|Injuries|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:|[ \\t]*[\\r\\n])))[^\\x01])*))\\k<MTEntryOuterSectionSkip>)*?(?:(?:(?:^|[\\r\\n]|\\x01[^:\\r\\n\\x01]*:|(?<=<\\/(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\s*>))(?!(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*(?:\\b(?:Equipment|Inventory|Gear|Items|Possessions|Magic\\s+Schools?|Time|Wx|Weather|Loc|Location|Current\\s+Location|(?:NPCs\\s+Present|Current\\s+NPCs|Present\\s+NPCs)|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies|Skills|Abilities|Proficiencies|Spells|Touki)\\s*[*_\\x60]*\\s*:|(?<![^\\r\\n|\\x01])[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>]*[ \\t]*)?(?:[^:\\r\\n|\\x01]{1,120}:[ \\t]*)?(?:Sword|Water|North)\\s+God\\s+Style\\s*(?:[*_\\x60]*\\s*:|LV\\b)))(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*?(?:(?:(?:Start at Arc 2-B))|(?:(?:Start at Arc 2-B \\(Premade\\)))|(?:(?:start at hearth & home))|(?:(?:start at hearth and home))|(?:(?:start at stay home)))))/i",
+    "Start at Arc 2-B",
+    "Start Arc 2-B",
+    "Begin Arc 2-B",
+    "Current Arc: Arc 2-B: Hearth & Home",
+    "Arc 2-B:",
+    "[MT-ARC:2-B]",
+    "Arc: 2-B;",
+    "Arc: 2-B |",
+    "Hearth & Home",
+    "Hearth and Home",
+    "start at stay home"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": false,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[Mushoku tensei start handler] Start at Arc 3-B: The Silent Road",
+   "key": [
+    "/^(?:(?!(?:<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:))[\\s\\S]|(?=(?<MTEntryOuterXMLSkip><(?<MTEntryOuterTag>Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^\\x01]*(?=\\x01|$))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$))))\\k<MTEntryOuterXMLSkip>|<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*(?=\\x01|$)|(?=(?<MTEntryOuterSectionSkip>(?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:)(?:(?!(?:<\\/(?:World_State|Player_State|Blocks)\\b|\\x01|$|[\\r\\n](?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Current[ \\t]+(?:Arc|Location|Scene)|Arc|Game[ \\t]+Mode|Memory|Location|Loc|Time|Wx|Weather|World[ \\t]+Status|(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)|Equipment|Inventory|Gear|Skills|Abilities|Touki|Injuries|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:|[ \\t]*[\\r\\n])))[^\\x01])*))\\k<MTEntryOuterSectionSkip>)*?(?:(?:(?:^|[\\r\\n]|\\x01[^:\\r\\n\\x01]*:|(?<=<\\/(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\s*>))(?!(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*(?:\\b(?:Equipment|Inventory|Gear|Items|Possessions|Magic\\s+Schools?|Time|Wx|Weather|Loc|Location|Current\\s+Location|(?:NPCs\\s+Present|Current\\s+NPCs|Present\\s+NPCs)|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies|Skills|Abilities|Proficiencies|Spells|Touki)\\s*[*_\\x60]*\\s*:|(?<![^\\r\\n|\\x01])[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>]*[ \\t]*)?(?:[^:\\r\\n|\\x01]{1,120}:[ \\t]*)?(?:Sword|Water|North)\\s+God\\s+Style\\s*(?:[*_\\x60]*\\s*:|LV\\b)))(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*?(?:(?:(?:Start at Arc 3-B))|(?:(?:Start at Arc 3-B \\(Premade\\)))|(?:(?:start at the silent road))|(?:(?:start at silent road)))))/i",
+    "Start at Arc 3-B",
+    "Start Arc 3-B",
+    "Begin Arc 3-B",
+    "Current Arc: Arc 3-B: The Silent Road",
+    "Arc 3-B:",
+    "[MT-ARC:3-B]",
+    "Arc: 3-B;",
+    "Arc: 3-B |",
+    "The Silent Road",
+    "start at silent road"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": false,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[Mushoku tensei start handler] Start at Arc 3-C: The Silent Palace",
+   "key": [
+    "/^(?:(?!(?:<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:))[\\s\\S]|(?=(?<MTEntryOuterXMLSkip><(?<MTEntryOuterTag>Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^\\x01]*(?=\\x01|$))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$))))\\k<MTEntryOuterXMLSkip>|<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*(?=\\x01|$)|(?=(?<MTEntryOuterSectionSkip>(?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:)(?:(?!(?:<\\/(?:World_State|Player_State|Blocks)\\b|\\x01|$|[\\r\\n](?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Current[ \\t]+(?:Arc|Location|Scene)|Arc|Game[ \\t]+Mode|Memory|Location|Loc|Time|Wx|Weather|World[ \\t]+Status|(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)|Equipment|Inventory|Gear|Skills|Abilities|Touki|Injuries|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:|[ \\t]*[\\r\\n])))[^\\x01])*))\\k<MTEntryOuterSectionSkip>)*?(?:(?:(?:^|[\\r\\n]|\\x01[^:\\r\\n\\x01]*:|(?<=<\\/(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\s*>))(?!(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*(?:\\b(?:Equipment|Inventory|Gear|Items|Possessions|Magic\\s+Schools?|Time|Wx|Weather|Loc|Location|Current\\s+Location|(?:NPCs\\s+Present|Current\\s+NPCs|Present\\s+NPCs)|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies|Skills|Abilities|Proficiencies|Spells|Touki)\\s*[*_\\x60]*\\s*:|(?<![^\\r\\n|\\x01])[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>]*[ \\t]*)?(?:[^:\\r\\n|\\x01]{1,120}:[ \\t]*)?(?:Sword|Water|North)\\s+God\\s+Style\\s*(?:[*_\\x60]*\\s*:|LV\\b)))(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*?(?:(?:(?:Start at Arc 3-C))|(?:(?:Start at Arc 3-C \\(Premade\\)))|(?:(?:start at the silent palace))|(?:(?:start at silent palace)))))/i",
+    "Start at Arc 3-C",
+    "Start Arc 3-C",
+    "Begin Arc 3-C",
+    "Current Arc: Arc 3-C: The Silent Palace",
+    "Arc 3-C:",
+    "[MT-ARC:3-C]",
+    "Arc: 3-C;",
+    "Arc: 3-C |",
+    "The Silent Palace",
+    "start at silent palace"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": false,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[Mushoku tensei start handler] Start at Arc 3-D: The Father's Road",
+   "key": [
+    "/^(?:(?!(?:<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:))[\\s\\S]|(?=(?<MTEntryOuterXMLSkip><(?<MTEntryOuterTag>Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^\\x01]*(?=\\x01|$))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$))))\\k<MTEntryOuterXMLSkip>|<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*(?=\\x01|$)|(?=(?<MTEntryOuterSectionSkip>(?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:)(?:(?!(?:<\\/(?:World_State|Player_State|Blocks)\\b|\\x01|$|[\\r\\n](?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Current[ \\t]+(?:Arc|Location|Scene)|Arc|Game[ \\t]+Mode|Memory|Location|Loc|Time|Wx|Weather|World[ \\t]+Status|(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)|Equipment|Inventory|Gear|Skills|Abilities|Touki|Injuries|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:|[ \\t]*[\\r\\n])))[^\\x01])*))\\k<MTEntryOuterSectionSkip>)*?(?:(?:(?:^|[\\r\\n]|\\x01[^:\\r\\n\\x01]*:|(?<=<\\/(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\s*>))(?!(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*(?:\\b(?:Equipment|Inventory|Gear|Items|Possessions|Magic\\s+Schools?|Time|Wx|Weather|Loc|Location|Current\\s+Location|(?:NPCs\\s+Present|Current\\s+NPCs|Present\\s+NPCs)|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies|Skills|Abilities|Proficiencies|Spells|Touki)\\s*[*_\\x60]*\\s*:|(?<![^\\r\\n|\\x01])[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>]*[ \\t]*)?(?:[^:\\r\\n|\\x01]{1,120}:[ \\t]*)?(?:Sword|Water|North)\\s+God\\s+Style\\s*(?:[*_\\x60]*\\s*:|LV\\b)))(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*?(?:(?:(?:Start at Arc 3-D))|(?:(?:Start at Arc 3-D \\(Premade\\)))|(?:(?:start at the father's road))|(?:(?:start at fathers road)))))/i",
+    "Start at Arc 3-D",
+    "Start Arc 3-D",
+    "Begin Arc 3-D",
+    "Current Arc: Arc 3-D: The Father's Road",
+    "Arc 3-D:",
+    "[MT-ARC:3-D]",
+    "Arc: 3-D;",
+    "Arc: 3-D |",
+    "The Father's Road",
+    "The Father’s Road",
+    "start at fathers road"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": false,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[Mushoku tensei start handler] Start at Arc 3-E: The Gilded Cage",
+   "key": [
+    "/^(?:(?!(?:<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:))[\\s\\S]|(?=(?<MTEntryOuterXMLSkip><(?<MTEntryOuterTag>Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^\\x01]*(?=\\x01|$))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$))))\\k<MTEntryOuterXMLSkip>|<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*(?=\\x01|$)|(?=(?<MTEntryOuterSectionSkip>(?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:)(?:(?!(?:<\\/(?:World_State|Player_State|Blocks)\\b|\\x01|$|[\\r\\n](?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Current[ \\t]+(?:Arc|Location|Scene)|Arc|Game[ \\t]+Mode|Memory|Location|Loc|Time|Wx|Weather|World[ \\t]+Status|(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)|Equipment|Inventory|Gear|Skills|Abilities|Touki|Injuries|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:|[ \\t]*[\\r\\n])))[^\\x01])*))\\k<MTEntryOuterSectionSkip>)*?(?:(?:(?:^|[\\r\\n]|\\x01[^:\\r\\n\\x01]*:|(?<=<\\/(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\s*>))(?!(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*(?:\\b(?:Equipment|Inventory|Gear|Items|Possessions|Magic\\s+Schools?|Time|Wx|Weather|Loc|Location|Current\\s+Location|(?:NPCs\\s+Present|Current\\s+NPCs|Present\\s+NPCs)|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies|Skills|Abilities|Proficiencies|Spells|Touki)\\s*[*_\\x60]*\\s*:|(?<![^\\r\\n|\\x01])[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>]*[ \\t]*)?(?:[^:\\r\\n|\\x01]{1,120}:[ \\t]*)?(?:Sword|Water|North)\\s+God\\s+Style\\s*(?:[*_\\x60]*\\s*:|LV\\b)))(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*?(?:(?:(?:Start at Arc 3-E))|(?:(?:Start at Arc 3-E \\(Premade\\)))|(?:(?:start at the gilded cage))|(?:(?:start at gilded cage)))))/i",
+    "Start at Arc 3-E",
+    "Start Arc 3-E",
+    "Begin Arc 3-E",
+    "Current Arc: Arc 3-E: The Gilded Cage",
+    "Arc 3-E:",
+    "[MT-ARC:3-E]",
+    "Arc: 3-E;",
+    "Arc: 3-E |",
+    "The Gilded Cage",
+    "start at gilded cage"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": false,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[Mushoku tensei start handler] Start at Arc 3-F: Two Graves Unwritten",
+   "key": [
+    "/^(?:(?!(?:<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:))[\\s\\S]|(?=(?<MTEntryOuterXMLSkip><(?<MTEntryOuterTag>Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^\\x01]*(?=\\x01|$))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$))))\\k<MTEntryOuterXMLSkip>|<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*(?=\\x01|$)|(?=(?<MTEntryOuterSectionSkip>(?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:)(?:(?!(?:<\\/(?:World_State|Player_State|Blocks)\\b|\\x01|$|[\\r\\n](?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Current[ \\t]+(?:Arc|Location|Scene)|Arc|Game[ \\t]+Mode|Memory|Location|Loc|Time|Wx|Weather|World[ \\t]+Status|(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)|Equipment|Inventory|Gear|Skills|Abilities|Touki|Injuries|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:|[ \\t]*[\\r\\n])))[^\\x01])*))\\k<MTEntryOuterSectionSkip>)*?(?:(?:(?:^|[\\r\\n]|\\x01[^:\\r\\n\\x01]*:|(?<=<\\/(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\s*>))(?!(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*(?:\\b(?:Equipment|Inventory|Gear|Items|Possessions|Magic\\s+Schools?|Time|Wx|Weather|Loc|Location|Current\\s+Location|(?:NPCs\\s+Present|Current\\s+NPCs|Present\\s+NPCs)|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies|Skills|Abilities|Proficiencies|Spells|Touki)\\s*[*_\\x60]*\\s*:|(?<![^\\r\\n|\\x01])[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>]*[ \\t]*)?(?:[^:\\r\\n|\\x01]{1,120}:[ \\t]*)?(?:Sword|Water|North)\\s+God\\s+Style\\s*(?:[*_\\x60]*\\s*:|LV\\b)))(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*?(?:(?:(?:Start at Arc 3-F))|(?:(?:Start at Arc 3-F \\(Premade\\)))|(?:(?:start at two graves unwritten)))))/i",
+    "Start at Arc 3-F",
+    "Start Arc 3-F",
+    "Begin Arc 3-F",
+    "Current Arc: Arc 3-F: Two Graves Unwritten",
+    "Arc 3-F:",
+    "[MT-ARC:3-F]",
+    "Arc: 3-F;",
+    "Arc: 3-F |",
+    "Two Graves Unwritten"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": false,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[Mushoku tensei start handler] Start at Arc 3-G: The Prodigal Daughter",
+   "key": [
+    "/^(?:(?!(?:<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:))[\\s\\S]|(?=(?<MTEntryOuterXMLSkip><(?<MTEntryOuterTag>Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^\\x01]*(?=\\x01|$))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$))))\\k<MTEntryOuterXMLSkip>|<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*(?=\\x01|$)|(?=(?<MTEntryOuterSectionSkip>(?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:)(?:(?!(?:<\\/(?:World_State|Player_State|Blocks)\\b|\\x01|$|[\\r\\n](?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Current[ \\t]+(?:Arc|Location|Scene)|Arc|Game[ \\t]+Mode|Memory|Location|Loc|Time|Wx|Weather|World[ \\t]+Status|(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)|Equipment|Inventory|Gear|Skills|Abilities|Touki|Injuries|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:|[ \\t]*[\\r\\n])))[^\\x01])*))\\k<MTEntryOuterSectionSkip>)*?(?:(?:(?:^|[\\r\\n]|\\x01[^:\\r\\n\\x01]*:|(?<=<\\/(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\s*>))(?!(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*(?:\\b(?:Equipment|Inventory|Gear|Items|Possessions|Magic\\s+Schools?|Time|Wx|Weather|Loc|Location|Current\\s+Location|(?:NPCs\\s+Present|Current\\s+NPCs|Present\\s+NPCs)|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies|Skills|Abilities|Proficiencies|Spells|Touki)\\s*[*_\\x60]*\\s*:|(?<![^\\r\\n|\\x01])[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>]*[ \\t]*)?(?:[^:\\r\\n|\\x01]{1,120}:[ \\t]*)?(?:Sword|Water|North)\\s+God\\s+Style\\s*(?:[*_\\x60]*\\s*:|LV\\b)))(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*?(?:(?:(?:Start at Arc 3-G))|(?:(?:Start at Arc 3-G \\(Premade\\)))|(?:(?:start at the prodigal daughter)))))/i",
+    "Start at Arc 3-G",
+    "Start Arc 3-G",
+    "Begin Arc 3-G",
+    "Current Arc: Arc 3-G: The Prodigal Daughter",
+    "Arc 3-G:",
+    "[MT-ARC:3-G]",
+    "Arc: 3-G;",
+    "Arc: 3-G |",
+    "The Prodigal Daughter",
+    "start at prodigal daughter"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": false,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[Mushoku tensei start handler] Start at Arc 3-H: The Master's Road",
+   "key": [
+    "/^(?:(?!(?:<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:))[\\s\\S]|(?=(?<MTEntryOuterXMLSkip><(?<MTEntryOuterTag>Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^\\x01]*(?=\\x01|$))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$))))\\k<MTEntryOuterXMLSkip>|<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*(?=\\x01|$)|(?=(?<MTEntryOuterSectionSkip>(?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:)(?:(?!(?:<\\/(?:World_State|Player_State|Blocks)\\b|\\x01|$|[\\r\\n](?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Current[ \\t]+(?:Arc|Location|Scene)|Arc|Game[ \\t]+Mode|Memory|Location|Loc|Time|Wx|Weather|World[ \\t]+Status|(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)|Equipment|Inventory|Gear|Skills|Abilities|Touki|Injuries|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:|[ \\t]*[\\r\\n])))[^\\x01])*))\\k<MTEntryOuterSectionSkip>)*?(?:(?:(?:^|[\\r\\n]|\\x01[^:\\r\\n\\x01]*:|(?<=<\\/(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\s*>))(?!(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*(?:\\b(?:Equipment|Inventory|Gear|Items|Possessions|Magic\\s+Schools?|Time|Wx|Weather|Loc|Location|Current\\s+Location|(?:NPCs\\s+Present|Current\\s+NPCs|Present\\s+NPCs)|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies|Skills|Abilities|Proficiencies|Spells|Touki)\\s*[*_\\x60]*\\s*:|(?<![^\\r\\n|\\x01])[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>]*[ \\t]*)?(?:[^:\\r\\n|\\x01]{1,120}:[ \\t]*)?(?:Sword|Water|North)\\s+God\\s+Style\\s*(?:[*_\\x60]*\\s*:|LV\\b)))(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*?(?:(?:(?:Start at Arc 3-H))|(?:(?:Start at Arc 3-H \\(Premade\\)))|(?:(?:start at the master's road))|(?:(?:start at masters road)))))/i",
+    "Start at Arc 3-H",
+    "Start Arc 3-H",
+    "Begin Arc 3-H",
+    "Current Arc: Arc 3-H: The Master's Road",
+    "Arc 3-H:",
+    "[MT-ARC:3-H]",
+    "Arc: 3-H;",
+    "Arc: 3-H |",
+    "The Master's Road",
+    "The Master’s Road",
+    "start at masters road"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": false,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[Mushoku tensei start handler] Start in Sandbox Mode",
+   "key": [
+    "/^(?:(?!(?:<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:))[\\s\\S]|(?=(?<MTEntryOuterXMLSkip><(?<MTEntryOuterTag>Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^\\x01]*(?=\\x01|$))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$))))\\k<MTEntryOuterXMLSkip>|<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*(?=\\x01|$)|(?=(?<MTEntryOuterSectionSkip>(?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:)(?:(?!(?:<\\/(?:World_State|Player_State|Blocks)\\b|\\x01|$|[\\r\\n](?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Current[ \\t]+(?:Arc|Location|Scene)|Arc|Game[ \\t]+Mode|Memory|Location|Loc|Time|Wx|Weather|World[ \\t]+Status|(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)|Equipment|Inventory|Gear|Skills|Abilities|Touki|Injuries|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:|[ \\t]*[\\r\\n])))[^\\x01])*))\\k<MTEntryOuterSectionSkip>)*?(?:(?:(?:^|[\\r\\n]|\\x01[^:\\r\\n\\x01]*:|(?<=<\\/(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\s*>))(?!(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*(?:\\b(?:Equipment|Inventory|Gear|Items|Possessions|Magic\\s+Schools?|Time|Wx|Weather|Loc|Location|Current\\s+Location|(?:NPCs\\s+Present|Current\\s+NPCs|Present\\s+NPCs)|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies|Skills|Abilities|Proficiencies|Spells|Touki)\\s*[*_\\x60]*\\s*:|(?<![^\\r\\n|\\x01])[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>]*[ \\t]*)?(?:[^:\\r\\n|\\x01]{1,120}:[ \\t]*)?(?:Sword|Water|North)\\s+God\\s+Style\\s*(?:[*_\\x60]*\\s*:|LV\\b)))(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*?(?:(?:(?:Start in Sandbox Mode))|(?:(?:Start in Sandbox))|(?:(?:sandbox start))|(?:(?:free play start)))))/i",
+    "Start in Sandbox Mode",
+    "Start in Sandbox",
+    "sandbox start",
+    "free play start",
+    "Sandbox Mode",
+    "Start Sandbox",
+    "Begin Sandbox",
+    "Current Arc: Sandbox",
+    "[MT-ARC:Sandbox]",
+    "Arc: Sandbox",
+    "Game Mode: Sandbox",
+    "Sandbox"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": false,
+   "caseSensitive": false
+  },
+  {
+   "comment": "[Mt central control] Sandbox",
+   "key": [
+    "/^(?:(?!(?:<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:))[\\s\\S]|(?=(?<MTEntryOuterXMLSkip><(?<MTEntryOuterTag>Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^>\\x01]*>(?:[^<\\x01]|<(?!\\/?\\k<MTEntryOuterTag>\\b)|<\\k<MTEntryOuterTag>\\b[^\\x01]*(?=\\x01|$))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$)))*(?:<\\/\\k<MTEntryOuterTag>\\s*>|(?=\\x01|$))))\\k<MTEntryOuterXMLSkip>|<(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b[^>\\x01]*(?=\\x01|$)|(?=(?<MTEntryOuterSectionSkip>(?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)[ \\t*_\\x60]*:[ \\t*_\\x60]*|[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:)(?:(?!(?:<\\/(?:World_State|Player_State|Blocks)\\b|\\x01|$|[\\r\\n](?:[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>\\x27\\x22“”‘’]*[ \\t]*)?(?:Current[ \\t]+(?:Arc|Location|Scene)|Arc|Game[ \\t]+Mode|Memory|Location|Loc|Time|Wx|Weather|World[ \\t]+Status|(?:NPCs[ \\t]+Present|Current[ \\t]+NPCs|Present[ \\t]+NPCs)|Equipment|Inventory|Gear|Skills|Abilities|Touki|Injuries|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)[ \\t*_\\x60]*:|[ \\t]*[\\r\\n])))[^\\x01])*))\\k<MTEntryOuterSectionSkip>)*?(?:(?:(?:^|[\\r\\n]|\\x01[^:\\r\\n\\x01]*:|(?<=<\\/(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\s*>))(?!(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*(?:\\b(?:Equipment|Inventory|Gear|Items|Possessions|Magic\\s+Schools?|Time|Wx|Weather|Loc|Location|Current\\s+Location|(?:NPCs\\s+Present|Current\\s+NPCs|Present\\s+NPCs)|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies|Skills|Abilities|Proficiencies|Spells|Touki)\\s*[*_\\x60]*\\s*:|(?<![^\\r\\n|\\x01])[ \\t*_\\x60]*(?:[^A-Za-z0-9\\r\\n:|<>]*[ \\t]*)?(?:[^:\\r\\n|\\x01]{1,120}:[ \\t]*)?(?:Sword|Water|North)\\s+God\\s+Style\\s*(?:[*_\\x60]*\\s*:|LV\\b)))(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)[^\\r\\n\\x01])*?(?:(?:(?:(?:^|(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)\\W))Sandbox(?:(?:$|(?=<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b))|(?:(?!<\\/?(?:Blocks|World_State|Player_State|Off[-_ ]Screen|Unresolved[_ ]Threads|Scene[_ ]Progress|Planted[_ ]Seeds|NPC[_ ](?:Update|Biograph(?:y|ies))|Bonds|Biography|Biographies)\\b)\\W))))|(?:(?:Sandbox Mode))|(?:(?:free play))|(?:(?:no fate)))))/i",
+    "Game Mode: Sandbox",
+    "Sandbox",
+    "Current Arc: Sandbox",
+    "Sandbox Mode",
+    "Sandbox Arc",
+    "Start Sandbox",
+    "Begin Sandbox"
+   ],
+   "keysecondary": [],
+   "selective": true,
+   "useRegex": true,
+   "wholeWords": false,
+   "caseSensitive": false
+  }
+ ]
+}

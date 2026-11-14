@@ -3854,7 +3854,7 @@ function hudCardHtml(hud, rawHud, cfg = chatDisplayCfg()) {
 function hudStyleFor(chat) {
     // The player's start command or a later switch ("HUD: Panel" on its own line, or among other settings
     // as "Canon: Living | HUD: Panel"), else the style the latest HUD itself reports on its Game Mode line.
-    const STYLE_RE = /\[\s*HUD\s*=\s*(CLASSIC|VISUAL|COMPACT|PANEL|CARD|COLLAPSED)\s*\]|(?:^|\|)[ \t]*HUD:\s*(Classic|Visual|Compact|Panel|Card|Collapsed)\b/gim;
+    const STYLE_RE = /\[\s*HUD\s*=\s*(CLASSIC|VISUAL|COMPACT|PANEL|CARD|COLLAPSED)\s*\]|(?:^|\|)[ \t]*HUD:\s*(Classic|Visual|Compact|Panel|Card|Collapsed)\b|(?:^|\|)[ \t]*HUD[ \t]+Style:\s*(Classic|Visual|Compact|Panel|Card|Collapsed)\b/gim;
     let fromHud = null;
     for (let i = (chat || []).length - 1; i >= 0; i--) {
         const m = chat[i];
@@ -3872,7 +3872,7 @@ function hudStyleFor(chat) {
             continue;
         }
         const all = [...t.matchAll(STYLE_RE)];
-        if (all.length) { const x = all[all.length - 1]; return (x[1] || x[2]).toLowerCase(); }
+        if (all.length) { const x = all[all.length - 1]; return (x[1] || x[2] || x[3]).toLowerCase(); }
     }
     return fromHud || null;
 }
@@ -7603,6 +7603,12 @@ function parseHud(text) {
     }
     let arcText = null;
     if (arc) arcText = arc.fields && arc.fields[0].label && /^(?:(?:current\s+)?arc|era\s*\/\s*arc)$/i.test(arc.fields[0].label) ? arc.fields[0].value : arc.text.trim();
+    // Six-Sided 2.5.3 prints the arc as its bare code ("Current Arc: [MT-ARC:8]"): read it with the route's title
+    const arcCode = arcText && String(arcText).trim().match(/^\[MT-ARC:\s*([^\]]+?)\s*\]$/i);
+    if (arcCode) {
+        const id = arcCode[1].replace(/\s+/g, '');
+        arcText = /^sandbox$/i.test(id) ? `Sandbox [MT-ARC:${id}]` : `Arc ${id}${MT_ROUTE_TITLES[id.toUpperCase()] ? ': ' + MT_ROUTE_TITLES[id.toUpperCase()] : ''} [MT-ARC:${id}]`;
+    }
     const quests = questsLine ? questsLine.split(/\s*;\s*|\s+\|\s+|\s+·\s+/).map(q => q.trim()).filter(Boolean).map(q => {
         const m = q.match(/^(.*\S)\s+[—–-]\s+(.+)$/);
         return m ? { name: m[1].trim(), state: m[2].trim().toLowerCase() } : { name: q, state: null };
@@ -7612,8 +7618,10 @@ function parseHud(text) {
     // belong to the players, several of whom are not you: the system readers (abilities, conditions, vitals)
     // leave them alone so another player's skills or wounds never land on your sheet. They still show as lines.
     if (lines.some(l => /^\s*Game Mode:.*\bParty Mode\b/i.test(hudSemanticText(l.text)))) for (const l of lines) if (/^\W*Player:\s/i.test(hudSemanticText(l.text))) l.party = true;
-    const location = loc ? loc.segments : null;
+    let location = loc ? loc.segments : null;
     const mushoku = lines.some(l => /^(?:Armored Dragon Calendar:\s*K|Year:\s*K\.?\s*\d+)/i.test(hudSemanticText(l.text)));
+    // Six-Sided writes "Location: …" in every style; a place with no arrow path (BASIC's short form) is one segment
+    if (!location && mushoku) { const lf = lines.find(l => l.kind === 'field' && /^location$/.test(l.key) && l.fields && l.fields[0].value); if (lf) location = [lf.fields[0].value]; }
     return { lines, find: f, time, location: mushoku && location ? mushokuLocationSegments(location) : location, arc: arcText, quests };
 }
 
@@ -8719,7 +8727,7 @@ async function chaptersAfterReply(chatId, chat, msg, generationType) {
         };
         const rewound = !!(before && before.minutes !== null && now.minutes !== null && now.minutes < before.minutes) && hudCanRewind(parseHud(textOf(msg.content)));
         if (cfg.loops) turn('loop', rewound);
-        if (cfg.arcs) turn('arc', !!(before && before.arc && now.arc && hmsNorm(before.arc) !== hmsNorm(now.arc)));
+        if (cfg.arcs) turn('arc', !!(before && before.arc && now.arc && !arcSame(before.arc, now.arc)));
         if (cfg.days) turn('day', !!(before && before.day !== null && now.day !== null && now.day !== before.day && !rewound));
         if (cfg.months) turn('month', !!(before && before.month && now.month && now.month !== before.month));
         await saveChatState(chatId, st);
@@ -9507,7 +9515,9 @@ function catalogParsePage(text, index) {
     const continuer = (t.match(/\b([A-Za-z][\w]*_Start_Continuer)\b/i) || [])[1] || null;
     const page = { index, title: title || `Page ${index + 1}`, canvas: t.trim().length < 40, hub: false, handler, continuer, modifiers: CATALOG_MOD_PAGE_RE.test(plainAll), items: [], note: '' };
     page.hub = !!handler && /HOW TO (?:PLAY|BEGIN)|CATALOG PAGES|THE CATALOG|STARTING A NEW GAME/i.test(t);
-    if (page.canvas || page.hub) return page;
+    // Six-Sided 2.5.3's HUD guide: an OOC reference page whose commands are not start add-ons
+    page.reference = sixVisGuidePage(t) || (/OOC reference page/i.test(t) && /\[\s*HUD\b/i.test(t));
+    if (page.canvas || page.hub || page.reference) return page;
     // the page's own one-line purpose, for the tab
     const intro = lines.map(l => l.trim()).find(l => l && !/^[#>*-]|^\(|^---|^\*\*\(/.test(l) && l.length > 30);
     page.note = intro ? catalogPlain(intro).slice(0, 200) : '';
@@ -9740,18 +9750,20 @@ function oocPanel(chatId, st) {
 // misspelled, respaced or missing its track letter loads nothing — silently. The lorebooks hold the
 // keys, so the extension can check the HUD's Arc line against them every turn and say so out loud.
 
-const ARC_KEY_RE = /^\s*arc\s*\d+(?:\s*-\s*[a-z])?\b/i;
+const ARC_KEY_RE = /^\s*(?:arc\s*\d+(?:\s*-\s*[a-z])?\b|\[MT-ARC:[^\]]+\]\s*$)/i;
 
 function arcCheck(chatId, hud) {
     if (!hud || !hud.arc) return null;
     const line = hud.lines.find(l => l.key === 'arc');
     const arc = String(hud.arc).trim();
-    if (!line || !arc || /^sandbox\b/i.test(arc) || /^\s*(?:current\s+)?arc\s*:\s*sandbox\b/i.test(line.text)) return null;   // loads no arc entry by design
+    if (!line || !arc || /^sandbox\b/i.test(arc) || /^\s*(?:current\s+)?arc\s*:\s*sandbox\b/i.test(line.text) || /\[MT-ARC:\s*Sandbox\s*\]/i.test(line.text)) return null;   // loads no arc entry by design
     const pool = getLorePool(chatId);
     const keys = [];
     for (const e of pool) for (const k of e.key) if (ARC_KEY_RE.test(k) && k.trim().length >= 5) keys.push({ k: k.trim(), e });
     if (!keys.length) return null;                                  // this bot keys no arcs: nothing to check
-    if (keys.some(({ k, e }) => loreEntryHits({ ...e, key: [k], selective: false }, line.text))) return { ok: true, arc };
+    // a [MT-ARC:ID] key is the card's literal code (in a regex entry it would read as a character class)
+    const keyHits = ({ k, e }) => /^\[MT-ARC:/i.test(k) ? String(line.text).toUpperCase().includes(k.toUpperCase()) : loreEntryHits({ ...e, key: [k], selective: false }, line.text);
+    if (keys.some(keyHits)) return { ok: true, arc };
     let best = null, bs = 0;
     for (const { k } of keys) {
         const s = Math.max(atlasSim(arc, k), atlasSim(arc.replace(/^arc\s*/i, ''), k.replace(/^arc\s*/i, '')));
@@ -10584,7 +10596,9 @@ function mtSaga(chatId, year, arcLine, date = null) {
     if (!Number.isFinite(year)) return null;
     const arcs = mtArcList(chatId);
     if (!arcs.length) return null;
-    const text = String(arcLine || '').trim();
+    let text = String(arcLine || '').trim();
+    const mtCode = text.match(/^\[MT-ARC:\s*([^\]]+?)\s*\]$/i);      // 2.5.3: the bare code
+    if (mtCode) text = /^sandbox$/i.test(mtCode[1].trim()) ? 'Sandbox' : `Arc ${mtCode[1].replace(/\s+/g, '')}`;
     const sandbox = /^Sandbox\b/i.test(text);
     const unscheduled = /^Sandbox\s*[—–-]/i.test(text);
     const am = text.match(/\bArc\s+(\d{1,2})(?:(?:\.(\d+))|(?:\s*-\s*([A-Z])))?(?:\s+DIVERGENCE)?(?:\s*:\s*(.+?))?(?:\)|$)/i);
@@ -10730,6 +10744,8 @@ function worldPanel(chatId, chat, st) {
         break;
     }
     if (!msg) return null;
+    // 2.5.3: the card keeps showing what the HUD settings hide (the timeline's last known rows)
+    try { const tl = hmsTimeline(chat), e = tl[tl.length - 1]; if (e && e.msg === msg.m && e.hud) msg.h = e.hud; } catch { /* the reply's own HUD, then */ }
     const lines = worldLines(msg.h);
     const id = worldOf(lines);
     if (!id) return null;
@@ -11539,13 +11555,25 @@ function botSidePanel(text) {
     return null;
 }
 
-async function hmsProcessContent(chatId, content, prevHud, generationType, committedBefore) {
+async function hmsProcessContent(chatId, content, prevHud, generationType, committedBefore, chatIn = null) {
     const st = await getChatState(chatId);
     const guard = { noHud: false, swapped: false, missing: [], restored: [], at: Date.now() };
     let out = String(content || '');
     let hud = parseHud(out);
+    // Six-Sided 2.5.3 field settings, read once from the chat when a Six-Sided HUD needs them
+    let visMemo;
+    const visNow = async () => {
+        if (visMemo !== undefined) return visMemo;
+        try { const c = Array.isArray(chatIn) ? chatIn : await chatApi.getMessages(chatId); visMemo = { chat: c, vis: sixVisibility(c) }; } catch { visMemo = null; }
+        return visMemo;
+    };
     if (!hud) {
-        if (generationType !== 'continue' && prevHud) guard.noHud = true;
+        if (generationType !== 'continue' && prevHud) {
+            // A HUD command, [HELP] or a save gets an answer with no HUD by the card's own rules: not a render fault
+            let control = false;
+            try { const v = await visNow(); const lastUser = v ? [...v.chat].reverse().find(m => m && (m.role === 'user' || m.is_user)) : null; control = !!(lastUser && sixControlTurn(textOf(lastUser.content))); } catch { control = false; }
+            if (!control) guard.noHud = true;
+        }
     } else {
         if (Object.keys(st.pins || {}).length) {
             const r = rewriteHud(out, items => applyPins(items, st.pins, guard.restored));
@@ -11567,7 +11595,9 @@ async function hmsProcessContent(chatId, content, prevHud, generationType, commi
                 let chatNow = [];
                 try { chatNow = await chatApi.getMessages(chatId); } catch { chatNow = []; }
                 const style = hudStyleFor(chatNow);
+                const vNow = await visNow();
                 const ctx = { cal, prev: prevHud, userName: userNameCache.get(chatId) || null, rows: sixCanonRows(chatId), sessions: null,
+                    identityHidden: !!(vNow && vNow.vis.aware && !sixVisShown(vNow.vis.final, 'IDENTITY')),
                     elapsedDays: cal && pcal ? Math.max(0, (cal.year * 360 + (cal.month - 1) * 30 + cal.day) - (pcal.year * 360 + (pcal.month - 1) * 30 + pcal.day)) : null,
                     math: settings.hmsHudMath !== false, format: settings.hmsHudFormat !== false, plainStyle: /^(?:panel|card)$/i.test(String(style || '')) };
                 let notes = [];
@@ -11576,8 +11606,18 @@ async function hmsProcessContent(chatId, content, prevHud, generationType, commi
             }
         } catch (e) { logW(`[RPG Companion HMS] HUD upkeep skipped: ${e?.message || e}`); }
         if (settings.hmsGuard && prevHud) {
-            if (isHudSwap(prevHud, hud)) guard.swapped = true;
-            else guard.missing = diffHud(prevHud, hud).filter(m => !guard.restored.includes(m.key));
+            // 2.5.3: a row the player's HUD settings hide is not dropped, and is never offered back
+            const v = sixIsSixSided(hud) ? await visNow() : null;
+            const vis = v && v.vis.aware ? v.vis : null;
+            const shown = m => !vis || sixVisShown(vis.final, sixVisRow(m.text));
+            const prevShown = vis ? { ...prevHud, lines: prevHud.lines.filter(l => l.block || shown(l)) } : prevHud;
+            if (isHudSwap(prevShown, hud)) guard.swapped = true;
+            else {
+                const gone = diffHud(prevHud, hud).filter(m => !guard.restored.includes(m.key));
+                guard.missing = gone.filter(shown);
+                const hidden = gone.filter(m => !shown(m));
+                if (hidden.length) guard.hidden = { count: hidden.length, profile: vis.final.profile || 'BASIC', groups: [...new Set(hidden.map(m => sixVisRow(m.text)))] };
+            }
         }
     }
     const comp = parseCompanion(out, partyRoster(st), st, immActive(st) ? st.immersive : null);
@@ -11651,6 +11691,7 @@ function hmsStatusText(res) {
     if (res.guard.swapped) parts.push('The HUD template changed — not treated as dropped lines.');
     if (res.guard.restored.length) parts.push(`Pinned line${res.guard.restored.length === 1 ? '' : 's'} restored: ${res.guard.restored.length}.`);
     if (res.guard.missing.length) parts.push(`${res.guard.missing.length} line${res.guard.missing.length === 1 ? '' : 's'} dropped since the last reply.`);
+    if (res.guard.hidden && res.guard.hidden.count) parts.push(`${res.guard.hidden.count} row${res.guard.hidden.count === 1 ? '' : 's'} hidden by the HUD settings (not dropped).`);
     if (res.comp.characters) parts.push('Characters updated.');
     if (res.comp.party) parts.push(`Party read (${res.comp.party.length}).`);
     return parts.join(' ') || 'Reply read.';
@@ -11736,7 +11777,7 @@ async function hmsHandleReplyInner(chatId, chat, msg, generationType) {
     if (dedupChanged) { content = deduped; spindle.log.info('[RPG Companion HMS] The reply had the WORLD STATE header twice; kept one.'); }
     const prevHud = previousHudFor(chat, msg.id);
     const { data: before } = await collectCommitted(chatId, chat, msg.id);
-    const res = await hmsProcessContent(chatId, content, prevHud, generationType, before);
+    const res = await hmsProcessContent(chatId, content, prevHud, generationType, before, chat);
     await immAfterReply(chatId, msg, generationType, { hud: res.hud, fight: res.comp.fight });
     await chaptersAfterReply(chatId, chat, msg, generationType);
     try {
@@ -11907,7 +11948,9 @@ function consistencyWarnings(chatId, chat, hud, guard) {
 }
 
 function hmsPanelStateRead(chatId, chat, st) {
-    const msg = latestHudMessage(chat);
+    let msg = latestHudMessage(chat);
+    // 2.5.3: the answer to a HUD command has no HUD by design; the state is the HUD before it
+    try { if (msg && !parseHud(textOf(msg.content)) && sixControlReply(chat, msg)) { const tl = hmsTimeline(chat); if (tl.length) msg = tl[tl.length - 1].msg; } } catch { /* the latest reply, then */ }
     const hud = msg ? parseHud(textOf(msg.content)) : null;
     const g = msg ? (getSwipeData(msg)?.hudGuard || null) : null;
     let guard = null;
@@ -11923,7 +11966,8 @@ function hmsPanelStateRead(chatId, chat, st) {
                 .sort((a, b) => (b.carrier ? 1 : 0) - (a.carrier ? 1 : 0)),
             // Injuries healed, a condition passed, an exam resolved: gone by the engine's own rules.
             cleared: (g.missing || []).filter(x => !curKeys.has(x.key) && !hmsIsCarrier(x.key, cfg) && hmsIsSelfClearing(x.key, cfg)),
-            restored: g.restored || []
+            restored: g.restored || [],
+            hidden: g.hidden || null
         };
     }
     const pins = {};
@@ -11932,6 +11976,8 @@ function hmsPanelStateRead(chatId, chat, st) {
         active: true,
         messageId: msg ? msg.id : null,
         hud: hud ? { lines: hud.lines, time: hud.time, location: hud.location, arc: hud.arc, quests: hud.quests, fromHtml: !!hud.find.fromHtml } : null,
+        // 2.5.3: rows the HUD settings hide, with their last known value
+        hudKept: (() => { try { const tl = hmsTimeline(chat), e = tl[tl.length - 1]; return e && msg && e.msg.id === msg.id && Array.isArray(e.hud.kept) && e.hud.kept.length ? e.hud.kept.map(l => ({ key: l.key, text: l.text, kind: l.kind, group: l.keptGroup || null })) : null; } catch { return null; } })(),
         ...(() => { try {
             const tl = hmsTimeline(chat); if (!hud || tl.length < 2) return { hudChanged: null };
             const prev = tl[tl.length - 2].hud, before = new Map(prev.lines.filter(l => !l.block).map(l => [l.key, String(l.text).trim()]));
@@ -12739,6 +12785,208 @@ function messageHud(m) {
     if (hmsParseCache.size > 3000) hmsParseCache.delete(hmsParseCache.keys().next().value);
     return hud;
 }
+// ───────────────── Six-Sided World 2.5.3: the customizable HUD ─────────────────
+// From 2.5.3 the card writes only the rows the player switched on. BASIC, the default for new and old
+// campaigns alike, keeps the date and time, the season, the place, Condition, the bare [MT-ARC:ID] code and
+// Rudeus Mode; Bonds and every other group stay OFF until the player sends [HUD BONDS = ON], [HUD = FULL]
+// and the like. The card says it plainly: a row left out is hidden, not ended. So a hidden row is never
+// flagged as dropped, never put back into a reply, and its last known value stays in the panel. The
+// commands are the card's own instructions to the model; the extension only reads them from the chat.
+const SIX_VIS_GROUPS = ['IDENTITY', 'SCENE', 'POLICIES', 'MANA', 'SKILLS', 'GIFTS', 'DREAM', 'HEALTH', 'EQUIPMENT', 'INVENTORY', 'SOCIAL', 'BONDS', 'PATHS', 'CANON', 'NPCS'];
+// Kept in the panel while hidden: what lasts. A scene, who is in the room, fresh wounds and canon countdowns move on their own.
+const SIX_VIS_KEEP = new Set(['IDENTITY', 'POLICIES', 'MANA', 'SKILLS', 'GIFTS', 'DREAM', 'EQUIPMENT', 'INVENTORY', 'SOCIAL', 'BONDS', 'PATHS']);
+const SIX_VIS_ESSENTIAL_RE = /^(?:Armored Dragon Calendar|Year|Date|Day|Time|Season|Location|Current Arc|Era\s*\/\s*Arc|Arc|Rudeus Mode|Condition|Player)\s*:|^[◆\u{1F4CD}]/iu;
+const SIX_VIS_ROWS = [
+    ['CANON', /^(?:Canon (?:reference|Clock)|World event|Next Canon Event|Next Turning Point|Canon Begins|TURNING POINT\b)/i],
+    ['IDENTITY', /^(?:Race|Origin|Age|Birth|Born|Memory)\s*:/i],
+    ['SCENE', /^Current Scene\s*:/i],
+    ['POLICIES', /^(?:Game Mode|Canon|Guide|HUD Style|Calendar Profile|Narrative Mode)\s*:/i],
+    ['MANA', /^Mana(?:\s+(?:Capacity|Reserve|Status))?\s*:/i],
+    ['SKILLS', /^(?:Touki(?:\s*\(Battle Aura\))?|Battle Aura|Sword Style|Martial Style|Magic Tiers|Magic School|Magic|Voiceless Casting|Casting Method|Languages?|Training|Skills)\s*:/i],
+    ['GIFTS', /^\[?\s*(?:DEMON EYE|CURSE(?:\s*\/\s*BLESSING)?|BLESSING|Drain Syndrome|Gifts?)\b/i],
+    ['DREAM', /^(?:Dream Link\s*:|\[?\s*HITOGAMI\b)/i],
+    ['HEALTH', /^(?:Injur(?:y|ies)|Care|Wounds?|Health)\s*:/i],
+    ['EQUIPMENT', /^Equipment\s*:/i],
+    ['INVENTORY', /^(?:Inventory|Money|Purse|Coins?|Funds)\s*:/i],
+    ['SOCIAL', /^(?:Standing|Factions?|Renown|Adventurer|Party|Clan|Term|Role|Guild|Titles?)\s*:/i],
+    ['BONDS', /^(?:Bonds?|Relationships?|Relations)\s*:/i],
+    ['PATHS', /^(?:Active Paths|Quests?|Objectives?|Paths?|Change|Divergence|Checkpoint|Back on canon|Canon changed)\b|^\[?\s*(?:MAIN |SIDE )?QUEST\b/i],
+    ['NPCS', /^(?:NPCs Present|Present)\s*:/i]
+];
+const SIX_VIS_CMD_RE = /\[\s*HUD\s*=\s*(BASIC|FULL)\s*\]|\[\s*HUD\s+([A-Za-z]+)\s*=\s*(ON|OFF)\s*\]/gi;
+const SIX_VIS_TOUCH_RE = /\[\s*HUD\s*(?:=\s*(?:BASIC|FULL)|\s[A-Za-z]+\s*=\s*(?:ON|OFF)|\s+SHOW\s+[A-Za-z]+|\s+SETTINGS|\s+HELP)\s*\]/i;
+const SIX_VIS_ASK_RE = /\[\s*HUD\s+(?:SETTINGS|HELP)\s*\]/i;
+const SIX_ARC_CODE_ONLY_RE = /^[^\S\n]*[^\w\n]*(?:Current Arc|Era\s*\/\s*Arc)[^\w\n]*:[^\w\n\[]*\[MT-ARC:[^\]\n]+\][^\S\n]*$/im;
+const SIX_CTL_TOKEN_RE = /\[\s*HUD\b[^\]\n]{0,48}\]|\[\s*(?:HELP|FEATURES)\s*\]/gi;
+const SIX_VIS_BASIC = Object.freeze({ profile: 'BASIC', full: false, on: Object.freeze({}) });
+// The card's route titles (route registry), for the arc the HUD now names by its code alone.
+const MT_ROUTE_TITLES = { "1": "Childhood", "2": "Home Tutor", "3": "Entry-Level Adventurer", "2-B": "Hearth & Home", "3-B": "The Silent Road", "3-C": "The Silent Palace", "3-D": "The Father's Road", "3-E": "The Gilded Cage", "3-F": "Two Graves Unwritten", "3-G": "The Prodigal Daughter", "3-H": "The Master's Road", "4": "Voyage", "4-B": "Southbound Search", "4-C": "Refuge in Ranoa", "4-D": "The Shirone Rescue", "4-E": "The Road to Millis", "4-F": "The Boreas Survivors", "4-G": "Reunion Road", "4-H": "The Master's Crossing", "5": "Reunion", "6": "Homecoming", "7": "Northern Adventurer", "8": "University", "9": "University Bonds", "10": "Newlywed Life", "11": "Sisters and the Journey to Begaritt", "12": "The Teleportation Labyrinth", "13": "Everyday Life and New Responsibilities", "14": "The Floating Fortress and the Fourth Turning Point", "15": "Future Warnings and Changed Allegiances", "16": "The First Mission and the Library Labyrinth", "17": "The Struggle for the Throne", "18": "Old Friends and New Responsibilities", "19": "The Prince's Homecoming", "20": "Graduations and the Road to Millis", "21": "The Family Crisis", "22": "Organization and Powerful Allies", "23": "The Fourth Child, Research and Further Preparations" };
+
+/** Which group a HUD row belongs to: one of SIX_VIS_GROUPS, ESSENTIAL (always printed) or CUSTOM. */
+function sixVisRow(text) {
+    const t = hudSemanticText(String(text || '')).replace(/^\s*[-*•–]\s+/, '').replace(/^[\s\p{Extended_Pictographic}️‍]+/u, '').trim();
+    if (!t || SIX_VIS_ESSENTIAL_RE.test(t)) return 'ESSENTIAL';
+    for (const [g, re] of SIX_VIS_ROWS) if (re.test(t)) return g;
+    return 'CUSTOM';
+}
+function sixVisShown(state, group) {
+    if (!group || group === 'ESSENTIAL' || !state) return true;
+    if (group === 'CUSTOM') return !!state.full;
+    return !!(state.on && state.on[group]);
+}
+function sixIsSixSided(hud) {
+    return !!(hud && Array.isArray(hud.lines) && hud.lines.some(l => /^Armored Dragon Calendar\s*:/i.test(hudSemanticText(String(l.text || '')))));
+}
+function sixRevAtLeast(rev, want) {
+    for (let i = 0; i < want.length; i++) { if ((rev[i] || 0) > want[i]) return true; if ((rev[i] || 0) < want[i]) return false; }
+    return true;
+}
+/** The card's HUD guide page (2.5.3 adds it as the last greeting). */
+function sixVisGuidePage(s) { const t = String(s || ''); return /Choose what you see/i.test(t) && /\[\s*HUD\s*=\s*BASIC\s*\]/i.test(t); }
+/** Commands in one message, left to right, as the card applies them. */
+function sixVisApply(state, text) {
+    let s = state;
+    for (const m of String(text || '').matchAll(SIX_VIS_CMD_RE)) {
+        if (m[1]) { const full = /^full$/i.test(m[1]); s = { profile: full ? 'FULL' : 'BASIC', full, on: Object.fromEntries(SIX_VIS_GROUPS.map(g => [g, full])) }; continue; }
+        const g = String(m[2] || '').toUpperCase();
+        if (!SIX_VIS_GROUPS.includes(g)) continue;        // the card corrects an unknown group and changes nothing
+        s = { profile: 'CUSTOM', full: !!s.full, on: { ...(s.on || {}), [g]: /^on$/i.test(m[3]) } };
+    }
+    return s;
+}
+/** The SAVE NOTES block of a save (Mushoku_Save), or ''. */
+function sixVisSaveNotes(text) {
+    const m = String(text || '').match(/#{1,3}\s*SAVE NOTES\s*#{0,3}([\s\S]*?)(?:\n[^\S\n]*\*\*\*[^\S\n]*(?:\n|$)|```|$)/i);
+    return m ? m[1] : '';
+}
+/** Visibility settings written out: a save's notes or the card's [HUD SETTINGS] answer. */
+function sixVisRead(text) {
+    const t = String(text || '').replace(/\[\s*HUD\b[^\]\n]*\]/gi, ' ').replace(/[`*_]/g, '');
+    const out = { profile: null, on: {}, n: 0, rev: null };
+    const rev = t.match(/System revision:\s*v?(\d+)\.(\d+)(?:\.(\d+))?/i);
+    if (rev) out.rev = [Number(rev[1]), Number(rev[2]), Number(rev[3] || 0)];
+    const prof = t.match(/\b(?:field\s+profile|fields?\s+profile|HUD\s+fields?|HUD\s+profile|profile|fields|visibility)\b[^\n]{0,30}?\b(BASIC|FULL|CUSTOM)\b/i);
+    if (prof) out.profile = prof[1].toUpperCase();
+    const G = SIX_VIS_GROUPS.join('|');
+    for (const m of t.matchAll(new RegExp(`\\b(${G})\\b[^\\S\\n]*(?:[:=|\\u2014\\u2013-]|\\bis\\b)?[^\\S\\n]*(ON|OFF)\\b`, 'gi'))) { out.on[m[1].toUpperCase()] = /^on$/i.test(m[2]); out.n++; }
+    for (const m of t.matchAll(new RegExp(`\\b(ON|OFF)\\b[^\\S\\n]*[:=\\u2014\\u2013-][^\\S\\n]*((?:(?:${G})\\b[^\\S\\n,/&;]*[,/&;]?[^\\S\\n]*(?:and[^\\S\\n]+)?)+)`, 'gi')))
+        for (const g of m[2].toUpperCase().match(new RegExp(`\\b(?:${G})\\b`, 'g')) || []) { if (!(g in out.on)) { out.on[g] = /^on$/i.test(m[1]); out.n++; } }
+    return out;
+}
+function sixVisFrom(r) {
+    const full = r.profile === 'FULL';
+    const on = Object.fromEntries(SIX_VIS_GROUPS.map(g => [g, full]));
+    Object.assign(on, r.on);
+    return { profile: r.profile || (Object.keys(r.on).length ? 'CUSTOM' : 'BASIC'), full, on };
+}
+/** The field settings in force through a chat: aware (a 2.5.3+ card), the state after each reply, the last one. */
+const sixVisCache = new WeakMap();
+function sixVisibility(chat) {
+    return memoRead(chat, 'sixVisibility', () => {
+        if (!Array.isArray(chat)) return sixVisibilityRead(chat);
+        const last = chat[chat.length - 1];
+        const sig = `${chat.length}:${last ? last.id : ''}:${last ? last.swipe_id ?? 0 : ''}:${last ? textOf(last.content).length : 0}`;
+        const hit = sixVisCache.get(chat);
+        if (hit && hit.sig === sig) return hit.value;
+        const value = sixVisibilityRead(chat);
+        sixVisCache.set(chat, { sig, value });
+        return value;
+    });
+}
+function sixVisibilityRead(chat) {
+    const list = Array.isArray(chat) ? chat : [];
+    let aware = false, state = null, asked = false;
+    const at = new Map();
+    const fromNotes = (raw) => {
+        const notes = sixVisSaveNotes(raw);
+        if (!notes) return false;
+        const r = sixVisRead(notes);
+        if (r.rev && sixRevAtLeast(r.rev, [2, 5, 3])) aware = true;
+        if (r.profile || r.n) { aware = true; state = sixVisFrom(r); }
+        else if (r.rev && sixRevAtLeast(r.rev, [2, 5, 3])) state = SIX_VIS_BASIC;   // a save with no field settings resumes on BASIC
+        return true;
+    };
+    for (const m of list) {
+        if (!m) continue;
+        const raw = textOf(m.content);
+        if (m.role === 'user' || m.is_user) {
+            fromNotes(raw);
+            const plain = raw.replace(/```[\s\S]*?```/g, ' ');
+            if (SIX_VIS_TOUCH_RE.test(plain)) aware = true;
+            const base = state || SIX_VIS_BASIC, next = sixVisApply(base, plain);
+            if (next !== base) state = next;
+            asked = SIX_VIS_ASK_RE.test(plain);
+            continue;
+        }
+        if (m.role !== 'assistant') continue;
+        if (!aware && ((Array.isArray(m.swipes) && m.swipes.length >= 3 && m.swipes.some(sixVisGuidePage)) || sixVisGuidePage(raw) || SIX_ARC_CODE_ONLY_RE.test(raw))) aware = true;
+        if (!fromNotes(raw) && asked) {
+            const r = sixVisRead(raw);
+            if (r.profile || r.n >= 3) { aware = true; state = sixVisFrom(r); }
+        }
+        asked = false;
+        if (m.id !== undefined) at.set(m.id, state || SIX_VIS_BASIC);
+    }
+    return { aware, final: state || SIX_VIS_BASIC, at };
+}
+/** A player turn that is only HUD commands ([HUD SETTINGS], [HUD BONDS = OFF], [HUD = PANEL]…), [HELP] or a save: its reply needs no HUD. */
+function sixControlTurn(text) {
+    const t = String(text || '').replace(/```[\s\S]*?```/g, ' ').trim();
+    if (!t) return false;
+    if (/^Mushoku_Save$/i.test(t)) return true;
+    const rest = t.replace(SIX_CTL_TOKEN_RE, '').trim();
+    if (rest || rest.length === t.length) return false;
+    return !/\[\s*HUD\s*=\s*SHOW\s*\]/i.test(t);         // a refresh asks for the HUD
+}
+function sixControlReply(chat, msg) {
+    const i = (chat || []).indexOf(msg);
+    for (let j = i - 1; j >= 0; j--) {
+        const m = chat[j];
+        if (!m) continue;
+        if (m.role === 'user' || m.is_user) return sixControlTurn(textOf(m.content));
+        if (m.role === 'assistant') return false;
+    }
+    return false;
+}
+/** Timeline entries of a 2.5.3 chat, each HUD with the hidden rows' last known lines added (marked kept). */
+function sixVisFill(chat, timeline) {
+    if (!timeline.length) return;
+    let vis;
+    try { vis = sixVisibility(chat); } catch { return; }
+    if (!vis || !vis.aware) return;
+    const known = new Map();
+    for (const e of timeline) {
+        const hud = e.hud;
+        if (!sixIsSixSided(hud)) continue;
+        const state = vis.at.get(e.msg.id) || vis.final;
+        const have = new Set(hud.lines.map(l => l.key));
+        const groups = new Set(hud.lines.filter(l => !l.block).map(l => sixVisRow(l.text)));
+        const kept = [];
+        for (const [key, k] of known) {
+            if (have.has(key) || groups.has(k.group) || sixVisShown(state, k.group)) continue;
+            kept.push({ ...k.line, kept: true, keptFrom: k.msgId, keptGroup: k.group });
+        }
+        for (const l of hud.lines) {
+            if (l.block) continue;
+            const g = sixVisRow(l.text);
+            if (SIX_VIS_KEEP.has(g)) known.set(l.key, { line: l, group: g, msgId: e.msg.id });
+        }
+        if (!kept.length) continue;
+        const lines = hud.lines.slice();
+        const at = lines.findIndex(l => l.block && !l.divider);
+        lines.splice(at < 0 ? lines.length : at, 0, ...kept);
+        e.rawHud = hud;
+        e.hud = { ...hud, lines, kept };
+    }
+}
+/** Two arc lines name the same arc: by the card's [MT-ARC:ID] code when both carry one. */
+function arcSame(a, b) {
+    const code = s => { const m = String(s || '').match(/\[MT-ARC:\s*([^\]]+?)\s*\]/i); return m ? m[1].replace(/\s+/g, '').toLowerCase() : null; };
+    const ca = code(a), cb = code(b);
+    if (ca && cb) return ca === cb;
+    return hmsNorm(a) === hmsNorm(b);
+}
+
 function hmsTimeline(chat, limit = 300) {
     return memoRead(chat, `timeline:${limit}`, () => hmsTimelineUncached(chat, limit));
 }
@@ -12751,6 +12999,8 @@ function hmsTimelineUncached(chat, limit = 300) {
         if (hud) out.push({ msg: m, hud });
     }
     out.reverse();
+    // Six-Sided 2.5.3: rows the player's HUD settings hide keep their last known value (marked kept)
+    try { sixVisFill(chat, out); } catch (e) { logW(`[RPG Companion HMS] Hidden HUD rows skipped: ${e?.message || e}`); }
     // Normalise the clock so it only runs forward, except for a genuine rewind
     // (Return by Death resets the body to the Save Point, and so do its timers).
     let prev = null;
@@ -19740,7 +19990,7 @@ function hmsHudSync(chat, st, userName) {
     // a training session kept this reply, with no skill on the Training line counted today (warning only)
     const keptNow = (Array.isArray(d.agenda) ? d.agenda : []).filter(a => a && /\b(?:train(?:ing)?|lessons?|drills?|sessions?|practice|sparring)\b/i.test(String(a.what || '')) && String(a.state || '').toLowerCase() === 'kept');
     if (keptNow.length) {
-        const now = mtTraining(worldLines(last.hud));
+        const now = mtTraining(worldLines(last.rawHud || last.hud));
         const cal = hmsCalNow(last.hud);
         let start = null;
         for (let i = tl.length - 2; i >= 0; i--) { const c = hmsCalNow(tl[i].hud); if (!c || !cal || c.year !== cal.year || c.month !== cal.month || c.day !== cal.day) break; start = tl[i]; }
@@ -19908,6 +20158,7 @@ function sixUpkeep(items, ctx) {
         // the header lines print every turn: a dropped Race or Era / Arc line comes back from the last HUD
         for (const [re, after] of [[/^\s*Race\s*:/i, /^\s*◆|^\s*📍/], [/^\s*Era\s*\/\s*Arc\s*:/i, /^\s*Race\s*:/i]]) {
             if (find(re)) continue;
+            if (ctx.identityHidden && re.source.includes('Race')) continue;      // 2.5.3: IDENTITY is OFF, the row is meant to be absent
             const old = ctx.prev ? ctx.prev.lines.find(l => !l.block && re.test(hudSemanticText(String(l.text || '')))) : null;
             if (!old) continue;
             const at = items.findIndex(it => !it.block && after.test(sem(it)));

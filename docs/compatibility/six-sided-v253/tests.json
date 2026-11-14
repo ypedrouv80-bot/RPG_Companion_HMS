@@ -1,0 +1,1022 @@
+{
+  "report": {
+    "checks": 253,
+    "passed": 253,
+    "failures": [],
+    "scope": "Shipped backend functions in an isolated VM against the 2.5.3 card fixtures (BASIC examples, real display regex, greetings, arc keys); hmsProcessContent run with storage and side-panel stubs. No network, model generation or live Lumiverse session."
+  },
+  "checks": [
+    {
+      "name": "six BASIC fixtures found",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect CLASSIC \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world CLASSIC \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto CLASSIC \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code CLASSIC \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode CLASSIC \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location CLASSIC \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar CLASSIC \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside CLASSIC \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential CLASSIC \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect CLASSIC \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world CLASSIC \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto CLASSIC \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code CLASSIC \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode CLASSIC \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location CLASSIC \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar CLASSIC \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside CLASSIC \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential CLASSIC \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect VISUAL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world VISUAL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto VISUAL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code VISUAL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode VISUAL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location VISUAL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar VISUAL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside VISUAL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential VISUAL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect VISUAL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world VISUAL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto VISUAL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code VISUAL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode VISUAL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location VISUAL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar VISUAL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside VISUAL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential VISUAL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect COMPACT \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world COMPACT \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto COMPACT \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code COMPACT \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode COMPACT \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location COMPACT \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar COMPACT \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside COMPACT \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential COMPACT \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect COMPACT \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world COMPACT \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto COMPACT \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code COMPACT \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode COMPACT \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location COMPACT \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar COMPACT \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside COMPACT \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential COMPACT \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect CARD \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world CARD \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto CARD \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code CARD \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode CARD \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location CARD \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar CARD \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside CARD \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential CARD \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect CARD \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world CARD \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto CARD \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code CARD \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode CARD \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location CARD \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar CARD \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside CARD \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential CARD \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect PANEL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world PANEL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto PANEL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code PANEL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode PANEL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location PANEL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar PANEL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside PANEL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential PANEL \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect PANEL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world PANEL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto PANEL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code PANEL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode PANEL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location PANEL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar PANEL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside PANEL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential PANEL \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect COLLAPSED \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world COLLAPSED \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto COLLAPSED \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code COLLAPSED \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode COLLAPSED \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location COLLAPSED \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar COLLAPSED \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside COLLAPSED \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential COLLAPSED \"\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC detect COLLAPSED \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC world COLLAPSED \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC HMS auto COLLAPSED \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC arc named from its code COLLAPSED \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC Rudeus Mode COLLAPSED \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC location COLLAPSED \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC calendar COLLAPSED \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC prose outside COLLAPSED \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rows all essential COLLAPSED \"\\r\\n\"",
+      "passed": true
+    },
+    {
+      "name": "BASIC rendered HTML read PANEL",
+      "passed": true
+    },
+    {
+      "name": "BASIC rendered HTML arc code PANEL",
+      "passed": true
+    },
+    {
+      "name": "BASIC rendered HTML Rudeus PANEL",
+      "passed": true
+    },
+    {
+      "name": "BASIC style from header PANEL",
+      "passed": true
+    },
+    {
+      "name": "BASIC rendered HTML read COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "BASIC rendered HTML arc code COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "BASIC rendered HTML Rudeus COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "BASIC style from header COLLAPSED",
+      "passed": true
+    },
+    {
+      "name": "arc 3-B title",
+      "passed": true
+    },
+    {
+      "name": "arc sandbox code",
+      "passed": true
+    },
+    {
+      "name": "arc unknown code kept",
+      "passed": true
+    },
+    {
+      "name": "2.5.1 arc line unchanged",
+      "passed": true
+    },
+    {
+      "name": "Era / Arc label (upkeep) code",
+      "passed": true
+    },
+    {
+      "name": "saga reads bare code as the arc",
+      "passed": true
+    },
+    {
+      "name": "saga sub-arc from code",
+      "passed": true
+    },
+    {
+      "name": "saga sandbox code",
+      "passed": true
+    },
+    {
+      "name": "saga 2.5.1 line unchanged",
+      "passed": true
+    },
+    {
+      "name": "chapter: 2.5.1 arc and 2.5.3 code are the same arc",
+      "passed": true
+    },
+    {
+      "name": "chapter: sandbox title and code are the same arc",
+      "passed": true
+    },
+    {
+      "name": "chapter: a new arc is still a turn",
+      "passed": true
+    },
+    {
+      "name": "chapter: other worlds compare as before",
+      "passed": true
+    },
+    {
+      "name": "arc check passes [MT-ARC:1]",
+      "passed": true
+    },
+    {
+      "name": "arc check passes [MT-ARC:2-B]",
+      "passed": true
+    },
+    {
+      "name": "arc check passes [MT-ARC:3-H]",
+      "passed": true
+    },
+    {
+      "name": "arc check passes [MT-ARC:8]",
+      "passed": true
+    },
+    {
+      "name": "arc check passes [MT-ARC:23]",
+      "passed": true
+    },
+    {
+      "name": "arc check flags a bad code",
+      "passed": true
+    },
+    {
+      "name": "arc check skips the sandbox code",
+      "passed": true
+    },
+    {
+      "name": "arc check 2.5.1 line still passes",
+      "passed": true
+    },
+    {
+      "name": "row group armored dragon calendar",
+      "passed": true
+    },
+    {
+      "name": "row group Visual armored dragon calendar",
+      "passed": true
+    },
+    {
+      "name": "row group season",
+      "passed": true
+    },
+    {
+      "name": "row group Visual season",
+      "passed": true
+    },
+    {
+      "name": "row group location",
+      "passed": true
+    },
+    {
+      "name": "row group Visual location",
+      "passed": true
+    },
+    {
+      "name": "row group arc",
+      "passed": true
+    },
+    {
+      "name": "row group Visual arc",
+      "passed": true
+    },
+    {
+      "name": "row group rudeus mode",
+      "passed": true
+    },
+    {
+      "name": "row group Visual rudeus mode",
+      "passed": true
+    },
+    {
+      "name": "row group condition",
+      "passed": true
+    },
+    {
+      "name": "row group Visual condition",
+      "passed": true
+    },
+    {
+      "name": "row group current scene",
+      "passed": true
+    },
+    {
+      "name": "row group Visual current scene",
+      "passed": true
+    },
+    {
+      "name": "row group race",
+      "passed": true
+    },
+    {
+      "name": "row group Visual race",
+      "passed": true
+    },
+    {
+      "name": "row group game mode",
+      "passed": true
+    },
+    {
+      "name": "row group Visual game mode",
+      "passed": true
+    },
+    {
+      "name": "row group hud style",
+      "passed": true
+    },
+    {
+      "name": "row group Visual hud style",
+      "passed": true
+    },
+    {
+      "name": "row group calendar profile",
+      "passed": true
+    },
+    {
+      "name": "row group Visual calendar profile",
+      "passed": true
+    },
+    {
+      "name": "row group mana capacity",
+      "passed": true
+    },
+    {
+      "name": "row group Visual mana capacity",
+      "passed": true
+    },
+    {
+      "name": "row group magic tiers",
+      "passed": true
+    },
+    {
+      "name": "row group Visual magic tiers",
+      "passed": true
+    },
+    {
+      "name": "row group languages",
+      "passed": true
+    },
+    {
+      "name": "row group Visual languages",
+      "passed": true
+    },
+    {
+      "name": "row group training",
+      "passed": true
+    },
+    {
+      "name": "row group Visual training",
+      "passed": true
+    },
+    {
+      "name": "row group dream link",
+      "passed": true
+    },
+    {
+      "name": "row group Visual dream link",
+      "passed": true
+    },
+    {
+      "name": "row group module:DEMON EYE:foresight",
+      "passed": true
+    },
+    {
+      "name": "row group Visual module:DEMON EYE:foresight",
+      "passed": true
+    },
+    {
+      "name": "row group injuries",
+      "passed": true
+    },
+    {
+      "name": "row group Visual injuries",
+      "passed": true
+    },
+    {
+      "name": "row group equipment",
+      "passed": true
+    },
+    {
+      "name": "row group Visual equipment",
+      "passed": true
+    },
+    {
+      "name": "row group inventory",
+      "passed": true
+    },
+    {
+      "name": "row group Visual inventory",
+      "passed": true
+    },
+    {
+      "name": "row group standing",
+      "passed": true
+    },
+    {
+      "name": "row group Visual standing",
+      "passed": true
+    },
+    {
+      "name": "row group bonds",
+      "passed": true
+    },
+    {
+      "name": "row group Visual bonds",
+      "passed": true
+    },
+    {
+      "name": "row group active paths",
+      "passed": true
+    },
+    {
+      "name": "row group Visual active paths",
+      "passed": true
+    },
+    {
+      "name": "row group next canon event",
+      "passed": true
+    },
+    {
+      "name": "row group Visual next canon event",
+      "passed": true
+    },
+    {
+      "name": "row group npcs present",
+      "passed": true
+    },
+    {
+      "name": "row group Visual npcs present",
+      "passed": true
+    },
+    {
+      "name": "Compact Skills row",
+      "passed": true
+    },
+    {
+      "name": "Party Mode player row essential",
+      "passed": true
+    },
+    {
+      "name": "unknown custom row",
+      "passed": true
+    },
+    {
+      "name": "card has 13 alternate greetings",
+      "passed": true
+    },
+    {
+      "name": "aware from the card's HUD guide greeting",
+      "passed": true
+    },
+    {
+      "name": "legacy chat (no 2.5.3 sign) not aware",
+      "passed": true
+    },
+    {
+      "name": "aware from a bare arc code",
+      "passed": true
+    },
+    {
+      "name": "aware from a Visual bare arc code",
+      "passed": true
+    },
+    {
+      "name": "guide example: SKILLS on, the rest off",
+      "passed": true
+    },
+    {
+      "name": "state recorded per reply",
+      "passed": true
+    },
+    {
+      "name": "FULL then case-insensitive OFF commands",
+      "passed": true
+    },
+    {
+      "name": "unknown group changes nothing",
+      "passed": true
+    },
+    {
+      "name": "commands in a code block are quotes, not commands",
+      "passed": true
+    },
+    {
+      "name": "commands the bot writes are never applied",
+      "passed": true
+    },
+    {
+      "name": "save notes: aware, CUSTOM groups",
+      "passed": true
+    },
+    {
+      "name": "save notes: per-group flags",
+      "passed": true
+    },
+    {
+      "name": "2.5.3 save with no field settings resumes BASIC",
+      "passed": true
+    },
+    {
+      "name": "save style read by hudStyleFor",
+      "passed": true
+    },
+    {
+      "name": "[HUD SETTINGS] answer read",
+      "passed": true
+    },
+    {
+      "name": "[HUD HELP] answer: example commands not applied",
+      "passed": true
+    },
+    {
+      "name": "control turn \"[HUD SETTINGS]\"",
+      "passed": true
+    },
+    {
+      "name": "control turn \"[HUD HELP]\"",
+      "passed": true
+    },
+    {
+      "name": "control turn \"[HUD BONDS = OFF]\"",
+      "passed": true
+    },
+    {
+      "name": "control turn \"[HUD SHOW BONDS]\"",
+      "passed": true
+    },
+    {
+      "name": "control turn \"[HUD = PANEL]\"",
+      "passed": true
+    },
+    {
+      "name": "control turn \"[HUD = BASIC]\\n[HUD SKILLS = ON]\"",
+      "passed": true
+    },
+    {
+      "name": "control turn \"[HELP]\"",
+      "passed": true
+    },
+    {
+      "name": "control turn \"Mushoku_Save\"",
+      "passed": true
+    },
+    {
+      "name": "story turn \"[HUD = SHOW]\"",
+      "passed": true
+    },
+    {
+      "name": "story turn \"[HUD = BASIC] [HUD = SHOW]\"",
+      "passed": true
+    },
+    {
+      "name": "story turn \"I bow to the tutor. [HUD = PANEL]\"",
+      "passed": true
+    },
+    {
+      "name": "story turn \"Start at Arc 8\"",
+      "passed": true
+    },
+    {
+      "name": "story turn \"\"",
+      "passed": true
+    },
+    {
+      "name": "control reply found",
+      "passed": true
+    },
+    {
+      "name": "guard: BASIC hides rows, flags none",
+      "passed": true
+    },
+    {
+      "name": "guard: hidden groups listed",
+      "passed": true
+    },
+    {
+      "name": "guard: Injuries ending is still \"healed\", not hidden",
+      "passed": true
+    },
+    {
+      "name": "guard: a group switched ON and left out is still flagged",
+      "passed": true
+    },
+    {
+      "name": "guard: legacy chat unchanged (swap or drops reported)",
+      "passed": true
+    },
+    {
+      "name": "guard: [HUD SETTINGS] answer is not a missing HUD",
+      "passed": true
+    },
+    {
+      "name": "guard: toggle answer is not a missing HUD",
+      "passed": true
+    },
+    {
+      "name": "guard: story reply without HUD still flagged",
+      "passed": true
+    },
+    {
+      "name": "guard: [HUD = SHOW] without HUD still flagged",
+      "passed": true
+    },
+    {
+      "name": "kept: lasting rows carried",
+      "passed": true
+    },
+    {
+      "name": "kept: momentary rows not carried",
+      "passed": true
+    },
+    {
+      "name": "kept: rows marked and sourced",
+      "passed": true
+    },
+    {
+      "name": "kept: the reply's own HUD untouched",
+      "passed": true
+    },
+    {
+      "name": "kept: essential rows from the reply itself",
+      "passed": true
+    },
+    {
+      "name": "world card: hidden mana and identity still shown",
+      "passed": true
+    },
+    {
+      "name": "world card: essentials from the BASIC reply",
+      "passed": true
+    },
+    {
+      "name": "world card without fill would lose them (control)",
+      "passed": true
+    },
+    {
+      "name": "kept: an ON group is not carried",
+      "passed": true
+    },
+    {
+      "name": "kept: a printed group is not duplicated",
+      "passed": true
+    },
+    {
+      "name": "timeline: control answer is not a HUD entry",
+      "passed": true
+    },
+    {
+      "name": "timeline: last entry carries hidden rows",
+      "passed": true
+    },
+    {
+      "name": "timeline: first entry is the reply as written",
+      "passed": true
+    },
+    {
+      "name": "kept: legacy chat untouched",
+      "passed": true
+    },
+    {
+      "name": "catalog: HUD guide page is not a builder page",
+      "passed": true
+    },
+    {
+      "name": "catalog: the Six catalogs are all still there",
+      "passed": true
+    },
+    {
+      "name": "catalog: guide page marked reference",
+      "passed": true
+    },
+    {
+      "name": "style: BASIC keeps the chosen style",
+      "passed": true
+    },
+    {
+      "name": "style: BASIC/FULL/SHOW are not styles",
+      "passed": true
+    },
+    {
+      "name": "backend syntax",
+      "passed": true
+    },
+    {
+      "name": "frontend module syntax",
+      "passed": true
+    },
+    {
+      "name": "frontend shows hidden rows note",
+      "passed": true
+    }
+  ]
+}
