@@ -1,3 +1,5 @@
+> **Update 1.5.0:** Observer is the new default; Active remains selectable. Cached scene and narrative-style injection are removed. See [UPDATE-1.5.0.md](UPDATE-1.5.0.md) for installation, changed behavior, and limitations. Older instructions below describe legacy features and do not override the new mode contract.
+
 > **Atualização 1.4.4 — Six-Sided World 2.5.3 (HUD configurável):** veja [notas e instruções](UPDATE-SIX-SIDED-2.5.3.md). Linhas ocultas pelo BASIC não são tratadas como perdidas e o painel mantém o último valor conhecido. A [1.4.3 (2.5.1)](UPDATE-SIX-SIDED-2.5.1.md) continua valendo. Os guias históricos abaixo continuam como referência; esta atualização não exige trocar seu preset.
 
 # RPG Companion HMS Edition 1.0

@@ -295,8 +295,148 @@ const HMS_SYS_DEFAULTS = {
     }
 };
 
+// SAFE_COMPANION_BEGIN — shared production helpers, tested from the built backend.
+const safeScopes = new Map();
+const safePromptPasses = new WeakSet();
+const SAFE_REQUEST_HEAD = '[RPG Companion — optional observable panel]';
+function safeObserver() { return settings.companionPolicy !== 'active'; }
+function safeHash(text) {
+    let a=2166136261,b=5381;
+    for (const c of String(text)) { const n=c.codePointAt(0); a=Math.imul(a^n,16777619); b=Math.imul(b,33)^n; }
+    return (a>>>0).toString(16).padStart(8,'0')+(b>>>0).toString(16).padStart(8,'0');
+}
+function safeIsStart(message) {
+    if (!message || message.role !== 'user' || !trackingMessageVisible(message)) return false;
+    const t=textOf(message.content).trim();
+    // Anchored first line only: quoted examples and guide text are not commands.
+    return /^(?:(?:Mushoku_Start_Handler|MUSHOKU_TENSEI_START_HANDLER)[ \t]*|(?:Start(?:[ \t]+at)?|Begin)[ \t]+Arc[ \t]+(?:\d+(?:-[A-Z])?|Sandbox)(?:[ \t]+\((?:Premade|Custom)\))?[ \t]*)\\?(?:\r?\n|$)/i.test(t)
+        && !companionResumeHud(t);
+}
+function safeCampaignMessages(chat) {
+    const list=chat || [];
+    for (let i=list.length-1;i>=0;i--) if(safeIsStart(list[i])) return list.slice(i);
+    return list;
+}
+function safeNoteScope(chatId, chat) {
+    const first=safeCampaignMessages(chat)[0];
+    const scope=safeIsStart(first) ? safeHash(String(first.id || '')+'\n'+textOf(first.content)) : '';
+    safeScopes.set(chatId,scope);
+}
+function safeStorageId(chatId) { const scope=safeScopes.get(chatId); return scope ? chatId+'__campaign_'+scope : chatId; }
+function safeSourceKey(message) { return String(message.id)+':'+String(message.swipe_id ?? 0)+':'+safeHash(textOf(message.content)); }
+function safeSnapshot(chat, ignored=[]) {
+    const scope=companionMarkTurnPurposes(safeCampaignMessages(chat)), rejected=new Set(ignored);
+    let latest=null;
+    for (const message of scope) {
+        if (!trackingMessageVisible(message) || rejected.has(safeSourceKey(message))) continue;
+        let source=textOf(message.content), kind='assistant';
+        if (message.role === 'user') {
+            if (companionTurnPurpose(source)!=='continue') continue;
+            source=companionResumeHud(source);kind='save';
+        } else if (message.role !== 'assistant') continue;
+        const hud=parseHud(source);
+        if (!hud || !hud.find.sepFound) continue;
+        latest={messageId:message.id,swipeId:message.swipe_id ?? 0,sourceKey:safeSourceKey(message),kind,
+            rows:hud.lines.map(l=>({key:l.key || '',text:l.text})),arc:hud.arc || null,
+            warnings:[],raw:(hud.find.fromHtml ? hud.find.plainText : source).slice(hud.find.headStart,hud.find.bodyEnd)+'***'};
+        const warning=safeArcDiagnostic(hud);if(warning)latest.warnings.push(warning);
+    }
+    if (latest) {
+        const last=scope.at(-1);
+        latest.latestReplyHasNoHud=!!(last && last.role==='assistant' && last.id!==latest.messageId);
+    }
+    return latest;
+}
+function safeArcDiagnostic(hud) {
+    const text=String(hud?.arc || '');
+    const codes=[...text.matchAll(/\[MT-ARC:\s*([^\]]+)\]/gi)].map(m=>m[1].trim().toUpperCase());
+    if (new Set(codes).size>1) return 'Conflito no HUD: há mais de um código de arco. A extensão não escolheu um deles.';
+    if (!codes.length) return null;
+    const without=text.replace(/\[MT-ARC:[^\]]+\]/gi,'');
+    const title=Object.entries(MT_ROUTE_TITLES).sort((a,b)=>b[1].length-a[1].length).find(([,name])=>without.toLowerCase().includes(name.toLowerCase()));
+    if (title && codes[0]!==title[0].toUpperCase()) return 'Conflito no HUD: '+codes[0]+' não corresponde a '+title[1]+' (Arc '+title[0]+'). Corrija a mensagem de origem; nenhuma troca automática foi feita.';
+    const numeric=without.match(/\bArc\s+(\d+(?:-[A-Z])?)\b/i);
+    if(numeric && numeric[1].toUpperCase()!==codes[0])return 'Conflito no HUD: o número escrito e o código MT-ARC divergem.';
+    return null;
+}
+function safeSaga(id, year, text, date) {
+    const key=String(id).trim().toUpperCase(), sandbox=key==='SANDBOX';
+    const m=key.match(/^(\d+)(?:-([A-Z]))?$/);
+    const title=MT_ROUTE_TITLES[key];
+    // Current route follows the explicit marker, never a guessed year-to-arc table.
+    const arcs=Object.entries(MT_ROUTE_TITLES).map(([code,title])=>({no:code.includes('-')?code:Number(code),title,year:null}));
+    return {year:Number.isFinite(year)?year:null,month:date?.month || null,day:date?.day || null,monthName:date?.monthName || null,
+        personalArc:sandbox || !m ? String(text) : null,participation:sandbox?'personal':m?'explicit':'unknown',canonMode:null,
+        from:Number.isFinite(year)?year:0,to:Number.isFinite(year)?year:0,arcs,
+        current:m?Number(m[1]):null,part:m?.[2] || null,partName:title || null,next:null};
+}
+function safeRequestParts(chat, generationType) {
+    if (!settings.enabled || safeObserver() || settings.activePanelRequest!==true || ['quiet','impersonate','continue'].includes(generationType))return [];
+    const last=(chat || []).at(-1);
+    if (!last || last.role!=='user' || safeIsStart(last) || companionTurnPurpose(last.content)!=='story' || sixControlTurn(textOf(last.content)))return [];
+    return [SAFE_REQUEST_HEAD+'\nIf compatible with the requested reply, append <rpg_companion>{"characters":[],"weather":""}</rpg_companion>. Include only named NPCs actually present and observable facts explicitly established in this reply. Use name and details; omit thoughts, secrets, inferred resources and unknown values. An empty list means nobody is established present. This optional block does not change the card, HUD, prose style, length, player agency, OOC handling or canon. Omit it for interface-only answers.'];
+}
+async function safeIntercept(messages, context) {
+    if (!settings.enabled || safePromptPasses.has(messages))return messages;
+    const id=context?.chatId,gt=context?.generationType || 'normal';
+    if (!id || ['quiet','impersonate'].includes(gt))return messages;
+    if(safeObserver()) {
+        lastInjection.set(id,{at:new Date().toISOString(),parts:[],policy:'observer'});
+        await safePushState(id); // New Start is visible immediately, even if generation later fails.
+        return messages;
+    }
+    try {
+        if(context.connectionId)noteChatConnection(id,context.connectionId,context.userId || activeUserId);
+        const chat=await chatApi.getMessages(id);
+        const last=chat.at(-1),before=(gt==='swipe'||gt==='regenerate') && last?.role==='assistant' ? chat.slice(0,-1) : chat;
+        const parts=safeRequestParts(before,gt);
+        lastInjection.set(id,{at:new Date().toISOString(),parts:parts.length?['Optional observable panel; no cached context']:[],policy:'active'});
+        if(!parts.length || messages.some(m=>textOf(m.content).includes(SAFE_REQUEST_HEAD)))return messages;
+        let at=-1;for(let i=messages.length-1;i>=0;i--)if(messages[i].role==='user'){at=i;break;}
+        if(at<0)return messages;
+        const out=messages.slice();out.splice(at,0,{role:'system',content:parts.join('\n\n')});safePromptPasses.add(out);
+        return {messages:out,breakdown:[{messageIndex:at,name:'RPG Companion: optional observable panel'}]};
+    }catch(e){logW('[RPG Companion] Safe request skipped: '+(e?.message || e));return messages;}
+}
+async function safePushState(chatId, snapshot=null) {
+    if(!chatId){toFrontend({type:'state',chatId:null,settings,version:RPGC_VERSION,observer:{snapshot:null}});return;}
+    try {
+        const raw=snapshot || await spindle.chat.getMessages(chatId);safeNoteScope(chatId,raw);
+        const st=await getChatState(chatId);
+        const view=safeSnapshot(raw,st.observerIgnored || []);
+        toFrontend({type:'state',chatId,settings,version:RPGC_VERSION,busy:false,status:null,hms:null,world:null,extras:null,
+            data:{userStats:null,infoBox:null,characters:null},observer:{snapshot:view,scope:safeScopes.get(chatId)||'original',
+                messageCount:safeCampaignMessages(raw).length,ignoredCount:(st.observerIgnored || []).length}});
+    }catch(e){toFrontend({type:'state',chatId,settings,status:{kind:'error',text:'Não foi possível ler o HUD: '+(e?.message || e)},observer:{snapshot:null}});}
+}
+async function safeIgnoreLatest(chatId) {
+    if(!chatId)return;
+    const raw=await spindle.chat.getMessages(chatId);safeNoteScope(chatId,raw);
+    const st=await getChatState(chatId),view=safeSnapshot(raw,st.observerIgnored || []);
+    if(view){st.observerIgnored=[...new Set([...(st.observerIgnored || []),view.sourceKey])].slice(-200);await saveChatState(chatId,st);}
+    await safePushState(chatId);
+}
+async function safeReadReply(chatId, chat, msg) {
+    if(safeObserver())return null;
+    const content=textOf(msg.content),hud=parseHud(content),comp=parseCompanion(content);
+    if(!hud&&!comp.found)return null;
+    // Record only this reply's readings. No previous seed, pinned value or inferred age.
+    const infoBox={};if(hud?.location)infoBox.location={value:hud.location.join(' → ')};
+    if(hud?.time)infoBox.time={end:hud.time};
+    const data={infoBox,userStats:null,characters:comp.characters || null};
+    for(const key of ['party','relations','family','gear','agenda','holdings','money','factions','contacts','quests','plot','objectives'])if(comp[key])data[key]=comp[key];
+    await setSwipeData(chatId,msg,data); // metadata only; the source text is immutable here
+    setStatus(chatId,'info','HUD lido sem reescrever a resposta. Informações ausentes continuam desconhecidas.');
+    return {hud,comp,infoBox,content};
+}
+// SAFE_COMPANION_END
+
+
 const DEFAULT_SETTINGS = {
-    settingsVersion: 9,
+    settingsVersion: 10,
+    companionPolicy: 'observer', // observer | active; independent of together/separate
+    activePanelRequest: false, // explicit opt-in, no cached context or narrative instructions
+    activeAutoExtract: false, // explicit opt-in for a separate tracker call after each reply
     enabled: true,
     uiLanguage: 'auto',         // interface language: 'auto' (browser) | 'en' | 'pt' | 'es' | 'ru' | 'tr'
     modelLanguage: false,       // ask the model for the panel's free text in that language
@@ -568,6 +708,7 @@ function migrateSettings(stored) {
     const from = Number(stored.settingsVersion) || 0;
     if (from >= DEFAULT_SETTINGS.settingsVersion) return stored;
     const out = { ...stored };
+    if (from < 10) { out.companionPolicy = 'observer'; out.activePanelRequest = false; }
     if (from < 2) {
         // v2: HMS chats read three panel toggles that used to be unreachable there.
         // A blob written before this could carry them off with no way to restore them.
@@ -1162,10 +1303,10 @@ async function loreActivatedIds(chatId) {
  */
 let loreWatching = false;
 function ensureLoreWatch() {
-    if (loreWatching || loreCfg().watch === false || typeof spindle.registerWorldInfoInterceptor !== 'function') return;
+    if (safeObserver() || loreWatching || loreCfg().watch === false || typeof spindle.registerWorldInfoInterceptor !== 'function') return;
     try {
         spindle.registerWorldInfoInterceptor(async (ctx) => {
-            try { if (loreCfg().watch !== false) setLorePool(ctx?.chatId, ctx?.entries); } catch { /* never disturb activation */ }
+            try { if (!safeObserver() && loreCfg().watch !== false) setLorePool(ctx?.chatId, ctx?.entries); } catch { /* never disturb activation */ }
             return undefined;
         }, 900);
         loreWatching = true;
@@ -2175,6 +2316,9 @@ async function rewriteReplyText(chatId, msg, patch) {
 
 const swipeWrites = new Map();
 async function setSwipeData(chatId, msg, data, extraPatch = {}) {
+    if (safeObserver()) return;
+    // Tracker reads update metadata only. Card text/HUD belongs to the source reply.
+    extraPatch = {};
     const queueKey = `${chatId}:${msg.id}`;
     const expected = readingSource(msg.content), swipe = msg.swipe_id ?? 0;
     const snapshot = clone(data), patch = clone(extraPatch);
@@ -2233,6 +2377,7 @@ async function getChatSeed(chatId) {
  * @param {string|null} excludeId - message to skip (the one being swiped/regenerated)
  */
 async function collectCommitted(chatId, chat, excludeId = null) {
+    chat = safeCampaignMessages(chat);
     const out = { userStats: null, infoBox: null, characters: null };
     let source = null;
     for (let i = chat.length - 1; i >= 0; i--) {
@@ -2449,6 +2594,7 @@ async function sideConnectionId(chatId) {
 }
 
 async function quietCall(request, timeoutMs, chatId = null) {
+    if (safeObserver()) throw new Error('Observer mode does not make model calls.');
     if (!request.connection_id) {
         let cid = null;
         try { cid = await sideConnectionId(chatId); } catch { /* leave it to Lumiverse */ }
@@ -2472,43 +2618,7 @@ async function quietCall(request, timeoutMs, chatId = null) {
 }
 /** Processes any recent reply that still carries a raw side-panel block (the handler never ran for it). */
 async function healRecent(chatId, chat) {
-    if (!isHmsChat(chatId, null, chat)) return false;
-    const since = generating.get(chatId);
-    if (since && Date.now() - since < 5 * 60 * 1000) return false;   // mid-generation: the reply is not finished
-    let did = false;
-    const recent = chat.filter(m => m.role === 'assistant' && !m._rpgcCarried).slice(-3);
-    for (const m of recent) {
-        const t = textOf(m.content);
-        if (!/<rpg_companion>[\s\S]*?<\/rpg_companion>/i.test(t)) continue;
-        const k = JSON.stringify([chatId, m.id, m.swipe_id ?? 0, messageSource(m)]);
-        if (healed.has(k)) continue;
-        const pendingKey = JSON.stringify([chatId, m.id]);
-        // A second snapshot may describe another swipe/source of the same reply.
-        // Serialize it with the active recovery, then re-check completion.
-        while (healing.has(pendingKey)) {
-            await healing.get(pendingKey);
-            if (healed.has(k)) break;
-        }
-        if (healed.has(k)) continue;
-        const work = (async () => {
-            try {
-                const result = await hmsHandleReply(chatId, chat, m, 'normal');
-                // Utilities/continuation return null; only a committed story report is healed.
-                if (!result || !getSwipeData(m)) return false;
-                healed.add(k);
-                if (healed.size > 200) healed.delete(healed.values().next().value);
-                spindle.log.info(`[RPG Companion HMS] Processed a reply that still carried its side-panel block (${m.id}).`);
-                return true;
-            } catch (e) {
-                logW(`[RPG Companion HMS] Could not process a leftover side-panel block: ${e?.message || e}`);
-                return false;
-            }
-        })();
-        healing.set(pendingKey, work);
-        try { did = (await work) || did; }
-        finally { if (healing.get(pendingKey) === work) healing.delete(pendingKey); }
-    }
-    return did;
+    return false; // Panel reads never rewrite messages.
 }
 
 /** Keep the per-chat caches bounded: the oldest chats drop out and are simply re-read when opened again. */
@@ -2627,6 +2737,7 @@ function pushState(chatId, snapshot = null) {
     return r.queued;
 }
 async function pushStateNow(chatId, snapshot = null) {
+    if (safeObserver()) return safePushState(chatId, snapshot);
     trimChatCaches(chatId);
     if (!chatId) {
         toFrontend({ type: 'state', chatId: null, settings, paletteDefault: DIALOGUE_PALETTE_DEFAULT });
@@ -2726,7 +2837,7 @@ async function pushStateNow(chatId, snapshot = null) {
 // Demo mode plays scripted turns (no tokens); Live mode asks the model, with a small
 // world narrator standing in for a bot card.
 
-const RPGC_VERSION = '1.4.1';
+const RPGC_VERSION = '1.5.0';
 const diagLog = [];
 function diagPush(kind, m) { diagLog.push({ at: new Date().toISOString(), kind, text: String(m).slice(0, 400) }); if (diagLog.length > 60) diagLog.shift(); }
 function logW(m) { diagPush('warn', m); return spindle.log.warn(m); }
@@ -2969,6 +3080,9 @@ const chatApi = {
     async getMessages(id) {
         if (id === SANDBOX_ID) return companionMarkTurnPurposes(sandbox ? sandbox.messages : []);
         const own = await spindle.chat.getMessages(id);
+        safeNoteScope(id, own);
+        const sliced = safeCampaignMessages(own);
+        if (safeObserver() || sliced !== own) return companionMarkTurnPurposes(sliced);
         const carry = await carryFor(id);
         if (!carry || !carry.msgs || !carry.msgs.length) return companionMarkTurnPurposes(own);
         // This chat's opening page (the card's greeting before the continue turn) is not part of the story.
@@ -2976,6 +3090,7 @@ const chatApi = {
         return companionMarkTurnPurposes([...carry.msgs, ...(first < 0 ? [] : own.slice(first))]);
     },
     async updateMessage(id, mid, patch) {
+        if (safeObserver()) return null;
         if (carryOwns(id, mid)) return null;   // the earlier chat's history is read only here
         if (id !== SANDBOX_ID) return spindle.chat.updateMessage(id, mid, patch);
         const m = sandbox && sandbox.messages.find(x => x.id === mid);
@@ -2987,6 +3102,7 @@ const chatApi = {
         return m;
     },
     async appendMessage(id, msg, opts) {
+        if (safeObserver()) return null;
         if (id !== SANDBOX_ID) return spindle.chat.appendMessage(id, msg, opts);
         if (!sandbox) return null;
         const m = { id: 'tz' + (++sandbox.seq), role: msg.role, content: msg.content, swipe_id: 0, metadata: isPlainObject(msg.metadata) ? msg.metadata : {} };
@@ -2995,7 +3111,7 @@ const chatApi = {
         if (opts && opts.triggerGeneration) setTimeout(() => sandboxGenerate().catch(e => logW(`[RPG Companion HMS] Test zone turn failed: ${e?.message || e}`)), 0);
         return { id: m.id };
     },
-    async setMessagesHidden(id, ids, ...rest) { return id === SANDBOX_ID ? null : spindle.chat.setMessagesHidden(id, Array.isArray(ids) ? ids.filter(x => !carryOwns(id, x)) : ids, ...rest); }
+    async setMessagesHidden(id, ids, ...rest) { return safeObserver() || id === SANDBOX_ID ? null : spindle.chat.setMessagesHidden(id, Array.isArray(ids) ? ids.filter(x => !carryOwns(id, x)) : ids, ...rest); }
 };
 
 function registerInterceptorKeep(fn, ...rest) { rpgcInterceptor = fn; return spindle.registerInterceptor(fn, ...rest); }
@@ -3194,6 +3310,7 @@ function sandboxNext() {
 
 /** Runs a reply through the same code a real chat reply goes through, always in together mode. */
 async function sandboxGenerate() {
+    if (safeObserver()) return;
     if (!sandbox || sandbox.busy) return;
     const sb = sandbox;
     sb.busy = true;
@@ -3303,25 +3420,12 @@ const RPGC_SLOT_HEAD = '[RPG Companion \u2014 for this reply]';
 
 /** What an HMS reply is asked for besides the story: the side-panel block, a dice result, the optional extras. */
 async function hmsRequestParts(chatId, chat, gt, excludeId, userName, slot, committed = null) {
-    chat = trackingBefore(chat, excludeId);
-    const parts = [];
-    if (oocTurnIn(chat, excludeId)) return parts;          // an OOC question: the guide answers, no side-panel block
-    reqChatNow = chatId;
-    const cst = await getChatState(chatId);
-    if (settings.generationMode === 'together' && gt !== 'continue' && companionWanted(cst, chat)) {
-        const data = committed || (await collectCommitted(chatId, chat, excludeId)).data;
-        parts.push(buildCompanionInstruction(data, userName, cst.locks, immStView(cst, excludeId), chat, slot ? 'slot' : false, { excludeId }));
-    }
-    if (gt !== 'continue') {
-        const dl = diceLine(userName, false, chatId).trim();
-        if (dl) parts.push(dl);
-    }
-    parts.push(...extraFeaturePrompts(true, userName));
-    return parts;
+    return safeRequestParts(chat, gt);
 }
 
 /** The {{rpgc_request}} macro: the same request, worded for a preset slot. Never writes anything. */
 async function rpgcSlotRequest(mctx) {
+    if (safeObserver()) return '';
     if (!settings.enabled) return '';
     const chatId = mctx && mctx.chatId;
     if (!chatId || chatId === SANDBOX_ID) return '';
@@ -3343,20 +3447,7 @@ async function rpgcSlotRequest(mctx) {
 
 /** The {{rpgc_minds}} macro: the Minds state for a preset block, or empty. Never writes anything. */
 async function rpgcMindsMacro(mctx) {
-    if (!settings.enabled || !simWanted() || !simCfg().tell) return '';
-    const chatId = mctx && mctx.chatId;
-    if (!chatId || chatId === SANDBOX_ID) return '';
-    const env = (mctx && mctx.env) || {};
-    const gt = (env.system && env.system.lastGenerationType) || 'normal';
-    if (gt === 'impersonate' || gt === 'quiet' || gt === 'continue') return '';
-    let chat = await chatApi.getMessages(chatId);
-    if (!isHmsChat(chatId, null, chat)) return '';
-    const last = chat[chat.length - 1];
-    const excludeId = (gt === 'swipe' || gt === 'regenerate') && last && last.role === 'assistant' ? last.id : null;
-    chat = trackingBefore(chat, excludeId);
-    if (oocTurnIn(chat, excludeId)) return '';
-    const userName = (env.names && String(env.names.user || '').trim()) || await getUserName(chatId);
-    return simStateText(simFold(chat, await getChatState(chatId), { excludeId, userName }), chat, userName);
+    return ''; // No cached private-state injection.
 }
 
 function registerHandshakeMacros() {
@@ -3366,268 +3457,24 @@ function registerHandshakeMacros() {
         catch (e) { logW(`[RPG Companion HMS] Could not register {{${name}}}: ${e?.message || e}`); }
     };
     def('rpgc_on', 'RPG Companion: "1" while the extension is running and switched on, else empty. Guard {{rpgc_request}} with it.',
-        () => (settings.enabled ? '1' : ''));
+        () => (settings.enabled && !safeObserver() ? '1' : ''));
     def('rpgc_request', 'RPG Companion: what this reply is asked for besides the story (the side-panel block, a dice result, the optional extras), worded for a preset slot after the chat. Empty when nothing is needed. When a preset carries it, the extension does not add its own message.',
         // Lumiverse gives a macro 5 s and then prints a timeout notice into the prompt; give up first and leave it to the interceptor.
         async (mctx) => { try { return await withTimeout(rpgcSlotRequest(mctx), 4000); } catch (e) { logW(`[RPG Companion HMS] {{rpgc_request}} ${e?.message === 'TIMEOUT' ? 'took too long' : 'failed'}, the extension will add its own message${e?.message === 'TIMEOUT' ? '' : ': ' + (e?.message || e)}`); return ''; } });
     def('rpgc_marks', 'RPG Companion: "1" while replies are asked to mark dialogue as [D:Speaker:mood]"…"[/D] (the extension draws colours, emoji and names from them), else empty.',
-        () => (dialogueMarksOn() ? '1' : ''));
+        () => '');
     def('rpgc_emoji', 'RPG Companion: "1" while the extension draws emoji reading cues before dialogue, else empty. A preset\'s own emoji instruction should stand down then.',
-        () => (settings.enabled && chatDisplayCfg().emoji ? '1' : ''));
+        () => '');
     def('rpgc_chronicle', 'RPG Companion: the Chronicle\'s key moments so far (settled replies only), one line each, or empty. For a preset that wants the story\'s turning points without the Memory Cortex.',
         async (mctx) => { try { const id = mctx && mctx.chatId; return id ? await withTimeout(chronicleMacro(id), 3500) : ''; } catch { return ''; } });
     def('rpgc_minds', 'RPG Companion: the Minds state (from FrankenSIM): how the people in the story feel, what they are doing, what they know and the details still waiting to pay off, kept by the extension. Empty when it is off or nothing is known yet. When a preset carries it, the extension does not add its own message.',
         async (mctx) => { try { return await withTimeout(rpgcMindsMacro(mctx), 3500); } catch { return ''; } });
     def('rpgc_fight', 'RPG Companion: "1" while a fight is running in this chat, else empty.',
-        async (mctx) => { try { const id = mctx && mctx.chatId; if (!settings.enabled || !id) return ''; return immActive(await getChatState(id)) ? '1' : ''; } catch { return ''; } });
+        async (mctx) => { try { const id = mctx && mctx.chatId; if (!settings.enabled || safeObserver() || !id) return ''; return immActive(await getChatState(id)) ? '1' : ''; } catch { return ''; } });
 }
 registerHandshakeMacros();
 
-const injectedPromptPasses = new WeakSet();
-registerInterceptorKeep(async (messages, context) => {
-    if (injectedPromptPasses.has(messages)) return messages;
-    if (context && context.chatId && context.generationType !== 'quiet') generating.set(context.chatId, Date.now());
-    // The connection the player's own reply runs on is what "Same as my chat" follows for the extension's calls.
-    if (context && context.chatId && context.connectionId && context.generationType !== 'quiet' && context.chatId !== SANDBOX_ID) {
-        noteUser(context.userId);
-        noteChatConnection(context.chatId, context.connectionId, context.userId || activeUserId);
-    }
-    try {
-        if (!settings.enabled) return messages;
-        const ctx = context || {};
-        noteUser(ctx.userId);
-        sheetChatNow = ctx.chatId || null;
-        const gt = ctx.generationType || 'normal';
-        if (gt === 'impersonate' || gt === 'quiet') return messages;
-        const chatId = ctx.chatId;
-        if (!chatId) return messages;
-
-        let chat = await chatApi.getMessages(chatId);
-        const last = chat[chat.length - 1];
-        const excludeId = (gt === 'swipe' || gt === 'regenerate') && last && last.role === 'assistant' ? last.id : null;
-        chat = trackingBefore(chat, excludeId);
-        // an OOC question is answered by the bot's guide: no HUD, no story, so nothing of ours goes in
-        if (oocTurnIn(chat, excludeId)) return messages;
-        const { data: committed } = await collectCommitted(chatId, chat, excludeId);
-        const userName = await getUserName(chatId);
-        const locks = (await getChatState(chatId)).locks;
-
-        const out = messages.map(m => ({ ...m }));
-        const injected = []; // { msg, name }
-
-        // Positions relative to chat history (depth semantics like ST extension prompts)
-        let lastHistoryIdx = -1;
-        let lastAssistantHistoryIdx = -1;
-        out.forEach((m, i) => {
-            if (m.__isChatHistory) {
-                lastHistoryIdx = i;
-                if (m.role === 'assistant') lastAssistantHistoryIdx = i;
-            }
-        });
-        if (lastHistoryIdx === -1) lastHistoryIdx = out.length - 1;
-
-        const trailing = []; // depth 0 content
-        let exampleMsg = null;
-        let contextMsg = null;
-
-        const hmsOn = isHmsChat(chatId, messages, chat);
-        for (const m of messages) injNoteCore(chatId, textOf(m.content));     // a bot that keeps its own wounds
-        if (chatId) { const hs = hudStyleFor(messages.filter(m => m && m.role === 'user')); if (hs) hudStyleCache.set(chatId, hs); }
-        let contextName = 'RPG Companion: scene context';
-        const trailingName = hmsOn ? 'side-panel request' : 'tracker instructions';
-        // A preset with the {{rpgc_request}} slot (HMS Reporter) already carries this reply's request:
-        // then it is not added a second time.
-        const slotted = hmsOn && out.some(m => !m.__isChatHistory && textOf(m.content).includes(RPGC_SLOT_HEAD));
-        if (hmsOn) {
-            // HMS: the HUD is the tracker. Only ask for the companion block, and never touch the HUD.
-            if (!slotted) trailing.push(...await hmsRequestParts(chatId, chat, gt, excludeId, userName, false, committed));
-            const ctxParts = [], ctxNames = [];
-            if (settings.hmsPinReminder) {
-                const rem = pinsReminder(await getChatState(chatId));
-                if (rem) { ctxParts.push(rem); ctxNames.push('pinned HUD lines'); }
-            }
-            const sv = hmsCfg().survival;
-            if (sv.enabled && sv.tellModel && gt !== 'continue') {
-                try {
-                    const tl = hmsTimeline(chat);
-                    const cur = tl.length ? hmsReadSystems(tl[tl.length - 1].hud) : null;
-                    const rem = hmsSurvivalReminder(hmsSurvival(tl, await getChatState(chatId), hmsCfg(), cur), userName);
-                    if (rem) { ctxParts.push(rem); ctxNames.push('survival clock'); }
-                } catch (e) { logW(`[RPG Companion HMS] Survival clock failed: ${e?.message || e}`); }
-            }
-            {
-                const lastU = [...chat].reverse().find(m => m.role === 'user');
-                if (lastU && lastU === chat[chat.length - 1] && textOf(lastU.content).trim() === WORLD_MOVES_MARK) {
-                    ctxParts.push((settings.customWorldMovesPrompt || '').trim() || DEFAULT_WORLD_MOVES_PROMPT);
-                    ctxNames.push('world moves');
-                }
-            }
-            if (gt !== 'continue') {
-                try { const r = hmsStoryReminders(chat, await getChatState(chatId), userName); if (r.parts.length) { ctxParts.push(...r.parts); ctxNames.push(...r.names); } } catch (e) { logW(`[RPG Companion HMS] Story reminders failed: ${e?.message || e}`); }
-            }
-            if (commsCfg().on && gt !== 'continue') {
-                const lastUser = [...chat].reverse().find(m => m.role === 'user');
-                const note = lastUser ? commsNote(textOf(lastUser.content), userName) : null;
-                if (note && lastUser === chat[chat.length - 1]) { ctxParts.push(note); ctxNames.push('phone'); }
-            }
-            if (youCfg().on && youCfg().tell && gt !== 'continue') {
-                try { const tl = hmsTimeline(chat); const r = youReminder(hmsYouPanel(chat, await getChatState(chatId), null, tl.length ? hmsReadSystems(tl[tl.length - 1].hud) : null), userName); if (r) { ctxParts.push(r); ctxNames.push('level-up'); } } catch { /* optional */ }
-            }
-            if (magicCfg().on && gt !== 'continue') {
-                try { const r = spellStudyReminder(chatId, chat, await getChatState(chatId), userName); if (r) { ctxParts.push(r); ctxNames.push('spell study'); } } catch { /* optional */ }
-            }
-            if (ctxParts.length) { contextMsg = { role: 'system', content: ctxParts.join('\n\n') }; contextName = `RPG Companion: ${ctxNames.join(' + ')} (~${Math.round(ctxParts.join('').length / 4)} tokens)`; }
-        } else if (settings.generationMode === 'together') {
-            if (gt !== 'continue') {
-                const instructions = generateTrackerInstructions(userName, true, true, locks) + classicExtrasRequest(immStView(await getChatState(chatId), excludeId), chat, userName);
-                if (instructions) trailing.push(instructions.trim());
-                const example = buildTrackerExample(applyLocksForPrompt(committed, locks));
-                if (example && lastAssistantHistoryIdx > 0) {
-                    exampleMsg = { role: 'assistant', content: '```json\n' + example + '\n```' };
-                }
-            }
-        } else {
-            const summary = generateContextualSummary(committed, userName);
-            if (summary) {
-                const instr = settings.customContextInstructionsPrompt || DEFAULT_CONTEXT_INSTRUCTIONS_PROMPT;
-                contextMsg = { role: 'system', content: `<context>\n${summary}\n${instr}\n</context>` };
-            }
-        }
-        if (!hmsOn) trailing.push(...extraFeaturePrompts(false, userName));      // HMS: part of hmsRequestParts
-        const grounding = narratorSpellGrounding(chatId, messages, chat, gt);
-        const loreGrounding = narratorLoreGrounding(chatId, messages, chat, gt, {
-            maxChars: Math.max(0, Math.min(6000, Number(loreCfg().maxChars) || 0) - grounding.text.length - (grounding.text ? 2 : 0)),
-            spellSources: [...grounding.report.added, ...grounding.report.hostProvided].map(row => row.source)
-        });
-        if (grounding.text) {
-            if (contextMsg) contextMsg.content += '\n\n' + grounding.text;
-            else contextMsg = { role: 'system', content: grounding.text };
-            contextName += ' + spell references';
-        }
-        if (loreGrounding.text) {
-            if (contextMsg) contextMsg.content += '\n\n' + loreGrounding.text;
-            else contextMsg = { role: 'system', content: loreGrounding.text };
-            contextName += ' + lore references';
-        }
-
-        if (gt !== 'continue' && settings.playTools?.voiceHint === true && contextMsg) {
-            const remaining=Math.max(0,Math.min(6000,Number(loreCfg().maxChars)||0)-grounding.text.length-loreGrounding.text.length-4);
-            const voice=acceptedVoiceHint(await getChatState(chatId),committed.characters);
-            appendPlayHints(contextMsg,[voice],remaining);
-        }
-
-        if (gt !== 'continue' && chapCfg().inPrompt) {
-            const chB = chaptersBlock(await getChatState(chatId), userName, null, chat);
-            if (chB) {
-                if (contextMsg) { contextMsg.content = `${chB}\n\n${contextMsg.content}`; contextName = `RPG Companion: the story so far + ${String(contextName || '').replace(/^RPG Companion:\s*/, '')}`; }
-                else { contextMsg = { role: 'system', content: chB }; contextName = `RPG Companion: the story so far (~${Math.round(chB.length / 4)} tokens)`; }
-            }
-        }
-
-        if (gt !== 'continue' && injCfg().on && injCfg().tell && injActive(chat)) {
-            const ist = await getChatState(chatId);
-            const lastHud = latestHudMessage(chat);
-            const iB = injBlock(ist, userName, lastHud ? chapterMark(lastHud).minutes : null, chat);
-            if (iB) {
-                if (contextMsg) { contextMsg.content = `${contextMsg.content}\n${iB}`; contextName = `${contextName} + injuries`; }
-                else { contextMsg = { role: 'system', content: iB }; contextName = `RPG Companion: injuries (~${Math.round(iB.length / 4)} tokens)`; }
-            }
-        }
-
-        // Minds (FrankenSIM): the state of the people in the story, as memory, before the player's turn.
-        // A preset that carries {{rpgc_minds}} (HMS Reporter) already has it in its own block.
-        if (hmsOn && gt !== 'continue' && simWanted() && simCfg().tell && !out.some(m => !m.__isChatHistory && textOf(m.content).includes(SIM_STATE_HEAD))) {
-            try {
-                const sTxt = simStateText(simFold(chat, await getChatState(chatId), { excludeId, userName }), chat, userName);
-                if (sTxt) {
-                    if (contextMsg) { contextMsg.content = `${contextMsg.content}\n\n${sTxt}`; contextName = `${contextName} + minds`; }
-                    else { contextMsg = { role: 'system', content: sTxt }; contextName = `RPG Companion: minds (~${Math.round(sTxt.length / 4)} tokens)`; }
-                }
-            } catch (e) { logW(`[RPG Companion HMS] Minds state failed: ${e?.message || e}`); }
-        }
-
-        // The immersive fight rides upstream here, in every mode — HMS and classic alike. This is
-        // the whole mechanism: the live pools, plus what each body looks like at that level in
-        // words, so the engine writes the wound instead of forgetting it between replies. It goes
-        // ahead of any other context because a fighter's condition governs everything else in the
-        // reply. A continue is mid-sentence, so it is left alone.
-        if (gt !== 'continue') {
-            const immSt = await getChatState(chatId);
-            if (immActive(immSt)) {
-                const view = immViewFor(immSt.immersive, excludeId);
-                // The exchange this reply answers: the last message, or the one before a reply being redone.
-                const anchor = chat[chat.length - 1];
-                const lr = settings.lastDiceRoll;
-                const manual = lr && (!lr.chatId || lr.chatId === chatId) && !(settings.dnd && settings.dnd.enabled === false) ? lr : null;
-                const dice = immDiceFor(immSt.immersive, anchor ? anchor.id : null, !!(view.pending && view.pending.exploit), immRules(), { skipPlayer: !!manual });
-                if (dice && dice.fresh) await saveChatState(chatId, immSt);
-                const rem = immReminder(view, userName, { dice, manual });
-                if (rem) {
-                    if (contextMsg) {
-                        contextMsg.content = `${rem}\n\n${contextMsg.content}`;
-                        contextName = `RPG Companion: the fight + ${String(contextName || '').replace(/^RPG Companion:\s*/, '')}`;
-                    } else {
-                        contextMsg = { role: 'system', content: rem };
-                        contextName = 'RPG Companion: the fight';
-                    }
-                }
-            }
-        }
-
-        // depth 0: right after the last history message
-        if (trailing.length) {
-            let block = trailing.join('\n\n');
-            const anchor = out[lastHistoryIdx];
-            const approx = Math.round(block.length / 4);
-            // Default: its own system message just before the player's turn, so the turn stays the last
-            // thing the model reads and the block reads as an extra rather than the task.
-            if (settings.injectPlacement !== 'append' && anchor && anchor.role === 'user' && anchor.__isChatHistory) {
-                block = `[RPG Companion — for after your reply] Write your full reply first, at its usual length and in its usual form, following all your own instructions. This is an extra, never a replacement for any of it:\n\n${block}`;
-                const msg = { role: 'system', content: block };
-                out.splice(lastHistoryIdx, 0, msg);
-                lastHistoryIdx++;
-                injected.push({ msg, name: `RPG Companion: ${trailingName} (~${approx} tokens, before your message)` });
-            } else if (anchor && anchor.role === 'user' && anchor.__isChatHistory) {
-                appendText(anchor, block);
-                injected.push({ msg: anchor, name: `RPG Companion: ${trailingName} (~${approx} tokens, added to your message)` });
-            } else {
-                const msg = { role: 'user', content: block };
-                out.splice(lastHistoryIdx + 1, 0, msg);
-                injected.push({ msg, name: `RPG Companion: ${trailingName}` });
-            }
-        }
-        // depth 1: before the last history message
-        if (contextMsg) {
-            out.splice(Math.max(0, lastHistoryIdx), 0, contextMsg);
-            injected.push({ msg: contextMsg, name: contextName });
-            if (lastAssistantHistoryIdx >= lastHistoryIdx) lastAssistantHistoryIdx++;
-        }
-        // previous tracker state: just before the last assistant reply in history
-        if (exampleMsg) {
-            out.splice(lastAssistantHistoryIdx, 0, exampleMsg);
-            injected.push({ msg: exampleMsg, name: 'RPG Companion: previous trackers' });
-        }
-
-        if (slotted) {
-            const sl = out.find(m => !m.__isChatHistory && textOf(m.content).includes(RPGC_SLOT_HEAD));
-            const tok = sl ? Math.round(textOf(sl.content).slice(textOf(sl.content).indexOf(RPGC_SLOT_HEAD)).length / 4) : 0;
-            spindle.log.info(`[RPG Companion HMS] Side-panel request: in the preset's slot (~${tok} tokens), not added again.`);
-            if (!injected.length) { lastInjection.set(chatId, { at: new Date().toISOString(), parts: [`side-panel request (~${tok} tokens, in the preset)`], spellReferences: grounding.report, loreReferences: loreGrounding.report }); return messages; }
-        }
-        if (!injected.length) { lastInjection.set(chatId, { at: new Date().toISOString(), parts: [], spellReferences: grounding.report, loreReferences: loreGrounding.report }); return messages; }
-        spindle.log.info(`[RPG Companion HMS] Injected (${hmsOn ? 'HMS, ' : ''}${settings.generationMode}, ${gt}): ${injected.map(i => i.name.replace('RPG Companion: ', '')).join(', ')}`);
-
-        const breakdown = injected
-            .map(({ msg, name }) => ({ messageIndex: out.indexOf(msg), name }))
-            .filter(b => b.messageIndex >= 0);
-        if (context && context.chatId) lastInjection.set(context.chatId, { at: new Date().toISOString(), parts: (breakdown || []).map(b => b.name).concat(slotted ? ['side-panel request (in the preset)'] : []), spellReferences: grounding.report, loreReferences: loreGrounding.report });
-        injectedPromptPasses.add(out);
-        return { messages: out, breakdown };
-    } catch (e) {
-        logE(`[RPG Companion HMS] Interceptor error: ${e?.message || e}`);
-        return messages;
-    }
-}, 60);
+registerInterceptorKeep(safeIntercept, 60);
 
 // ───────────────────────────── In-chat display: HUD card and dialogue ─────────────────────────────
 // Both are drawn when a message is shown, never written into it: the saved reply keeps its plain-text
@@ -5529,6 +5376,7 @@ function bldKnownNames(st, hud, chatId) {
 
 spindle.registerMessageContentProcessor(async (ctx) => {
     noteUser(ctx.userId);
+    if (safeObserver()) return; // Leave the card's regex renderer and original prose intact.
     if (ctx.origin !== 'render' || ctx.isUser) return;
     if (!ctx.content) return;
     let out = stripForDisplay(ctx.content);
@@ -5592,6 +5440,7 @@ function withTimeout(promise, ms) {
 }
 
 async function runSeparateUpdate(chatId, targetId = null) {
+    if (safeObserver()) { await safePushState(chatId); return; }
     if (busyChats.has(chatId)) return;
     sheetChatNow = chatId;
     const runId = ++runCounter;
@@ -5773,7 +5622,8 @@ function emptyChatState() {
 function validChatRecord(raw) {
     return isPlainObject(raw) && (raw.v === 2 || (!raw.v && (raw.userStats || raw.infoBox || raw.characters)));
 }
-async function getChatState(chatId) {
+async function getChatState(chatId) { return getStoredChatState(safeStorageId(chatId)); }
+async function getStoredChatState(chatId) {
     if (chatStateCache.has(chatId)) return chatStateCache.get(chatId);
     if (chatStateLoads.has(chatId)) return chatStateLoads.get(chatId);
     const loading = loadChatState(chatId);
@@ -5810,7 +5660,8 @@ async function loadChatState(chatId) {
     return st;
 }
 
-async function saveChatState(chatId, st) {
+async function saveChatState(chatId, st) { return saveStoredChatState(safeStorageId(chatId), st); }
+async function saveStoredChatState(chatId, st) {
     moneyPreserveCorrectionAnchors(st, chatStateCache.get(chatId));
     const snapshot = clone(st);
     chatStateCache.set(chatId, st);
@@ -9471,14 +9322,7 @@ async function chroniclePayload(chatId) {
 
 /** {{rpgc_chronicle}}: the key moments so far, settled ones only, for a preset that wants them. */
 async function chronicleMacro(chatId, max = 12) {
-    const cc = chronCfg();
-    if (!settings.enabled || !cc.enabled || !chatId) return '';
-    const chat = await chatApi.getMessages(chatId);
-    const st = await getChatState(chatId);
-    const list = chronicleBuild(chat, st, await getUserName(chatId)).filter(e => e.settled && !e.hidden && e.imp >= 7 && e.kind !== 'place');
-    if (!list.length) return '';
-    const lines = list.slice(-Math.max(1, max)).map(e => `- ${e.loop ? `Loop ${e.loop} · ` : ''}${e.when ? `${e.when} — ` : ''}${e.text}`);
-    return `[Chronicle — key moments so far, oldest first]\n${lines.join('\n')}`;
+    return ''; // Chronicle remains panel-only.
 }
 
 // ───────────────────────────── New game: the bot's catalog and start handler ─────────────────────────────
@@ -9753,6 +9597,8 @@ function oocPanel(chatId, st) {
 const ARC_KEY_RE = /^\s*(?:arc\s*\d+(?:\s*-\s*[a-z])?\b|\[MT-ARC:[^\]]+\]\s*$)/i;
 
 function arcCheck(chatId, hud) {
+    const diagnostic = safeArcDiagnostic(hud);
+    if (diagnostic) return { ok: false, arc: hud.arc, suggest: null, diagnostic };
     if (!hud || !hud.arc) return null;
     const line = hud.lines.find(l => l.key === 'arc');
     const arc = String(hud.arc).trim();
@@ -10593,6 +10439,8 @@ function mtArcList(chatId) {
 }
 /** Canon references stay distinct from an explicit personal arc or Sandbox frame. */
 function mtSaga(chatId, year, arcLine, date = null) {
+    const token = String(arcLine || '').match(/\[MT-ARC:\s*([^\]]+?)\s*\]/i);
+    if (token) return safeSaga(token[1], year, arcLine, date);
     if (!Number.isFinite(year)) return null;
     const arcs = mtArcList(chatId);
     if (!arcs.length) return null;
@@ -11724,9 +11572,7 @@ function recoverFromReasoning(msg, content) {
 }
 
 async function hmsHandleReply(chatId, chat, msg, generationType) {
-    const out = await hmsHandleReplyInner(chatId, chat, msg, generationType);
-    chronicleSyncSoon(chatId);           // the reply before this one is settled now: into the Memory Cortex
-    return out;
+    return safeReadReply(chatId, chat, msg);
 }
 
 async function keepRoomReading(chatId, comp, hud) {
@@ -20660,110 +20506,27 @@ const repliesHandled = new Map();
 function replyKey(chatId, msg) { return `${chatId}:${msg.id}:${msg.swipe_id ?? 0}`; }
 
 onGenerationEnded(async (p, userId) => {
-    if (p && p.chatId) generating.delete(p.chatId);
+    if (p?.chatId) generating.delete(p.chatId);
     noteUser(userId);
+    if (!p?.chatId || p.error) return;
+    if (safeObserver()) { await safePushState(p.chatId); return; }
+    if (!settings.enabled || (!p.messageId && !p.fromPanel)) return;
     try {
-        if (!settings.enabled || !p || p.error || !p.chatId || (!p.messageId && !p.fromPanel)) return;
-        // The reply can be a moment behind the event: look again a few times before giving up.
-        let chat = [], msg = null;
-        for (const wait of [0, 300, 800, 1500, 3000]) {
-            if (wait) await new Promise(r => setTimeout(r, wait));
-            chat = await chatApi.getMessages(p.chatId);
-            msg = p.messageId ? chat.find(m => m.id === p.messageId) : null;
-            if (!msg && !p.messageId) { const last = chat[chat.length - 1]; msg = last && last.role === 'assistant' ? last : null; }
-            if (msg && textOf(msg.content).trim()) break;
+        let chat=[],msg=null;
+        for (const wait of [0,300,800,1500]) {
+            if (wait) await new Promise(resolve=>setTimeout(resolve,wait));
+            chat=await chatApi.getMessages(p.chatId);
+            msg=p.messageId ? chat.find(m=>m.id===p.messageId) : chat.at(-1);
+            if (msg?.role==='assistant' && textOf(msg.content).trim()) break;
         }
-        if (!msg || msg.role !== 'assistant') {
-            if (p.messageId) logW(`[RPG Companion HMS] A reply ended (${p.messageId}) but was not found in the chat; the panel was not updated.`);
-            return;
-        }
-        const rk = replyKey(p.chatId, msg);
-        // a Continue changes a reply already handled, so it is read again; anything else is read once
-        if (repliesHandled.has(rk) && !(p.generationType === 'continue' && !p.fromPanel)) return;
-        repliesHandled.set(rk, Date.now());
-        if (repliesHandled.size > 400) repliesHandled.delete(repliesHandled.keys().next().value);
-
-        if (settings.lastDiceRoll) {
-            settings.lastDiceRoll = null;
-            await saveSettings();
-        }
-
-        if (isHmsChat(p.chatId, null, chat)) {
-            // the guide's OOC answer has no HUD and is no story turn: nothing to read, nothing to guard
-            const at = chat.findIndex(m => m.id === msg.id);
-            const before = at > 0 ? chat[at - 1] : null;
-            if (before && before.role === 'user' && isOocText(textOf(before.content)) && !findHud(textOf(msg.content))) {
-                setStatus(p.chatId, 'info', 'An OOC answer: the story waits where it was. Nothing in it is read as the story.');
-                await pushState(p.chatId);
-                return;
-            }
-            // a failure reading the reply must not also stop the tracker call
-            try { await hmsHandleReply(p.chatId, chat, msg, p.generationType); }
-            catch (e) { logE(`[RPG Companion HMS] Reading the reply failed: ${e?.message || e}`); setStatus(p.chatId, 'warning', `Reading the last reply failed: ${e?.message || e}`); }
-            if (settings.generationMode === 'separate' && settings.autoUpdate && p.generationType !== 'continue' && (settings.hmsCompanion || immReadbackWanted(await getChatState(p.chatId)))) {
-                await runSeparateUpdate(p.chatId, msg.id);
-            } else {
-                await pushState(p.chatId);
-            }
-            return;
-        }
-
-        if (settings.generationMode === 'together') {
-            const content = textOf(msg.content);
-            const parsed = parseResponse(content);
-            {
-                const immSt = await getChatState(p.chatId);
-                const fightRep = parsed.fight && immActive(immSt) ? immNormalize(parsed.fight, immSt.immersive) : null;
-                await immAfterReply(p.chatId, msg, p.generationType, { hud: null, fight: fightRep });
-            }
-            if (parsed.found) {
-                const { data: before } = await collectCommitted(p.chatId, chat, msg.id);
-                enforceLocks(parsed, before, (await getChatState(p.chatId)).locks);
-                const prev = getSwipeData(msg) || {};
-                const cleaned = stripHiddenTags(stripTrackerBlocks(content));
-                const patch = cleaned !== content ? { content: cleaned } : {};
-                const ex = classicExtras(parsed, await getChatState(p.chatId));
-                await setSwipeData(p.chatId, msg, {
-                    userStats: parsed.userStats || prev.userStats || null,
-                    infoBox: parsed.infoBox || prev.infoBox || null,
-                    characters: parsed.characters || prev.characters || null,
-                    party: ex.party || prev.party || null,
-                    relations: ex.relations || prev.relations || null,
-                    family: Array.isArray(ex.family) ? ex.family : (prev.family || null),
-                    gear: Array.isArray(ex.gear) ? ex.gear : (prev.gear || null),
-                    agenda: Array.isArray(ex.agenda) ? ex.agenda : (prev.agenda || null),
-                    holdings: Array.isArray(ex.holdings) ? ex.holdings : (prev.holdings || null),
-                    money: Array.isArray(ex.money) ? ex.money : (prev.money || null),
-                    factions: Array.isArray(ex.factions) ? ex.factions : (prev.factions || null),
-                    secrets: Array.isArray(ex.secrets) ? ex.secrets : (prev.secrets || null),
-                    contacts: ex.contacts || prev.contacts || null,
-                    plot: ex.plot || prev.plot || null,
-                    objectives: ex.objectives || prev.objectives || null,
-                    injuries: ex.injuries || prev.injuries || null,
-                    hurtSeen: Array.isArray(ex.hurtSeen) ? ex.hurtSeen : (prev.hurtSeen || null)
-                }, patch);
-                await readingsAfterReply(p.chatId, chat, msg, ex.injuries || null, null);
-                const parts = ['userStats', 'infoBox', 'characters'].filter(k => parsed[k]).length;
-                if (!parts && parsed.fight) setStatus(p.chatId, 'warning', 'The last reply reported the fight but carried no trackers. Press Refresh to fetch them with a separate call.');
-                else setStatus(p.chatId, 'ok', `Trackers read from the last reply (${parts} of 3 sections).`);
-                if (settings.enableSpotifyMusic) {
-                    const song = extractSong(content);
-                    if (song) { const cs = await getChatState(p.chatId); cs.song = song; await saveChatState(p.chatId, cs); }
-                }
-                spindle.log.info(`[RPG Companion HMS] Parsed trackers from reply ${p.messageId} (${parts} sections)`);
-            } else if (p.generationType !== 'continue') {
-                setStatus(p.chatId, 'warning', 'The last reply had no tracker data. The model may be following the card\'s own format instead. Press Refresh to generate trackers separately, or switch to Separate mode.');
-                logW(`[RPG Companion HMS] No tracker JSON in reply ${p.messageId}`);
-            }
-            await pushState(p.chatId);
-        } else if (settings.autoUpdate && p.generationType !== 'continue') {
-            await runSeparateUpdate(p.chatId, msg.id);
-        } else {
-            await pushState(p.chatId);
-        }
+        if (!msg || msg.role!=='assistant') return;
+        await safeReadReply(p.chatId,chat,msg);
+        if (!safeObserver() && settings.activeAutoExtract===true && settings.generationMode==='separate' && settings.autoUpdate && p.generationType!=='continue') {
+            await runSeparateUpdate(p.chatId,msg.id);
+        } else await pushState(p.chatId);
     } catch (e) {
-        logE(`[RPG Companion HMS] GENERATION_ENDED handler failed: ${e?.message || e}`);
-        if (p && p.chatId) { setStatus(p.chatId, 'error', `The panel could not update after the reply: ${e?.message || e}. Press Refresh.`); try { await pushState(p.chatId); } catch { /* panel closed */ } }
+        logW('[RPG Companion] Reply reading failed: '+(e?.message || e));
+        setStatus(p.chatId,'warning','Could not read this reply. Its text was not rewritten.');
     }
 });
 
@@ -20778,13 +20541,14 @@ try {
     });
 } catch { /* older host without this event */ }
 
-for (const ev of ['MESSAGE_SWIPED', 'MESSAGE_DELETED', 'SWIPE_EDITED']) {
+for (const ev of ['MESSAGE_SWIPED', 'MESSAGE_DELETED', 'SWIPE_EDITED', 'MESSAGE_EDITED']) {
     try {
         spindle.on(ev, (p, userId) => {
             noteUser(userId);
             if (p && p.chatId) thoughtsCache.delete(p.chatId);
             else thoughtsCache.clear();
             statesDrop(p && p.chatId);
+            if (safeObserver() && p?.chatId) safePushState(p.chatId).catch(() => {});
             if (ev === 'MESSAGE_DELETED') {
                 if (p && p.chatId) hmsCache.delete(p.chatId);
                 else hmsCache.clear();
@@ -20806,6 +20570,13 @@ const ACTIVE_ACTIONS = new Set([
 spindle.onFrontendMessage(async (payload, userId) => {
     noteUser(userId);
     if (!payload || typeof payload !== 'object') return;
+    if (payload.type === 'observer_refresh') { await safePushState(payload.chatId); return; }
+    if (payload.type === 'observer_ignore') { await safeIgnoreLatest(payload.chatId); return; }
+    if (safeObserver() && !['ui_locale','get_state','save_settings'].includes(payload.type)) {
+        if (payload.chatId) await safePushState(payload.chatId);
+        return;
+    }
+    if (payload.chatId && payload.chatId !== SANDBOX_ID) safeNoteScope(payload.chatId, await spindle.chat.getMessages(payload.chatId));
     if (!settings.enabled && ACTIVE_ACTIONS.has(payload.type)) {
         if (payload.chatId) {
             setStatus(payload.chatId, 'info', 'RPG Companion is switched off. Turn it back on in Settings → General.');
@@ -20821,7 +20592,7 @@ spindle.onFrontendMessage(async (payload, userId) => {
             case 'get_state':
                 if (payload.chatId && payload.chatId !== SANDBOX_ID) lastRealChatId = payload.chatId;
                 if (payload.refreshName) userNameCache.delete(payload.chatId);
-                if (payload.characterId) await autoApplyPreset(payload.characterId);
+                if (!safeObserver() && payload.characterId) await autoApplyPreset(payload.characterId);
                 await pushState(payload.chatId || null);
                 break;
 

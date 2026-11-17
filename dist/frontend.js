@@ -2862,6 +2862,7 @@ export function setup(ctx) {
           if (sig && sig === lastStateSig && msg.chatId === state.chatId) { state.expectPush = false; return; }
           lastStateSig = sig; }
         if (msg.settings) state.settings = msg.settings;
+        state.observer = msg.observer || null;
         if (msg.chatId !== undefined) {
             if (msg.data) state.data = msg.data;
             else if (!msg.status || msg.status.kind !== 'error') state.data = { userStats: null, infoBox: null, characters: null };
@@ -3062,9 +3063,39 @@ export function setup(ctx) {
     root.addEventListener('input', e => { const el = e.target; if (!el || !/INPUT|TEXTAREA|SELECT/.test(el.tagName) || /checkbox|radio/.test(el.type)) return;
         const sec = el.closest('details')?.dataset?.openKey || '', id = el.getAttribute('aria-label') || el.getAttribute('placeholder') || el.name || '';
         if (id) { const k = `${sec}|${el.tagName}|${id}`; if (el.value) fieldDrafts.set(k, el.value); else fieldDrafts.delete(k); } }, true);
+    function companionPolicySelect() {
+        const select=h('select',{'aria-label':'Companion mode',onchange:e=>{state.settings.companionPolicy=e.target.value;saveSettings();}},
+            h('option',{value:'observer'},'👁 Observador — somente leitura'),h('option',{value:'active'},'🛠 Ativo — ferramentas e painel opcional'));
+        select.value=S()?.companionPolicy==='active'?'active':'observer';
+        return h('div',{class:'rpgc-row'},h('span',{class:'lbl'},'Modo da extensão'),select);
+    }
+    function renderObserver() {
+        const v=state.observer?.snapshot;
+        const out=[h('h3',null,'👁 RPG Companion · Observador'),companionPolicySelect(),
+            h('p',{class:'rpgc-note'},'Lê o HUD da campanha atual. Não injeta prompts, não consulta IA e não altera mensagens. O regex do card continua responsável pelo HUD no chat.'),
+            h('button',{class:'rpgc-btn',onclick:()=>send({type:'observer_refresh',chatId:state.chatId})},'↻ Atualizar leitura')];
+        if(state.status?.kind==='error')out.push(h('p',{role:'alert'},state.status.text));
+        if(!v){out.push(h('p',{class:'rpgc-note'},'Aguardando um World State completo nesta campanha. Estados de antes do último Start não são reutilizados.'));return out;}
+        out.push(h('p',{class:'rpgc-note'},'Fonte: '+v.messageId+' · swipe '+v.swipeId+(v.kind==='save'?' · save fornecido pelo jogador':'')));
+        if(v.latestReplyHasNoHud)out.push(h('p',{class:'rpgc-note'},'A última resposta não contém HUD; exibindo a última leitura disponível desta campanha, sem avançar o estado.'));
+        for(const warning of v.warnings || [])out.push(h('p',{class:'rpgc-status warning',role:'alert'},'⚠ '+warning));
+        const table=h('div',{class:'rpgc-card'});
+        for(const row of v.rows)table.appendChild(h('p',{style:'white-space:pre-wrap;overflow-wrap:anywhere'},row.text));
+        out.push(table,h('p',{class:'rpgc-note'},'Linhas ausentes ou ocultas no HUD não são reconstruídas. Nenhum valor é inventado ou completado pela extensão.'),
+            h('details',null,h('summary',null,'Ver HUD de origem'),h('pre',{style:'white-space:pre-wrap;overflow-wrap:anywhere'},v.raw)),
+            h('button',{class:'rpgc-btn',onclick:()=>send({type:'observer_ignore',chatId:state.chatId})},'Ignorar esta leitura rejeitada'),
+            h('p',{class:'rpgc-note'},'Ignorar afeta apenas o painel. Para corrigir o contexto do bot, edite ou remova a mensagem no chat. Uma edição ou outro swipe pode ser lido novamente.'));
+        return out;
+    }
+
     function render(fromBackend = false) {
         if (!panelVisible) { hiddenRender = true; return; }
         applyLang();
+        if (S() && S().companionPolicy !== 'active') {
+            root.className = 'rpgc' + themeClass();
+            root.replaceChildren(...renderObserver());
+            return;
+        }
         // 1.4.0: still on an ordinary redraw (same view, same reply), set here with the rest so no style flips mid-render
         const animKey = state.view === 'trackers' ? 'v:' + (state.viewTab || '') : state.view, animFresh = (state.hms?.messageId || null) !== animReply;
         root.className = 'rpgc' + themeClass() + ' look-' + currentLook() + (S()?.compactMobile ? ' rpgc-compact-mobile' : '') + deckClass() +
@@ -3628,6 +3659,10 @@ export function setup(ctx) {
             h('option', { value: 'tr' }, 'T\u00FCrk\u00E7e'));
         langSel.value = s.uiLanguage || 'auto';
         const general = section('s-general', 'General', state.open, null,
+            companionPolicySelect(),
+            h('p',{class:'rpgc-note'},'Compatibilidade 1.5: contexto antigo, pensamentos e instruções narrativas não são injetados. A leitura automática não reescreve HUDs; ferramentas manuais continuam disponíveis no modo Ativo.'),
+            toggle('Optional companion JSON request', () => !!s.activePanelRequest, v => { s.activePanelRequest = v; }, 'Active mode only. Adds a short request for observable facts after the reply. No scene cache, narrative styling, thoughts or lore duplicates.'),
+            toggle('Allow automatic separate extraction', () => !!s.activeAutoExtract, v => { s.activeAutoExtract = v; }, 'Opt-in: also requires Separate mode and automatic updates. Uses an extra model call. Off by default; Observer never calls a model.'),
             h('div', { class: 'rpgc-row' }, h('span', { class: 'lbl' }, 'Language'), langSel),
             i18nLang !== 'en' ? toggle('Ask for panel text in this language', () => s.modelLanguage, v => { s.modelLanguage = v; }, 'The model writes thoughts, descriptions, chapter summaries and OOC answers in this language. The HUD, names and keywords stay as they are, so lorebooks keep loading.') : null,
             toggle('Enabled', () => s.enabled, v => { s.enabled = v; }, 'Off: the extension adds nothing to your prompts and runs nothing on its own. The panel and your saved data stay readable.'),

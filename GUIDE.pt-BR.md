@@ -1,3 +1,5 @@
+> **Update 1.5.0:** Observer is the new default; Active remains selectable. Cached scene and narrative-style injection are removed. See [UPDATE-1.5.0.md](UPDATE-1.5.0.md) for installation, changed behavior, and limitations. Older instructions below describe legacy features and do not override the new mode contract.
+
 > **Para o bot Six-Sided World 2.5.3 (HUD configurável):** leia primeiro [a atualização 1.4.4](UPDATE-SIX-SIDED-2.5.3.md). Para a 2.5.1, veja [a 1.4.3](UPDATE-SIX-SIDED-2.5.1.md). Nenhuma das duas exige importar o preset HMS Reporter para detectar o HUD.
 
 # Guia HMS

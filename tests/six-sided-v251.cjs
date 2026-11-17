@@ -64,7 +64,7 @@ for(const style of ['PANEL','COLLAPSED']){
  context.html=html;check('HTML never rewritten '+style,!vm.runInContext("rewriteHud(html,items=>{items[0].text='date changed';return true;})",context).changed);
 }
 // All actual examples from the released guide: saves are readable when deliberately imported.
-const guide=fs.readFileSync(path.join(__dirname,'fixtures/HUD_STYLE_EXAMPLES.md'),'utf8');
+const guide=fs.readFileSync(path.join(__dirname,'fixtures/HUD_STYLE_EXAMPLES.md'),'utf8').replaceAll('\r\n','\n');
 for(const [i,m] of [...guide.matchAll(/```text\n([\s\S]*?)\n```/g)].entries())check('actual release example '+i,!!call('parseHud',m[1]));
 check('fenced save readable',!!call('parseHud','```text\n'+hud('### WORLD STATE ###')+'\n```\n```text\n### SAVE NOTES ###\nSchema: MT-Standalone-2\n***\n```'));
 // Original-world regression samples remain accepted by the shared reader.

@@ -1,11 +1,11 @@
 {
-    "version": "1.4.4",
-    "name": "RPG Companion HMS Edition 1.4.4 — Six-Sided 2.5.3",
+    "version": "1.5.0",
+    "name": "RPG Companion HMS 1.5.0 — Observer & Compatible Active",
     "identifier": "rpg_companion_hms",
     "author": "TenderTriper (Perch) — HMS Edition. Based on RPG Companion by Marinara. Minds, agendas, who knows what, Chekhov’s gun and building maps from FrankenSIM by Wireless (Ryah); TFDY by Pyropia.",
     "github": "https://github.com/ypedrouv80-bot/RPG_Companion_HMS",
     "homepage": "https://github.com/ypedrouv80-bot/RPG_Companion_HMS",
-    "description": "The side panel for the HMS Living World bots (Re:Zero, Mushoku Tensei, Classroom of the Elite, Overlord, Cyberpunk, Baldur's Gate 3), and for Undertale, Dark Souls and Skyrim bots. It reads the bot's WORLD STATE HUD instead of competing with it and shows it as cards: you, the people around you, quests, the phone, the map and the atlas, fights, the Chronicle and more. Minds (from FrankenSIM): how each person feels inside and toward you and each other, what they are doing, what they know, and the details the story planted; the extension keeps the numbers. It builds a new game from the bot's own catalog, answers OOC questions with the bot's guide, and draws emoji and dialogue colours. Made to work with the HMS Reporter beta preset. The guide is in the panel (Guide) and in GUIDE.md. Compatibility: Six-Sided World 2.5.3 customizable HUD (BASIC/FULL and per-group ON/OFF): reads the bare [MT-ARC:ID] arc code, never flags or restores rows the HUD settings hide, keeps their last known values in the panel (display only) and accepts HUD-command answers without a HUD. Also reads 2.5.1 Panel/Collapsed selectors, themed calendar names and named Compact skill ranks. Existing extension identifier and storage layout are preserved.",
+    "description": "Selectable Observer (default): reads the current campaign WORLD STATE without prompt injection, AI calls or message edits. Compatible Active keeps panel tools with optional bounded panel requests; no cached scene or narrative-style injection. New starts isolate campaign state; arc contradictions are reported, not silently corrected. Existing credits, identifier and legacy storage are preserved. See UPDATE-1.5.0.md.",
     "permissions": [
         "interceptor",
         "generation",

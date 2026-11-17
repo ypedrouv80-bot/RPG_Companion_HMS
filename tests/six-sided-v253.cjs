@@ -11,7 +11,7 @@ function constant(name) { const start = source.search(new RegExp('^const ' + nam
 
 const funcs = ['textMemo', 'textOf', 'lockKey', 'hudSemanticText', 'hudSemanticTextRead', 'hudFieldsFixed', 'findHud', 'findHudRaw', 'findHudAt', 'hmsRenderedPanelText', 'hudBlankInside', 'hudLineShaped', 'collapseDuplicateHudHeads', 'classifyHudLine', 'parseHud', 'hmsMarkBlocks', 'hmsMarkBlocksIn', 'mushokuLocationSegments', 'hudStyleFor', 'mtCalendar', 'mtCalendarDay', 'mtSkillsLine', 'mtRankRows', 'mtPowerViews', 'hmsSplitTop', 'spellMtStep', 'worldLines', 'worldOf', 'worldFind', 'worldAll', 'rewriteHud', 'hudLayout', 'hudLayoutRead', 'textHasHud', 'isHmsChat', 'renderHudCard',
     // 1.4.4
-    'sixVisRow', 'sixVisShown', 'sixIsSixSided', 'sixRevAtLeast', 'sixVisGuidePage', 'sixVisApply', 'sixVisSaveNotes', 'sixVisRead', 'sixVisFrom', 'sixVisibility', 'sixVisibilityRead', 'sixControlTurn', 'sixControlReply', 'sixVisFill', 'arcSame', 'hmsNorm', 'mtSaga', 'arcCheck', 'loreEntryHits', 'loreEscapeRe',
+    'sixVisRow', 'sixVisShown', 'sixIsSixSided', 'sixRevAtLeast', 'sixVisGuidePage', 'sixVisApply', 'sixVisSaveNotes', 'sixVisRead', 'sixVisFrom', 'sixVisibility', 'sixVisibilityRead', 'sixControlTurn', 'sixControlReply', 'sixVisFill', 'arcSame', 'hmsNorm', 'safeSaga', 'safeArcDiagnostic', 'mtSaga', 'arcCheck', 'loreEntryHits', 'loreEscapeRe',
     'isHudSwap', 'diffHud', 'hmsProcessContent', 'hmsTimelineUncached', 'messageHud', 'trackingMessageVisible', 'catalogMessage', 'catalogPlain', 'catalogParsePage', 'catalogRead'];
 const constants = ['HUD_HEAD_RE', 'HUD_SEP_RE', 'LOC_MARK_RE', 'LOC_ARROW_RE', 'LOC_LABEL_RE', 'HMS_BLOCK_FENCE_RE', 'MT_SKILL_SHORT', 'SPELL_ELEMENTS', 'SPELL_MT_WORDS', 'hudSemanticMemo', 'hmsNormMemo', 'hudLayoutCache',
     'SIX_VIS_GROUPS', 'SIX_VIS_KEEP', 'SIX_VIS_ESSENTIAL_RE', 'SIX_VIS_ROWS', 'SIX_VIS_CMD_RE', 'SIX_VIS_TOUCH_RE', 'SIX_VIS_ASK_RE', 'SIX_ARC_CODE_ONLY_RE', 'SIX_CTL_TOKEN_RE', 'SIX_VIS_BASIC', 'sixVisCache', 'MT_ROUTE_TITLES', 'ARC_KEY_RE',
@@ -31,7 +31,7 @@ function call(name, ...args) { context.args = args; return vm.runInContext(name 
 async function acall(name, ...args) { context.args = args; return await vm.runInContext(name + '(...args)', context, { timeout: 2000 }); }
 
 const prose = 'Rain drums on the shelter roof. Nothing advances until you decide.';
-const examples = fs.readFileSync(fx('v253/HUD_STYLE_EXAMPLES.md'), 'utf8');
+const examples = fs.readFileSync(fx('v253/HUD_STYLE_EXAMPLES.md'), 'utf8').replaceAll('\r\n', '\n');
 const basic = [...examples.matchAll(/## (\w+) — BASIC fixture\s*```text\n([\s\S]*?)\n```/g)].map(m => ({ style: m[1], hud: m[2] }));
 check('six BASIC fixtures found', basic.length === 6);
 

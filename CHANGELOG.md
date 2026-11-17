@@ -1,3 +1,12 @@
+# 1.5.0 — Observer and compatible Active
+
+- Selectable read-only Observer (default), with source message/swipe and rejected-reading control.
+- Isolated new-start state; previous storage is preserved. Continue remains distinct.
+- Removed cached scene, private-thought and narrative-style prompt injection. Optional bounded observable panel request in Active.
+- Automatic reader updates metadata only; no HUD/prose rewriting. Extra tracker calls require explicit opt-in.
+- Read mixed MT-ARC code/title labels; report conflicting Sandbox/title without guessing by year.
+- Preserved credits, identifier and license. See [migration and validation](UPDATE-1.5.0.md).
+
 # Changelog — RPG Companion HMS Edition
 
 ## 1.4.4 — Six-Sided World 2.5.3: the customizable HUD (built on 1.4.3)
