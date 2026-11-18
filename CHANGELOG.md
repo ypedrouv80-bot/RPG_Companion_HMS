@@ -1,3 +1,10 @@
+# 1.5.2 — Full HUD section parsing
+
+- Read all 37 lines in the reported full Panel HUD across internal dashed separators.
+- Preserve final star boundary and legacy dashed endings before prose.
+- Keep all current fields in World State, including Training and inline blocks; do not default to changed rows only.
+- See [update notes](UPDATE-1.5.2.md).
+
 # 1.5.1 — Localized arc labels and honest activation diagnostics
 
 - Recognize emoji + Arco/Arc labels and distinguish Memory from the current arc.

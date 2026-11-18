@@ -2849,7 +2849,7 @@ async function pushStateNow(chatId, snapshot = null) {
 // Demo mode plays scripted turns (no tokens); Live mode asks the model, with a small
 // world narrator standing in for a bot card.
 
-const RPGC_VERSION = '1.5.1';
+const RPGC_VERSION = '1.5.2';
 const diagLog = [];
 function diagPush(kind, m) { diagLog.push({ at: new Date().toISOString(), kind, text: String(m).slice(0, 400) }); if (diagLog.length > 60) diagLog.shift(); }
 function logW(m) { diagPush('warn', m); return spindle.log.warn(m); }
@@ -7347,10 +7347,27 @@ function findHudAt(src, m) {
     let bodyEnd = null;
     let sepFound = false;
     const lines = [];
-    while (pos < src.length && lines.length < 60) {
+    // A dashed divider can separate sections inside a full HUD. Only continue
+    // when a final star wall is reachable through field-shaped lines, not prose.
+    const sectionContinues = from => {
+        let p=from, count=0;
+        while(p<src.length && p-from<100000 && count<256) {
+            let n=src.indexOf('\n',p);if(n<0)n=src.length;
+            const row=src.slice(p,n).replace(/\r$/,'');p=n+1;
+            if(/^[ \t]*(?:\*[ \t]*){3,}$/.test(row))return count>0;
+            if(!row.trim() || /^[ \t]*(?:-[ \t]*){3,}$/.test(row))continue;
+            if(HUD_HEAD_RE.test(row))return false;
+            const semantic=hudSemanticText(row);
+            if(!hudLineShaped(row) && !/^[^\s:][^:]{0,44}:\s/.test(semantic))return false;
+            count++;
+        }
+        return false;
+    };
+    while (pos < src.length && lines.length < 256) {
         let nl = src.indexOf('\n', pos);
         if (nl === -1) nl = src.length;
         const raw = src.slice(pos, nl).replace(/\r$/, '');
+        if (/^[ \t]*(?:-[ \t]*){3,}$/.test(raw) && sectionContinues(nl+1)) { pos=nl+1;continue; }
         if (HUD_SEP_RE.test(raw)) { bodyEnd = pos; sepFound = true; break; }
         // A second header before any HUD line is the same header again, never a HUD line.
         if (!lines.length && HUD_HEAD_RE.test(raw)) { pos = nl + 1; bodyStart = pos; continue; }

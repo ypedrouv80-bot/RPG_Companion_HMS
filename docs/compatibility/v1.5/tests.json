@@ -1,6 +1,6 @@
 {
-  "checks": 72,
-  "passed": 72,
+  "checks": 156,
+  "passed": 156,
   "failures": [],
   "scope": "Entire shipped backend in mock Spindle; no live UI or model evaluation"
 }

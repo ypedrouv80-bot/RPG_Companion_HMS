@@ -5110,25 +5110,14 @@ export function setup(ctx) {
             const rowGroup = [];   // each row's group, parallel to rows
             const changedSet = Array.isArray(state.hms?.hudChanged) ? new Set(state.hms.hudChanged) : null;
             let blk = null, lastG = 'other';
-            const shownElsewhere = (title) => !!((state.world && S()?.worldCard !== false && (state.world.blocks || []).some(b => String(title).toUpperCase().startsWith(b)))
-                || (/^D&D CHARACTER SHEET/i.test(String(title)) && hudSheetNow() && dndOn() && (!isObj(S()?.dnd) || S().dnd.useHud !== false)));
-            const pointed = new Set();
             for (const l of hud.lines) {
                 if (l.block === 'fence') { blk = null; continue; }
-                if (l.block && shownElsewhere(l.block)) {
-                    const k = String(l.block).split(/\s+[\u2014\u2013-]\s+/)[0];
-                    if (!pointed.has(k)) { pointed.add(k); rows.push(h('div', { class: 'rpgc-hud-block pointer' }, h('div', { class: 'row' }, `${k} \u2014 shown in the ${/D&D/.test(k) ? 'D&D' : state.world.label} card.`))); rowGroup.push(lastG); }
-                    blk = null;
-                    continue;
-                }
                 if (l.block) {
                     if (!blk) { blk = h('div', { class: 'rpgc-hud-block', title: 'An inline block: rendered by its own module, not a HUD line. The guard and pins leave it alone.' }); rows.push(blk); rowGroup.push(lastG); }
                     blk.appendChild(h('div', { class: 'row' }, l.text.replace(/^\s{0,2}/, '')));
                     continue;
                 }
                 blk = null;
-                // 1.4.0: the Training line has its own card (You); not repeated here
-                if (state.world && (state.world.training || []).length && /^[^a-z]*training\b/i.test(String((l.fields && l.fields[0] && l.fields[0].label) || l.key || ''))) continue;
                 // a bullet follows the line it hangs under (the paths under Active Paths)
                 const gid = hudBulletOf(l) ? lastG : hudGroupOf(l);
                 lastG = gid;
@@ -5153,16 +5142,8 @@ export function setup(ctx) {
                     return d;
                 }));
             } else full = h('div', { class: 'rpgc-hud' }, rows);
-            // what moved since the reply before stays in view; the whole HUD is one click away
-            const changed = changedSet;
-            if (changed && changed.size < hud.lines.filter(l => !l.block).length) {
-                const now = hud.lines.filter(l => !l.block && changed.has(l.key)).map(l => hudRowPlus(l, { was: true }));
-                content.push(h('div', { class: 'rpgc-hud rpgc-hud-now' }, h('div', { class: 'rpgc-hud-nowhead' }, T('This reply')), now.length ? now : [h('p', { class: 'rpgc-note' }, T('Nothing on the HUD changed this reply.'))]));
-                const all = h('details', { class: 'rpgc-subdet' }, h('summary', null, TT('Show all {0} lines', hud.lines.filter(l => !l.block).length)), full);
-                all.open = state.open['hud-all'] === true;
-                all.dataset.openKey = 'hud-all'; all.addEventListener('toggle', () => { state.open['hud-all'] = all.open; });
-                content.push(all);
-            } else content.push(full);
+            // Display every current HUD row; changes are highlights, not a filter.
+            content.push(h('p', {class:'rpgc-note'}, String(hud.lines.filter(l=>l.block!=='fence').length)+' linhas lidas do World State.'), full);
             // Six-Sided 2.5.3: what the HUD settings hide, at its last known value (read only)
             const kept = Array.isArray(state.hms?.hudKept) ? state.hms.hudKept : [];
             if (kept.length) {

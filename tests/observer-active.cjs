@@ -26,6 +26,19 @@ async function main(){
  // Capture payloads without depending on host transport wrappers.
  ctx.__sent=sent;run('toFrontend = value => __sent.push(value)');
  check('default observer',()=>assert.equal(run('settings.companionPolicy'),'observer'));
+ const fullPanel=fs.readFileSync(path.join(__dirname,'fixtures/full-panel-sections.txt'),'utf8').replaceAll('\r\n','\n');
+ const expected=fullPanel.split('\n').filter(x=>/^\*\*[^*]/.test(x));
+ for(const ending of ['\n','\r\n']) {
+     const input=fullPanel.replaceAll('\n',ending)+ending+'The tutor enters.';
+     const parsed=call('parseHud',input);
+     check('full panel all rows '+JSON.stringify(ending),()=>assert.equal(parsed.lines.length,expected.length));
+     for(const row of expected)check('retained full row '+row.split(':')[0]+ending.length,()=>assert(parsed.lines.some(x=>x.text===row)));
+     check('both eyes retained '+ending.length,()=>assert.equal(parsed.lines.filter(x=>x.key.startsWith('demon eye')).length,2));
+     check('stops at actual star wall '+ending.length,()=>assert.equal(input.slice(parsed.find.bodyEnd).trimStart().startsWith('***'),true));
+     check('no prose captured '+ending.length,()=>assert.equal(parsed.lines.some(x=>x.text.includes('tutor enters')),false));
+ }
+ check('legacy dashed final wall still ends',()=>assert.equal(call('parseHud','### WORLD STATE ###\nLocation: Road\n---\nThe guard waits.\n***').lines.length,1));
+ check('missing star does not absorb prose',()=>assert.equal(call('parseHud','### WORLD STATE ###\nLocation: Road\n---\nThe guard waits.').lines.length,1));
  check('migration existing settings',()=>{const x=call('migrateSettings',{settingsVersion:9,hmsMode:'off',hmsCompanion:true});assert.equal(x.companionPolicy,'observer');assert.equal(x.activePanelRequest,false);assert.equal(x.hmsMode,'off');});
  const old=msg('old','assistant',hud('[MT-ARC:8]','Inventory: old gold'));
  chats.set('A',[old,start]);db.set('chats/A.json',{v:2,seed:{infoBox:{location:{value:'Sharia, K416'}}}});
