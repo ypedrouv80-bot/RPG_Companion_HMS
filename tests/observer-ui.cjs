@@ -16,3 +16,14 @@ n=nodes(render());assert.equal(n.some(x=>x.tag==='script'),false);assert(n.some(
 assert(n.some(x=>x.attrs?.role==='alert'));assert(n.some(x=>x.text?.includes('última leitura')));
 const ignore=n.find(x=>x.tag==='button'&&x.children.some(y=>y.text?.includes('Ignorar')));ignore.events.click();assert.equal(sent.at(-1).type,'observer_ignore');
 console.log('Observer UI: 10 assertions passed (actual shipped functions with mock DOM; no browser rendering claim).');
+
+// Family generation placement must recognise the original English and Portuguese labels.
+const familyConsts=source.match(/    const FAM_UP[^]*?(?=    function familyTree)/)[0];
+vm.runInContext(familyConsts+fn('familyTree','    '),ctx);
+Object.assign(ctx,{ringed:x=>({text:x}),monogram:x=>x,avatarImg:()=>null});state.userName='Jack';
+ctx.family=[{name:'Pilemon',relation:'pai'},{name:'Luke',relation:'irmão mais velho'},{name:'Eris',relation:'prima'},{name:'Mother',relation:'mother'},{name:'Sister',relation:'irmã'}];
+const tree=vm.runInContext('familyTree(family)',ctx);const rows=tree.children;
+assert(nodes([rows[0]]).some(x=>x.text==='Pilemon'));assert(nodes([rows[0]]).some(x=>x.text==='Mother'));
+assert(nodes([rows[1]]).some(x=>x.text==='Luke'));assert(nodes([rows[1]]).some(x=>x.text==='Sister'));
+assert(nodes([rows[2]]).some(x=>x.text==='Eris'));assert(!nodes([rows[2]]).some(x=>x.text==='Pilemon'));
+console.log('Family tree: 6 generation-placement assertions passed.');

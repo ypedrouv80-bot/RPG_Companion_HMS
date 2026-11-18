@@ -5620,11 +5620,11 @@ export function setup(ctx) {
             }));
     }
     // the family as a tree: those above you, you and your siblings, those below, and everyone else
-    const FAM_UP = /\b(?:father|mother|dad|mum|mom|papa|mama|parent|grand(?:father|mother|ma|pa)|aunt|uncle|guardian)\b/i;
-    const FAM_SIB = /\b(?:sister|brother|sibling|twin)\b/i;
-    const FAM_DOWN = /\b(?:son|daughter|child|niece|nephew|grand(?:son|daughter|child))\b/i;
+    const FAM_UP = /(?<![\p{L}])(?:pai|mãe|mae|pais|avó|avô|avo|tia|tio|father|mother|dad|mum|mom|papa|mama|parent|grand(?:father|mother|ma|pa)|aunt|uncle|guardian)(?![\p{L}])/iu;
+    const FAM_SIB = /(?<![\p{L}])(?:irmão|irmã|irmao|irma|gêmeo|gemeo|sister|brother|sibling|twin)(?![\p{L}])/iu;
+    const FAM_DOWN = /(?<![\p{L}])(?:filho|filha|neto|neta|sobrinho|sobrinha|son|daughter|child|niece|nephew|grand(?:son|daughter|child))(?![\p{L}])/iu;
     function familyTree(members) {
-        const tier = m => { const r = String(m.relation || ''); return FAM_UP.test(r) ? (/grand/i.test(r) ? 0 : 1) : FAM_SIB.test(r) ? 2 : FAM_DOWN.test(r) ? 3 : 4; };
+        const tier = m => { const r = String(m.relation || ''); return FAM_UP.test(r) ? (/grand|av[óôo]/i.test(r) ? 0 : 1) : FAM_SIB.test(r) ? 2 : FAM_DOWN.test(r) ? 3 : 4; };
         const rows = [[], [], [], [], []];
         for (const m of members) rows[tier(m)].push(m);
         const node = m => h('div', { class: 'rpgc-tnode ' + (m.status || '') + (m.present ? ' here' : ''), title: [m.relation, m.where, m.doing].filter(Boolean).join(' · ') },
@@ -9503,7 +9503,8 @@ export function setup(ctx) {
         const busy = !!cs.busy || (state.status && state.status.kind === 'busy' && /chapter summary/i.test(state.status.text || ''));
         const titleIn = h('input', { type: 'text', placeholder: 'Title (optional)', 'aria-label': 'Chapter title' });
         const out = [
-            h('p', { class: 'rpgc-note' }, 'A chapter is a stretch of the story with a summary that rides along with every message, on top of the history \u2014 nothing is removed. End one where the story turns: a death and a rewind, the end of an arc, the end of a day.'),
+            h('p', { class: 'rpgc-note' }, 'O HUD inicia o acompanhamento local no modo Ativo. O resumo exige encerrar o capítulo e solicitar o resumo; isso faz uma chamada ao modelo. No modo Observador não há chamadas automáticas.'),
+            h('p', { class: 'rpgc-note' }, 'A chapter groups a stretch of the story. Opening one does not generate a summary or remove messages. End it at a meaningful boundary; summarising is a separate model call.'),
             h('div', { class: 'rpgc-row' }, titleIn,
                 h('button', { class: 'rpgc-btn primary', disabled: busy ? true : null, onclick: () => send({ type: 'chapter_end', chatId: state.chatId, title: titleIn.value.trim(), summarize: true }) }, busy ? 'Summarising\u2026' : 'End chapter and summarise'),
                 h('button', { class: 'rpgc-btn', disabled: busy ? true : null, onclick: () => send({ type: 'chapter_end', chatId: state.chatId, title: titleIn.value.trim(), summarize: false }) }, 'End chapter'))

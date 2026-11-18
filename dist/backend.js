@@ -438,6 +438,7 @@ async function safeReadReply(chatId, chat, msg) {
     const data={infoBox,userStats:null,characters:comp.characters || null};
     for(const key of ['party','relations','family','gear','agenda','holdings','money','factions','contacts','quests','plot','objectives'])if(comp[key])data[key]=comp[key];
     await setSwipeData(chatId,msg,data); // metadata only; the source text is immutable here
+    await chaptersAfterReply(chatId,chat,msg,msg._rpgcPurpose);
     setStatus(chatId,'info','HUD lido sem reescrever a resposta. Informações ausentes continuam desconhecidas.');
     return {hud,comp,infoBox,content};
 }
@@ -2761,6 +2762,12 @@ async function pushStateNow(chatId, snapshot = null) {
         const { data } = await collectCommitted(chatId, chat, null);
         const target = lastAssistant(chat);
         const cs = await getChatState(chatId);
+        // Backfill only an empty chapter ledger from this campaign, without generating a summary.
+        const chapterConfig = chapCfg();
+        if (chapterConfig.enabled !== false && !(cs.chapters?.list?.length)) {
+            const firstHud = chat.find(m => m.role === 'assistant' && messageHud(m));
+            if (firstHud) { chapterOpen(cs, chapterConfig.arcs ? 'arc' : 'manual', firstHud); await saveChatState(chatId, cs); }
+        }
         refreshThoughtsCache(chatId, chat);
         const userName = await getUserName(chatId);
         try { await personaFor(chatId); } catch { /* the You card goes without it */ }
@@ -7159,10 +7166,10 @@ function mtRankRows(text, ranks) {
         const tv = part.match(/^(.+?)\s*\(([^)]+)\)\s*[—–-]\s*True\s*:\s*(.+)$/i);
         if (tv) { const rank = ranks.find(x => new RegExp(`\\b${x}\\b`, 'i').test(tv[3].split(/\s*\(/)[0])) || (/beginner/i.test(tv[3]) ? ranks[0] : null);
             return { name: tv[1].trim(), rank: tv[3].split(/\s*\(/)[0].trim(), step: rank ? ranks.indexOf(rank) : spellMtStep(tv[3]) }; }
-        const m = part.match(/^(.+?)\s*:\s*(.+)$/) || part.match(/^(.+?)\s*\(([^)]+)\)$/) || part.match(/^(.+?)\s+[—–-]\s+(.+)$/);
+        const m = part.match(/^(.+?)\s*:\s*(.+)$/) || part.match(/^(.+?)\s*\(([^)]+)\)$/) || part.match(/^(.+?)\s+[—–-]\s+(.+)$/) || part.match(/^(.+?)\s+(Elementary|Beginner|Basic|Intermediate|Advanced|Saint|King|Imperial|Emperor|Divine|God)$/i);
         if (!m) return null;
         const rank = ranks.find(x => new RegExp(`\\b${x}\\b`, 'i').test(m[2])) || (/beginner/i.test(m[2]) ? ranks[0] : null);
-        return { name: m[1].trim(), rank: m[2].trim(), step: rank ? ranks.indexOf(rank) : spellMtStep(m[2]) };
+        return { name: m[1].replace(/^[^\p{L}]+/u, '').trim(), rank: m[2].trim(), step: rank ? ranks.indexOf(rank) : spellMtStep(m[2]) };
     }).filter(Boolean);
 }
 
@@ -7501,7 +7508,7 @@ function parseHud(text) {
     let location = loc ? loc.segments : null;
     const mushoku = lines.some(l => /^(?:Armored Dragon Calendar:\s*K|Year:\s*K\.?\s*\d+)/i.test(hudSemanticText(l.text)));
     // Six-Sided writes "Location: …" in every style; a place with no arrow path (BASIC's short form) is one segment
-    if (!location && mushoku) { const lf = lines.find(l => l.kind === 'field' && /^location$/.test(l.key) && l.fields && l.fields[0].value); if (lf) location = [lf.fields[0].value]; }
+    if (!location) { const lf = lines.find(l => l.kind === 'field' && /^(?:location|current location|local|localização|localizacao|place|where)$/.test(l.key) && l.fields && l.fields[0].value); if (lf) location = [lf.fields[0].value]; }
     return { lines, find: f, time, location: mushoku && location ? mushokuLocationSegments(location) : location, arc: arcText, quests };
 }
 
@@ -8586,7 +8593,7 @@ function chapterClose(st, kind, lastMsg) {
 async function chaptersAfterReply(chatId, chat, msg, generationType) {
     try {
         const cfg = chapCfg();
-        if (cfg.enabled === false || (!cfg.loops && !cfg.arcs && !cfg.days && !cfg.months)) return [];
+        if (cfg.enabled === false) return [];
         if (generationType === 'continue') return [];
         const idx = chat.findIndex(m => m.id === msg.id);
         const prevMsg = idx > 0 ? [...chat.slice(0, idx)].reverse().find(m => m.role === 'assistant' && parseHud(textOf(m.content))) : null;
@@ -8594,6 +8601,8 @@ async function chaptersAfterReply(chatId, chat, msg, generationType) {
         if (now.minutes === null && !now.arc && !now.month) return [];
         const st = await getChatState(chatId);
         const c = chaptersOf(st);
+        // A visible open chapter needs no model call; automatic boundaries remain opt-in.
+        if (!cfg.loops && !cfg.arcs && !cfg.days && !cfg.months && !c.open.manual) chapterOpen(st, 'manual', msg);
         const before = prevMsg ? chapterMark(prevMsg) : null;
         const closed = [];
         const turn = (kind, changed) => {
