@@ -5087,11 +5087,12 @@ export function setup(ctx) {
     function renderWorldState() {
         const hud = state.hms.hud;
         const content = [];
-        // the start handlers' ARC NAME LAW: an Arc line that is no key loads nothing, silently
+        // A HUD label can identify an arc, but is not host activation telemetry.
         const ac = state.hms.arcCheck;
         if (ac && ac.ok === false) {
-            content.push(h('div', { class: 'rpgc-status warning', role: 'status' }, `The Arc line "${ac.arc}" loads no arc entry from your lorebooks, so the arc and its quests are not in the story.${ac.suggest ? ` The book spells it "${ac.suggest}".` : ''}`));
-            if (ac.suggest) content.push(h('div', { class: 'rpgc-row' }, h('button', { class: 'rpgc-btn primary', onclick: () => send({ type: 'arc_fix', chatId: state.chatId, value: ac.suggest }) }, `Use "${ac.suggest}"`)));
+            content.push(h('div', { class: 'rpgc-status warning', role: 'status' }, ac.diagnostic || 'Não foi possível interpretar este arco. Confira o prompt exportado para verificar as referências carregadas.'));
+        } else if (ac?.normalizedKey) {
+            content.push(h('p', { class: 'rpgc-note' }, 'Arco reconhecido. Identificador estável: ', h('code', null, ac.normalizedKey), '. A leitura do painel não confirma a ativação do lorebook.'));
         }
         const g = guardEl();
         if (g) content.push(g);

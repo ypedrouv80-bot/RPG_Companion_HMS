@@ -347,6 +347,18 @@ function safeSnapshot(chat, ignored=[]) {
     }
     return latest;
 }
+/** Read an arc identity without turning Memory numbers into arc numbers or editing source text. */
+function readArcIdentity(value) {
+    const t=String(value || '').normalize('NFKC').replace(/\\([\[\]:])/g,'$1');
+    const code=t.match(/\[MT-ARC:\s*([^\]]+?)\s*\]/i);
+    if(code)return {id:code[1].replace(/\s+/g,'').toUpperCase(),coded:true};
+    const title=t.replace(/\*\*|__/g,'');
+    const m=title.match(/(?:^|[^\p{L}\p{N}])(?:Arc|Arco)(?:\s+(?:Atual|Current))?\s*:?\s*(\d{1,2}(?:\s*-\s*[A-Z](?![A-Za-z]))?)(?![\p{L}\p{N}])/iu);
+    if(m)return {id:m[1].replace(/\s+/g,'').toUpperCase(),coded:false};
+    if(/(?:^|[^\p{L}\p{N}])Sandbox(?:$|[^\p{L}\p{N}])/iu.test(title))return {id:'SANDBOX',coded:false};
+    return null;
+}
+
 function safeArcDiagnostic(hud) {
     const text=String(hud?.arc || '');
     const codes=[...text.matchAll(/\[MT-ARC:\s*([^\]]+)\]/gi)].map(m=>m[1].trim().toUpperCase());
@@ -355,7 +367,7 @@ function safeArcDiagnostic(hud) {
     const without=text.replace(/\[MT-ARC:[^\]]+\]/gi,'');
     const title=Object.entries(MT_ROUTE_TITLES).sort((a,b)=>b[1].length-a[1].length).find(([,name])=>without.toLowerCase().includes(name.toLowerCase()));
     if (title && codes[0]!==title[0].toUpperCase()) return 'Conflito no HUD: '+codes[0]+' não corresponde a '+title[1]+' (Arc '+title[0]+'). Corrija a mensagem de origem; nenhuma troca automática foi feita.';
-    const numeric=without.match(/\bArc\s+(\d+(?:-[A-Z])?)\b/i);
+    const numeric=without.match(/\b(?:Arc|Arco)\s+(\d+(?:-[A-Z])?)\b/i);
     if(numeric && numeric[1].toUpperCase()!==codes[0])return 'Conflito no HUD: o número escrito e o código MT-ARC divergem.';
     return null;
 }
@@ -2837,7 +2849,7 @@ async function pushStateNow(chatId, snapshot = null) {
 // Demo mode plays scripted turns (no tokens); Live mode asks the model, with a small
 // world narrator standing in for a bot card.
 
-const RPGC_VERSION = '1.5.0';
+const RPGC_VERSION = '1.5.1';
 const diagLog = [];
 function diagPush(kind, m) { diagLog.push({ at: new Date().toISOString(), kind, text: String(m).slice(0, 400) }); if (diagLog.length > 60) diagLog.shift(); }
 function logW(m) { diagPush('warn', m); return spindle.log.warn(m); }
@@ -7419,7 +7431,7 @@ function classifyHudLine(raw) {
         const wm = t.match(/^([A-Za-z][A-Za-z' ]{0,30}?)(?=\s*[\d(\[—–·\-:]|$)/);
         key = (wm ? wm[1] : t.slice(0, 24)).trim().toLowerCase();
     }
-    if (/^(current\s+)?arc\b/.test(key)) key = 'arc';
+    if (/^(?:(?:current|atual)\s+)?arc(?:o)?\b/.test(key)) key = 'arc';
     return { key, kind: 'field', text, fields };
 }
 
@@ -7453,7 +7465,7 @@ function parseHud(text) {
         }
     }
     let arcText = null;
-    if (arc) arcText = arc.fields && arc.fields[0].label && /^(?:(?:current\s+)?arc|era\s*\/\s*arc)$/i.test(arc.fields[0].label) ? arc.fields[0].value : arc.text.trim();
+    if (arc) arcText = arc.fields && arc.fields[0].label && /^(?:(?:(?:current|atual)\s+)?arc(?:o)?(?:\s+atual)?|era\s*\/\s*arc(?:o)?)$/i.test(arc.fields[0].label) ? arc.fields[0].value : arc.text.trim();
     // Six-Sided 2.5.3 prints the arc as its bare code ("Current Arc: [MT-ARC:8]"): read it with the route's title
     const arcCode = arcText && String(arcText).trim().match(/^\[MT-ARC:\s*([^\]]+?)\s*\]$/i);
     if (arcCode) {
@@ -9597,25 +9609,21 @@ function oocPanel(chatId, st) {
 const ARC_KEY_RE = /^\s*(?:arc\s*\d+(?:\s*-\s*[a-z])?\b|\[MT-ARC:[^\]]+\]\s*$)/i;
 
 function arcCheck(chatId, hud) {
-    const diagnostic = safeArcDiagnostic(hud);
-    if (diagnostic) return { ok: false, arc: hud.arc, suggest: null, diagnostic };
     if (!hud || !hud.arc) return null;
-    const line = hud.lines.find(l => l.key === 'arc');
-    const arc = String(hud.arc).trim();
-    if (!line || !arc || /^sandbox\b/i.test(arc) || /^\s*(?:current\s+)?arc\s*:\s*sandbox\b/i.test(line.text) || /\[MT-ARC:\s*Sandbox\s*\]/i.test(line.text)) return null;   // loads no arc entry by design
-    const pool = getLorePool(chatId);
-    const keys = [];
-    for (const e of pool) for (const k of e.key) if (ARC_KEY_RE.test(k) && k.trim().length >= 5) keys.push({ k: k.trim(), e });
-    if (!keys.length) return null;                                  // this bot keys no arcs: nothing to check
-    // a [MT-ARC:ID] key is the card's literal code (in a regex entry it would read as a character class)
-    const keyHits = ({ k, e }) => /^\[MT-ARC:/i.test(k) ? String(line.text).toUpperCase().includes(k.toUpperCase()) : loreEntryHits({ ...e, key: [k], selective: false }, line.text);
-    if (keys.some(keyHits)) return { ok: true, arc };
-    let best = null, bs = 0;
-    for (const { k } of keys) {
-        const s = Math.max(atlasSim(arc, k), atlasSim(arc.replace(/^arc\s*/i, ''), k.replace(/^arc\s*/i, '')));
-        if (s > bs || (s === bs && best && k.length > best.length)) { bs = s; best = k; }
-    }
-    return { ok: false, arc, suggest: bs >= 0.45 ? best : null };
+    const arc=String(hud.arc).trim(), diagnostic=safeArcDiagnostic(hud);
+    if(diagnostic)return {ok:false,arc,suggest:null,diagnostic,activation:'unverified'};
+    const identity=readArcIdentity(arc);
+    if(identity?.id==='SANDBOX')return null;
+    const pool=getLorePool(chatId) || [];
+    const keys=pool.flatMap(e=>(e.key || []).map(k=>({k,e,id:readArcIdentity(k)?.id})));
+    const recognized=identity && (Object.hasOwn(MT_ROUTE_TITLES,identity.id) || keys.some(x=>x.id===identity.id));
+    if(recognized)return {ok:true,arc,arcId:identity.id,activation:'unverified',
+        normalizedKey:identity.coded?null:'[MT-ARC:'+identity.id+']'};
+    // This is a format/reference diagnostic, never proof of host activation or absence.
+    const line=hud.lines.find(l=>l.key==='arc');
+    if(line && keys.some(({k,e})=>ARC_KEY_RE.test(k) && loreEntryHits({...e,key:[k],selective:false},line.text)))return {ok:true,arc,activation:'unverified'};
+    return {ok:false,arc,suggest:null,activation:'unverified',
+        diagnostic:'Não foi possível identificar este arco pelo texto do HUD. Isso não comprova que o lorebook deixou de carregar; confira as entradas no prompt exportado.'};
 }
 
 /** Put the book's spelling of the arc on the latest HUD. */
@@ -10439,8 +10447,8 @@ function mtArcList(chatId) {
 }
 /** Canon references stay distinct from an explicit personal arc or Sandbox frame. */
 function mtSaga(chatId, year, arcLine, date = null) {
-    const token = String(arcLine || '').match(/\[MT-ARC:\s*([^\]]+?)\s*\]/i);
-    if (token) return safeSaga(token[1], year, arcLine, date);
+    const identity=readArcIdentity(arcLine);
+    if (identity) return safeSaga(identity.id, year, arcLine, date);
     if (!Number.isFinite(year)) return null;
     const arcs = mtArcList(chatId);
     if (!arcs.length) return null;

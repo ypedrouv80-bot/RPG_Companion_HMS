@@ -1,3 +1,10 @@
+# 1.5.1 — Localized arc labels and honest activation diagnostics
+
+- Recognize emoji + Arco/Arc labels and distinguish Memory from the current arc.
+- Remove false claims that a HUD spelling mismatch proves missing lorebook entries.
+- Keep the original HUD; show a stable code hint instead of a destructive Arc-only replacement.
+- Keep Observer and Active selectable. 503 local checks pass; see [details](UPDATE-1.5.1.md).
+
 # 1.5.0 — Observer and compatible Active
 
 - Selectable read-only Observer (default), with source message/swipe and rejected-reading control.

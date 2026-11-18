@@ -53,6 +53,18 @@ async function main(){
  const b=msg('b','assistant',hud('[MT-ARC:Sandbox] · Northern Adventurer (Memory 6)'));chats.set('A',[old,start,a,b]);await call('safePushState','A');
  check('screenshot conflict reported',()=>assert.match(sent.at(-1).observer.snapshot.warnings[0],/Sandbox|SANDBOX/));
  check('screenshot not silently repaired',()=>assert.match(sent.at(-1).observer.snapshot.arc,/Sandbox/));
+ const localized='📖 Arco 2 — Home Tutor [Memory 1]';
+ for (const label of ['Current Arc','Arco','Arco Atual']) {
+     const input=hud(localized).replace('Current Arc:',label+':'),parsed=call('parseHud',input),report=call('arcCheck','A',parsed);
+     check('photo label recognized '+label,()=>assert.equal(report.arcId,'2'));
+     check('photo no false missing warning '+label,()=>assert.equal(report.ok,true));
+     check('photo source preserved '+label,()=>assert.equal(parsed.arc,localized));
+     check('photo cannot prove activation '+label,()=>assert.equal(report.activation,'unverified'));
+ }
+ check('memory not arc',()=>assert.equal(call('readArcIdentity','[Memory 1]'),null));
+ check('Portuguese branch',()=>assert.equal(call('readArcIdentity','📖 Arco 3-B — The Silent Road').id,'3-B'));
+ check('mixed label saga does not use year fallback',()=>assert.equal(call('mtSaga','A',410,localized,null).current,2));
+ check('old false claim removed from active UI',()=>assert.equal(fs.readFileSync(path.join(root,'dist/frontend.js'),'utf8').includes('`The Arc line "${ac.arc}" loads no arc entry'),false));
  check('specific title does not match shorter title',()=>assert.equal(call('safeArcDiagnostic',call('parseHud',hud('[MT-ARC:9] University Bonds'))),null));
  check('sandbox no date fallback',()=>assert.equal(call('mtSaga','A',421,'[MT-ARC:Sandbox] · Northern Adventurer',null).current,null));
  check('numeric code with title',()=>assert.equal(call('mtSaga','A',416,'[MT-ARC:7] · Northern Adventurer',null).current,7));
