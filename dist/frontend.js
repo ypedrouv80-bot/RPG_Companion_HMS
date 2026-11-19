@@ -2639,7 +2639,7 @@ export function setup(ctx) {
         id: 'rpg-companion-hms',
         title: 'RPG Companion (HMS)',
         shortName: 'RPG',
-        headerTitle: 'RPG Companion HMS Edition 1.6.0',
+        headerTitle: 'RPG Companion HMS Edition 1.7.0',
         description: 'The side panel for HMS bots: the HUD as cards, people, quests, the map, fights, the Chronicle, and a guide',
         keywords: ['rpg', 'hms', 'tracker', 'hud', 'quests', 'dice', 'guide'],
         iconSvg: ICON_SVG
@@ -3070,7 +3070,7 @@ export function setup(ctx) {
         const profiles=[["auto","Automatic"],["generic","HMS / Living World"],["mushoku","Mushoku Tensei"],["danmachi","DanMachi"],["roshidere","Roshidere"],["jujutsu","Jujutsu Kaisen"],["assassins-creed","Assassin’s Creed"],["frieren","Frieren"],["konosuba","KonoSuba"],["cote","Classroom of the Elite"],["overlord","Overlord"],["harry-potter","Harry Potter"],["danganronpa","Danganronpa selectors"],["cyberpunk","Cyberpunk"],["bg3","Baldur’s Gate 3"]];
         const profile=h('select',{'aria-label':'Compatibility profile',onchange:e=>{state.settings.compatibilityProfile=e.target.value;saveSettings();}},profiles.map(([id,name])=>h('option',{value:id},name)));
         profile.value=S()?.compatibilityProfile||'auto';
-        return h('div',null,h('div',{class:'rpgc-row'},h('span',{class:'lbl'},'Modo da extensão'),select),h('div',{class:'rpgc-row'},h('span',{class:'lbl'},'Perfil de leitura'),profile));
+        return h('div',null,h('div',{class:'rpgc-row'},h('span',{class:'lbl'},'Modo da extensão'),select),h('div',{class:'rpgc-row'},h('span',{class:'lbl'},'Perfil de leitura'),profile),h('label',null,h('input',{type:'checkbox',checked:!!S()?.persistentHud,onchange:e=>{state.settings.persistentHud=e.target.checked;saveSettings();}}),' HUD persistente: estado no painel, apenas mudanças no modo Ativo'));
     }
     function renderObserver() {
         const v=state.observer?.snapshot;
