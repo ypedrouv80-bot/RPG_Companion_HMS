@@ -2639,7 +2639,7 @@ export function setup(ctx) {
         id: 'rpg-companion-hms',
         title: 'RPG Companion (HMS)',
         shortName: 'RPG',
-        headerTitle: 'RPG Companion HMS Edition 1.4.1 RC',
+        headerTitle: 'RPG Companion HMS Edition 1.6.0',
         description: 'The side panel for HMS bots: the HUD as cards, people, quests, the map, fights, the Chronicle, and a guide',
         keywords: ['rpg', 'hms', 'tracker', 'hud', 'quests', 'dice', 'guide'],
         iconSvg: ICON_SVG
@@ -3067,7 +3067,10 @@ export function setup(ctx) {
         const select=h('select',{'aria-label':'Companion mode',onchange:e=>{state.settings.companionPolicy=e.target.value;saveSettings();}},
             h('option',{value:'observer'},'👁 Observador — somente leitura'),h('option',{value:'active'},'🛠 Ativo — ferramentas e painel opcional'));
         select.value=S()?.companionPolicy==='active'?'active':'observer';
-        return h('div',{class:'rpgc-row'},h('span',{class:'lbl'},'Modo da extensão'),select);
+        const profiles=[["auto","Automatic"],["generic","HMS / Living World"],["mushoku","Mushoku Tensei"],["danmachi","DanMachi"],["roshidere","Roshidere"],["jujutsu","Jujutsu Kaisen"],["assassins-creed","Assassin’s Creed"],["frieren","Frieren"],["konosuba","KonoSuba"],["cote","Classroom of the Elite"],["overlord","Overlord"],["harry-potter","Harry Potter"],["danganronpa","Danganronpa selectors"],["cyberpunk","Cyberpunk"],["bg3","Baldur’s Gate 3"]];
+        const profile=h('select',{'aria-label':'Compatibility profile',onchange:e=>{state.settings.compatibilityProfile=e.target.value;saveSettings();}},profiles.map(([id,name])=>h('option',{value:id},name)));
+        profile.value=S()?.compatibilityProfile||'auto';
+        return h('div',null,h('div',{class:'rpgc-row'},h('span',{class:'lbl'},'Modo da extensão'),select),h('div',{class:'rpgc-row'},h('span',{class:'lbl'},'Perfil de leitura'),profile));
     }
     function renderObserver() {
         const v=state.observer?.snapshot;
@@ -3079,6 +3082,8 @@ export function setup(ctx) {
         out.push(h('p',{class:'rpgc-note'},'Fonte: '+v.messageId+' · swipe '+v.swipeId+(v.kind==='save'?' · save fornecido pelo jogador':'')));
         if(v.latestReplyHasNoHud)out.push(h('p',{class:'rpgc-note'},'A última resposta não contém HUD; exibindo a última leitura disponível desta campanha, sem avançar o estado.'));
         for(const warning of v.warnings || [])out.push(h('p',{class:'rpgc-status warning',role:'alert'},'⚠ '+warning));
+        if(v.profile)out.push(h('p',{class:'rpgc-note'},'Perfil: '+v.profile.name+(v.profile.location?' · '+v.profile.location:'')));
+        if(v.selectors)out.push(h('details',null,h('summary',null,'Routing metadata (may contain spoilers)'),Object.entries(v.selectors).map(([key,value])=>h('pre',null,key+': '+(value.valid?value.value:'Invalid latest selector; no fallback')))));
         const table=h('div',{class:'rpgc-card'});
         for(const row of v.rows)table.appendChild(h('p',{style:'white-space:pre-wrap;overflow-wrap:anywhere'},row.text));
         out.push(table,h('p',{class:'rpgc-note'},'Linhas ausentes ou ocultas no HUD não são reconstruídas. Nenhum valor é inventado ou completado pela extensão.'),

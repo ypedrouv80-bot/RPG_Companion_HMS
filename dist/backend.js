@@ -1,3 +1,33 @@
+// MULTIBOT_COMPAT_BEGIN
+(function(root){
+'use strict';
+const profiles=[['auto','Automatic'],['generic','HMS / Living World'],['mushoku','Mushoku Tensei'],['danmachi','DanMachi'],['roshidere','Roshidere'],['jujutsu','Jujutsu Kaisen'],['assassins-creed',"Assassin’s Creed"],['frieren','Frieren'],['konosuba','KonoSuba'],['cote','Classroom of the Elite'],['overlord','Overlord'],['harry-potter','Harry Potter'],['danganronpa','Danganronpa selectors'],['cyberpunk','Cyberpunk'],['bg3',"Baldur’s Gate 3"]];
+const signals=[['harry-potter',/HP_LW_HUD|Harry Potter|Hogwarts/i],['danganronpa',/DR_(?:CURRENT|STORY_CURRENT|WORLD_CURRENT)|Danganronpa/i],['mushoku',/MT-ARC|Armored Dragon|Mushoku/i],['danmachi',/DanMachi|Falna|Chronology.*DM-/i],['roshidere',/ROSHI-ARC|Roshidere|Seirei Academy/i],['jujutsu',/Jujutsu|Cursed Technique|CE Reserves/i],['assassins-creed',/Assassin.?s Creed|Animus|Synchronization/i],['frieren',/Frieren|\bAHP\b|Grimoire/i],['konosuba',/KonoSuba|Reincarnation: Pending|Aqua.s/i],['cote',/Classroom of the Elite|ANHS|Private Points/i],['overlord',/Overlord|YGGDRASIL|Nazarick/i],['cyberpunk',/Cyberpunk|Night City|Cyberware/i],['bg3',/Baldur|Spell Slots|Sword Coast/i]];
+const clean=s=>String(s||'').replace(/\*\*|__/g,'').replace(/^[\s\p{Extended_Pictographic}\uFE0F\u200D◆◇◈⌖►▶•]+/u,'').trim();
+function detect(text,name='',selected='auto'){if(selected!=='auto'&&profiles.some(p=>p[0]===selected))return selected;return (signals.find(p=>p[1].test(name+'\n'+text))||['generic'])[0];}
+function readRows(rows,name='',selected='auto'){
+ const text=rows.map(r=>typeof r==='string'?r:r.text).join('\n'),id=detect(text,name,selected),fields=[];
+ for(const row of rows){const raw=typeof row==='string'?row:row.text;for(const part of clean(raw).split(/\s+\|\s+(?=[^|:]{1,45}:)/)){let m=part.match(/^([^:]{1,80}):\s*(.*)$/);if(m)fields.push({label:clean(m[1]),value:m[2].trim(),raw});}}
+ const get=re=>fields.find(x=>re.test(x.label))?.value||null;
+ let location=get(/^(?:location|current location|local|localização|where|place|локация)$/i);
+ if(!location){const line=rows.map(r=>typeof r==='string'?r:r.text).find(x=>/◆|⌖/.test(x));if(line)location=clean(line.slice(line.search(/◆|⌖/))).replace(/^Location:\s*/i,'');}
+ let arc=get(/^(?:current arc|campaign arc|arc|arco|era \/ arc|era|эпоха)$/i);
+ if(!arc){const line=rows.map(r=>clean(typeof r==='string'?r:r.text)).find(x=>/^Arc\s+[\dIVX]/i.test(x));if(line)arc=line.split(/\s+·\s+/)[0];}
+ return {id,name:profiles.find(p=>p[0]===id)?.[1]||id,fields,location,arc,date:get(/^(?:date|data|дата|armored dragon calendar)$/i),time:get(/^(?:time|time of day|время)$/i),resources:fields.filter(x=>/^(?:HP|MP|CE|Mana|Mana Capacity|Mana Reserve|Assets|Purse|Wallet|Private Points|Имущество|Valis|Resources)$/i.test(x.label)),abilities:fields.filter(x=>/magic|sword|technique|falna|grimoire|classes|grade|skills|RCT|blessing|heavenly restriction/i.test(x.label)),quests:fields.filter(x=>/quest|objective|threads|задания|obligation|обязательства/i.test(x.label))};
+}
+function blocks(text){const lines=String(text||'').replace(/\r\n/g,'\n').split('\n');const out=[];let fenced=false;
+ for(let i=0;i<lines.length;i++){if(/^\s*```|^\s*~~~/.test(lines[i])){fenced=!fenced;continue;}if(fenced)continue;const hp=/^\s*\[HP_LW_HUD\]\s*$/.test(lines[i]),hms=/^\s*(?:#{1,6}\s*)?(?:[🌐🌍]\s*)?WORLD STATE(?:\s*\[[^\]]+\])?\s*(?:#{1,6})?\s*$/u.test(lines[i]);if(!hp&&!hms)continue;const rows=[];let closed=false;for(let j=i+1;j<Math.min(lines.length,i+260);j++){const line=lines[j];if((hp&&/^\s*\[\/HP_LW_HUD\]\s*$/.test(line))||(!hp&&/^\s*\*{3,}\s*$/.test(line))){out.push({rows,format:hp?'hp':'hms',raw:lines.slice(i,j+1).join('\n')});i=j;closed=true;break;}if(/^\s*---+\s*$/.test(line)){const next=lines[j+1]||'';if(!hp&&next.trim()&&!/^\s*(?:\*\*)?[^:]{1,80}:/.test(next)&&!/^\s*(?:---|\*\*\*)/.test(next)){out.push({rows,format:'hms',raw:lines.slice(i,j+1).join('\n')});i=j;closed=true;break;}continue;}if(/^\s*```|^\s*~~~|^\s*### WORLD STATE|^\s*\[HP_LW_HUD\]/.test(line))break;if(line.trim())rows.push({text:line,key:String(rows.length)});}if(!closed)continue;}
+ return out;
+}
+function selectors(text){const out={};let fence=false;for(const line of String(text).split(/\r?\n/)){if(/^\s*```|^\s*~~~/.test(line)){fence=!fence;continue;}if(fence||!/^<!--\s*DR_(?:CURRENT|STORY_CURRENT|WORLD_CURRENT)\b/.test(line))continue;const type=line.match(/^<!--\s*(DR_\w+)/)?.[1];const m=line.match(/^<!--\s*(DR_(?:CURRENT|STORY_CURRENT|WORLD_CURRENT))\s+(MAIN|FREE|IF)\s*\|\s*(.*?)\s*-->\s*$/);const world=type==='DR_WORLD_CURRENT'&&line.match(/^<!--\s*DR_WORLD_CURRENT\s+([A-Z][A-Z0-9-]*)\s*-->\s*$/);out[type]={valid:!!(m||world),value:m?m[3]:world?world[1]:null,branch:m?m[2]:null,raw:line};}return out;}
+function isStart(text){return /^(?:[A-Za-z][A-Za-z0-9_]*_Start_Handler|MUSHOKU_TENSEI_START_HANDLER)\s*(?:\r?\n|$)/i.test(String(text).trim());}
+function isGuide(text){return /THE WORLD STATE PANEL[^\n]*one example/i.test(text)||(/HOW TO PLAY|HOW TO START/i.test(text)&&/SWIPE RIGHT|The Canvas|Page 2/i.test(text));}
+function snapshot(messages,selected='auto',name=''){let start=0;for(let i=0;i<messages.length;i++)if(messages[i].role==='user'&&isStart(messages[i].content))start=i;let result=null;for(let i=start;i<messages.length;i++){const m=messages[i];if(m.role!=='assistant'||isGuide(m.content))continue;const found=blocks(m.content);const sel=selectors(m.content);if(found.length){const b=found.at(-1);result={...b,...readRows(b.rows,name,selected),messageId:m.id??i,swipeId:m.swipe_id??0,selectors:sel,stale:i!==messages.length-1};}else if(Object.keys(sel).length){result={rows:[],raw:'',...readRows([],name,'danganronpa'),messageId:m.id??i,selectors:sel,stale:i!==messages.length-1};}}if(result)result.stale=String(result.messageId)!==String(messages.at(-1)?.id??messages.length-1);return result;}
+root.HMSCompatibility={profiles,detect,readRows,blocks,selectors,isStart,isGuide,snapshot};
+if(typeof module==='object'&&module.exports)module.exports=root.HMSCompatibility;
+})(globalThis);
+
+// MULTIBOT_COMPAT_END
 // RPG Companion — Lumiverse Spindle backend
 // Port of the RPG Companion SillyTavern extension (v3 JSON tracker format).
 //
@@ -309,7 +339,7 @@ function safeIsStart(message) {
     if (!message || message.role !== 'user' || !trackingMessageVisible(message)) return false;
     const t=textOf(message.content).trim();
     // Anchored first line only: quoted examples and guide text are not commands.
-    return /^(?:(?:Mushoku_Start_Handler|MUSHOKU_TENSEI_START_HANDLER)[ \t]*|(?:Start(?:[ \t]+at)?|Begin)[ \t]+Arc[ \t]+(?:\d+(?:-[A-Z])?|Sandbox)(?:[ \t]+\((?:Premade|Custom)\))?[ \t]*)\\?(?:\r?\n|$)/i.test(t)
+    return /^(?:(?:[A-Za-z][A-Za-z0-9_]*_Start_Handler|MUSHOKU_TENSEI_START_HANDLER)[ \t]*|(?:Start(?:[ \t]+at)?|Begin)[ \t]+Arc[ \t]+(?:\d+(?:-[A-Z])?|Sandbox)(?:[ \t]+\((?:Premade|Custom)\))?[ \t]*)\\?(?:\r?\n|$)/i.test(t)
         && !companionResumeHud(t);
 }
 function safeCampaignMessages(chat) {
@@ -334,11 +364,16 @@ function safeSnapshot(chat, ignored=[]) {
             if (companionTurnPurpose(source)!=='continue') continue;
             source=companionResumeHud(source);kind='save';
         } else if (message.role !== 'assistant') continue;
+        if(HMSCompatibility.isGuide(source))continue;
         const hud=parseHud(source);
-        if (!hud || !hud.find.sepFound) continue;
+        if (!hud || !hud.find.sepFound) {
+            const selectors=HMSCompatibility.selectors(source);
+            if(Object.keys(selectors).length)latest={messageId:message.id,swipeId:message.swipe_id??0,sourceKey:safeSourceKey(message),kind:'selectors',rows:[],selectors,profile:HMSCompatibility.readRows([], '', 'danganronpa'),warnings:['Seletores técnicos: não são um HUD nem confirmação de lorebook carregado.'],raw:''};
+            continue;
+        }
         latest={messageId:message.id,swipeId:message.swipe_id ?? 0,sourceKey:safeSourceKey(message),kind,
             rows:hud.lines.map(l=>({key:l.key || '',text:l.text})),arc:hud.arc || null,
-            warnings:[],raw:(hud.find.fromHtml ? hud.find.plainText : source).slice(hud.find.headStart,hud.find.bodyEnd)+'***'};
+            profile:HMSCompatibility.readRows(hud.lines,'',settings.compatibilityProfile||'auto'),warnings:[],raw:hud.raw || (hud.find.fromHtml ? hud.find.plainText : source).slice(hud.find.headStart,hud.find.bodyEnd)+'***'};
         const warning=safeArcDiagnostic(hud);if(warning)latest.warnings.push(warning);
     }
     if (latest) {
@@ -447,6 +482,7 @@ async function safeReadReply(chatId, chat, msg) {
 
 const DEFAULT_SETTINGS = {
     settingsVersion: 10,
+    compatibilityProfile: 'auto',
     companionPolicy: 'observer', // observer | active; independent of together/separate
     activePanelRequest: false, // explicit opt-in, no cached context or narrative instructions
     activeAutoExtract: false, // explicit opt-in for a separate tracker call after each reply
@@ -2856,7 +2892,7 @@ async function pushStateNow(chatId, snapshot = null) {
 // Demo mode plays scripted turns (no tokens); Live mode asks the model, with a small
 // world narrator standing in for a bot card.
 
-const RPGC_VERSION = '1.5.2';
+const RPGC_VERSION = '1.6.0';
 const diagLog = [];
 function diagPush(kind, m) { diagLog.push({ at: new Date().toISOString(), kind, text: String(m).slice(0, 400) }); if (diagLog.length > 60) diagLog.shift(); }
 function logW(m) { diagPush('warn', m); return spindle.log.warn(m); }
@@ -7460,6 +7496,11 @@ function classifyHudLine(raw) {
 }
 
 function parseHud(text) {
+    const hp = String(text).includes("[HP_LW_HUD]") && HMSCompatibility.blocks(text).find(b=>b.format === "hp");
+    if (hp) {
+        const lines=hp.rows.map(r=>classifyHudLine(r.text)), profile=HMSCompatibility.readRows(lines, "", "harry-potter"), start=String(text).indexOf("[HP_LW_HUD]"), end=String(text).indexOf("[/HP_LW_HUD]",start);
+        return {lines,raw:hp.raw,profile,location:profile.location?[profile.location]:null,arc:profile.arc,time:profile.time,quests:null,find:{headStart:start,bodyEnd:end,sepFound:true,lines:lines.map(x=>x.text)}};
+    }
     const f = findHud(text);
     if (!f) return null;
     const lines = f.lines.map(classifyHudLine);
@@ -7505,11 +7546,13 @@ function parseHud(text) {
     // belong to the players, several of whom are not you: the system readers (abilities, conditions, vitals)
     // leave them alone so another player's skills or wounds never land on your sheet. They still show as lines.
     if (lines.some(l => /^\s*Game Mode:.*\bParty Mode\b/i.test(hudSemanticText(l.text)))) for (const l of lines) if (/^\W*Player:\s/i.test(hudSemanticText(l.text))) l.party = true;
-    let location = loc ? loc.segments : null;
+    const profile=HMSCompatibility.readRows(lines);
+    if(!arcText) arcText=profile.arc;
+    let location = loc ? loc.segments : profile.location?[profile.location]:null;
     const mushoku = lines.some(l => /^(?:Armored Dragon Calendar:\s*K|Year:\s*K\.?\s*\d+)/i.test(hudSemanticText(l.text)));
     // Six-Sided writes "Location: …" in every style; a place with no arrow path (BASIC's short form) is one segment
     if (!location) { const lf = lines.find(l => l.kind === 'field' && /^(?:location|current location|local|localização|localizacao|place|where)$/.test(l.key) && l.fields && l.fields[0].value); if (lf) location = [lf.fields[0].value]; }
-    return { lines, find: f, time, location: mushoku && location ? mushokuLocationSegments(location) : location, arc: arcText, quests };
+    return { lines, profile, find: f, time, location: mushoku && location ? mushokuLocationSegments(location) : location, arc: arcText, quests };
 }
 
 /** 'visual' (icons and bold labels), 'compact' (Six-Sided v1.1's merged Skills row) or 'plain'. */
@@ -8791,7 +8834,7 @@ function chaptersPanel(st, chat) {
         const a = idx.has(ch.fromId) ? idx.get(ch.fromId) : null;
         const b = ch.toId ? (idx.has(ch.toId) ? idx.get(ch.toId) : null) : (chat ? chat.length - 1 : null);
         return {
-            id: ch.id, kind: ch.kind, label: CHAPTER_LABEL[ch.kind], title: ch.title, status: ch.status,
+            id: ch.id, kind: ch.kind, label: CHAPTER_LABEL[ch.kind], title: ch.kind === 'arc' && !ch.titleByUser ? ((a !== null && chapterMark(chat[a]).arc) || ch.start?.arc || ch.title) : ch.title, status: ch.status,
             from: a === null ? null : a + 1, to: b === null ? null : b + 1, messages: a !== null && b !== null ? Math.max(0, b - a + 1) : null,
             start: ch.start, end: ch.end, summary: ch.summary || '', stale: !chapterSummaryValid(ch, chat), ended: ch.ended || null, learned: ch.learned || [],
             summarized: !!ch.summarizedAt, inPrompt: ch.inPrompt !== false, loopNo: ch.loopNo || null

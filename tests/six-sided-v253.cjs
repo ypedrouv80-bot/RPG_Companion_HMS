@@ -17,7 +17,7 @@ const constants = ['HUD_HEAD_RE', 'HUD_SEP_RE', 'LOC_MARK_RE', 'LOC_ARROW_RE', '
     'SIX_VIS_GROUPS', 'SIX_VIS_KEEP', 'SIX_VIS_ESSENTIAL_RE', 'SIX_VIS_ROWS', 'SIX_VIS_CMD_RE', 'SIX_VIS_TOUCH_RE', 'SIX_VIS_ASK_RE', 'SIX_ARC_CODE_ONLY_RE', 'SIX_CTL_TOKEN_RE', 'SIX_VIS_BASIC', 'sixVisCache', 'MT_ROUTE_TITLES', 'ARC_KEY_RE',
     'hmsParseCache', 'CATALOG_SKIP_RE', 'CATALOG_START_RE', 'CATALOG_MOD_PAGE_RE', 'CATALOG_EXAMPLE_RE'];
 const lorePool = [];
-const context = vm.createContext({
+const context = vm.createContext({HMSCompatibility:require("../compatibility/hud-profiles.js"),
     activeReadPass: null, settings: { hmsMode: 'auto', hmsGuard: true, hmsHudMath: false, hmsHudFormat: false }, hmsCache: new Map(),
     memoRead: (chat, key, read) => read(), logW: () => {}, getLorePool: () => lorePool, atlasSim: () => 0,
     mtArcList: () => [{ no: 1, title: 'Childhood', year: 407 }, { no: 2, title: 'Home Tutor', year: 412 }, { no: 3, title: 'Entry-Level Adventurer', year: 417 }, { no: 8, title: 'University', year: 423 }, { no: 9, title: 'University Bonds', year: 424 }],

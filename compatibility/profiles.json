@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "profiles": [
+    {
+      "id": "auto",
+      "name": "Automatic"
+    },
+    {
+      "id": "generic",
+      "name": "HMS / Living World"
+    },
+    {
+      "id": "mushoku",
+      "name": "Mushoku Tensei"
+    },
+    {
+      "id": "danmachi",
+      "name": "DanMachi"
+    },
+    {
+      "id": "roshidere",
+      "name": "Roshidere"
+    },
+    {
+      "id": "jujutsu",
+      "name": "Jujutsu Kaisen"
+    },
+    {
+      "id": "assassins-creed",
+      "name": "Assassin’s Creed"
+    },
+    {
+      "id": "frieren",
+      "name": "Frieren"
+    },
+    {
+      "id": "konosuba",
+      "name": "KonoSuba"
+    },
+    {
+      "id": "cote",
+      "name": "Classroom of the Elite"
+    },
+    {
+      "id": "overlord",
+      "name": "Overlord"
+    },
+    {
+      "id": "harry-potter",
+      "name": "Harry Potter"
+    },
+    {
+      "id": "danganronpa",
+      "name": "Danganronpa selectors"
+    },
+    {
+      "id": "cyberpunk",
+      "name": "Cyberpunk"
+    },
+    {
+      "id": "bg3",
+      "name": "Baldur’s Gate 3"
+    }
+  ],
+  "scope": "Read-only interpretation of emitted HUD fields. Does not load lore or rewrite cards."
+}
