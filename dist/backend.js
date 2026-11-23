@@ -437,10 +437,11 @@ function safeSaga(id, year, text, date) {
     const m=key.match(/^(\d+)(?:-([A-Z]))?$/);
     const title=MT_ROUTE_TITLES[key];
     // Current route follows the explicit marker, never a guessed year-to-arc table.
-    const arcs=Object.entries(MT_ROUTE_TITLES).map(([code,title])=>({no:code.includes('-')?code:Number(code),title,year:null}));
+    const arcs=Object.entries(MT_ROUTE_TITLES).map(([code,title])=>({no:code.includes('-')?code:Number(code),title,year:null}))
+        .sort((a,b)=>parseInt(a.no)-parseInt(b.no)||String(a.no).localeCompare(String(b.no)));
     return {year:Number.isFinite(year)?year:null,month:date?.month || null,day:date?.day || null,monthName:date?.monthName || null,
         personalArc:sandbox || !m ? String(text) : null,participation:sandbox?'personal':m?'explicit':'unknown',canonMode:null,
-        from:Number.isFinite(year)?year:0,to:Number.isFinite(year)?year:0,arcs,
+        from:null,to:null,arcs,
         current:m?Number(m[1]):null,part:m?.[2] || null,partName:title || null,next:null};
 }
 function safeRequestPartsCore(chat, generationType) {
@@ -2927,7 +2928,7 @@ async function pushStateNow(chatId, snapshot = null) {
 // Demo mode plays scripted turns (no tokens); Live mode asks the model, with a small
 // world narrator standing in for a bot card.
 
-const RPGC_VERSION = '1.7.0';
+const RPGC_VERSION = '1.7.1';
 const diagLog = [];
 function diagPush(kind, m) { diagLog.push({ at: new Date().toISOString(), kind, text: String(m).slice(0, 400) }); if (diagLog.length > 60) diagLog.shift(); }
 function logW(m) { diagPush('warn', m); return spindle.log.warn(m); }
@@ -7212,7 +7213,7 @@ function mtCalendar(text) {
     }
     // Six-Sided World 2.5+: named campaign months (or Familiar profile).
     // A partial/unknown date remains unknown; this reader never invents a day.
-    const named = t.match(/Armored Dragon Calendar:\s*K\.?\s*(\d{1,4})\s*,\s*([A-Za-z]+)\s+(\d{1,2})\b/i);
+    const named = t.match(/Armored Dragon Calendar:\s*K\.?\s*(\d{1,4})\s*,\s*([A-Za-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?\b/i);
     if (named) {
         const themed = ['deepfrost','thawrise','seedtide','rainveil','greengrowth','suncrest','highsun','emberwane','harvestmoon','goldfall','longnight','frostfall'];
         const familiar = ['january','february','march','april','may','june','july','august','september','october','november','december'];
@@ -7227,13 +7228,38 @@ function mtCalendar(text) {
 function mtCalendarDay(date) {
     return date.year * 360 + (date.month ? (date.month - 1) * 30 : 0) + date.day - 1;
 }
+// Reported year is useful even when the month/day is approximate. Keep
+// mtCalendar strict so partial dates never become elapsed-day arithmetic.
+function mtReportedYear(text) {
+    const t=hudSemanticText(text);
+    const row=t.split(/\r?\n/).find(l=>/^(?:Armored Dragon Calendar|Date|Data|Year|Ano)\s*:/i.test(l.trim()));
+    if(!row)return null;
+    const years=[...row.matchAll(/\bK\.?\s*(\d{1,4})(?!\d)/gi)].map(m=>Number(m[1]));
+    return years.length&&new Set(years).size===1?years[0]:null;
+}
 function mtPowerViews(text) {
     const t = String(text || '').trim();
     const m = t.match(/^Shown:\s*([\s\S]*?)\s*\|\s*True:\s*([\s\S]+)$/i);
     return { shown: m ? m[1].trim() : null, actual: (m ? m[2] : t).split(/\s*\|\s*(?:Reserve|Status):/i)[0].trim() };
 }
+function mtPrefixRankRows(text, ranks) {
+    const m=String(text).trim().match(/^(Elementary|Beginner|Basic|Intermediate|Advanced|Saint|King|Imperial|Emperor|Divine|God)(?:[- ](?:ranked|rank|level|tier))?\s+(.+)$/i);
+    if(!m)return null;
+    // A reported aptitude or future target does not establish learned proficiency.
+    if(/\b(?:aptitude|potential|untrained|unlearned|not learned|target|studying|future)\b/i.test(m[2]))return [];
+    const note=(m[2].match(/\s*\(([^()]*)\)\s*$/)||[])[1];
+    const body=m[2].replace(/\s*\([^()]*\)\s*$/,'');
+    const names=body.split(/\s*[,\/&]\s*|\s+and\s+/i).map(s=>s.trim()).filter(Boolean);
+    const allowed=/^(?:water|earth|wind|fire|healing|detox(?:ification)?|summoning|barrier|divine strike|necromancy|disturb magic|gravity|sword god|water god|north god)$/i;
+    if(!names.length||!names.every(n=>allowed.test(n)))return null;
+    const step=spellMtStep(m[1]);
+    return names.map(n=>({name:(/^detox$/i.test(n)?'Detoxification':n).replace(/\b\w/g,c=>c.toUpperCase()),rank:m[1][0].toUpperCase()+m[1].slice(1).toLowerCase()+(note?' ('+note+')':''),step}));
+}
 function mtRankRows(text, ranks) {
-    return hmsSplitTop(mtPowerViews(text).actual, /\s*[,;·|]\s*/g).map(part => {
+    const parts=hmsSplitTop(mtPowerViews(text).actual, /\s*[;·|]\s*/g).flatMap(clause=>
+        mtPrefixRankRows(clause,ranks) ?? hmsSplitTop(clause,/\s*,\s*/g).flatMap(part=>mtPrefixRankRows(part,ranks) ?? [part]));
+    return parts.map(part => {
+        if(typeof part!=='string')return part;
         // Six-Sided v1.1: "Sword God (Advanced) — True: Advanced (age cap; potential: Saint)" is the style, ranked by its True rank
         const tv = part.match(/^(.+?)\s*\(([^)]+)\)\s*[—–-]\s*True\s*:\s*(.+)$/i);
         if (tv) { const rank = ranks.find(x => new RegExp(`\\b${x}\\b`, 'i').test(tv[3].split(/\s*\(/)[0])) || (/beginner/i.test(tv[3]) ? ranks[0] : null);
@@ -10583,6 +10609,7 @@ function worldMushoku(chatId, lines, st, chat = null) {
     lines = lines.concat(lines.flatMap(l => l.split(/\s+\|\s+(?=[^|:]{1,40}:)/).slice(1)));
     const yr = worldFind(lines, /^Year:\s*K\.?\s*(\d+)\s*\|\s*Day:\s*(\d+)(?:\s*\|\s*Time:\s*([\d:]+)\s*(?:\(([^)]+)\))?)?/i);
     const date = mtCalendar(lines.join('\n'));
+    const reportedYear = date ? date.year : mtReportedYear(lines.join('\n'));
     const birth = worldFind(lines, /^Birth:\s*K\.?\s*(\d+)\s*\|\s*Race:\s*([^|]+?)\s*\|\s*Age:\s*(\d+)\s*\|\s*Origin:\s*(.+)$/i);
     const born = worldFind(lines, /\bAge:\s*(\d+)\s*(?:🎂\s*)?\(born\s*K\.?\s*(\d+)(?:\s*,\s*Month\s*(\d{1,2}))?\)/i);
     const bornField = worldFind(lines, /(?:^|\|)\s*(?:Birth|Born):\s*K\.?\s*(\d{3,4})(?:\s*,\s*Month\s*(\d{1,2}))?/i);
@@ -10603,7 +10630,7 @@ function worldMushoku(chatId, lines, st, chat = null) {
     const dreams = hg ? (hg[1].match(/Dreams:\s*(\d+)/i) || [])[1] : null;
     const w = isPlainObject(st.world) ? st.world : {};
     return {
-        year: date ? date.year : null, month: date ? date.month : null, monthName: date ? date.monthName : null, day: date ? date.day : null, period: yr && yr[4] ? yr[4] : clockPeriod ? clockPeriod[1].trim() : null,
+        year: reportedYear, month: date ? date.month : null, monthName: date ? date.monthName : null, day: date ? date.day : null, period: yr && yr[4] ? yr[4] : clockPeriod ? clockPeriod[1].trim() : null,
         birth: birth ? Number(birth[1]) : born ? Number(born[2]) : bornField ? Number(bornField[1]) : null, birthMonth: born && born[3] ? Number(born[3]) : bornField && bornField[2] ? Number(bornField[2]) : null, race: birth ? birth[2].trim() : race ? race[1].trim() : null, age: birth ? Number(birth[3]) : born ? Number(born[1]) : ageField ? Number(ageField[1]) : null, origin: birth ? birth[4].trim() : origin ? origin[1].trim() : null,
         adventurer: adv ? { rank: adv[1], party: adv[3] ? adv[3].trim() : (adv[2] && /solo/i.test(adv[2]) ? null : null), solo: !!(adv[2] && /solo/i.test(adv[2])), clan: adv[4] ? adv[4].trim() : null } : null,
         mana: mtPowerViews(manaRow).actual.split(/\s+\|\s+/)[0] || null, reserve: one(/\bReserve:\s*([^|]+)/i) || compactReserve, casting: one(/^Casting Method:\s*(.+)$/i) || (one(/^Voiceless Casting:\s*(.+)$/i) ? `Voiceless (${one(/^Voiceless Casting:\s*(.+)$/i)})` : compactSkills && compactSkills.voiceless ? 'Voiceless (Active)' : null), touki: mtPowerViews(one(/^Touki(?: \(Battle Aura\))?:\s*(.+)$/i)).actual || null, canon: one(/^Canon:\s*([^|]+)/i), agency: one(/^Narrative Mode:\s*([^|]+)/i),
@@ -10640,7 +10667,7 @@ function worldMushoku(chatId, lines, st, chat = null) {
         term: (() => { const m = worldFind(lines, /^Term:\s*(.+?)\s*\|\s*Role:\s*(.+)$/i); return m ? { term: m[1].trim(), role: m[2].trim() } : null; })(),
         hitogami: hg ? { state: hg[1].trim(), dreams: dreams ? Number(dreams) : null } : one(/^Dream Link:\s*(.+)$/i) ? { state: one(/^Dream Link:\s*(.+)$/i), dreams: null } : null,
         rudeusMode: one(/^Rudeus Mode:\s*([^|]+)/i), guide: one(/^Guide:\s*([^|]+)/i), season: one(/^Season:\s*(.+)$/i), calendarProfile: one(/^Calendar Profile:\s*(.+)$/i),
-        saga: (() => { try { const saga = mtSaga(chatId, date ? date.year : null, (one(/^(?:(?:Current )?Arc|Era\s*\/\s*Arc):\s*(.+)$/i) || lines.find(line => /^(?:Arc\s+\d|Era\s+\d|Sandbox:)/i.test(line)) || null), date); if (saga) { saga.canonMode = one(/^Canon:\s*([^|]+)/i); saga.events = chat ? mtEventLedger(chat) : []; } return saga; } catch { return null; } })(),
+        saga: (() => { try { const saga = mtSaga(chatId, reportedYear, (one(/^(?:(?:Current )?Arc|Era\s*\/\s*Arc):\s*(.+)$/i) || lines.find(line => /^(?:Arc\s+\d|Era\s+\d|Sandbox:)/i.test(line)) || null), date); if (saga) { saga.canonMode = one(/^Canon:\s*([^|]+)/i); saga.events = chat ? mtEventLedger(chat) : []; } return saga; } catch { return null; } })(),
         advice: (Array.isArray(w.advice) ? w.advice : []).slice(-12).reverse(),
         training: mtTraining(lines), standing: mtStanding(standingRow), faction: one(/^Faction:\s*(.+)$/i) && !/^(none|no|-|—)$/i.test(one(/^Faction:\s*(.+)$/i)) ? one(/^Faction:\s*(.+)$/i) : null,
         familyPlots: chat ? mtStartLines(chat, /^Family Plot:\s*(.+)$/i) : []

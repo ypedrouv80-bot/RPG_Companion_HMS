@@ -1,3 +1,5 @@
+> **1.7.1:** Fixed undated Mushoku arcs, partial campaign years, branch display and grouped rank-first magic. [Update and installation notes](UPDATE-1.7.1.md). No new preset needed.
+
 > **1.6.0:** [Multi-bot compatibility and optional preset](compatibility/README.md). [Update notes](UPDATE-1.6.0.md). [Native SillyTavern tracking edition](https://github.com/ypedrouv80-bot/RPG_Companion_HMS_SillyTavern).
 
 > **1.5.1:** leitura de “Arco” com emoji corrigida; [notas da atualização](UPDATE-1.5.1.md).

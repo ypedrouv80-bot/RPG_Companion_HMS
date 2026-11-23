@@ -1,3 +1,7 @@
+# 1.7.1 — Saga dates and grouped magic ranks
+
+No fabricated K.null/K.0 timeline, no false “last arc”, preserved reported years, correct branch highlighting, ordinal dates and grouped rank-first magic without upgrading aptitude to learned skills. [Details and validation](UPDATE-1.7.1.md).
+
 # 1.6.0 — Multi-bot HUD profiles and optional preset
 
 - Added reading profiles for the supplied Living World cards, retaining each world's own fields and rank vocabulary.

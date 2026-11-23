@@ -2729,5 +2729,8 @@
  "Ended ({0})": "Прекращённые ({0})",
  "{0} rows hidden by the bot’s HUD settings ({1}). Not dropped: the panel keeps their last known values.": "{0} строк скрыто настройками HUD бота ({1}). Они не потеряны: панель хранит их последние известные значения.",
  "Hidden by the HUD settings — last known ({0})": "Скрыто настройками HUD — последнее известное ({0})",
- "The bot leaves these rows out by your HUD settings. Shown here as last read; they are not put back into the story.": "Бот не выводит эти строки по вашим настройкам HUD. Здесь они показаны в последнем прочитанном виде и не возвращаются в историю."
+ "The bot leaves these rows out by your HUD settings. Shown here as last read; they are not put back into the story.": "Бот не выводит эти строки по вашим настройкам HUD. Здесь они показаны в последнем прочитанном виде и не возвращаются в историю.",
+ "No verified date for the next arc": "Дата следующей арки не подтверждена",
+ "Campaign year not stated": "Год кампании не указан",
+ "Route list only; no dated timeline or completed events are inferred.": "Список маршрутов без предполагаемых дат и завершённых событий."
 }

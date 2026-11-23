@@ -2729,5 +2729,8 @@
  "Ended ({0})": "Finalizadas ({0})",
  "{0} rows hidden by the bot’s HUD settings ({1}). Not dropped: the panel keeps their last known values.": "{0} filas ocultas por la configuración del HUD del bot ({1}). No se perdieron: el panel conserva sus últimos valores conocidos.",
  "Hidden by the HUD settings — last known ({0})": "Ocultas por la configuración del HUD — último valor conocido ({0})",
- "The bot leaves these rows out by your HUD settings. Shown here as last read; they are not put back into the story.": "El bot omite estas filas según tu configuración del HUD. Se muestran aquí como se leyeron por última vez; no se devuelven a la historia."
+ "The bot leaves these rows out by your HUD settings. Shown here as last read; they are not put back into the story.": "El bot omite estas filas según tu configuración del HUD. Se muestran aquí como se leyeron por última vez; no se devuelven a la historia.",
+ "No verified date for the next arc": "Sin fecha confirmada para el próximo arco",
+ "Campaign year not stated": "Año de campaña no indicado",
+ "Route list only; no dated timeline or completed events are inferred.": "Lista de rutas; no indica fechas ni eventos completados."
 }

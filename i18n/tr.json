@@ -2729,5 +2729,8 @@
  "Ended ({0})": "Sona eren ({0})",
  "{0} rows hidden by the bot’s HUD settings ({1}). Not dropped: the panel keeps their last known values.": "{0} satır botun HUD ayarlarıyla gizlendi ({1}). Kaybolmadı: panel son bilinen değerlerini tutuyor.",
  "Hidden by the HUD settings — last known ({0})": "HUD ayarlarıyla gizli — son bilinen ({0})",
- "The bot leaves these rows out by your HUD settings. Shown here as last read; they are not put back into the story.": "Bot bu satırları HUD ayarlarınız nedeniyle yazmıyor. Burada son okunduğu hâliyle gösterilir; hikâyeye geri eklenmez."
+ "The bot leaves these rows out by your HUD settings. Shown here as last read; they are not put back into the story.": "Bot bu satırları HUD ayarlarınız nedeniyle yazmıyor. Burada son okunduğu hâliyle gösterilir; hikâyeye geri eklenmez.",
+ "No verified date for the next arc": "Sonraki arkın tarihi doğrulanmadı",
+ "Campaign year not stated": "Kampanya yılı belirtilmedi",
+ "Route list only; no dated timeline or completed events are inferred.": "Yalnızca rota listesi; tarih veya tamamlanmış olay varsayılmaz."
 }

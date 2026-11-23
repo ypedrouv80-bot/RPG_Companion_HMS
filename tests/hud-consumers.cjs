@@ -39,6 +39,29 @@ async function main(){
    check('combat usable '+i,()=>assert.equal(tech.schools[0].spells[0].status,'reach'));
  }
  run("settings.companionPolicy='active'");
+ const swipeText=fs.readFileSync(path.join(__dirname,'fixtures/swipe-rank-prefix.txt'),'utf8');
+ const swipeHud=call('parseHud',swipeText),swipeLines=call('worldLines',swipeHud),swipeWorld=call('worldMushoku','swipe-ranks',swipeLines,{},[]);
+ const swipeStanding=call('spellStanding',swipeLines);
+ check('ordinal date',()=>assert.equal(swipeWorld.day,12));
+ check('reported year not canon rewritten',()=>assert.equal(swipeWorld.year,420));
+ check('grouped schools exactly six',()=>assert.equal(swipeWorld.magic.length,6));
+ for(const school of ['water','earth','wind','fire']){
+   check('world prefix '+school,()=>assert.equal(swipeWorld.magic.find(x=>x.name.toLowerCase()===school)?.step,0));
+   check('spell standing prefix '+school,()=>assert.equal(swipeStanding.schools.get(school)?.step,0));
+ }
+ for(const school of ['healing','detoxification'])check('split grouped '+school,()=>assert.equal(swipeWorld.magic.find(x=>x.name.toLowerCase()===school)?.step,1));
+ check('aptitude not mastery',()=>assert(swipeWorld.magic.every(x=>x.step<=1)));
+ check('note preserved',()=>assert(swipeWorld.magic.find(x=>x.name==='Healing').rank.includes('self-taught')));
+ check('source row immutable',()=>assert.equal(swipeText,fs.readFileSync(path.join(__dirname,'fixtures/swipe-rank-prefix.txt'),'utf8')));
+ check('potential prefix no learned skill',()=>assert.equal(call('mtRankRows','Advanced Fire (potential only)', ['Elementary','Intermediate','Advanced']).length,0));
+ for(const [calendar,year,arc] of [['K418, 5th month, mid-Seedtide — early spring',418,'8'],['K422, spring (approx.)',422,'4-B'],['Unspecified',null,'8']]){
+   const raw='### WORLD STATE [PANEL] ###\nArmored Dragon Calendar: '+calendar+' | Time: late morning\nLocation: Sharia\nCurrent Arc: [MT-ARC:'+arc+']\n***';
+   const parsed=call('parseHud',raw),lines=call('worldLines',parsed),world=call('worldMushoku','partial-date',lines,{},[]);
+   check('partial campaign year '+calendar,()=>assert.equal(world.year,year));
+   check('partial saga year '+calendar,()=>assert.equal(world.saga.year,year));
+   check('no fake day '+calendar,()=>assert.equal(world.day,null));
+   check('no fake next date '+calendar,()=>assert.equal(world.saga.next,null));
+ }
  const message=msg('chapter-source','assistant',full),chat=[message];chats.set('chapters-fixture',chat);
  await call('safeReadReply','chapters-fixture',chat,message);
  let st=await call('getChatState','chapters-fixture');
